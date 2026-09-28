@@ -3,7 +3,7 @@
 Write your own plan file (harness/plan.example.json is a free template using the fake model)
 and pass it with --plan:
 
-  python3 harness/run_plan.py --plan my_plan.json --backup-dir /Volumes/backup/harness-runs \\
+  python3 harness/run_plan.py --plan my_plan.json --backup-dir <backup folder> \\
           --i-approve-paid-calls
   python3 harness/run_plan.py --plan my_plan.json --dry-run      # plan only: every run gets --dry-run
 

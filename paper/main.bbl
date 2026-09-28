@@ -8,7 +8,8 @@
 \providecommand{\BIBentrySTDinterwordspacing}{\spaceskip=0pt\relax}
 \providecommand{\BIBentryALTinterwordstretchfactor}{4}
 \providecommand{\BIBentryALTinterwordspacing}{\spaceskip=\fontdimen2\font plus
-\BIBentryALTinterwordstretchfactor\fontdimen3\font minus \fontdimen4\font\relax}
+\BIBentryALTinterwordstretchfactor\fontdimen3\font minus
+  \fontdimen4\font\relax}
 \providecommand{\BIBforeignlanguage}[2]{{%
 \expandafter\ifx\csname l@#1\endcsname\relax
 \typeout{** WARNING: IEEEtranN.bst: No hyphenation pattern has been}%
@@ -22,81 +23,138 @@
 \BIBdecl
 
 \bibitem[Wolfers and Zitzewitz(2004)]{wolfers2004}
-J.~Wolfers and E.~Zitzewitz, ``Prediction markets,'' \emph{Journal of Economic Perspectives}, vol.~18, no.~2, pp. 107--126, 2004.
+J.~Wolfers and E.~Zitzewitz, ``Prediction markets,'' \emph{Journal of Economic
+  Perspectives}, vol.~18, no.~2, pp. 107--126, 2004.
 
-\bibitem[Schoenegger et~al.(2024)Schoenegger, Tuminauskaite, Park, Bastos, and Tetlock]{schoenegger2024}
-P.~Schoenegger, I.~Tuminauskaite, P.~S. Park, R.~V.~S. Bastos, and P.~E. Tetlock, ``Wisdom of the silicon crowd: {LLM} ensemble prediction capabilities rival human crowd accuracy,'' \emph{Science Advances}, vol.~10, no.~45, p. eadp1528, 2024.
+\bibitem[Schoenegger et~al.(2024)Schoenegger, Tuminauskaite, Park, Bastos, and
+  Tetlock]{schoenegger2024}
+P.~Schoenegger, I.~Tuminauskaite, P.~S. Park, R.~V.~S. Bastos, and P.~E.
+  Tetlock, ``Wisdom of the silicon crowd: {LLM} ensemble prediction
+  capabilities rival human crowd accuracy,'' \emph{Science Advances}, vol.~10,
+  no.~45, p. eadp1528, 2024.
 
 \bibitem[Lu(2025)]{lu2025}
-J.~Lu, ``Evaluating {LLM}s on real-world forecasting against expert forecasters,'' arXiv:2507.04562, 2025.
+J.~Lu, ``Evaluating {LLM}s on real-world forecasting against expert
+  forecasters,'' arXiv:2507.04562, 2025.
 
 \bibitem[Henry et~al.(2026)Henry, Ross, Marzoev, So, and Lo]{henry2026beyond}
-S.~Henry, J.~Ross, A.~Marzoev, E.~So, and A.~Lo, ``Beyond accuracy: Can {LLM} forecasters profit on prediction markets?'' in \emph{ICML 2026 Workshop Forecast}, 2026, spotlight. https://openreview.net/forum?id=TSA5kRUKZv.
+S.~Henry, J.~Ross, A.~Marzoev, E.~So, and A.~Lo, ``Beyond accuracy: Can {LLM}
+  forecasters profit on prediction markets?'' in \emph{ICML 2026 Workshop
+  Forecast}, 2026, spotlight. https://openreview.net/forum?id=TSA5kRUKZv.
 
 \bibitem[El~Lahib et~al.(2026)El~Lahib, Xia, Li, Wang, and Pi]{ellahib2026}
-A.~El~Lahib, Y.-J. Xia, Z.~Li, Y.~Wang, and X.~Pi, ``Temporal leakage in search-engine date-filtered web retrieval: A retrospective forecasting case study,'' arXiv:2602.00758, 2026.
+A.~El~Lahib, Y.-J. Xia, Z.~Li, Y.~Wang, and X.~Pi, ``Temporal leakage in
+  search-engine date-filtered web retrieval: A retrospective forecasting case
+  study,'' arXiv:2602.00758, 2026.
 
-\bibitem[Zou et~al.(2022)Zou, Xiao, Jia, Kwon, Mazeika, Li, Song, Steinhardt, Evans, and Hendrycks]{zou2022}
-A.~Zou \emph{et~al.}, ``Forecasting future world events with neural networks,'' in \emph{Advances in Neural Information Processing Systems 35 (NeurIPS), Datasets and Benchmarks Track}, 2022, arXiv:2206.15474.
+\bibitem[Zou et~al.(2022)Zou, Xiao, Jia, Kwon, Mazeika, Li, Song, Steinhardt,
+  Evans, and Hendrycks]{zou2022}
+A.~Zou \emph{et~al.}, ``Forecasting future world events with neural networks,''
+  in \emph{Advances in Neural Information Processing Systems 35 (NeurIPS),
+  Datasets and Benchmarks Track}, 2022, arXiv:2206.15474.
 
-\bibitem[Karger et~al.(2025)Karger, Bastani, Yueh-Han, Jacobs, Halawi, Zhang, and Tetlock]{karger2025}
-E.~Karger \emph{et~al.}, ``{ForecastBench}: A dynamic benchmark of {AI} forecasting capabilities,'' in \emph{Proceedings of the 13th International Conference on Learning Representations (ICLR)}, 2025, arXiv:2409.19839.
+\bibitem[Karger et~al.(2025)Karger, Bastani, Yueh-Han, Jacobs, Halawi, Zhang,
+  and Tetlock]{karger2025}
+E.~Karger \emph{et~al.}, ``{ForecastBench}: A dynamic benchmark of {AI}
+  forecasting capabilities,'' in \emph{Proceedings of the 13th International
+  Conference on Learning Representations (ICLR)}, 2025, arXiv:2409.19839.
 
-\bibitem[Halawi et~al.(2024)Halawi, Zhang, Yueh-Han, and Steinhardt]{halawi2024}
-D.~Halawi, F.~Zhang, C.~Yueh-Han, and J.~Steinhardt, ``Approaching human-level forecasting with language models,'' in \emph{Advances in Neural Information Processing Systems 37 (NeurIPS)}, 2024, arXiv:2402.18563.
+\bibitem[Halawi et~al.(2024)Halawi, Zhang, Yueh-Han, and
+  Steinhardt]{halawi2024}
+D.~Halawi, F.~Zhang, C.~Yueh-Han, and J.~Steinhardt, ``Approaching human-level
+  forecasting with language models,'' in \emph{Advances in Neural Information
+  Processing Systems 37 (NeurIPS)}, 2024, arXiv:2402.18563.
 
-\bibitem[Zhang et~al.(2026)Zhang, Liu, Johansson, Yitayew, Ohly, and Li]{zhang2026arena}
-J.~Zhang, G.~Liu, O.~Johansson, H.~Yitayew, K.~Ohly, and G.~Li, ``Prediction arena: Benchmarking {AI} models on real-world prediction markets,'' arXiv:2604.07355, 2026.
+\bibitem[Zhang et~al.(2026)Zhang, Liu, Johansson, Yitayew, Ohly, and
+  Li]{zhang2026arena}
+J.~Zhang, G.~Liu, O.~Johansson, H.~Yitayew, K.~Ohly, and G.~Li, ``Prediction
+  arena: Benchmarking {AI} models on real-world prediction markets,''
+  arXiv:2604.07355, 2026.
 
 \bibitem[Gu et~al.(2026)Gu, Kagan, Sun, Wu, and Xu]{gu2026prophets}
-A.~Gu, N.~Kagan, A.~Sun, J.~Wu, and H.~Xu, ``When do prophets profit in prediction markets?'' arXiv:2607.06166, 2026.
+A.~Gu, N.~Kagan, A.~Sun, J.~Wu, and H.~Xu, ``When do prophets profit in
+  prediction markets?'' arXiv:2607.06166, 2026.
 
 \bibitem[Cheng et~al.(2026)Cheng, Liu, and Long]{cheng2026polybench}
-P.~Cheng, J.~Liu, and Y.~Long, ``{PolyBench}: Benchmarking {LLM} forecasting and trading capabilities on live prediction market data,'' arXiv:2604.14199, 2026.
+P.~Cheng, J.~Liu, and Y.~Long, ``{PolyBench}: Benchmarking {LLM} forecasting
+  and trading capabilities on live prediction market data,'' arXiv:2604.14199,
+  2026.
 
-\bibitem[Yang et~al.(2025)Yang, Mahns, Li, Gu, Wu, and Xu]{yang2025prophetarena}
-Q.~Yang, S.~Mahns, S.~Li, A.~Gu, J.~Wu, and H.~Xu, ``{LLM}-as-a-prophet: Understanding predictive intelligence with {Prophet Arena},'' arXiv:2510.17638, 2025.
+\bibitem[Yang et~al.(2025)Yang, Mahns, Li, Gu, Wu, and
+  Xu]{yang2025prophetarena}
+Q.~Yang, S.~Mahns, S.~Li, A.~Gu, J.~Wu, and H.~Xu, ``{LLM}-as-a-prophet:
+  Understanding predictive intelligence with {Prophet Arena},''
+  arXiv:2510.17638, 2025.
 
 \bibitem[Ye et~al.(2026)Ye, Dineen, Zhu, Lu, Song, and Zhou]{ye2026hindcast}
-X.~Ye, J.~Dineen, E.~Zhu, S.~Lu, K.~Song, and B.~Zhou, ``Hindcast: Replaying prediction markets to evaluate {LLM} forecasters,'' arXiv:2607.14051, 2026.
+X.~Ye, J.~Dineen, E.~Zhu, S.~Lu, K.~Song, and B.~Zhou, ``Hindcast: Replaying
+  prediction markets to evaluate {LLM} forecasters,'' arXiv:2607.14051, 2026.
 
 \bibitem[Snowberg and Wolfers(2010)]{snowberg2010}
-E.~Snowberg and J.~Wolfers, ``Explaining the favorite--longshot bias: Is it risk-love or misperceptions?'' \emph{Journal of Political Economy}, vol. 118, no.~4, pp. 723--746, 2010.
+E.~Snowberg and J.~Wolfers, ``Explaining the favorite--longshot bias: Is it
+  risk-love or misperceptions?'' \emph{Journal of Political Economy}, vol. 118,
+  no.~4, pp. 723--746, 2010.
 
 \bibitem[Brier(1950)]{brier1950}
-G.~W. Brier, ``Verification of forecasts expressed in terms of probability,'' \emph{Monthly Weather Review}, vol.~78, no.~1, pp. 1--3, 1950.
+G.~W. Brier, ``Verification of forecasts expressed in terms of probability,''
+  \emph{Monthly Weather Review}, vol.~78, no.~1, pp. 1--3, 1950.
 
 \bibitem[Murphy(1973)]{murphy1973}
-A.~H. Murphy, ``A new vector partition of the probability score,'' \emph{Journal of Applied Meteorology}, vol.~12, no.~4, pp. 595--600, 1973.
+A.~H. Murphy, ``A new vector partition of the probability score,''
+  \emph{Journal of Applied Meteorology}, vol.~12, no.~4, pp. 595--600, 1973.
 
-\bibitem[Stephenson et~al.(2008)Stephenson, Coelho, and Jolliffe]{stephenson2008}
-D.~B. Stephenson, C.~A.~S. Coelho, and I.~T. Jolliffe, ``Two extra components in the {B}rier score decomposition,'' \emph{Weather and Forecasting}, vol.~23, no.~4, pp. 752--757, 2008.
+\bibitem[Stephenson et~al.(2008)Stephenson, Coelho, and
+  Jolliffe]{stephenson2008}
+D.~B. Stephenson, C.~A.~S. Coelho, and I.~T. Jolliffe, ``Two extra components
+  in the {B}rier score decomposition,'' \emph{Weather and Forecasting},
+  vol.~23, no.~4, pp. 752--757, 2008.
 
-\bibitem[Dimitriadis et~al.(2021)Dimitriadis, Gneiting, and Jordan]{dimitriadis2021}
-T.~Dimitriadis, T.~Gneiting, and A.~I. Jordan, ``Stable reliability diagrams for probabilistic classifiers,'' \emph{Proceedings of the National Academy of Sciences}, vol. 118, no.~8, p. e2016191118, 2021.
+\bibitem[Dimitriadis et~al.(2021)Dimitriadis, Gneiting, and
+  Jordan]{dimitriadis2021}
+T.~Dimitriadis, T.~Gneiting, and A.~I. Jordan, ``Stable reliability diagrams
+  for probabilistic classifiers,'' \emph{Proceedings of the National Academy of
+  Sciences}, vol. 118, no.~8, p. e2016191118, 2021.
 
 \bibitem[Platt(1999)]{platt1999}
-J.~C. Platt, ``Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods,'' in \emph{Advances in Large Margin Classifiers}, A.~J. Smola, P.~L. Bartlett, B.~Sch{\"o}lkopf, and D.~Schuurmans, Eds.\hskip 1em plus 0.5em minus 0.4em\relax MIT Press, 1999, pp. 61--74.
+J.~C. Platt, ``Probabilistic outputs for support vector machines and
+  comparisons to regularized likelihood methods,'' in \emph{Advances in Large
+  Margin Classifiers}, A.~J. Smola, P.~L. Bartlett, B.~Sch{\"o}lkopf, and
+  D.~Schuurmans, Eds.\hskip 1em plus 0.5em minus 0.4em\relax MIT Press, 1999,
+  pp. 61--74.
 
 \bibitem[Kim et~al.(2025)Kim, Garg, Peng, and Garg]{kim2025correlated}
-E.~Kim, A.~Garg, K.~Peng, and N.~Garg, ``Correlated errors in large language models,'' in \emph{Proceedings of the 42nd International Conference on Machine Learning (ICML)}, 2025, arXiv:2506.07962.
+E.~Kim, A.~Garg, K.~Peng, and N.~Garg, ``Correlated errors in large language
+  models,'' in \emph{Proceedings of the 42nd International Conference on
+  Machine Learning (ICML)}, 2025, arXiv:2506.07962.
 
 \bibitem[Spiro(2026)]{spiro2026}
-T.~Spiro, ``The oracle's fingerprint: Correlated {AI} forecasting errors and the limits of bias transmission,'' arXiv:2605.00844, 2026.
+T.~Spiro, ``The oracle's fingerprint: Correlated {AI} forecasting errors and
+  the limits of bias transmission,'' arXiv:2605.00844, 2026.
 
 \bibitem[Kleinberg and Raghavan(2021)]{kleinberg2021}
-J.~Kleinberg and M.~Raghavan, ``Algorithmic monoculture and social welfare,'' \emph{Proceedings of the National Academy of Sciences}, vol. 118, no.~22, p. e2018340118, 2021.
+J.~Kleinberg and M.~Raghavan, ``Algorithmic monoculture and social welfare,''
+  \emph{Proceedings of the National Academy of Sciences}, vol. 118, no.~22, p.
+  e2018340118, 2021.
 
-\bibitem[Satop{\"a}{\"a} et~al.(2016)Satop{\"a}{\"a}, Pemantle, and Ungar]{satopaa2016}
-V.~A. Satop{\"a}{\"a}, R.~Pemantle, and L.~H. Ungar, ``Modeling probability forecasts via information diversity,'' \emph{Journal of the American Statistical Association}, vol. 111, no. 516, pp. 1623--1633, 2016.
+\bibitem[Satop{\"a}{\"a} et~al.(2016)Satop{\"a}{\"a}, Pemantle, and
+  Ungar]{satopaa2016}
+V.~A. Satop{\"a}{\"a}, R.~Pemantle, and L.~H. Ungar, ``Modeling probability
+  forecasts via information diversity,'' \emph{Journal of the American
+  Statistical Association}, vol. 111, no. 516, pp. 1623--1633, 2016.
 
-\bibitem[Baron et~al.(2014)Baron, Mellers, Tetlock, Stone, and Ungar]{baron2014}
-J.~Baron, B.~A. Mellers, P.~E. Tetlock, E.~Stone, and L.~H. Ungar, ``Two reasons to make aggregated probability forecasts more extreme,'' \emph{Decision Analysis}, vol.~11, no.~2, pp. 133--145, 2014.
+\bibitem[Baron et~al.(2014)Baron, Mellers, Tetlock, Stone, and
+  Ungar]{baron2014}
+J.~Baron, B.~A. Mellers, P.~E. Tetlock, E.~Stone, and L.~H. Ungar, ``Two
+  reasons to make aggregated probability forecasts more extreme,''
+  \emph{Decision Analysis}, vol.~11, no.~2, pp. 133--145, 2014.
 
 \bibitem[Manski(2006)]{manski2006}
-C.~F. Manski, ``Interpreting the predictions of prediction markets,'' \emph{Economics Letters}, vol.~91, no.~3, pp. 425--429, 2006.
+C.~F. Manski, ``Interpreting the predictions of prediction markets,''
+  \emph{Economics Letters}, vol.~91, no.~3, pp. 425--429, 2006.
 
 \bibitem[Wolfers and Zitzewitz(2006)]{wolfers2006}
-J.~Wolfers and E.~Zitzewitz, ``Interpreting prediction market prices as probabilities,'' Federal Reserve Bank of San Francisco, Working Paper 2006-11, 2006, also NBER Working Paper 12200.
+J.~Wolfers and E.~Zitzewitz, ``Interpreting prediction market prices as
+  probabilities,'' Federal Reserve Bank of San Francisco, Working Paper
+  2006-11, 2006, also NBER Working Paper 12200.
 
 \end{thebibliography}
