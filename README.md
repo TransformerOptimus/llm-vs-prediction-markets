@@ -46,9 +46,9 @@ Every folder has its own README explaining what is in it.
 
 The data is not stored here. It is in two datasets on Hugging Face:
 
-- **Main dataset** (<<FILL: main dataset URL>>, about 58 MB): the market-moments,
+- **Main dataset** ([huggingface.co/datasets/SuperAGI/llm-vs-prediction-markets](https://huggingface.co/datasets/SuperAGI/llm-vs-prediction-markets), about 58 MB): the market-moments,
   every model call, the fixed analysis inputs and the result tables.
-- **News dataset** (<<FILL: news dataset URL>>, about 10 MB): the full text of the
+- **News dataset** ([huggingface.co/datasets/SuperAGI/llm-vs-prediction-markets-news](https://huggingface.co/datasets/SuperAGI/llm-vs-prediction-markets-news), about 10 MB): the full text of the
   news each model was shown.
 
 See [`data/README.md`](data/README.md) for what each holds and how it is licensed.
@@ -87,11 +87,19 @@ released file it comes from.
 
 ## Licences
 
-- Code: Apache License 2.0 (`LICENSE`).
+- Code: Apache License 2.0 (`LICENSE`), copyright 2026 SuperAGI Research.
 - Data: CC BY 4.0, except Window A, which comes from PolyBench and keeps its
   CC BY-NC-SA 4.0 licence. Details in [`data/README.md`](data/README.md).
-- The paper: <<FILL: paper licence>>.
+- The paper: CC BY 4.0.
 
 ## Citation
 
-<<FILL: citation block>>
+```bibtex
+@misc{bhola2026sorting,
+  title         = {Sorting, Not Calibration: A Price-Blind Comparison of Language Models and Prediction Markets},
+  author        = {Bhola, Ishaan and Krishnan, Adithyan and Kanchi, Ritu Rajesh and NS, Mukunda},
+  year          = {2026},
+  eprint        = {<<FILL: arXiv ID>>},
+  archivePrefix = {arXiv}
+}
+```

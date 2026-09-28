@@ -14,7 +14,7 @@ authors:
   - given-names: Mukunda
     family-names: NS
     affiliation: SuperAGI Research
-repository-code: "<<FILL: code repository URL>>"
+repository-code: "https://github.com/TransformerOptimus/llm-vs-prediction-markets"
 license: Apache-2.0
 keywords:
   - language models

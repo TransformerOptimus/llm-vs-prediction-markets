@@ -6,8 +6,8 @@ column):
 
 | Dataset | Size | What it holds |
 |---|---|---|
-| Main dataset (<<FILL: main dataset URL>>) | about 58 MB | The market-moments of all three windows, every model call (prompt, reply, probability, tokens, host, settings), the fixed analysis inputs, and the result tables. |
-| News dataset (<<FILL: news dataset URL>>) | about 10 MB | The full text of the news each model was shown, stored once per distinct text and linked to the main dataset by checksum. |
+| [Main dataset](https://huggingface.co/datasets/SuperAGI/llm-vs-prediction-markets) | about 58 MB | The market-moments of all three windows, every model call (prompt, reply, probability, tokens, host, settings), the fixed analysis inputs, and the result tables. |
+| [News dataset](https://huggingface.co/datasets/SuperAGI/llm-vs-prediction-markets-news) | about 10 MB | The full text of the news each model was shown, stored once per distinct text and linked to the main dataset by checksum. |
 
 Download both, then rebuild the local databases the code reads:
 
@@ -35,7 +35,7 @@ dataset's card list exactly what is needed.
 
 Every email address and phone number found in the news text and model replies
 was replaced by `[email removed]` or `[phone removed]` before release. To ask for
-a correction or removal, open an issue: <<FILL: takedown issues URL>>.
+a correction or removal, open an issue: https://github.com/TransformerOptimus/llm-vs-prediction-markets/issues.
 
 ## Licences
 
