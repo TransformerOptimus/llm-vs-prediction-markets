@@ -1,0 +1,37 @@
+# output of analysis/exploratory/correlated-errors-with-and-without-news.py
+# run: 2026-09-22T19:33:06Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: common rows per window with an ok forecast from every roster model in BOTH passes (normal = with news, memory_probe = news removed), primary set, news_available = 1; intervals = 1000 event resamples, seed 20260902, passes resampled together
+=== window A, test split: 1141 paired news rows, 557 events, 4 models
+  mean pair r(p-q)                         with news +0.806 [+0.766, +0.843] | without +0.852 [+0.823, +0.879] | change -0.046 [-0.079, -0.015]
+  mean pair r(residual)                    with news +0.756 [+0.715, +0.795] | without +0.803 [+0.770, +0.833] | change -0.047 [-0.085, -0.008]
+  wrong-together ratio, all rows           with news +2.654 [+2.452, +2.872] | without +2.552 [+2.364, +2.745] | change +0.102 [-0.025, +0.243]
+  wrong-together ratio, market-right rows  with news +4.480 [+3.875, +5.238] | without +4.342 [+3.726, +5.115] | change +0.138 [-0.401, +0.658]
+=== window A, both splits: 1417 paired news rows, 630 events, 4 models
+  mean pair r(p-q)                         with news +0.792 [+0.755, +0.826] | without +0.844 [+0.808, +0.872] | change -0.051 [-0.081, -0.024]
+  mean pair r(residual)                    with news +0.745 [+0.705, +0.784] | without +0.792 [+0.752, +0.827] | change -0.047 [-0.084, -0.012]
+  wrong-together ratio, all rows           with news +2.629 [+2.439, +2.837] | without +2.509 [+2.336, +2.722] | change +0.120 [+0.004, +0.234]
+  wrong-together ratio, market-right rows  with news +4.338 [+3.775, +4.996] | without +4.212 [+3.649, +4.974] | change +0.126 [-0.331, +0.539]
+=== window B, test split: 431 paired news rows, 336 events, 8 models
+  mean pair r(p-q)                         with news +0.772 [+0.710, +0.824] | without +0.833 [+0.796, +0.867] | change -0.060 [-0.102, -0.027]
+  mean pair r(residual)                    with news +0.707 [+0.638, +0.766] | without +0.763 [+0.722, +0.802] | change -0.055 [-0.106, -0.011]
+  wrong-together ratio, all rows           with news +2.330 [+2.126, +2.585] | without +2.418 [+2.212, +2.649] | change -0.087 [-0.257, +0.099]
+  wrong-together ratio, market-right rows  with news +3.110 [+2.684, +3.698] | without +3.369 [+2.896, +3.963] | change -0.259 [-0.648, +0.167]
+=== window B, both splits: 554 paired news rows, 411 events, 8 models
+  mean pair r(p-q)                         with news +0.771 [+0.721, +0.816] | without +0.832 [+0.799, +0.862] | change -0.060 [-0.095, -0.028]
+  mean pair r(residual)                    with news +0.703 [+0.650, +0.752] | without +0.767 [+0.733, +0.798] | change -0.063 [-0.104, -0.022]
+  wrong-together ratio, all rows           with news +2.310 [+2.136, +2.524] | without +2.374 [+2.179, +2.609] | change -0.064 [-0.207, +0.087]
+  wrong-together ratio, market-right rows  with news +3.097 [+2.734, +3.579] | without +3.312 [+2.906, +3.817] | change -0.215 [-0.554, +0.111]
+=== window C, test split: 593 paired news rows, 465 events, 8 models
+  mean pair r(p-q)                         with news +0.755 [+0.706, +0.795] | without +0.791 [+0.747, +0.825] | change -0.036 [-0.071, +0.001]
+  mean pair r(residual)                    with news +0.711 [+0.664, +0.752] | without +0.747 [+0.703, +0.786] | change -0.036 [-0.075, +0.003]
+  wrong-together ratio, all rows           with news +2.556 [+2.327, +2.838] | without +2.515 [+2.311, +2.764] | change +0.041 [-0.139, +0.229]
+  wrong-together ratio, market-right rows  with news +4.087 [+3.515, +4.762] | without +3.888 [+3.390, +4.458] | change +0.200 [-0.342, +0.759]
+=== window C, both splits: 737 paired news rows, 555 events, 8 models
+  mean pair r(p-q)                         with news +0.750 [+0.713, +0.787] | without +0.795 [+0.758, +0.827] | change -0.045 [-0.078, -0.012]
+  mean pair r(residual)                    with news +0.709 [+0.670, +0.747] | without +0.753 [+0.717, +0.784] | change -0.044 [-0.082, -0.007]
+  wrong-together ratio, all rows           with news +2.537 [+2.319, +2.772] | without +2.497 [+2.287, +2.730] | change +0.040 [-0.113, +0.192]
+  wrong-together ratio, market-right rows  with news +4.021 [+3.513, +4.607] | without +3.725 [+3.298, +4.241] | change +0.296 [-0.145, +0.782]
+# --- exit 0, 7s

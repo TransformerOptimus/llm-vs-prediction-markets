@@ -1,0 +1,118 @@
+{
+  "_note": "Dollars per one million tokens, keyed by the adapter name (the LiteLLM model id, or fake:0.5): input, output, cache_read. Our table; the budget stop and cost_usd use input and output (the harness sends no cached prefixes). LiteLLM's own estimate per call is logged beside it. source: OpenRouter's public endpoints JSON for the pinned host, or OpenAI's pricing page (standard tier) for direct ids; price_fetched: the day the figure was read. backup: the backup host's price, recorded only. Entries with null prices are refused by run.py for any non-fake run.",
+  "fake:0.5": {
+    "input": 0.0,
+    "output": 0.0,
+    "cache_read": 0.0,
+    "source": "not a real model",
+    "price_fetched": "2026-09-11"
+  },
+  "openai/gpt-5.2": {
+    "input": 1.75,
+    "output": 14.0,
+    "cache_read": 0.175,
+    "source": "https://openai.com/api/pricing/",
+    "price_fetched": "2026-09-11",
+    "host": "direct"
+  },
+  "openrouter/openai/gpt-oss-120b": {
+    "input": 0.03,
+    "output": 0.17,
+    "cache_read": 0.03,
+    "source": "https://openrouter.ai/api/v1/models/openai/gpt-oss-120b/endpoints",
+    "price_fetched": "2026-09-11",
+    "host": "akashml",
+    "backup": {
+      "host": "coreweave",
+      "input": 0.03,
+      "output": 0.17,
+      "cache_read": 0.03
+    }
+  },
+  "openrouter/moonshotai/kimi-k2.5": {
+    "input": 0.45,
+    "output": 2.25,
+    "cache_read": 0.07,
+    "source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.5/endpoints",
+    "price_fetched": "2026-09-11",
+    "host": "siliconflow"
+  },
+  "openrouter/deepseek/deepseek-v3.2": {
+    "input": 0.259,
+    "output": 0.42,
+    "cache_read": 0.135,
+    "source": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v3.2/endpoints",
+    "price_fetched": "2026-09-11",
+    "host": "siliconflow",
+    "backup": {
+      "host": "novita",
+      "input": 0.269,
+      "output": 0.4,
+      "cache_read": 0.1345
+    }
+  },
+  "openai/gpt-5.5": {
+    "input": 5.0,
+    "output": 30.0,
+    "cache_read": 0.5,
+    "source": "https://openai.com/api/pricing/",
+    "price_fetched": "2026-09-11",
+    "host": "direct"
+  },
+  "openrouter/z-ai/glm-5.1": {
+    "input": 1.19,
+    "output": 3.74,
+    "cache_read": 0.6,
+    "source": "https://openrouter.ai/api/v1/models/z-ai/glm-5.1/endpoints",
+    "price_fetched": "2026-09-11",
+    "host": "siliconflow",
+    "backup": {
+      "host": "atlas-cloud",
+      "input": 1.26,
+      "output": 3.96,
+      "cache_read": 0.234
+    }
+  },
+  "openrouter/moonshotai/kimi-k2.6": {
+    "input": 0.77,
+    "output": 3.4,
+    "cache_read": 0.14,
+    "source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.6/endpoints",
+    "price_fetched": "2026-09-11",
+    "host": "siliconflow",
+    "backup": {
+      "host": "crusoe",
+      "input": 0.7,
+      "output": 3.5,
+      "cache_read": 0.35
+    }
+  },
+  "openrouter/deepseek/deepseek-v4-pro": {
+    "input": 1.416,
+    "output": 2.832,
+    "cache_read": 0.118,
+    "source": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4-pro/endpoints",
+    "price_fetched": "2026-09-11",
+    "host": "alibaba",
+    "backup": {
+      "host": "novita",
+      "input": 1.6,
+      "output": 3.2,
+      "cache_read": 0.135
+    }
+  },
+  "openrouter/z-ai/glm-5.3-flash": {
+    "input": 0.135,
+    "output": 0.45,
+    "cache_read": 0.027,
+    "source": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints",
+    "price_fetched": "2026-09-11",
+    "host": "streamlake",
+    "backup": {
+      "host": "baseten",
+      "input": 0.15,
+      "output": 0.5,
+      "cache_read": 0.03
+    }
+  }
+}

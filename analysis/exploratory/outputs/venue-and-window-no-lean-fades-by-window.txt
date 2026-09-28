@@ -1,0 +1,58 @@
+# output of analysis/exploratory/venue-and-window-no-lean-fades-by-window.py
+# lines marked [withheld: Kalshi data] carry Window C detail the release cannot include
+# run: 2026-09-17T06:56:44Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+=== pooled over models, non-sports, mean(p-q) by window ===
+A n= 1096 models= 4 mean=-0.149 CI=[-0.197,-0.104]
+B n= 4069 models= 8 mean=-0.063 CI=[-0.090,-0.037]
+C n= 4125 models= 8 mean=-0.004 CI=[-0.029,0.022]
+
+=== per model, non-sports, by window ===
+A openai/gpt-5.2 n= 274 mean=-0.130 CI=[-0.182,-0.079] excl0
+A openrouter/deepseek/deepseek-v3.2 n= 274 mean=-0.138 CI=[-0.189,-0.089] excl0
+A openrouter/moonshotai/kimi-k2.5 n= 274 mean=-0.162 CI=[-0.208,-0.115] excl0
+A openrouter/openai/gpt-oss-120b n= 274 mean=-0.166 CI=[-0.217,-0.115] excl0
+B openai/gpt-5.2 n= 509 mean=-0.078 CI=[-0.107,-0.050] excl0
+B openai/gpt-5.5 n= 509 mean=-0.053 CI=[-0.081,-0.026] excl0
+B openrouter/deepseek/deepseek-v3.2 n= 509 mean=-0.045 CI=[-0.072,-0.018] excl0
+B openrouter/deepseek/deepseek-v4-pro n= 506 mean=-0.036 CI=[-0.070,-0.002] excl0
+B openrouter/moonshotai/kimi-k2.5 n= 509 mean=-0.078 CI=[-0.107,-0.048] excl0
+B openrouter/moonshotai/kimi-k2.6 n= 509 mean=-0.080 CI=[-0.109,-0.052] excl0
+B openrouter/openai/gpt-oss-120b n= 509 mean=-0.097 CI=[-0.125,-0.070] excl0
+B openrouter/z-ai/glm-5.1 n= 509 mean=-0.037 CI=[-0.067,-0.005] excl0
+C openai/gpt-5.2 n= 516 mean=0.027 CI=[-0.003,0.056] incl0
+C openai/gpt-5.5 n= 516 mean=-0.011 CI=[-0.037,0.014] incl0
+C openrouter/deepseek/deepseek-v3.2 n= 516 mean=-0.011 CI=[-0.039,0.017] incl0
+C openrouter/deepseek/deepseek-v4-pro n= 514 mean=0.044 CI=[0.011,0.079] excl0
+C openrouter/moonshotai/kimi-k2.5 n= 515 mean=-0.022 CI=[-0.053,0.010] incl0
+C openrouter/moonshotai/kimi-k2.6 n= 516 mean=-0.024 CI=[-0.054,0.007] incl0
+C openrouter/openai/gpt-oss-120b n= 516 mean=-0.063 CI=[-0.092,-0.030] excl0
+C openrouter/z-ai/glm-5.1 n= 516 mean=0.030 CI=[0.002,0.059] excl0
+
+=== 'mentions' tag, non-sports, by window ===
+A n= 204 mean=-0.134 CI=[-0.292,-0.037]
+B n= 1328 mean=-0.015 CI=[-0.060,0.034]
+C n= 2344 mean=0.037 CI=[0.002,0.072]
+
+=== q in 0.25-0.50, non-sports, by window ===
+A n= 316 mean=-0.157 CI=[-0.198,-0.101]
+B n= 983 mean=-0.015 CI=[-0.056,0.031]
+C n= 871 mean=0.108 CI=[0.052,0.165]
+
+=== market's own bias q-outcome, non-sports, by window ===
+A n= 1096 mean=0.034 CI=[-0.013,0.083]
+B n= 4069 mean=0.003 CI=[-0.034,0.035]
+C n= 4125 mean=0.038 CI=[0.005,0.072]
+
+=== sports rows q in 0.40-0.60, by window ===
+A n= 1731 mean=-0.044 CI=[-0.056,-0.032]
+B n= 3195 mean=-0.037 CI=[-0.045,-0.028]
+C n= 5884 mean=-0.012 CI=[-0.018,-0.006]
+
+=== tag mix (top tags) non-sports by window ===
+A n= 1096 [('culture', 552), ('world', 364), ('finance', 284), ('earnings', 280), ('elections', 248), ('politics', 208)]
+B n= 4069 [('politics', 1712), ('culture', 1344), ('mentions', 1328), ('trump', 1024), ('tech', 616), ('hide from new', 608)]
+C n= 4125 [('mentions', 2344), ('entertainment', 768), ('elections', 592), ('politics', 270), two more tags [withheld: Kalshi data] (fewer than 10 markets each)]
+# --- exit 0, 5s

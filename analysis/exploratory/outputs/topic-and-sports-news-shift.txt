@@ -1,0 +1,19 @@
+# output of analysis/exploratory/topic-and-sports-news-shift.py
+# run: 2026-09-17T06:56:26Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+total paired rows: 16214
+A non-sports n= 1076 events= 125 d_p=0.127 [0.108,0.151] d_brier=0.0349 [0.0142,0.0634]
+A sports n= 4643 events= 506 d_p=0.076 [0.070,0.082] d_brier=0.0084 [0.0028,0.0143]
+A d_p non-sports minus sports: (0.05103289042464694, 0.03061504451056521, 0.07596361909642081)
+A d_brier non-sports minus sports: (0.02645864120252168, 0.004676335918072517, 0.053831621890462734)
+B non-sports n= 1357 events= 110 d_p=0.154 [0.131,0.182] d_brier=0.0178 [-0.0086,0.0469]
+B sports n= 3138 events= 306 d_p=0.073 [0.065,0.082] d_brier=0.0013 [-0.0066,0.0090]
+B d_p non-sports minus sports: (0.08074846352952117, 0.05727908924128616, 0.10771281122018715)
+B d_brier non-sports minus sports: (0.016520482853551184, -0.009967625089873021, 0.04664729114760438)
+C non-sports n= 1747 events= 151 d_p=0.158 [0.141,0.177] d_brier=0.0230 [-0.0021,0.0498]
+C sports n= 4253 events= 416 d_p=0.090 [0.082,0.097] d_brier=0.0068 [-0.0027,0.0170]
+C d_p non-sports minus sports: (0.06896042149983761, 0.04938149957618432, 0.08885426448579764)
+C d_brier non-sports minus sports: (0.01625093233471077, -0.009768403191442721, 0.04437820680554647)
+# --- exit 0, 6s

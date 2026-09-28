@@ -1,0 +1,93 @@
+# output of analysis/exploratory/event-definition-and-cluster-counts.py
+# lines marked [withheld: Kalshi data] carry Window C detail the release cannot include
+# run: 2026-09-22T14:00:45Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: benchmark.db market_moments joined to moment_outcomes; primary analysis set unless a line says otherwise; an event is moment_outcomes.source_event_id, and a moment with none is its own cluster. Bootstrap settings: scoring.py resamples events, seed 20260902 (2000 resamples in the result tables, 1000 in the exploratory scripts).
+
+=== what source_event_id groups: the three largest events of each window, primary set
+  window A
+    event 95128: 19 markets, event title 'What songs will be played at the 2026 Pro Football Championship halftime show?'
+      market 788836: Will LA MUDANZA be played at the Super Bowl halftime show?
+      market 788837: Will DÁKITI be played at the Super Bowl halftime show?
+      market 788838: Will I Like It be played at the Super Bowl halftime show?
+      ... and 16 more markets in the same event
+    event 189648: 15 markets, event title 'What will be said during the Pro Football Championship?'
+      market 1272214: Will "Legendary" be said at the Super Bowl?
+      market 1272216: Will "Knee injury" be said at the Super Bowl?
+      market 1272217: Will "Flushed out" or "Flush out" be said at the Super Bowl?
+      ... and 12 more markets in the same event
+    event 196702: 14 markets, event title 'Who will get engaged in Love is Blind: Season 10?'
+      market 1319652: Will Alex Henderson get engaged on Love is Blind: Ohio?
+      market 1319655: Will Chris Fusco get engaged on Love is Blind: Ohio?
+      market 1319656: Will Connor Spies get engaged on Love is Blind: Ohio?
+      ... and 11 more markets in the same event
+  window B
+    event 727313: 12 markets, event title 'What will Kevin Warsh say during July Press Conference?'
+      market 0x047592e6b6a90c18252ff10f3d94983608937ce3ad8182b04fcf8b080b672148: Will Warsh say "Uncertainty" during July Press Conference?
+      market 0x11783d9c0cc8eb5806b1acf3cb6e44b6ad684aac1c3abb3e9468e2e400bbd83f: Will Warsh say "Good day" during July Press Conference?
+      market 0x62386e64ce6a33aae8c8a5d865d1b68d09c7f97b245d916d516ac36824041bd1: Will Warsh say "Dollar" during July Press Conference?
+      ... and 9 more markets in the same event
+    event 745731: 12 markets, event title 'What will Trump say during tribute to Lindsey Graham?'
+      market 0x38e21813625d521dde97c87fdac6884c8098b35378cb2e6843bd6d8cae73ee89: Will Trump say "Supreme Court" during tribute to Lindsey Graham?
+      market 0x4a61012f141662910a80a5c0a9ba9d1ea9eb1ca3adab82f477b85bd7614b57ee: Will Trump say "Sister" during tribute to Lindsey Graham?
+      market 0x79ec0a679f5f63ece0486b7d222855d6b5b3bf419b76cecf549bb0f5722d3a33: Will Trump say "Top Five" or "Top Ten" during tribute to Lindsey Graham?
+      ... and 9 more markets in the same event
+    event 710579: 11 markets, event title 'What will the announcers say during Argentina vs Spain World Cup Match?'
+      market 0x1098e84b46239dc75ed655984d35e1124d498c36a1c6d4480e86252335c7f78a: Will the announcers say "Bench" or "Benches" 7+ times during the Argentina vs Spain FIFA W
+      market 0x28b1e28ee00f993d661f7c93b9df1ea5fb96a1b4e379eaafab97c509f9f2ffbc: Will the announcers say "Record" during the Argentina vs Spain FIFA World Cup Match?
+      market 0x403ebd04f1b176f73a225fff48d7aa2ec1d17c154e37e0dc356369adc092f654: Will the announcers say "Gianni" or "Infantino" during the Argentina vs Spain FIFA World C
+      ... and 8 more markets in the same event
+  window C
+    event KXPGAMAKECUT-CHSC26: 12 markets, event title [withheld: Kalshi data]
+      market KXPGAMAKECUT-CHSC26-ASMA: [withheld: Kalshi data]
+      market KXPGAMAKECUT-CHSC26-ASMO: [withheld: Kalshi data]
+      market KXPGAMAKECUT-CHSC26-BGAR: [withheld: Kalshi data]
+      ... and 9 more markets in the same event
+    event KXPGATOP20-CHSC26: 12 markets, event title [withheld: Kalshi data]
+      market KXPGATOP20-CHSC26-APUT: [withheld: Kalshi data]
+      market KXPGATOP20-CHSC26-CBEZ: [withheld: Kalshi data]
+      market KXPGATOP20-CHSC26-ECOL: [withheld: Kalshi data]
+      ... and 9 more markets in the same event
+    event KXPGAMAKECUT-RBBCAN26: 10 markets, event title [withheld: Kalshi data]
+      market KXPGAMAKECUT-RBBCAN26-BCAM: [withheld: Kalshi data]
+      market KXPGAMAKECUT-RBBCAN26-BJAM: [withheld: Kalshi data]
+      market KXPGAMAKECUT-RBBCAN26-HHAL: [withheld: Kalshi data]
+      ... and 7 more markets in the same event
+
+=== events and bootstrap clusters per window
+  window A
+     primary set, test split:             1248 moments (1248 distinct markets) in 626 events; per event min 1, median 2.0, max 13; exactly one market: 292 events (46.6%); moments with no source_event_id (own cluster): 0
+                                        bootstrap draws 626 clusters with replacement per resample
+     primary set, calibration split:       302 moments (302 distinct markets) in 253 events; per event min 1, median 1.0, max 6; exactly one market: 218 events (86.2%); moments with no source_event_id (own cluster): 0
+                                        bootstrap draws 253 clusters with replacement per resample
+     primary set, both splits:            1550 moments (1550 distinct markets) in 712 events; per event min 1, median 2.0, max 19; exactly one market: 337 events (47.3%); moments with no source_event_id (own cluster): 0
+                                        bootstrap draws 712 clusters with replacement per resample
+  window B
+     primary set, test split:             1480 moments (1480 distinct markets) in 1196 events; per event min 1, median 1.0, max 10; exactly one market: 999 events (83.5%); moments with no source_event_id (own cluster): 1
+                                        bootstrap draws 1196 clusters with replacement per resample
+     primary set, calibration split:       385 moments (385 distinct markets) in 357 events; per event min 1, median 1.0, max 3; exactly one market: 332 events (93.0%); moments with no source_event_id (own cluster): 0
+                                        bootstrap draws 357 clusters with replacement per resample
+     primary set, both splits:            1865 moments (1865 distinct markets) in 1420 events; per event min 1, median 1.0, max 12; exactly one market: 1125 events (79.2%); moments with no source_event_id (own cluster): 1
+                                        bootstrap draws 1420 clusters with replacement per resample
+  window C
+     primary set, test split:             2137 moments (2137 distinct markets) in 1823 events; per event min 1, median 1.0, max 10; exactly one market: 1624 events (89.1%); moments with no source_event_id (own cluster): 0
+                                        bootstrap draws 1823 clusters with replacement per resample
+     primary set, calibration split:       532 moments (532 distinct markets) in 492 events; per event min 1, median 1.0, max 4; exactly one market: 463 events (94.1%); moments with no source_event_id (own cluster): 0
+                                        bootstrap draws 492 clusters with replacement per resample
+     primary set, both splits:            2669 moments (2669 distinct markets) in 2209 events; per event min 1, median 1.0, max 12; exactly one market: 1939 events (87.8%); moments with no source_event_id (own cluster): 0
+                                        bootstrap draws 2209 clusters with replacement per resample
+
+=== the same for the common rows the correlated-errors scripts use
+    (one row per market-moment that EVERY model in the window's roster forecast)
+  window A
+     common rows, test split:             1237 rows in 625 events; per event min 1, median 2.0, max 13; exactly one row: 295 events (47.2%); bootstrap draws 625 clusters
+     common rows, both splits:            1533 rows in 711 events; per event min 1, median 2.0, max 19; exactly one row: 340 events (47.8%); bootstrap draws 711 clusters
+  window B
+     common rows, test split:             1471 rows in 1190 events; per event min 1, median 1.0, max 10; exactly one row: 996 events (83.7%); bootstrap draws 1190 clusters
+     common rows, both splits:            1855 rows in 1414 events; per event min 1, median 1.0, max 12; exactly one row: 1123 events (79.4%); bootstrap draws 1414 clusters
+  window C
+     common rows, test split:             2125 rows in 1813 events; per event min 1, median 1.0, max 10; exactly one row: 1614 events (89.0%); bootstrap draws 1813 clusters
+     common rows, both splits:            2654 rows in 2197 events; per event min 1, median 1.0, max 12; exactly one row: 1927 events (87.7%); bootstrap draws 2197 clusters
+# --- exit 0, 2s

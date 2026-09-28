@@ -1,0 +1,310 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{The market beats every model}
+\label{sec:results-market}
+
+Every one of the 80 points in Figure~\ref{fig:brier-gap} lies below zero: on
+\winB and \winC the market was more accurate than every model in every depth
+bucket. The cells share rows across models, so the 80 describe the data rather
+than confirm it 80 times; the independent variation is across windows and
+buckets.
+
+All 40 \winC cells are clear of zero; on \winB 31 of 40 are, and the nine that
+are not form a pattern: the deepest bucket for all eight models, plus
+\mGptFiveFive in the thinnest. The market's advantage is smallest in the
+deepest bucket, consistent with the depth pattern of
+Section~\ref{sec:results-depth}.
+
+The models do beat a naive forecaster. Measured as skill against a forecaster
+that always says the base rate, \market scores $+0.199$, $+0.207$ and $+0.232$ on
+the three windows, and the roster average scores $+0.121$, $+0.085$ and $+0.072$.
+As a counterfactual on the price, pulling the market toward the base rate along the roster's
+average fitted line to it scores $+0.158$, $+0.168$ and $+0.194$, still better
+than every model; that pull alone reproduces 52, 32 and 24 per cent of the
+shortfall. The slope below one, which we call shrinkage, need not mean the
+models hedge: a calibrated forecaster that knows less than the market falls back
+toward the base rate in the same way, and on \winB and \winC the recalibration
+fits of Section~\ref{sec:results-sorting} point away from hedging (on \winA,
+where their slopes exceed one, toward it).
+
+Whole-window gaps run from 0.0214 (\mGptFiveFive) to 0.0416 (\mGptOss) on \winB
+and from 0.0272 to 0.0431 on \winC, every one clear of zero, as are all four on
+\winA (Table~\ref{tab:absolute}). The spread between models is smaller than the
+distance from any of them to the market.
+
+Scoring every non-ladder in-play row instead, moved-end-date rows and extreme
+prices included, gives Brier edges of $-0.0257$ to $-0.0455$ on \winB and
+$-0.0281$ to $-0.0425$ on \winC; ladder rows on their own are worse still on \winB,
+$-0.055$ to $-0.067$, and similar on \winC, $-0.024$ to $-0.037$. Every interval
+is below zero.
+
+\winA is the one window where the picture is not uniform: the edge is negative in
+15 of 20 cells and clear in 8. It is also the smallest window, the only one drawn
+without the live-book rule and the only one whose news came from live retrieval
+rather than a frozen archive. We report it throughout but rest no claim on it
+alone.
+
+Part of the gap is information. News closes about a third of the sorting gap on
+\winA and about a sixth on \winB, changing resolution by $-0.002$ to $+0.012$
+and raising it for 18 of the 20 model-window pairs. The effect is individually
+significant only on \winA, where three of four models have intervals above zero;
+on \winB and \winC every per-model interval includes zero, and one model on each
+(\mGlmFiveOne, \mDeepSeekVThreeTwo) goes slightly the other way. That \winA is the one window with a significant effect needs a caveat: it is
+also the only window whose news was retrieved at run time rather than from a
+frozen archive, the setting in which post-cutoff material has been found
+leaking through~\citep{ellahib2026}. The gap never
+closes: with news in hand, every model still sorts worse than the market. What
+these numbers bound is the value of our news (at most three archived articles, on
+the minority of rows carrying any), not of information in general; a market
+watching lineups, injuries and closing lines has far more.
+
+The gap is several times wider on non-sports rows, so the sports concentration
+does not produce it; the models capture a smaller share of what is available on
+non-sports than on sports (Appendix~\ref{app:nonsports}). The size of the
+deficit depends strongly on forecast horizon, with every model agreeing on the
+worst band within a window, but which end of the horizon hurts reverses between
+\winB and \winC (Appendix~\ref{app:horizon}).
+
+\mGptFiveFive, one of the two most recently released models, has the highest
+resolution in the study and is still short of the market with both intervals
+clear of zero; its same-day peer \mDeepSeekVFourPro does not match it
+(Appendix~\ref{app:newest}).
+
+\begin{figure*}[!tbp]
+\centering
+\input{figures/fig-brier-gap}
+\caption{The market's Brier score minus each model's, per depth bucket; points below zero
+mean the market was more accurate. All 80 points lie below zero and 71 of 80 ranges exclude
+it; models share rows within a bucket, so the 80 cells are not independent tests. Test split
+of the primary set, all rows; whole-window edges with intervals are in Table~\ref{tab:absolute}.}
+\label{fig:brier-gap}
+\end{figure*}
+
+\subsection{Sorting, not calibration}
+\label{sec:results-sorting}
+
+Splitting those Brier scores with Equation~\eqref{eq:murphy} locates the gap.
+Figure~\ref{fig:sorting} plots calibration error against resolution: the models
+cluster near the market horizontally and far beneath it vertically.
+
+Their reliability runs from 0.0032 to 0.0102 on \winB and from 0.0023 to 0.0106
+on \winC, against 0.0017 and 0.0006 for the market. The models are worse here
+too, but the quantities are small on both sides, and reliability is a minor part
+of the shortfall, not its source.
+
+On the sorting axis the models are not close. Resolution runs from 0.0167 to
+0.0306 on \winB and from 0.0194 to 0.0302 on \winC, against 0.050 and 0.056 for
+the market, and the market-minus-model
+difference is clear of zero for all sixteen model-window pairs ($+0.019$ to
+$+0.033$ on \winB, $+0.026$ to $+0.036$ on \winC). By isotonic regression,
+resolution accounts for 87 to 99 per cent of each model's Brier gap on \winA, 82
+to 97 per cent on \winB and 79 to 95 per cent on \winC. The ten-bin decomposition agrees at 79 to 94 per cent on
+\winB and 76 to 94 per cent on \winC; the bin-free figure avoids the within-bin
+bias that equal-width bins introduce when the two sides' answers cluster
+differently. The pattern holds within both halves of the sample but is weaker on
+non-sports rows, where the gap per row is widest: there resolution carries 73 to
+90 per cent of the shortfall on \winB and 59 to 89 per cent on \winC, and a
+cross-fitted rescaling recovers up to 30 and 42 per cent
+(Appendix~\ref{app:nonsports}).
+
+Recalibration is a second view of the same fact, not an independent test, since
+reliability is roughly what rescaling can recover (Figure~\ref{fig:recalibration}). The Platt
+map recovers 2 to 16 per cent of the gap on \winB and 6 to 18 per cent on \winC;
+cross-fitted Platt recovers 1 to 16 per cent and 5 to 15 per cent; a monotone
+step function reaches at best 19 and 20 per cent. Four fifths or more is beyond
+any monotone rescaling, which cannot reorder forecasts, and it is the ordering
+that is wrong. On \winA the fitted maps have slopes above one and recover between
+$-9$ and $+2$ per cent. Redrawing the calibration split to keep every event on
+one side does not raise recovery (Appendix~\ref{app:splitcheck}).
+
+The Platt slopes (of the recalibration map, not of the fit to the price) on
+\winB and \winC are all below one (0.28 to 0.73 on \winB,
+0.41 to 0.84 on \winC), meaning the right correction is to pull each forecast
+\emph{in}, toward the map's own centre. Yet Figure~\ref{fig:forecast-vs-price} shows the
+models answering 0.55 where the crowd says 0.85 and 85 per cent of such rows
+resolve Yes. Both are true, of different things: the models are overconfident in
+their own noisy ordering (their spread is wider than their ability to
+discriminate justifies) and underconfident relative to the market's better
+ordering. That reliability comes out small is not evidence of good calibration:
+it is a squared quantity set against a resolution gap several times larger, the
+worst-calibrated forecasts sit in the sparse tails, and ten bins hide
+disagreement inside a bin. Splitting each bin by whether the market priced the
+row above or below it raises the measured value three- to fivefold
+(Appendix~\ref{app:relsmall}).
+
+Figure~\ref{fig:forecast-vs-price} shows what this means in practice. A
+calibrated model's 0.55 is right on average, but the rows behind it can mix
+markets the crowd prices at 0.85 with markets it prices at 0.40. The model's 0.55
+is honest about the average and silent about the difference, and it is the
+difference the Brier score pays for.
+
+\begin{figure*}[!tbp]
+\centering
+\input{figures/fig-sorting}
+\caption{The gap is sorting, not calibration. Each point is one forecaster's calibration error
+(across, lower is better) against its resolution (up, higher is better). Ten probability bins;
+the bin-free decomposition gives the same picture. Test split of the primary set.}
+\label{fig:sorting}
+\end{figure*}
+
+\begin{figure*}[!tbp]
+\centering
+\input{figures/fig-recalibration}
+\caption{Rescaling cannot close the gap. Each point is the share of one model's Brier
+shortfall removed by an after-the-fact rescaling. Row sets differ by series: the single-split
+maps are fitted on the calibration split and scored on the test split, while the two
+cross-fitted series score every row. This is the one analysis not reported on the test split
+alone; cross-fitting admits no alternative. \winA is not shown: slopes above one, recovery between $-9$ and $+2$ per cent
+(single split) and between $-14$ and $+14$ per cent (cross-fitted).}
+\label{fig:recalibration}
+\end{figure*}
+
+\subsection{Losses sit where a model contradicts the crowd}
+\label{sec:results-crowd}
+
+If the models sort poorly, the damage should sit where a model disagrees with the
+crowd. Table~\ref{tab:crowd} splits every row by direction. Rows leaning with
+the crowd cost little, at a Brier edge of $+0.005$ on \winA, $-0.003$ on \winB
+and $-0.011$ on \winC; rows leaning against sit far below, at $-0.038$, $-0.046$
+and $-0.052$, and carry 110, 96 and 91 per cent of the net accuracy deficit (over
+100 on \winA because there the with-the-crowd rows favour the models). That much
+follows from shrinkage alone: the against category is 53, 60 and 66 per cent of
+rows, and 66.8, 69.0 and 60.4 per cent of it is the model favouring the market's
+outcome with less confidence. The loss sits where the model favours the other
+outcome: those rows are 18, 18 and 26 per cent of all rows, score $-0.084$,
+$-0.121$ and $-0.104$ against the market, and carry about 80, 78 and 72 per cent
+of the net deficit (Appendix~\ref{app:againstdetail}).
+
+In money the models systematically buy longshots~\citep{snowberg2010}:
+against-the-crowd trades buy at 0.28 to 0.31 and win 27 to 29 per cent of the
+time, returning $-0.172$ per dollar on \winA and $-0.124$ on \winC. On \winB the
+money half is not conclusive: neither group's interval excludes zero, though the
+accuracy half is clear on all three windows. Fees are about three quarters of
+the trading loss on \winB and two fifths on \winC; on \winA, where fees were
+close to nothing, the loss is mispricing (Appendix~\ref{app:feesensitivity}).
+
+Figure~\ref{fig:forecast-vs-price} shows where the disagreement lives. In the
+highest price band the crowd says 0.846 on \winB and 0.843 on \winC and about 85
+per cent of those markets do resolve Yes; the models answer 0.490 to 0.637 and
+0.546 to 0.670. Each model's forecast fitted against the price has a slope on the price well below one
+(roster mean 0.57 on \winB; individual slopes 0.45 to 0.65), and its fixed point
+sits near the window's base rate. The Yes side costs $+0.192$ Brier
+on \winA, $+0.082$ on \winB and $+0.075$ on \winC more than the No side, the
+pooled interval above zero on each window (Figure~\ref{fig:forecast-vs-price}).
+
+News does not fix this. Scored directly, it is worth $-0.001$ to $+0.017$
+in Brier (Appendix~\ref{app:memory}). A toward/away split of the news effect
+appears large, but a random-direction placebo reproduces 99 per cent of it on
+\winB and 102 per cent on \winC, and overshoots it on \winA: because the price predicts the outcome, any move
+landing closer to it scores better whether or not it carried information.
+
+\begin{table*}[!tbp]
+\centering
+\caption{Leaning with or against the crowd. Rows where the market sits at exactly 0.5, or the
+model exactly at the price, have no direction and are in neither group, so shares do not sum
+to 100\%; they still count in the net deficit quoted in the text, which is why shares
+recomputed from this table alone differ slightly on \winA. Brier edge is the market's score
+minus the model's. All models pooled, test split of the primary set; brackets are 95\%
+event-resampling ranges. Return averages each trade's own return after fees, so it is not
+win share over price paid.}
+\label{tab:crowd}
+\input{tables/tab-crowd}
+\end{table*}
+
+\subsection{Correlated errors}
+\label{sec:results-correlated}
+
+The models do not fail independently. Simulated forecasters that shrink as hard
+but share nothing else correlate at only 0.23 to 0.28 in departures from the
+price; the real departure correlations are 0.801 on \winA, 0.795 on \winB and
+0.775 on \winC (Figure~\ref{fig:correlated} in Appendix~\ref{app:pairdetail}).
+Removing each model's own shrinkage and correlating what is left gives 0.750,
+0.734 and 0.708, against a simulated value near zero
+(Figure~\ref{fig:shrinkage-null}).
+
+That last comparison is weaker than it looks: the simulated forecasters are built
+with independent noise, so their residual correlation is near zero by
+construction. The comparison worth making is against explanations that do not
+require shared judgment. Every model saw the same question and the same news, so
+agreement might reflect a common brief. Adding the row's observable features to
+the fit (sports flag, topic, horizon, price band, news indicator) barely moves it:
+0.711, 0.726 and 0.695, a fall of about five per cent at most. Adding a per-event
+intercept, which absorbs everything the markets of one event share whether
+measured or not, gives 0.747, 0.662 and 0.694 on the 942, 475 and 511 rows that
+belong to events with more than one market. Those rows are not the full test
+split, so the comparison that matters is against themselves: price alone gives
+0.785, 0.701 and 0.714 on the same rows, so the event intercept removes about
+0.04, 0.04 and 0.02. Neither the observable characteristics nor the event itself
+accounts for this residual agreement, though neither would capture a shock
+specific to one market
+at the forecast moment.
+
+A remaining explanation is shared missing information: the price carries facts
+no model was given, and forecasters missing the same facts miss the same way. On
+news-bearing rows asked with and without the news, adding it lowers the
+residual correlation by 0.047, 0.055 and 0.036, clear of zero on \winA and
+\winB, but not clearly through what the models share: on \winA each model's own
+spread widens while the shared part does not fall, and on \winB and \winC the
+shared part falls but not clearly (Appendix~\ref{app:newsagree}). News cannot
+carry line-ups or injuries, and the design cannot separate what remains from
+shared training or the shared prompt, which we did not vary
+(Section~\ref{sec:limitations}). Forecasters given identical inputs
+would agree strongly even if each reasoned perfectly, so the result shows that
+the models are not independent opinions, not that they share judgment.
+
+A second measure counts how often two models land on the same incorrect side of
+even money. On rows the market itself got right, pairs miss together 4.3, 4.0 and
+2.7 times the independent rate, against a shrinkage null of 2.0 to 2.2, 1.8 to
+1.9 and 1.4 to 1.5; nulls that also share each row's features, or the event,
+stay below the real ratio (Appendix~\ref{app:wrongtogether}).
+
+Same-developer pairs sit at both ends of the range, the tightest (\mKimiKTwoFive
+with \mKimiKTwoSix, 0.910 on \winB) and the loosest (\mGptFiveFive with \mGptOss,
+0.626 on \winC); with only three developers fielding more than one model we
+draw no conclusion
+(Appendix~\ref{app:pairdetail}).
+
+That the models agree also decides what combining them can do. The arithmetic
+mean of all eight ties the best single model on \winB (Brier 0.2077 against
+0.2076, both on the rows every model forecast, which is why they differ slightly
+from Table~\ref{tab:absolute}) and is worse on \winC (0.2148 against 0.2117);
+the best single model is the same whether picked on the test rows or the
+calibration split.
+Learned weights help but not enough: non-negative least squares with an intercept, cross-fitted by event, reaches
+$-0.0111$, $-0.0208$ and $-0.0261$ against the market on the same rows, an
+improvement of 0.0018, 0.0010 and 0.0012 on the best single model there, a small fraction of the width of that model's
+own interval. Every interval still lies below zero.
+The extremizing factor~\citep{baron2014,satopaa2016} is 1.15 on \winA,
+0.75 on \winB and 0.85 on \winC: on the two eight-model windows the data asks
+for the pooled forecast to be pulled toward even money rather than away from it.
+
+\begin{figure*}[!tbp]
+\centering
+\input{figures/fig-shrinkage-null}
+\caption{Shared shrinkage does not account for the agreement. Left: fitted $p = a + bq$ for
+each model on \winB; every slope is below one. Middle and right: simulated forecasters
+carrying each model's fitted $a$, $b$ and residual spread but independent noise agree on
+departures at 0.26 to 0.28 on this window (0.23 to 0.28 across all three) and on residuals at
+essentially zero, by construction; the real models reach $r(p-q)=0.795$, residual $r=0.734$ and a
+wrong-together ratio of 2.47. Real values carry 95\% event-bootstrap intervals (1,000 resamples, shrinkage
+refitted inside each); simulated ranges are 2.5th--97.5th percentiles over 400 draws. Test
+split, rows every model forecast.}
+\label{fig:shrinkage-null}
+\end{figure*}
+
+\subsection{Depth: no effect in returns, some in accuracy}
+\label{sec:results-depth}
+
+If thin books hurt the models, losses should be largest where the book is
+thinnest. In returns they are not:
+the thin-minus-deep return gap is $-0.018$ on \winB and $+0.004$ on \winC, both
+intervals spanning zero by a wide margin, no individual model's gap clears zero,
+and regressing return on log depth gives no trend clear of zero. In accuracy the
+pattern is different. The models' Brier deficit shrinks as the book deepens: its slope on
+log depth is $+0.0075$ on \winB and $+0.0072$ on \winC, both intervals above
+zero, and the thin-minus-deep gap is $-0.021$ on \winB, its interval including zero, and $-0.027$ on \winC, clear of it. Holding price band or horizon
+fixed keeps the slope clear of zero on \winC but not on \winB, and \winA shows no
+depth pattern in either measure. Returns are far noisier than Brier scores, so
+the two need not agree.
+

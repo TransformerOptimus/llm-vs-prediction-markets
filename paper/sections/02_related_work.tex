@@ -1,0 +1,61 @@
+\section{Related Work}
+\label{sec:related}
+
+\textbf{Language models as forecasters.} An ensemble of twelve models matches
+a human crowd on tournament questions~\citep{schoenegger2024}, and frontier models now score better than the
+median Metaculus forecaster but behind assembled
+experts~\citep{lu2025}. Pairing thousands of tournament questions with a
+date-organised news corpus left model accuracy far below a human expert
+baseline, though retrieval helped~\citep{zou2022}. On a rolling benchmark,
+expert forecasters still beat the best model at $p < 0.001$~\citep{karger2025}.
+A retrieval system scored 0.179 in Brier against the crowd's 0.149, passing it
+only on selected subsets~\citep{halawi2024}.
+
+Models trading live on \polymarket and \kalshi returned $-16$ to $-31$ per cent
+on \kalshi over 57 days~\citep{zhang2026arena}.
+A recent workshop paper~\citep{henry2026beyond} reports a model whose accuracy
+is indistinguishable from the price. Our design differs on all three counts of
+Section~\ref{sec:intro}. Profit need not track accuracy: a forecaster less
+accurate than the price can still profit by disagreeing with it~\citep{gu2026prophets}.
+
+\textbf{What the model is shown.}
+\polybench~\citep{cheng2026polybench} covers 38{,}666 binary \polymarket markets
+in February 2026, but its prompt injects order-book spreads and midpoint prices.
+So does Prophet Arena~\citep{yang2025prophetarena}, whose frontier models match
+the market in Brier score and beat it on calibration and return.
+\winA of our benchmark is \polybench's published data: we reuse its market rows
+and news, not its protocol. Every model here is asked with no price, bid, ask
+or book in the prompt, as in Hindcast~\citep{ye2026hindcast}, which replays 216
+\polymarket markets with small open-weight models but does not compare their
+Brier score with the price's.
+
+\textbf{What the price is.} Thin markets carry known distortions, such as the
+favourite-longshot bias, under which cheap contracts are overbet~\citep{snowberg2010}.
+Our models do buy longshots when they lean against the crowd, and lose on them
+through fees and mispricing in proportions that vary by window
+(Section~\ref{sec:results-crowd}).
+
+\textbf{Leakage.} Date-filtered retrieval does not prevent
+leakage~\citep{ellahib2026}, so we use no retrieval at forecast time and admit a
+model by its published release date (Section~\ref{sec:models}).
+
+\textbf{Scoring.} We score with the Brier score~\citep{brier1950} and split it
+with Murphy's partition~\citep{murphy1973}. Binning is not
+harmless~\citep{stephenson2008}, so we repeat the decomposition without bins
+using isotonic regression~\citep{dimitriadis2021}; the attribution to resolution is
+unchanged (Section~\ref{sec:results-sorting}). We also refit each model with a
+Platt sigmoid~\citep{platt1999} on held-out data.
+
+\textbf{Correlated errors.} Across more than 350 models, two models that are both
+wrong give the same wrong answer 60 per cent of the time, and the correlation is
+strongest among the largest~\citep{kim2025correlated}. Three models on 568
+forecasting questions show a mean pairwise error correlation of
+0.77~\citep{spiro2026}. We
+correlate departures from the market price instead, because raw error correlation
+overstates agreement when forecasts move little relative to outcomes, and provide
+a shrinkage simulation as the null
+(Section~\ref{sec:results-correlated}). When decision makers adopt the same
+rule, errors become structural~\citep{kleinberg2021}, and the right amount of
+extremizing falls to nothing as forecasters' information
+overlaps~\citep{satopaa2016}.
+

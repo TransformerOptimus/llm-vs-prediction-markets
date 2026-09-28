@@ -1,0 +1,42 @@
+# output of analysis/exploratory/ladders-and-extremes-news-hurts-lo-tail.py
+# run: 2026-09-17T06:55:34Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+total pairs (primary set): 16214
+total pairs (ladder/dateline/end-date filtered): 21576
+A q<0.05: n=1818 events=108 markets=455 BrierDiff(news-noNews)=+0.0068 [+0.0007,+0.0143] pDiff=+0.0134 [+0.0014,+0.0270] mean_p_news=0.094 mean_p_noNews=0.080
+A 0.05-0.95: n=5719 events=631 markets=1434 BrierDiff(news-noNews)=-0.0134 [-0.0198,-0.0072] pDiff=+0.0142 [+0.0084,+0.0200] mean_p_news=0.348 mean_p_noNews=0.334
+A q>0.95: n=144 events=25 markets=36 BrierDiff(news-noNews)=-0.0628 [-0.1406,+0.0004] pDiff=+0.0751 [+0.0087,+0.1648] mean_p_news=0.554 mean_p_noNews=0.479
+B q<0.05: n=1443 events=115 markets=181 BrierDiff(news-noNews)=+0.0175 [+0.0056,+0.0314] pDiff=+0.0330 [+0.0175,+0.0517] mean_p_news=0.127 mean_p_noNews=0.094
+B 0.05-0.95: n=4495 events=416 markets=563 BrierDiff(news-noNews)=-0.0062 [-0.0169,+0.0026] pDiff=+0.0261 [+0.0149,+0.0367] mean_p_news=0.371 mean_p_noNews=0.345
+B q>0.95: n=128 events=16 markets=16 BrierDiff(news-noNews)=-0.1108 [-0.2482,-0.0013] pDiff=+0.0915 [+0.0057,+0.2015] mean_p_news=0.416 mean_p_noNews=0.325
+C q<0.05: n=1718 events=123 markets=215 BrierDiff(news-noNews)=+0.0048 [-0.0043,+0.0171] pDiff=+0.0069 [-0.0047,+0.0218] mean_p_news=0.066 mean_p_noNews=0.059
+C 0.05-0.95: n=6000 events=567 markets=752 BrierDiff(news-noNews)=-0.0115 [-0.0220,-0.0015] pDiff=+0.0278 [+0.0189,+0.0384] mean_p_news=0.373 mean_p_noNews=0.345
+C q>0.95: n=103 events=11 markets=13 BrierDiff(news-noNews)=-0.1282 [-0.3049,+0.0308] pDiff=+0.1598 [+0.0158,+0.3174] mean_p_news=0.756 mean_p_noNews=0.596
+
+--- per-model breakdown on q<0.05 ---
+window A:
+  openai/gpt-5.2: n=457 meanDiff=+0.0085
+  openrouter/deepseek/deepseek-v3.2: n=457 meanDiff=+0.0047
+  openrouter/moonshotai/kimi-k2.5: n=455 meanDiff=+0.0058
+  openrouter/openai/gpt-oss-120b: n=457 meanDiff=+0.0081
+window B:
+  openai/gpt-5.2: n=181 meanDiff=+0.0084
+  openai/gpt-5.5: n=181 meanDiff=+0.0167
+  openrouter/deepseek/deepseek-v3.2: n=181 meanDiff=+0.0250
+  openrouter/deepseek/deepseek-v4-pro: n=179 meanDiff=+0.0183
+  openrouter/moonshotai/kimi-k2.5: n=178 meanDiff=+0.0155
+  openrouter/moonshotai/kimi-k2.6: n=181 meanDiff=+0.0175
+  openrouter/openai/gpt-oss-120b: n=181 meanDiff=+0.0161
+  openrouter/z-ai/glm-5.1: n=181 meanDiff=+0.0228
+window C:
+  openai/gpt-5.2: n=215 meanDiff=+0.0091
+  openai/gpt-5.5: n=215 meanDiff=+0.0075
+  openrouter/deepseek/deepseek-v3.2: n=215 meanDiff=+0.0079
+  openrouter/deepseek/deepseek-v4-pro: n=215 meanDiff=+0.0027
+  openrouter/moonshotai/kimi-k2.5: n=215 meanDiff=+0.0014
+  openrouter/moonshotai/kimi-k2.6: n=213 meanDiff=-0.0005
+  openrouter/openai/gpt-oss-120b: n=215 meanDiff=+0.0128
+  openrouter/z-ai/glm-5.1: n=215 meanDiff=-0.0024
+# --- exit 0, 4s

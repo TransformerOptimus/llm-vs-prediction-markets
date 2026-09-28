@@ -1,0 +1,65 @@
+# output of analysis/exploratory/direction-same-side-share.py
+# run: 2026-09-22T08:54:09Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: primary set, forecasts view, mode normal, rows whose direction is 'against' the crowd; same side = forecast and price favour the same outcome (both at or above 0.5, or both below); intervals = 1,000 event resamples, seed 20260902
+== window A, test split: 2627 rows leaning against the crowd
+   same side, less confident: 1754 of 2627 = 66.8% [63.1%, 70.5%]  Brier edge -0.0157
+   opposite side:             873 of 2627 = 33.2%                  Brier edge -0.0835
+     gpt-5.2          against n=652   same side  71.9%  edge same -0.0163  edge opposite -0.0652
+     gpt-oss-120b     against n=626   same side  55.3%  edge same -0.0183  edge opposite -0.1107
+     kimi-k2.5        against n=616   same side  68.8%  edge same -0.0131  edge opposite -0.0818
+     deepseek-v3.2    against n=733   same side  70.3%  edge same -0.0156  edge opposite -0.0655
+== window A, both splits: 3288 rows leaning against the crowd
+   same side, less confident: 2192 of 3288 = 66.7% [63.3%, 69.8%]  Brier edge -0.0151
+   opposite side:             1096 of 3288 = 33.3%                  Brier edge -0.0726
+     gpt-5.2          against n=818   same side  71.0%  edge same -0.0141  edge opposite -0.0582
+     gpt-oss-120b     against n=784   same side  55.1%  edge same -0.0172  edge opposite -0.1002
+     kimi-k2.5        against n=776   same side  68.9%  edge same -0.0138  edge opposite -0.0627
+     deepseek-v3.2    against n=910   same side  70.8%  edge same -0.0157  edge opposite -0.0580
+== window B, test split: 7051 rows leaning against the crowd
+   same side, less confident: 4866 of 7051 = 69.0% [66.4%, 71.6%]  Brier edge -0.0125
+   opposite side:             2185 of 7051 = 31.0%                  Brier edge -0.1209
+     gpt-5.2          against n=892   same side  71.2%  edge same -0.0114  edge opposite -0.1113
+     gpt-oss-120b     against n=876   same side  57.2%  edge same -0.0155  edge opposite -0.1234
+     kimi-k2.5        against n=893   same side  69.8%  edge same -0.0100  edge opposite -0.1327
+     deepseek-v3.2    against n=990   same side  73.0%  edge same -0.0156  edge opposite -0.1062
+     gpt-5.5          against n=871   same side  73.2%  edge same -0.0119  edge opposite -0.1039
+     glm-5.1          against n=847   same side  69.1%  edge same -0.0133  edge opposite -0.1237
+     kimi-k2.6        against n=872   same side  71.2%  edge same -0.0131  edge opposite -0.1225
+     deepseek-v4-pro  against n=810   same side  66.7%  edge same -0.0089  edge opposite -0.1399
+== window B, both splits: 8864 rows leaning against the crowd
+   same side, less confident: 6127 of 8864 = 69.1% [66.9%, 71.5%]  Brier edge -0.0125
+   opposite side:             2737 of 8864 = 30.9%                  Brier edge -0.1263
+     gpt-5.2          against n=1111  same side  71.5%  edge same -0.0105  edge opposite -0.1205
+     gpt-oss-120b     against n=1109  same side  57.3%  edge same -0.0162  edge opposite -0.1309
+     kimi-k2.5        against n=1120  same side  70.0%  edge same -0.0106  edge opposite -0.1295
+     deepseek-v3.2    against n=1240  same side  72.8%  edge same -0.0152  edge opposite -0.1136
+     gpt-5.5          against n=1094  same side  73.9%  edge same -0.0115  edge opposite -0.1048
+     glm-5.1          against n=1073  same side  68.7%  edge same -0.0128  edge opposite -0.1276
+     kimi-k2.6        against n=1095  same side  71.5%  edge same -0.0136  edge opposite -0.1259
+     deepseek-v4-pro  against n=1022  same side  66.7%  edge same -0.0096  edge opposite -0.1516
+== window C, test split: 11356 rows leaning against the crowd
+   same side, less confident: 6855 of 11356 = 60.4% [58.5%, 62.4%]  Brier edge -0.0186
+   opposite side:             4501 of 11356 = 39.6%                  Brier edge -0.1039
+     gpt-5.2          against n=1351  same side  62.5%  edge same -0.0196  edge opposite -0.1064
+     gpt-oss-120b     against n=1470  same side  55.0%  edge same -0.0163  edge opposite -0.1116
+     kimi-k2.5        against n=1461  same side  62.3%  edge same -0.0216  edge opposite -0.0910
+     deepseek-v3.2    against n=1529  same side  60.4%  edge same -0.0211  edge opposite -0.1009
+     gpt-5.5          against n=1328  same side  65.7%  edge same -0.0145  edge opposite -0.0840
+     glm-5.1          against n=1417  same side  60.4%  edge same -0.0193  edge opposite -0.1133
+     kimi-k2.6        against n=1463  same side  59.8%  edge same -0.0195  edge opposite -0.1027
+     deepseek-v4-pro  against n=1337  same side  57.2%  edge same -0.0158  edge opposite -0.1165
+== window C, both splits: 14138 rows leaning against the crowd
+   same side, less confident: 8471 of 14138 = 59.9% [58.1%, 61.6%]  Brier edge -0.0206
+   opposite side:             5667 of 14138 = 40.1%                  Brier edge -0.0973
+     gpt-5.2          against n=1691  same side  62.5%  edge same -0.0222  edge opposite -0.0990
+     gpt-oss-120b     against n=1811  same side  54.6%  edge same -0.0189  edge opposite -0.1070
+     kimi-k2.5        against n=1821  same side  61.1%  edge same -0.0228  edge opposite -0.0866
+     deepseek-v3.2    against n=1906  same side  60.4%  edge same -0.0236  edge opposite -0.0919
+     gpt-5.5          against n=1666  same side  65.2%  edge same -0.0154  edge opposite -0.0783
+     glm-5.1          against n=1749  same side  60.1%  edge same -0.0221  edge opposite -0.1057
+     kimi-k2.6        against n=1832  same side  59.1%  edge same -0.0210  edge opposite -0.0968
+     deepseek-v4-pro  against n=1662  same side  56.6%  edge same -0.0180  edge opposite -0.1085
+# --- exit 0, 8s

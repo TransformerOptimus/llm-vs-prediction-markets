@@ -1,0 +1,9 @@
+# output of analysis/exploratory/topic-and-sports-divergence.py
+# run: 2026-09-17T06:56:17Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+Window A: n_sports=5087 n_nonsports=1096 sports=0.097 [0.089,0.107] nonsports=0.245 [0.213,0.282] diff=0.148 [0.113,0.187]
+Window B: n_sports=10841 n_nonsports=4069 sports=0.085 [0.080,0.090] nonsports=0.240 [0.222,0.258] diff=0.155 [0.138,0.175]
+Window C: n_sports=17212 n_nonsports=4125 sports=0.113 [0.109,0.118] nonsports=0.231 [0.217,0.246] diff=0.118 [0.103,0.133]
+# --- exit 0, 9s

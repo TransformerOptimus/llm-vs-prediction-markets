@@ -1,0 +1,51 @@
+# output of analysis/exploratory/reply-text-news-cited.py
+# run: 2026-09-17T06:55:56Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+WINDOW A: news rows=5719 cite=665 (11.6%) dismiss=16 not=5038
+  cite-not dist: +0.036 [+0.009,+0.060]
+  cite-not conf: +0.039 [+0.013,+0.064]
+  cite-not pval: -0.040 [-0.072,-0.002]
+  cite-not brier_edge: +0.007 [-0.019,+0.031]
+  dismiss-not dist: +0.059 [-0.018,+0.153]
+  dismiss-not conf: -0.086 [-0.135,-0.037]
+  cite share by model: {'openai/gpt-5.2': '1%', 'openrouter/deepseek/deepseek-v3.2': '21%', 'openrouter/moonshotai/kimi-k2.5': '24%', 'openrouter/openai/gpt-oss-120b': '0%'}
+WINDOW B: news rows=4495 cite=748 (16.6%) dismiss=19 not=3728
+  cite-not dist: +0.014 [-0.011,+0.041]
+  cite-not conf: +0.029 [+0.007,+0.051]
+  cite-not pval: -0.024 [-0.057,+0.013]
+  cite-not brier_edge: -0.012 [-0.044,+0.016]
+  dismiss-not dist: -0.015 [-0.062,+0.036]
+  dismiss-not conf: -0.053 [-0.112,+0.011]
+  cite share by model: {'openai/gpt-5.2': '2%', 'openai/gpt-5.5': '5%', 'openrouter/deepseek/deepseek-v3.2': '20%', 'openrouter/deepseek/deepseek-v4-pro': '27%', 'openrouter/moonshotai/kimi-k2.5': '18%', 'openrouter/moonshotai/kimi-k2.6': '29%', 'openrouter/openai/gpt-oss-120b': '0%', 'openrouter/z-ai/glm-5.1': '33%'}
+WINDOW C: news rows=6003 cite=905 (15.1%) dismiss=16 not=5082
+  cite-not dist: +0.034 [+0.012,+0.061]
+  cite-not conf: +0.027 [+0.006,+0.048]
+  cite-not pval: -0.037 [-0.073,-0.001]
+  cite-not brier_edge: -0.013 [-0.042,+0.015]
+  dismiss-not dist: -0.019 [-0.070,+0.044]
+  dismiss-not conf: +0.001 [-0.060,+0.060]
+  cite share by model: {'openai/gpt-5.2': '3%', 'openai/gpt-5.5': '6%', 'openrouter/deepseek/deepseek-v3.2': '20%', 'openrouter/deepseek/deepseek-v4-pro': '28%', 'openrouter/moonshotai/kimi-k2.5': '17%', 'openrouter/moonshotai/kimi-k2.6': '25%', 'openrouter/openai/gpt-oss-120b': '0%', 'openrouter/z-ai/glm-5.1': '21%'}
+
+--- per-model dist effect (cite - not), window B and C only, no bootstrap, simple check ---
+window A:
+  openai/gpt-5.2: cite n=20 mean=0.130  not n=1414 mean=0.110  diff=+0.020
+  openrouter/deepseek/deepseek-v3.2: cite n=302 mean=0.162  not n=1121 mean=0.113  diff=+0.049
+  openrouter/moonshotai/kimi-k2.5: cite n=339 mean=0.155  not n=1073 mean=0.109  diff=+0.046
+window B:
+  openai/gpt-5.5: cite n=27 mean=0.174  not n=536 mean=0.109  diff=+0.065
+  openrouter/deepseek/deepseek-v3.2: cite n=111 mean=0.161  not n=442 mean=0.138  diff=+0.023
+  openrouter/deepseek/deepseek-v4-pro: cite n=148 mean=0.149  not n=406 mean=0.144  diff=+0.005
+  openrouter/moonshotai/kimi-k2.5: cite n=101 mean=0.119  not n=459 mean=0.144  diff=-0.025
+  openrouter/moonshotai/kimi-k2.6: cite n=164 mean=0.139  not n=394 mean=0.130  diff=+0.009
+  openrouter/z-ai/glm-5.1: cite n=183 mean=0.158  not n=379 mean=0.133  diff=+0.025
+window C:
+  openai/gpt-5.2: cite n=25 mean=0.148  not n=727 mean=0.123  diff=+0.026
+  openai/gpt-5.5: cite n=45 mean=0.140  not n=705 mean=0.104  diff=+0.036
+  openrouter/deepseek/deepseek-v3.2: cite n=150 mean=0.184  not n=595 mean=0.133  diff=+0.051
+  openrouter/deepseek/deepseek-v4-pro: cite n=210 mean=0.156  not n=529 mean=0.147  diff=+0.009
+  openrouter/moonshotai/kimi-k2.5: cite n=128 mean=0.171  not n=618 mean=0.130  diff=+0.041
+  openrouter/moonshotai/kimi-k2.6: cite n=189 mean=0.149  not n=562 mean=0.134  diff=+0.015
+  openrouter/z-ai/glm-5.1: cite n=156 mean=0.177  not n=596 mean=0.119  diff=+0.058
+# --- exit 0, 11s

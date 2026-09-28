@@ -1,0 +1,40 @@
+# output of analysis/exploratory/convergence-toward-outcome.py
+# run: 2026-09-17T06:54:06Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: forecasts view, mode normal, status in ('ok', 'ok_after_retry'), primary set, |p-q| >= 0.10, rated last price in the 72-hour window
+=== window A
+   gpt-5.2         n= 518 toward_outcome=0.720 [0.664,0.774] on_outcome_side=0.500 [0.442,0.557] | toward_model: right-side n=259 0.544 [0.464,0.626]  wrong-side n=259 0.124 [0.078,0.167]
+   gpt-oss-120b    n= 815 toward_outcome=0.683 [0.636,0.729] on_outcome_side=0.481 [0.437,0.530] | toward_model: right-side n=392 0.449 [0.381,0.522]  wrong-side n=423 0.113 [0.080,0.152]
+   kimi-k2.5       n= 530 toward_outcome=0.692 [0.635,0.753] on_outcome_side=0.532 [0.470,0.590] | toward_model: right-side n=282 0.525 [0.438,0.611]  wrong-side n=248 0.153 [0.102,0.210]
+   deepseek-v3.2   n= 594 toward_outcome=0.667 [0.609,0.723] on_outcome_side=0.466 [0.408,0.526] | toward_model: right-side n=277 0.513 [0.430,0.600]  wrong-side n=317 0.110 [0.074,0.154]
+A POOLED n=2457 events=609 toward_outcome=0.689 [0.635,0.732] | right-side n=1210 0.502 [0.433,0.574] wrong-side n=1247 0.123 [0.086,0.166] diff=+0.379 [+0.291,+0.464] | share on outcome side=0.492
+   closed_in_window=1 n=1166 toward_outcome=1.000 toward_model=0.281 | right-side n=528 0.621  wrong-side n=638 0.000
+   closed_in_window=0 n=1291 toward_outcome=0.408 toward_model=0.335 | right-side n=682 0.409  wrong-side n=609 0.251
+=== window B
+   gpt-5.2         n= 656 toward_outcome=0.726 [0.688,0.760] on_outcome_side=0.431 [0.387,0.476] | toward_model: right-side n=283 0.431 [0.362,0.493]  wrong-side n=373 0.164 [0.126,0.202]
+   gpt-oss-120b    n=1018 toward_outcome=0.704 [0.676,0.734] on_outcome_side=0.403 [0.373,0.437] | toward_model: right-side n=410 0.359 [0.311,0.404]  wrong-side n=608 0.127 [0.100,0.156]
+   kimi-k2.5       n= 701 toward_outcome=0.713 [0.676,0.748] on_outcome_side=0.401 [0.360,0.442] | toward_model: right-side n=281 0.406 [0.338,0.469]  wrong-side n=420 0.162 [0.129,0.199]
+   deepseek-v3.2   n= 787 toward_outcome=0.740 [0.706,0.776] on_outcome_side=0.372 [0.337,0.408] | toward_model: right-side n=293 0.392 [0.327,0.453]  wrong-side n=494 0.138 [0.108,0.169]
+   gpt-5.5         n= 581 toward_outcome=0.718 [0.677,0.756] on_outcome_side=0.427 [0.386,0.474] | toward_model: right-side n=248 0.415 [0.339,0.484]  wrong-side n=333 0.150 [0.113,0.191]
+   glm-5.1         n= 731 toward_outcome=0.735 [0.701,0.768] on_outcome_side=0.413 [0.377,0.453] | toward_model: right-side n=302 0.407 [0.346,0.471]  wrong-side n=429 0.152 [0.117,0.186]
+   kimi-k2.6       n= 696 toward_outcome=0.708 [0.670,0.741] on_outcome_side=0.408 [0.372,0.445] | toward_model: right-side n=284 0.430 [0.361,0.493]  wrong-side n=412 0.160 [0.123,0.198]
+   deepseek-v4-pro n= 722 toward_outcome=0.730 [0.695,0.760] on_outcome_side=0.447 [0.410,0.488] | toward_model: right-side n=323 0.455 [0.388,0.516]  wrong-side n=399 0.148 [0.115,0.182]
+B POOLED n=5892 events=1133 toward_outcome=0.721 [0.690,0.751] | right-side n=2424 0.410 [0.356,0.456] wrong-side n=3468 0.148 [0.118,0.180] diff=+0.261 [+0.203,+0.320] | share on outcome side=0.411
+   closed_in_window=1 n=3085 toward_outcome=0.941 toward_model=0.147 | right-side n=1261 0.308  wrong-side n=1824 0.036
+   closed_in_window=0 n=2807 toward_outcome=0.480 toward_model=0.375 | right-side n=1163 0.520  wrong-side n=1644 0.273
+=== window C
+   gpt-5.2         n=1172 toward_outcome=0.688 [0.659,0.715] on_outcome_side=0.349 [0.324,0.377] | toward_model: right-side n=409 0.433 [0.387,0.485]  wrong-side n=763 0.191 [0.162,0.219]
+   gpt-oss-120b    n=1354 toward_outcome=0.696 [0.669,0.721] on_outcome_side=0.357 [0.330,0.384] | toward_model: right-side n=484 0.438 [0.393,0.486]  wrong-side n=870 0.184 [0.159,0.210]
+   kimi-k2.5       n=1137 toward_outcome=0.709 [0.679,0.737] on_outcome_side=0.345 [0.317,0.373] | toward_model: right-side n=392 0.472 [0.426,0.523]  wrong-side n=745 0.187 [0.158,0.216]
+   deepseek-v3.2   n=1246 toward_outcome=0.681 [0.653,0.707] on_outcome_side=0.323 [0.299,0.351] | toward_model: right-side n=403 0.419 [0.369,0.471]  wrong-side n=843 0.173 [0.150,0.199]
+   gpt-5.5         n=1018 toward_outcome=0.705 [0.677,0.735] on_outcome_side=0.368 [0.338,0.400] | toward_model: right-side n=375 0.395 [0.345,0.449]  wrong-side n=643 0.193 [0.163,0.224]
+   glm-5.1         n=1157 toward_outcome=0.697 [0.671,0.725] on_outcome_side=0.347 [0.316,0.375] | toward_model: right-side n=401 0.451 [0.401,0.500]  wrong-side n=756 0.173 [0.145,0.201]
+   kimi-k2.6       n=1173 toward_outcome=0.697 [0.670,0.723] on_outcome_side=0.344 [0.318,0.373] | toward_model: right-side n=403 0.469 [0.419,0.518]  wrong-side n=770 0.192 [0.167,0.220]
+   deepseek-v4-pro n=1179 toward_outcome=0.699 [0.670,0.727] on_outcome_side=0.405 [0.378,0.435] | toward_model: right-side n=477 0.505 [0.456,0.555]  wrong-side n=702 0.184 [0.155,0.213]
+C POOLED n=9436 events=1702 toward_outcome=0.696 [0.670,0.721] | right-side n=3344 0.449 [0.410,0.485] wrong-side n=6092 0.184 [0.159,0.210] diff=+0.265 [+0.219,+0.309] | share on outcome side=0.354
+   closed_in_window=1 n=6919 toward_outcome=0.784 toward_model=0.262 | right-side n=2373 0.444  wrong-side n=4546 0.167
+   closed_in_window=0 n=2517 toward_outcome=0.454 toward_model=0.323 | right-side n=971 0.462  wrong-side n=1546 0.235
+total disagreement rows: 17785
+# --- exit 0, 15s

@@ -1,0 +1,37 @@
+# output of analysis/exploratory/fees-stake-sensitivity.py
+# run: 2026-09-21T13:11:51Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: traded primary rows, forecasts view, mode normal, all models pooled; the trade is unchanged at every stake -- same side, same price, same per-share fee -- only the order size and therefore the per-order rounding differ. Kalshi rounds each order's fee up to the next cent; Polymarket does not, so Window A and Window B are the control. intervals = 1,000 event resamples, seed 20260902
+== window A (polymarket), test split: 3431 traded rows, mean price paid 0.4613
+   $1       mean return -0.1021 [-0.1829, -0.0179]  fee as share of outlay 0.0002  (same trades with no fee at all: -0.1019)
+   $10      mean return -0.1021 [-0.1829, -0.0179]  fee as share of outlay 0.0002  (same trades with no fee at all: -0.1019)
+   $100     mean return -0.1021 [-0.1829, -0.0179]  fee as share of outlay 0.0002  (same trades with no fee at all: -0.1019)
+   $1000    mean return -0.1021 [-0.1829, -0.0179]  fee as share of outlay 0.0002  (same trades with no fee at all: -0.1019)
+== window A (polymarket), both splits: 4280 traded rows, mean price paid 0.4595
+   $1       mean return -0.1017 [-0.1791, -0.0241]  fee as share of outlay 0.0002  (same trades with no fee at all: -0.1015)
+   $10      mean return -0.1017 [-0.1791, -0.0241]  fee as share of outlay 0.0002  (same trades with no fee at all: -0.1015)
+   $100     mean return -0.1017 [-0.1791, -0.0241]  fee as share of outlay 0.0002  (same trades with no fee at all: -0.1015)
+   $1000    mean return -0.1017 [-0.1791, -0.0241]  fee as share of outlay 0.0002  (same trades with no fee at all: -0.1015)
+== window B (polymarket), test split: 9669 traded rows, mean price paid 0.4344
+   $1       mean return -0.0327 [-0.1100, +0.0444]  fee as share of outlay 0.0251  (same trades with no fee at all: -0.0082)
+   $10      mean return -0.0327 [-0.1100, +0.0444]  fee as share of outlay 0.0251  (same trades with no fee at all: -0.0082)
+   $100     mean return -0.0327 [-0.1100, +0.0444]  fee as share of outlay 0.0251  (same trades with no fee at all: -0.0082)
+   $1000    mean return -0.0327 [-0.1100, +0.0444]  fee as share of outlay 0.0251  (same trades with no fee at all: -0.0082)
+== window B (polymarket), both splits: 12234 traded rows, mean price paid 0.4348
+   $1       mean return -0.0392 [-0.1102, +0.0330]  fee as share of outlay 0.0250  (same trades with no fee at all: -0.0150)
+   $10      mean return -0.0392 [-0.1102, +0.0330]  fee as share of outlay 0.0250  (same trades with no fee at all: -0.0150)
+   $100     mean return -0.0392 [-0.1102, +0.0330]  fee as share of outlay 0.0250  (same trades with no fee at all: -0.0150)
+   $1000    mean return -0.0392 [-0.1102, +0.0330]  fee as share of outlay 0.0250  (same trades with no fee at all: -0.0150)
+== window C (kalshi), test split: 13806 traded rows, mean price paid 0.4246
+   $1       mean return -0.0988 [-0.1605, -0.0300]  fee as share of outlay 0.0429  (same trades with no fee at all: -0.0589)
+   $10      mean return -0.0950 [-0.1570, -0.0257]  fee as share of outlay 0.0390  (same trades with no fee at all: -0.0589)
+   $100     mean return -0.0946 [-0.1566, -0.0253]  fee as share of outlay 0.0385  (same trades with no fee at all: -0.0589)
+   $1000    mean return -0.0945 [-0.1566, -0.0252]  fee as share of outlay 0.0385  (same trades with no fee at all: -0.0589)
+== window C (kalshi), both splits: 17201 traded rows, mean price paid 0.4235
+   $1       mean return -0.1111 [-0.1684, -0.0490]  fee as share of outlay 0.0430  (same trades with no fee at all: -0.0719)
+   $10      mean return -0.1074 [-0.1649, -0.0449]  fee as share of outlay 0.0391  (same trades with no fee at all: -0.0719)
+   $100     mean return -0.1069 [-0.1645, -0.0445]  fee as share of outlay 0.0386  (same trades with no fee at all: -0.0719)
+   $1000    mean return -0.1069 [-0.1645, -0.0444]  fee as share of outlay 0.0386  (same trades with no fee at all: -0.0719)
+# --- exit 0, 23s

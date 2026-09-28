@@ -1,0 +1,60 @@
+# output of analysis/exploratory/convergence-settled-in-window.py
+# run: 2026-09-17T06:54:01Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: forecasts view, mode normal, status in ('ok', 'ok_after_retry'), primary set, |p-q| >= 0.10, rated last price; settled = close <= forecast + 72h; baseline = 1000 permutations of p across the split's disagreement rows; intervals = 1000 event resamples, seed 20260902
+=== window A: 2457 disagreements, 1166 settled inside the window (47.5%), 1291 open
+A settled_in_window=1 n=1166 events=289 last_price_at_0_or_1=0.983 (n=1146) identity_holds_on_those=1.000 | toward_outcome=1.000 [1.000,1.000] toward_model=0.281 [0.200,0.367] shuffled=0.222 excess_over_shuffle=+0.059 [+0.023,+0.091] | model right side=0.453, right side and >= halfway=0.280
+A settled_in_window=0 n=1291 events=343 last_price_at_0_or_1=0.061 (n=79) identity_holds_on_those=1.000 | toward_outcome=0.408 [0.359,0.465] toward_model=0.335 [0.284,0.391] shuffled=0.321 excess_over_shuffle=+0.014 [-0.029,+0.053] | model right side=0.528, right side and >= halfway=0.232
+   A gpt-5.2         settled=1 n=256 toward_model=0.293 toward_outcome=1.000 right_side=0.473 halfway=0.289
+   A gpt-5.2         settled=0 n=262 toward_model=0.374 toward_outcome=0.447 right_side=0.527 halfway=0.233
+   A gpt-oss-120b    settled=1 n=390 toward_model=0.236 toward_outcome=1.000 right_side=0.410 halfway=0.236
+   A gpt-oss-120b    settled=0 n=425 toward_model=0.311 toward_outcome=0.393 right_side=0.546 halfway=0.214
+   A kimi-k2.5       settled=1 n=245 toward_model=0.339 toward_outcome=1.000 right_side=0.502 halfway=0.339
+   A kimi-k2.5       settled=0 n=285 toward_model=0.361 toward_outcome=0.428 right_side=0.558 halfway=0.281
+   A deepseek-v3.2   settled=1 n=275 toward_model=0.284 toward_outcome=1.000 right_side=0.451 halfway=0.280
+   A deepseek-v3.2   settled=0 n=319 toward_model=0.310 toward_outcome=0.379 right_side=0.480 halfway=0.213
+=== window B: 5892 disagreements, 3085 settled inside the window (52.4%), 2807 open
+B settled_in_window=1 n=3085 events=659 last_price_at_0_or_1=0.769 (n=2371) identity_holds_on_those=0.999 | toward_outcome=0.941 [0.919,0.960] toward_model=0.147 [0.119,0.176] shuffled=0.192 excess_over_shuffle=-0.044 [-0.067,-0.020] | model right side=0.409, right side and >= halfway=0.114
+B settled_in_window=0 n=2807 events=501 last_price_at_0_or_1=0.071 (n=199) identity_holds_on_those=1.000 | toward_outcome=0.480 [0.428,0.529] toward_model=0.375 [0.325,0.421] shuffled=0.303 excess_over_shuffle=+0.072 [+0.037,+0.105] | model right side=0.414, right side and >= halfway=0.229
+   B gpt-5.2         settled=1 n=332 toward_model=0.154 toward_outcome=0.943 right_side=0.431 halfway=0.120
+   B gpt-5.2         settled=0 n=324 toward_model=0.407 toward_outcome=0.503 right_side=0.432 halfway=0.244
+   B gpt-oss-120b    settled=1 n=563 toward_model=0.160 toward_outcome=0.941 right_side=0.414 halfway=0.135
+   B gpt-oss-120b    settled=0 n=455 toward_model=0.295 toward_outcome=0.411 right_side=0.389 halfway=0.180
+   B kimi-k2.5       settled=1 n=362 toward_model=0.135 toward_outcome=0.942 right_side=0.387 halfway=0.099
+   B kimi-k2.5       settled=0 n=339 toward_model=0.392 toward_outcome=0.469 right_side=0.416 halfway=0.230
+   B deepseek-v3.2   settled=1 n=427 toward_model=0.101 toward_outcome=0.946 right_side=0.354 halfway=0.068
+   B deepseek-v3.2   settled=0 n=360 toward_model=0.389 toward_outcome=0.494 right_side=0.394 halfway=0.183
+   B gpt-5.5         settled=1 n=278 toward_model=0.126 toward_outcome=0.935 right_side=0.410 halfway=0.090
+   B gpt-5.5         settled=0 n=303 toward_model=0.389 toward_outcome=0.518 right_side=0.442 halfway=0.254
+   B glm-5.1         settled=1 n=403 toward_model=0.159 toward_outcome=0.948 right_side=0.427 halfway=0.114
+   B glm-5.1         settled=0 n=328 toward_model=0.378 toward_outcome=0.473 right_side=0.396 halfway=0.226
+   B kimi-k2.6       settled=1 n=346 toward_model=0.165 toward_outcome=0.936 right_side=0.410 halfway=0.133
+   B kimi-k2.6       settled=0 n=350 toward_model=0.374 toward_outcome=0.483 right_side=0.406 halfway=0.223
+   B deepseek-v4-pro settled=1 n=374 toward_model=0.174 toward_outcome=0.933 right_side=0.444 halfway=0.147
+   B deepseek-v4-pro settled=0 n=348 toward_model=0.405 toward_outcome=0.511 right_side=0.451 halfway=0.316
+=== window C: 9436 disagreements, 6919 settled inside the window (73.3%), 2517 open
+C settled_in_window=1 n=6919 events=1307 last_price_at_0_or_1=0.362 (n=2506) identity_holds_on_those=0.998 | toward_outcome=0.784 [0.757,0.809] toward_model=0.262 [0.238,0.285] shuffled=0.263 excess_over_shuffle=-0.001 [-0.016,+0.015] | model right side=0.343, right side and >= halfway=0.091
+C settled_in_window=0 n=2517 events=418 last_price_at_0_or_1=0.049 (n=124) identity_holds_on_those=1.000 | toward_outcome=0.454 [0.395,0.512] toward_model=0.323 [0.276,0.369] shuffled=0.281 excess_over_shuffle=+0.041 [+0.005,+0.074] | model right side=0.386, right side and >= halfway=0.207
+   C gpt-5.2         settled=1 n=863 toward_model=0.263 toward_outcome=0.773 right_side=0.338 halfway=0.080
+   C gpt-5.2         settled=0 n=309 toward_model=0.311 toward_outcome=0.450 right_side=0.379 halfway=0.201
+   C gpt-oss-120b    settled=1 n=997 toward_model=0.262 toward_outcome=0.787 right_side=0.355 halfway=0.094
+   C gpt-oss-120b    settled=0 n=357 toward_model=0.311 toward_outcome=0.440 right_side=0.364 halfway=0.168
+   C kimi-k2.5       settled=1 n=833 toward_model=0.265 toward_outcome=0.802 right_side=0.328 halfway=0.096
+   C kimi-k2.5       settled=0 n=304 toward_model=0.339 toward_outcome=0.454 right_side=0.391 halfway=0.201
+   C deepseek-v3.2   settled=1 n=898 toward_model=0.239 toward_outcome=0.777 right_side=0.318 halfway=0.065
+   C deepseek-v3.2   settled=0 n=348 toward_model=0.287 toward_outcome=0.431 right_side=0.336 halfway=0.141
+   C gpt-5.5         settled=1 n=757 toward_model=0.242 toward_outcome=0.785 right_side=0.350 halfway=0.062
+   C gpt-5.5         settled=0 n=261 toward_model=0.341 toward_outcome=0.475 right_side=0.421 halfway=0.238
+   C glm-5.1         settled=1 n=850 toward_model=0.254 toward_outcome=0.780 right_side=0.339 halfway=0.092
+   C glm-5.1         settled=0 n=307 toward_model=0.313 toward_outcome=0.466 right_side=0.368 halfway=0.195
+   C kimi-k2.6       settled=1 n=859 toward_model=0.267 toward_outcome=0.779 right_side=0.333 halfway=0.088
+   C kimi-k2.6       settled=0 n=314 toward_model=0.344 toward_outcome=0.471 right_side=0.373 halfway=0.217
+   C deepseek-v4-pro settled=1 n=862 toward_model=0.303 toward_outcome=0.790 right_side=0.382 halfway=0.145
+   C deepseek-v4-pro settled=0 n=317 toward_model=0.344 toward_outcome=0.451 right_side=0.467 halfway=0.312
+excess over the disagreement-only baseline, settled minus open:
+   A settled +0.059 [+0.023,+0.091]  open +0.014 [-0.029,+0.053]  gap +0.045
+   B settled -0.044 [-0.067,-0.020]  open +0.072 [+0.037,+0.105]  gap -0.116
+   C settled -0.001 [-0.016,+0.015]  open +0.041 [+0.005,+0.074]  gap -0.043
+# --- exit 0, 303s

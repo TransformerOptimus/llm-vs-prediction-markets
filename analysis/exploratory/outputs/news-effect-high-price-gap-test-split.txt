@@ -1,0 +1,21 @@
+# output of analysis/exploratory/news-effect-high-price-gap.py (run with --test-split)
+# run: 2026-09-22T08:46:05Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+window A
+  band 0.05-0.25 n=1314 markets=329 | mean p no-news 0.201 with-news 0.211 q 0.168 outcome 0.143 | signed move +0.0101 [-0.0031, +0.0246] | toward-market -0.0118 [-0.0229, -0.0018] | d_brier +0.0084 [-0.0029, +0.0213] | Brier no-news 0.1337 with-news 0.1253 market 0.1190 | share of gap to market closed by news 57%
+  band 0.25-0.50 n=2061 markets=517 | mean p no-news 0.317 with-news 0.322 q 0.361 outcome 0.326 | signed move +0.0045 [-0.0045, +0.0129] | toward-market -0.0121 [-0.0209, -0.0038] | d_brier +0.0089 [-0.0007, +0.0179] | Brier no-news 0.2161 with-news 0.2073 market 0.2090 | share of gap to market closed by news 124%
+  band 0.50-0.75 n=903 markets=226 | mean p no-news 0.480 with-news 0.504 q 0.595 outcome 0.597 | signed move +0.0237 [+0.0093, +0.0388] | toward-market +0.0074 [-0.0038, +0.0184] | d_brier +0.0149 [+0.0002, +0.0293] | Brier no-news 0.2686 with-news 0.2537 market 0.2357 | share of gap to market closed by news 45%
+  band 0.75-0.95 n=319 markets=80 | mean p no-news 0.521 with-news 0.534 q 0.846 outcome 0.850 | signed move +0.0124 [-0.0194, +0.0559] | toward-market +0.0225 [-0.0044, +0.0601] | d_brier +0.0173 [-0.0155, +0.0620] | Brier no-news 0.3292 with-news 0.3119 market 0.1176 | share of gap to market closed by news 8%
+window B
+  band 0.05-0.25 n=1237 markets=155 | mean p no-news 0.201 with-news 0.218 q 0.134 outcome 0.128 | signed move +0.0169 [-0.0001, +0.0371] | toward-market -0.0075 [-0.0232, +0.0065] | d_brier +0.0104 [-0.0045, +0.0270] | Brier no-news 0.1405 with-news 0.1301 market 0.1072 | share of gap to market closed by news 31%
+  band 0.25-0.50 n=1221 markets=153 | mean p no-news 0.380 with-news 0.397 q 0.391 outcome 0.346 | signed move +0.0178 [+0.0030, +0.0332] | toward-market +0.0024 [-0.0061, +0.0120] | d_brier -0.0053 [-0.0204, +0.0100] | Brier no-news 0.2343 with-news 0.2397 market 0.2271 | share of gap to market closed by news -73%
+  band 0.50-0.75 n=709 markets=89 | mean p no-news 0.470 with-news 0.514 q 0.605 outcome 0.585 | signed move +0.0437 [+0.0143, +0.0750] | toward-market +0.0100 [-0.0094, +0.0287] | d_brier -0.0053 [-0.0344, +0.0249] | Brier no-news 0.2716 with-news 0.2769 market 0.2390 | share of gap to market closed by news -16%
+  band 0.75-0.95 n=344 markets=43 | mean p no-news 0.507 with-news 0.604 q 0.852 outcome 0.907 | signed move +0.0971 [+0.0421, +0.1592] | toward-market +0.0998 [+0.0462, +0.1597] | d_brier +0.0852 [+0.0343, +0.1522] | Brier no-news 0.3142 with-news 0.2290 market 0.0770 | share of gap to market closed by news 36%
+window C
+  band 0.05-0.25 n=1849 markets=232 | mean p no-news 0.166 with-news 0.188 q 0.129 outcome 0.142 | signed move +0.0223 [+0.0109, +0.0352] | toward-market -0.0099 [-0.0208, +0.0010] | d_brier -0.0007 [-0.0120, +0.0106] | Brier no-news 0.1415 with-news 0.1422 market 0.1211 | share of gap to market closed by news -4%
+  band 0.25-0.50 n=1511 markets=189 | mean p no-news 0.370 with-news 0.400 q 0.366 outcome 0.370 | signed move +0.0301 [+0.0072, +0.0526] | toward-market +0.0044 [-0.0076, +0.0159] | d_brier +0.0083 [-0.0124, +0.0326] | Brier no-news 0.2654 with-news 0.2571 market 0.2347 | share of gap to market closed by news 27%
+  band 0.50-0.75 n=980 markets=123 | mean p no-news 0.519 with-news 0.545 q 0.620 outcome 0.635 | signed move +0.0259 [-0.0005, +0.0528] | toward-market +0.0201 [-0.0000, +0.0390] | d_brier +0.0288 [-0.0026, +0.0593] | Brier no-news 0.2851 with-news 0.2563 market 0.2415 | share of gap to market closed by news 66%
+  band 0.75-0.95 n=480 markets=60 | mean p no-news 0.574 with-news 0.629 q 0.846 outcome 0.867 | signed move +0.0555 [+0.0103, +0.1034] | toward-market +0.0465 [+0.0033, +0.0903] | d_brier +0.0320 [-0.0174, +0.0834] | Brier no-news 0.2843 with-news 0.2523 market 0.1109 | share of gap to market closed by news 18%
+# --- exit 0, 4s

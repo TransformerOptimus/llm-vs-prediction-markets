@@ -1,0 +1,9 @@
+# Analysis (analysis/): rebuilding the databases, scoring, exploratory scripts
+numpy
+scipy
+pyarrow
+matplotlib
+
+# Harness (harness/): only needed to call models again, which costs money
+litellm==1.83.9   # the version recorded in every run of the study
+tiktoken

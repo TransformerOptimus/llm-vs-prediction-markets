@@ -1,0 +1,504 @@
+\section{Absolute scores}
+\label{app:absolute}
+The main text reports differences, because the level of a Brier score is set by
+how hard a window's questions happened to be. Table~\ref{tab:absolute} gives
+the levels themselves, so readers need not reconstruct them. Uncertainty (the
+score of a forecaster who answers the window's base rate on every row) is a
+property of the outcomes, so it is the same for everyone in a window and appears
+in the heading. Skill is the share of that forecaster's error removed.
+
+The constant forecasters are included to make the scale legible, not because
+they are contenders. Answering Yes on every row scores worse than the
+base rate by a factor of two or more, and answering 0.5 on every row scores
+worse than the base rate on all three windows. Beating them is not evidence of
+judgment; the informative comparisons are with the market and the shrunk market.
+
+The shrunk market is a linear, and so monotone, compression of the price. Applied
+to the price it is pure calibration loss, yet it reproduces 24 to 52 per cent of
+the models' shortfall while calibration explains much less of it. The two fit
+together: a calibrated forecaster that knows less than the market also varies
+less than the price, and in that forecaster the compression is lost resolution,
+not miscalibration.
+
+\begin{table*}[!tbp]
+\centering
+\caption{Absolute scores on the test split of the primary set. Brier and
+reliability are lower-is-better; resolution and skill are higher-is-better. Constant
+forecasters have no resolution by construction and their reliability is not comparable
+with a varying forecaster's, so those cells are left blank. Reliability minus resolution plus
+uncertainty differs from Brier by up to 0.002, the within-bin term that ten bins leave
+out~\citep{stephenson2008}. The market rows average the market's score over every model's
+rows stacked together, so they differ in the fourth decimal from the market score behind any
+one model's Brier edge, which is computed row by row on that model's own rows. The Brier edge (market minus model, on each model's own rows) and the
+market-minus-model resolution carry 95\% event-resampling ranges.}
+\label{tab:absolute}
+\input{tables/tab-absolute}
+\end{table*}
+
+\section{Which file produces which result}
+\label{app:repro}
+Every number in this paper comes from a released file. Table~\ref{tab:repro}
+maps each float and each named analysis to the script or results file that
+produces it. Scripts (a name with no extension, or \code{.py}) and
+\code{models.json} are in the code repository, each exploratory script with its
+saved output; result tables (\code{.csv}) and the other \code{.json} inputs are
+in the main dataset. \winC numbers also need the \kalshi market data, which the
+dataset card explains how to obtain and \code{build\_db.py} merges.
+
+\begin{table*}[!tbp]
+\centering
+\caption{Where each result comes from.}
+\label{tab:repro}
+\input{tables/tab-reproducibility}
+\end{table*}
+
+\section{Fee formulas}
+\label{app:feeformula}
+On \polymarket the taker fee is a topic-dependent rate times $p(1-p)$: sports
+0.05 from July 2026, crypto 0.07, politics and tech 0.04, geopolitics free. On
+\kalshi the fee is 0.07 times a per-market multiplier times $P(1-P)$, rounded
+up to the next cent per order.
+
+\section{News attachment rules}
+\label{app:newsattach}
+An article may attach to a row only if its crawl time is strictly before the
+forecast moment and no more than fourteen days before it; it must match the
+market by name phrase and clear a reranker score of 0.3; at most the three
+best-scoring articles attach. Two dateline rules then apply. The benchmark drops
+any row whose news carries a dateline two or more days after the news's own
+capture time. At call time the harness separately blocks any row whose news
+carries a dateline two or more days after the forecast moment, unless that date
+was hand-labelled as a scheduled future event rather than a publication date:
+22 rows in all (17 on \winA, 3 on \winB, 2 on \winC, at most 0.6 per cent of a
+window's in-play rows), labelled from the article text alone, without access to prices, outcomes or model
+forecasts.
+One day is allowed in both because capture times are UTC and sites print local
+dates.
+
+\section{Skill score}
+\label{app:skill}
+The skill score against a forecaster who answers the window's base rate
+$\bar{y}$ on every question is
+\begin{equation}
+S(p) \;=\; 1 - \frac{\mathrm{BS}(p)}{\mathrm{BS}(\bar{y})},
+\label{eq:skill}
+\end{equation}
+where zero means no better than answering the base rate every time and one means
+perfect.
+
+\section{Correlated-error method}
+\label{app:correlmethod}
+For model $m$ we fit
+\begin{equation}
+p_i^{(m)} \;=\; a_m + b_m\,q_i + \varepsilon_i^{(m)}
+\label{eq:shrinkage}
+\end{equation}
+by least squares on the probability scale. We call a slope $b_m<1$ shrinkage:
+the model moves less than the price does, whether because it hedges or because it
+knows less, and its forecasts sit toward the fixed point $a_m/(1-b_m)$. The quantity we report is the mean pairwise
+correlation of the fitted residuals,
+\begin{equation}
+\bar{\rho} \;=\; \binom{M}{2}^{-1} \sum_{m < m'}
+  \mathrm{corr}\!\left(\varepsilon^{(m)},\, \varepsilon^{(m')}\right),
+\label{eq:residcorr}
+\end{equation}
+which is agreement that each model's own fitted shrinkage cannot explain.
+
+Two simulated controls appear in Figure~\ref{fig:shrinkage-null}. Both build
+forecasters carrying each model's fitted $a_m$ and $b_m$; they differ in where
+the noise comes from. The first draws it from a Gaussian at the model's own
+fitted residual spread. The second discards the distributional assumption and
+resamples each model's \emph{observed} residuals without replacement within a
+price band, so the simulated noise has the real shape and the real spread and
+only its pairing across models is destroyed. The two agree closely, which is why
+the text quotes them as a range. Neither is a demanding test: independent noise
+is uncorrelated by construction, so these controls show only that shrinkage
+alone cannot manufacture the agreement, not that nothing else could.
+
+The stronger control replaces $b_m q_i$ with a fitted surface that includes the
+row's observable characteristics (a sports indicator, topic tags, horizon in
+log days and as band indicators, a news indicator and price-band
+indicators) and, on rows belonging to events with more than one market, a
+separate intercept per event. Section~\ref{sec:results-correlated} reports
+$\bar{\rho}$ under each fit.
+
+The raw error correlation, $\mathrm{corr}(p-y)$, is 0.9625 on \winB and 0.9599
+on \winC on the test split. We report it because earlier work uses
+it~\citep{spiro2026}, but it should not be compared with $\bar{\rho}$: a raw
+error correlation rises whenever forecasts move little relative to outcomes.
+
+\section{Wrong together: per-window detail}
+\label{app:wrongtogether}
+A pair lands on the same incorrect side of even money 26.4 per cent of the time
+on \winB against 10.7 per cent expected under independence, a ratio of 2.47, and
+26.9 against 13.3 on \winC, a ratio of 2.03. On news-bearing rows the ratios are
+2.33 and 2.56 (431 and 594 rows), read against a shrinkage null of 1.67 and 1.78
+on those same rows; restricted further to the news-bearing rows the market got
+right, they are 3.11 on \winB and 4.10 on \winC against nulls of 1.4 to 1.8. Simulated forecasters sharing only shrinkage already miss together
+about 1.9 times as often as independence on all rows of \winA and \winB and about 1.5 times on
+\winC, so the margin is narrower than a comparison against independence alone
+would suggest. Between 58 and 74 per cent of shared mistakes fall where the
+market was also wrong, leaving a quarter to two fifths that are the models' own.
+
+Richer nulls do not close the gap. On rows the market got right, simulated
+forecasters that share each model's fit to the price and the row's observable
+features miss together 2.3 times the independent rate on \winA, 1.9 to 2.0 on
+\winB and 1.5 on \winC, against real ratios of 4.3, 4.0 and 2.7. Adding a
+separate intercept per event, on the rows of events with more than one market,
+raises the null to 3.5 to 3.6, 2.9 and 2.2 to 2.3, against real ratios on those
+rows of 5.9, 4.3 and 3.2. Each null as a share of the real ratio on its own rows
+is 55, 47 to 48 and 58 per cent for features (all market-right rows) and 60 to
+61, 67 and 69 to 70 per cent with the event (multi-market rows), so the event
+appears to absorb part of the excess, though the two shares rest on different
+rows. The real ratio still lies
+above every simulated range.
+
+\section{Agreement with and without news}
+\label{app:newsagree}
+Every news-bearing row was asked twice, with the news and with it removed, so
+the models' agreement can be measured on the same rows under both. The residual
+correlation after each model's fitted line is 0.756 with news against 0.803
+without on \winA, 0.707 against 0.763 on \winB and 0.711 against 0.747 on
+\winC; the falls of 0.047, 0.055 and 0.036 exclude zero on \winA and \winB and
+reach it on \winC (event-resampled, both passes resampled together, on the
+1{,}141, 431 and 593 rows every model answered in both passes; on one \winC row
+a model has no answer without the news, hence 593 here against 594 in
+Appendix~\ref{app:wrongtogether}). The wrong-together ratio on rows the market got right shows no
+clear change: $+0.14$, $-0.26$ and $+0.20$, every interval spanning zero. News
+therefore removes a slice of the agreement in departures from the price and none
+detectable in shared wrong calls. The test bounds only the information our news
+carried.
+
+A correlation can fall because the models share less or because each becomes
+noisier. Splitting the change settles which (same rows, same resampling). On
+\winA the residual standard deviation rises from 0.154 to 0.168 with news, clear
+of zero, while the mean pairwise covariance rises slightly: holding the spreads
+at their no-news values, the with-news correlation would be 0.90, not 0.76. The
+fall on \winA is therefore model-specific noise added by the news, on the one
+window whose news was retrieved at run time. On \winB and \winC the spreads barely move
+($-0.002$) and the covariance falls, by 0.0026 and 0.0020, which alone would
+lower the correlation by 0.07 and 0.06; neither covariance change clears zero.
+The shared-missing-information reading is therefore suggestive on the two
+live-book windows and unsupported on \winA.
+
+\section{The two newest models}
+\label{app:newest}
+\mGptFiveFive has the highest resolution in the study, 0.0306 on \winB and
+0.0302 on \winC, and is still short of the market by $+0.019$ and $+0.026$ with
+both intervals clear of zero. Against \mGptFiveTwo it is better on \kalshi by
+0.0099 (interval excluding zero) and not clearly better on \polymarket.
+\mDeepSeekVFourPro shares the same release date yet on \winC has a resolution gap
+to the market of $+0.0314$ against \mGptFiveFive's $+0.0257$, so recency does
+not separate models released on the same day. \mDeepSeekVFourPro is a capped
+model whose host truncated some outputs, so one pair is thin evidence either way.
+
+\section{Leaning against the crowd: where the loss sits}
+\label{app:againstdetail}
+Most rows that lean against the crowd are same-side-less-confident rather than
+outright contradiction, but the accuracy loss is not spread evenly across the
+two. On the rows where the model genuinely favours the other outcome the Brier
+edge is $-0.084$ on \winA, $-0.121$ on \winB and $-0.104$ on \winC, against
+$-0.016$, $-0.013$ and $-0.019$ on the same-side rows: five to ten times worse.
+The direction split therefore tracks something real, even though the majority of
+the category is a difference of confidence. In money the contrast is the same
+shape: trades placed against the crowd buy at 0.28 to 0.31 and win 27 to 29 per
+cent of the time, while trades placed with the crowd pay 0.70 to 0.71 and win 70
+to 72 per cent. These averages look close to fair, but returns average each
+trade's own payoff, and on \winA, where fees were near zero, against-the-crowd
+trades still lost 17 cents per dollar.
+
+In the lowest price band the models answer 0.20 to 0.25 against the crowd's 0.13
+to 0.15. Each model's fixed point sits near the window's base rate: 0.26 to 0.34
+on \winA (base rate 0.37), 0.32 to 0.38 on \winB (0.38) and 0.38 to 0.44 on
+\winC (0.40).
+
+\section{What an event is, and how many clusters}
+\label{app:events}
+Every interval in this paper resamples \emph{events} rather than rows. An event
+is the venue's own grouping of markets about one happening (a \polymarket event
+id, a \kalshi event ticker), so one event may carry nineteen markets on which
+songs are played at a single halftime show, or twelve on what one official says
+at one press conference. Markets inside an event move together, so treating them
+as independent draws would give intervals that are too narrow.
+
+On the test split the bootstrap draws from 626 events on \winA, 1{,}196 on \winB
+and 1{,}823 on \winC, holding 1{,}248, 1{,}480 and 2{,}137 market-moments. Markets
+per event in the test split run from one to thirteen. How much the clustering
+matters depends on the window: 46.6 per cent of \winA events carry a single market,
+against 83.5 per cent on \winB and 89.1 per cent on \winC. On the two larger
+windows the event bootstrap is therefore close to a row bootstrap, and the
+protection it offers is real but small; on \winA it does substantial work.
+
+\section{Does the calibration split leak across events?}
+\label{app:splitcheck}
+The calibration and test split was drawn per market rather than per event, so
+two markets from one event can land on opposite sides. Since the recalibration
+control fits a map on one side and scores it on the other, a map might be fitted
+on rows closely related to those it is scored on. The exposure is real:
+straddling events hold 31.3 per cent of \winA test rows, 15.7 per cent of \winB
+and 10.2 per cent of \winC.
+
+We therefore redrew the split, same cells and same size, keeping every event
+whole, and refitted the control. Recovery does not rise materially. On \winB it runs
+from $-0.5$ to 17.1 per cent against 1.7 to 16.1 per cent under the main split; on \winC every model recovers \emph{less}, the range falling from 5.7 to
+17.9 per cent down to 0.6 to 9.9 per cent. Scoring the main-split map on
+non-straddling rows alone moves nothing systematically. The cross-fitted Platt
+and isotonic figures, which set the paper's ceiling of about a fifth, are
+unaffected either way because those folds are built by event. The
+conclusion that no monotone rescaling closes the gap is unchanged, and on \winC
+it is stronger.
+
+\section{Why the reliability term is small}
+\label{app:relsmall}
+Reliability being small does not mean the models are well calibrated, and three
+separate things keep it small. First, it is a squared quantity: a per-model
+reliability of 0.0023 to 0.0106 is a root-mean-square miss of roughly 0.05 to
+0.10 in probability, set against a market-minus-model resolution gap of 0.019 to 0.036.
+Second, the badly calibrated forecasts sit in the thin tails. About three in ten
+forecasts fall outside 0.2 to 0.7, and those carry 68 per cent of the total
+reliability on \winA, 95 per cent on \winB and 78 per cent on \winC, while the
+crowded middle bins miss by only 0.012 to 0.039. Third, ten equal-width bins
+hide disagreement inside a bin. Splitting each bin by whether the market priced
+the row above or below the bin's mean forecast multiplies the pooled
+reliability by three to five, from 0.0027 to 0.0128 on \winA, 0.0043 to 0.0130 on \winB and
+0.0055 to 0.0191 on \winC; a random split into halves of the same size leaves it
+almost unchanged. That third figure is a diagnostic, not a competing
+decomposition: Murphy's reliability conditions on the forecast alone, so
+conditioning on the price as well moves part of the sorting shortfall into the
+calibration column by construction. Measured against a model's own information
+the shortfall is a sorting gap; measured against the market's better information
+the same fact appears as miscalibration. The 79 to 99 per cent attribution in
+Section~\ref{sec:results-sorting} is the former. Note that the market sits in the 0.2 to 0.7 range about as
+often as the models do, with reliability three to nine times smaller, so the
+range alone explains nothing.
+
+\section{Fee and stake sensitivity}
+\label{app:feesensitivity}
+The same trades with no fee at all return $-0.008$ on \winB against $-0.033$
+with fees, and $-0.059$ on \winC against $-0.099$: before costs the \winB trades
+are roughly break-even. On \winA fees were about 0.02 per cent of outlay, so the
+return of $-0.102$ is the same with or without them. Raising the stake from \$1 to \$1{,}000 moves the
+\kalshi return by 0.4 percentage points, so the result is not an artefact of
+small orders.
+
+\section{Pairwise departure correlations}
+\label{app:pairdetail}
+\begin{figure*}[!tbp]
+\centering
+\input{figures/fig-correlated-errors}
+\caption{Pairwise correlation of departures from the market price, $p-q$, on the rows all
+eight forecast. The mean across pairs is 0.78 to 0.80, against 0.23 to 0.28 for simulated
+forecasters sharing only shrinkage; after removing shrinkage the residual correlation is 0.71
+to 0.75 against essentially zero, which is zero by construction (Appendix~\ref{app:correlmethod}). Test split of the primary set.}
+\label{fig:correlated}
+\end{figure*}
+
+Among the five same-developer pairs, two are the tightest in the roster:
+\mKimiKTwoFive with \mKimiKTwoSix at 0.910 on \winB and 0.891 on \winC, and
+\mGptFiveTwo with \mGptFiveFive at 0.872 on \winB, which is what a
+same-developer story predicts. The two DeepSeek models are no closer than
+unrelated pairs, sitting 0.061 and 0.026 below the roster reference;
+\mGptOss's pairs sit 0.088, 0.099 and 0.090 below it and are six of the seven
+loosest on \winB. On two windows of three the loosest pair is itself
+same-developer: \mGptFiveTwo with \mGptOss at 0.722 on \winA and \mGptFiveFive
+with \mGptOss at 0.626 on \winC.
+
+\section{The non-sports gap}
+\label{app:nonsports}
+Sports dominate all three windows, so it matters that the model-to-market gap is
+not a sports artefact. It is not: on the non-sports minority the gap is several
+times larger. Pooling the roster, the Brier edge on sports rows is $-0.0061$, $-0.0131$ and
+$-0.0266$ on \winA, \winB and \winC, against $-0.0739$, $-0.0727$ and $-0.0873$
+on non-sports rows. The sports-minus-non-sports difference is $+0.068$, $+0.060$
+and $+0.061$, with every interval clear of zero, and each model's own difference
+clears zero on every window. Per model the ratio of the two gaps runs from 2.4 to
+6.7 on \winB and \winC. On \winA the ratios are 4.9, 11.7 and 34.0 and one is
+undefined, because the sports gap there is
+so near zero (\mKimiKTwoFive's is slightly positive) that the ratio stops being
+meaningful; the difference, not the ratio, is the stable quantity on \winA. The practical reading is that the sports
+concentration described in Section~\ref{sec:limitations} makes the models look
+better than they are, not worse.
+
+Sorting and calibration hold up within each half. Run separately on the test
+split's sports and non-sports rows, the bin-free decomposition puts 85 to 109 per
+cent of the shortfall on resolution for sports rows on \winB and 87 to 96 per cent
+on \winC (above 100 where the model is better calibrated than the market), and
+cross-fitted rescaling recovers at most 18 and 11 per cent. On non-sports rows
+resolution still carries most of it, 73 to 90 per cent on \winB and 59 to 89 per
+cent on \winC, but rescaling recovers more: up to 30 and 42 per cent, largest for
+\mDeepSeekVFourPro and, on \winC, \mGlmFiveOne, the worst-calibrated models on
+those rows. On \winA the sports gap is so small ($-0.001$ to $+0.018$) that the
+shares are unstable; on its non-sports rows resolution carries 86 to 97 per cent
+and rescaling recovers at most 20. Calibration therefore matters more where the
+gap is widest, but it is not what the gap is made of.
+
+\section{Thinking length within a model}
+\label{app:thinking}
+Comparing thinking budgets \emph{between} models is confounded
+(Section~\ref{sec:limitations}); comparing a model with itself removes that
+confound but not the difficulty of the rows.
+Splitting each model's rows into its own top and bottom thinking quartile, the
+rows on which a model thought longest are those on which it departed further from
+the market and scored worse, not better. For \mGptFiveTwo the departure
+$|p-q|$ rises from 0.071 to 0.159 between bottom and top quartile on \winA, with
+the Brier edge falling from $-0.0018$ to $-0.0230$; the pattern repeats on \winB.
+\mGptFiveFive behaves the same way, with departures $+0.085$ (\winB) and $+0.041$
+(\winC) higher in its top quartile and Brier edges of $-0.0372$ and $-0.0462$
+there, against $-0.0049$ and $-0.0201$ in its bottom quartile. This comparison
+uses both splits. Longer deliberation is associated with more disagreement with the crowd,
+and in this study disagreement with the crowd is what costs. We read this as
+selection rather than causation: hard rows invite more thinking.
+
+\section{The calibration gate}
+\label{app:gate}
+A disagreement with the price is only informative where a forecaster's
+probabilities mean something, so each model-window-bucket cell is admitted to
+the convergence test only if it holds at least 30 rows and its expected calibration error, computed over at most
+three bins of near-equal count, is at most 0.10; a cell with fewer than 30 rows
+stays closed. The gate is applied per cell rather than per
+model, so a model may enter the test in the buckets where it is calibrated and not in
+others. Failures are not concentrated in one model: in most failing cells the
+sports rows pass on their own and the non-sports rows are badly miscalibrated,
+the same
+asymmetry as Appendix~\ref{app:nonsports}. Per-cell verdicts
+and admitted-row counts are in the released results tables.
+
+\section{Convergence: do prices drift toward the model?}
+\label{app:convergence}
+A separate question is whether, when a model disagrees with the price, the price
+later moves toward the model. Measuring the share of disagreements whose
+subsequent price path drifts model-ward, and comparing it with the same statistic
+after shuffling which model disagreed on which row, the answer depends on the
+window and does not replicate. On \winA the drift exceeds the shuffled
+baseline for all four models, by $+0.095$ to $+0.111$. On \winB the difference
+runs from $-0.039$ to $+0.042$ across the eight models, spanning zero, and on
+\winC it runs from $-0.048$ to $-0.001$, that is, slightly the wrong way. We
+therefore make no claim that prices move toward these models. The \winA result is
+the one that would need explaining, and \winA is the window drawn without the
+live-book rule.
+
+\section{Forecast horizon}
+\label{app:horizon}
+The size of the deficit depends strongly on how far ahead the forecast sits; its
+direction does not replicate across windows. Splitting rows by time to
+settlement, the pooled Brier edge varies by a factor of two to four within each
+window. On \winB the worst band is beyond 7 days ($-0.063$ against $-0.016$ at 3
+to 7 days), and this is not an averaging artefact: beyond 7 days is the worst
+band for all eight models. On \winC the worst band is under a day ($-0.052$),
+again for all eight models. On \winA the worst is 1 to 3 days ($-0.041$). So
+horizon matters within a window and the models agree about how, but which end of
+the horizon hurts reverses between \winB and \winC, and we cannot say why.
+
+One band is worth naming because it is the exception in the study. On \winA
+under a day the pooled edge is $+0.0229$, with an interval that crosses zero;
+for one model, \mKimiKTwoFive, it is $+0.0452$ with an interval above zero. That
+is the only model-and-band cell anywhere in this work where a model is clearly
+more accurate than the price. It rests on 86 rows, on \winA, where only four models are eligible and on which we rest no claim
+(Section~\ref{sec:results-market}), so we report it rather than build on it.
+
+\section{Exploratory scripts}
+\label{app:exploratory}
+Every exploratory script in the release was run over all eight models and is
+released with its saved output; the appendix sections above cite the ones they
+use.
+
+\section{Roster, hosts, precision, thinking, failures and cost}
+\label{app:roster}
+Table~\ref{tab:roster} lists the eight scored models with the settings each was
+run under. Eligibility is by release date, as Section~\ref{sec:models} describes:
+the four models published between August 2025 and January 2026 precede all
+three windows, while the four published in April 2026 precede \winC and \winB
+only. The validation model used in the memory
+probe (Appendix~\ref{app:memory}) is never scored and is not listed. Across the whole study, 97{,}465 model calls were made, at a cost of about \$620.
+
+\begin{table*}[!tbp]
+\centering
+\caption{The eight scored models. \emph{Windows} lists the windows each model is eligible for. \emph{Thinking} is either a reasoning-effort level (the OpenAI models and
+\mGptOss) or a 1{,}000-token thinking budget; median thinking is tokens per reply, over every
+recorded reply of the run. The reply limit is 4{,}000 tokens for every model, although
+\mDeepSeekVFourPro's host truncated output at 3{,}000 on about 6\% of its calls. \emph{Failed
+rows} gave no usable probability after one stricter re-ask; counts are for the scored pass,
+and the memory-probe pass failed on a further 3 rows for \mKimiKTwoFive, 7 for
+\mDeepSeekVFourPro and 1 for \mKimiKTwoSix. A dash marks a window a model was not eligible
+for, or a precision its host does not state. Sources: \code{models.json},
+\code{reporting\_line.csv}.}
+\label{tab:roster}
+\input{tables/tab-roster}
+\end{table*}
+
+\section{The prompt}
+\label{app:prompt}
+Figure~\ref{fig:prompt} gives the template every scored call used, with the
+placeholders in braces filled per row. There is no price, bid, ask, depth or book
+anywhere in it. When a row has no news, the news block is the single line
+\code{No news is available.} A reply containing no parseable probability is
+re-asked once with the strict suffix shown beneath the template.
+
+\begin{figure*}[!tbp]
+\centering
+\begin{minipage}{0.95\linewidth}
+\footnotesize
+\begin{verbatim}
+You are forecasting the outcome of a prediction-market question.
+
+Today's date and time (UTC): {today}
+Everything below is what is known as of today. Do not use or assume
+knowledge of anything that happened after today.
+
+Event: {event_title}
+Question: {question}{contract_line}
+
+Resolution rules (word for word from the exchange):
+{description}
+
+Scheduled market close: {market_end_date}
+
+News:
+{news_block}
+
+Give your own probability that this question resolves Yes. Reason
+briefly, then end your reply with one line in exactly this form:
+PROBABILITY: <number between 0 and 1>
+\end{verbatim}
+\rule{\linewidth}{0.4pt}
+\begin{verbatim}
+Your previous reply did not contain a usable probability. You must
+answer with a number even if you are uncertain; refusing is not an
+option. Reply with exactly one line and nothing else:
+PROBABILITY: <decimal number between 0 and 1, for example 0.35>
+\end{verbatim}
+\end{minipage}
+\caption{The forecasting prompt (above) and the strict re-ask appended after an unparseable
+reply (below). Braces mark per-row fields. Line breaks inside the running sentences are added
+here for column width; the template itself does not wrap them. Source:
+\code{harness/prompt.py}.}
+\label{fig:prompt}
+\end{figure*}
+
+\section{The memory probe}
+\label{app:memory}
+Every row carrying news was asked twice, once with the news and once with it
+removed. The pair serves two purposes.
+
+\textbf{Flagging memorisation.} A model that answers a news-bearing question just
+as confidently and just as correctly without the news may be recalling the
+outcome rather than reasoning from what it was given. Rows meeting that condition
+are removed from the convergence test of Appendix~\ref{app:convergence}, the only
+analysis the quarantine touches. Across the 21 probe runs (the 20 scored-model runs and the validation run) the flag
+rate is 0.77 to 2.32 per cent.
+
+\textbf{Measuring what news is worth.} The same pairing gives the value of news
+directly, as the Brier score without it minus the Brier score with it. On the test split it ranges from $-0.001$ to $+0.017$ by model and window and is
+positive in 18 of the 20 model-window cells, but small beside the gap to the
+market.
+
+\textbf{Validation, and why it is inconclusive.} To check that the probe detects
+anything, a model published well after \winA settled (\mbox{GLM-5.3 Flash}, 26
+August 2026) was run over 500 fixed \winA
+rows. If the probe worked, that model should have been flagged more often than
+the eligible models on the same rows. It was flagged less often: 1.4 per cent,
+seven rows of 500, against 2.2 per cent for \mGptFiveTwo, 1.6 for
+\mDeepSeekVThreeTwo, 2.2 for \mKimiKTwoFive and 3.4 for \mGptOss. Either the
+probe lacks power, or that model had not memorised those particular markets. The
+exercise cannot separate the two, and we do not claim the probe as a working
+leakage detector; the release-date rule is what the leakage argument rests on.

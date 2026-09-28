@@ -1,0 +1,30 @@
+# output of analysis/exploratory/baselines-whole-window-edge.py
+# run: 2026-09-22T20:41:44Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: primary set, test split, forecasts view, mode normal; Brier edge = market Brier minus model Brier on the model's own rows (negative = market more accurate); intervals = 2000 event resamples, seed 20260902
+=== window A
+  gpt-5.2          n=1248  model Brier 0.2007  market Brier 0.1854  edge -0.0153 [-0.0265, -0.0051]  clear of zero
+  gpt-oss-120b     n=1248  model Brier 0.2159  market Brier 0.1854  edge -0.0305 [-0.0449, -0.0162]  clear of zero
+  kimi-k2.5        n=1237  model Brier 0.1990  market Brier 0.1860  edge -0.0129 [-0.0264, -0.0013]  clear of zero
+  deepseek-v3.2    n=1248  model Brier 0.1997  market Brier 0.1854  edge -0.0143 [-0.0262, -0.0030]  clear of zero
+=== window B
+  gpt-5.2          n=1480  model Brier 0.2120  market Brier 0.1865  edge -0.0255 [-0.0344, -0.0169]  clear of zero
+  gpt-oss-120b     n=1480  model Brier 0.2281  market Brier 0.1865  edge -0.0416 [-0.0517, -0.0310]  clear of zero
+  kimi-k2.5        n=1477  model Brier 0.2158  market Brier 0.1864  edge -0.0294 [-0.0389, -0.0205]  clear of zero
+  deepseek-v3.2    n=1480  model Brier 0.2138  market Brier 0.1865  edge -0.0272 [-0.0361, -0.0182]  clear of zero
+  gpt-5.5          n=1480  model Brier 0.2080  market Brier 0.1865  edge -0.0214 [-0.0301, -0.0128]  clear of zero
+  glm-5.1          n=1480  model Brier 0.2149  market Brier 0.1865  edge -0.0284 [-0.0379, -0.0189]  clear of zero
+  kimi-k2.6        n=1479  model Brier 0.2126  market Brier 0.1862  edge -0.0264 [-0.0351, -0.0180]  clear of zero
+  deepseek-v4-pro  n=1475  model Brier 0.2160  market Brier 0.1862  edge -0.0298 [-0.0401, -0.0200]  clear of zero
+=== window C
+  gpt-5.2          n=2137  model Brier 0.2218  market Brier 0.1846  edge -0.0372 [-0.0447, -0.0293]  clear of zero
+  gpt-oss-120b     n=2137  model Brier 0.2278  market Brier 0.1846  edge -0.0431 [-0.0515, -0.0347]  clear of zero
+  kimi-k2.5        n=2134  model Brier 0.2205  market Brier 0.1844  edge -0.0361 [-0.0441, -0.0285]  clear of zero
+  deepseek-v3.2    n=2137  model Brier 0.2248  market Brier 0.1846  edge -0.0402 [-0.0480, -0.0325]  clear of zero
+  gpt-5.5          n=2136  model Brier 0.2117  market Brier 0.1844  edge -0.0272 [-0.0341, -0.0200]  clear of zero
+  glm-5.1          n=2137  model Brier 0.2255  market Brier 0.1846  edge -0.0409 [-0.0489, -0.0330]  clear of zero
+  kimi-k2.6        n=2136  model Brier 0.2245  market Brier 0.1847  edge -0.0397 [-0.0477, -0.0320]  clear of zero
+  deepseek-v4-pro  n=2130  model Brier 0.2264  market Brier 0.1847  edge -0.0418 [-0.0506, -0.0334]  clear of zero
+# --- exit 0, 12s

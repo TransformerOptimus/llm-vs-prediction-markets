@@ -1,0 +1,42 @@
+# output of analysis/exploratory/direction-and-money-against-crowd-carries-the-loss.py
+# run: 2026-09-17T06:54:21Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+Window A with n=2751 edge=0.0047 [-0.0027,0.0119] | against n=3288 edge=-0.0343 [-0.0555,-0.0149] | diff=0.0389 [0.0177,0.0613]
+   against share of rows: 53.2%  against share of total deficit: 73.6%
+   with-ret n=1700 -0.0063 [-0.0624,0.0507] | against-ret n=2556 -0.1679 [-0.2905,-0.0334] | diff 0.1616 [0.0290,0.2957]
+Window B with n=5752 edge=-0.0038 [-0.0109,0.0032] | against n=8864 edge=-0.0476 [-0.0590,-0.0361] | diff=0.0439 [0.0306,0.0579]
+   against share of rows: 59.5%  against share of total deficit: 80.3%
+   with-ret n=4531 0.0216 [-0.0277,0.0645] | against-ret n=7634 -0.0753 [-0.1811,0.0456] | diff 0.0969 [-0.0237,0.2132]
+Window C with n=6682 edge=-0.0099 [-0.0169,-0.0037] | against n=14138 edge=-0.0513 [-0.0607,-0.0426] | diff=0.0414 [0.0309,0.0527]
+   against share of rows: 66.3%  against share of total deficit: 84.2%
+   with-ret n=4957 -0.0451 [-0.0896,-0.0055] | against-ret n=12109 -0.1399 [-0.2151,-0.0513] | diff 0.0948 [0.0030,0.1877]
+
+=== recheck deficit share definition: net sum over ALL rows in the group (not filtered to edge<0) ===
+A against share of rows 53.2% | against share of NET total deficit 111.6%
+B against share of rows 59.5% | against share of NET total deficit 94.9%
+C against share of rows 66.3% | against share of NET total deficit 91.5%
+
+Per model, same measure (the pooled lines above stack every model's rows).
+  window A gpt-5.2          against share of rows 52.8% | against share of the loss 69.1% (net 103.3%) | with edge 0.0021 [-0.0068,0.0119] | against edge -0.0269 [-0.0446,-0.0094]
+  window A gpt-oss-120b     against share of rows 50.6% | against share of the loss 72.8% (net 99.7%) | with edge 0.0005 [-0.0082,0.0093] | against edge -0.0544 [-0.0790,-0.0298]
+  window A kimi-k2.5        against share of rows 50.6% | against share of the loss 74.6% (net 138.6%) | with edge 0.0085 [0.0005,0.0161] | against edge -0.0290 [-0.0517,-0.0075]
+  window A deepseek-v3.2    against share of rows 58.7% | against share of the loss 77.9% (net 123.7%) | with edge 0.0082 [0.0002,0.0161] | against edge -0.0280 [-0.0463,-0.0093]
+  window B gpt-5.2          against share of rows 59.6% | against share of the loss 80.0% (net 96.4%) | with edge -0.0026 [-0.0106,0.0051] | against edge -0.0419 [-0.0549,-0.0301]
+  window B gpt-oss-120b     against share of rows 59.5% | against share of the loss 78.8% (net 89.2%) | with edge -0.0099 [-0.0191,-0.0012] | against edge -0.0651 [-0.0800,-0.0517]
+  window B kimi-k2.5        against share of rows 60.2% | against share of the loss 80.8% (net 95.8%) | with edge -0.0032 [-0.0117,0.0043] | against edge -0.0463 [-0.0580,-0.0333]
+  window B deepseek-v3.2    against share of rows 66.5% | against share of the loss 85.5% (net 99.2%) | with edge -0.0005 [-0.0096,0.0070] | against edge -0.0419 [-0.0536,-0.0306]
+  window B gpt-5.5          against share of rows 58.7% | against share of the loss 79.8% (net 98.5%) | with edge -0.0013 [-0.0086,0.0057] | against edge -0.0359 [-0.0489,-0.0246]
+  window B glm-5.1          against share of rows 57.5% | against share of the loss 78.8% (net 93.3%) | with edge -0.0049 [-0.0125,0.0029] | against edge -0.0488 [-0.0624,-0.0343]
+  window B kimi-k2.6        against share of rows 58.7% | against share of the loss 80.3% (net 97.2%) | with edge -0.0023 [-0.0100,0.0048] | against edge -0.0456 [-0.0574,-0.0321]
+  window B deepseek-v4-pro  against share of rows 55.0% | against share of the loss 78.7% (net 94.1%) | with edge -0.0044 [-0.0120,0.0037] | against edge -0.0568 [-0.0728,-0.0417]
+  window C gpt-5.2          against share of rows 63.4% | against share of the loss 82.2% (net 88.7%) | with edge -0.0112 [-0.0182,-0.0049] | against edge -0.0510 [-0.0609,-0.0416]
+  window C gpt-oss-120b     against share of rows 67.9% | against share of the loss 86.4% (net 94.8%) | with edge -0.0072 [-0.0155,0.0005] | against edge -0.0589 [-0.0691,-0.0477]
+  window C kimi-k2.5        against share of rows 68.3% | against share of the loss 85.1% (net 91.8%) | with edge -0.0098 [-0.0180,-0.0021] | against edge -0.0477 [-0.0571,-0.0378]
+  window C deepseek-v3.2    against share of rows 71.4% | against share of the loss 87.7% (net 94.1%) | with edge -0.0089 [-0.0168,-0.0009] | against edge -0.0506 [-0.0598,-0.0411]
+  window C gpt-5.5          against share of rows 62.5% | against share of the loss 81.0% (net 89.2%) | with edge -0.0075 [-0.0140,-0.0014] | against edge -0.0373 [-0.0463,-0.0280]
+  window C glm-5.1          against share of rows 65.5% | against share of the loss 84.7% (net 92.1%) | with edge -0.0099 [-0.0168,-0.0033] | against edge -0.0554 [-0.0654,-0.0458]
+  window C kimi-k2.6        against share of rows 68.7% | against share of the loss 85.5% (net 92.2%) | with edge -0.0110 [-0.0187,-0.0032] | against edge -0.0520 [-0.0617,-0.0426]
+  window C deepseek-v4-pro  against share of rows 62.5% | against share of the loss 80.5% (net 88.3%) | with edge -0.0133 [-0.0205,-0.0055] | against edge -0.0573 [-0.0692,-0.0464]
+# --- exit 0, 18s

@@ -1,0 +1,83 @@
+\section{Evaluation}
+\label{sec:evaluation}
+
+\textbf{Accuracy.} We score with the Brier score~\citep{brier1950},
+$\mathrm{BS}(p) = n^{-1}\sum(p_i - y_i)^2$, and compare a model with the crowd
+by the \emph{Brier edge} $\Delta = \mathrm{BS}(q) - \mathrm{BS}(p)$, so positive
+means the model was more accurate. We report the difference rather than two
+levels because the level depends on how hard a window's questions happened to be.
+
+\textbf{Splitting the score.} We separate the Brier score with Murphy's
+partition~\citep{murphy1973},
+\begin{equation}
+\mathrm{BS} \;=\; \underbrace{\mathrm{REL}}_{\text{calibration error}}
+\;-\; \underbrace{\mathrm{RES}}_{\text{sorting}}
+\;+\; \underbrace{\mathrm{UNC}}_{\text{fixed by outcomes}},
+\label{eq:murphy}
+\end{equation}
+computed over ten equal-width bins. Reliability measures whether stated
+probabilities are honest; resolution measures whether the forecaster separates
+events that happen from events that do not. Uncertainty depends only on the
+outcomes, so it cancels from the edge.
+
+\textbf{Recalibration control.} If the gap were a calibration failure it could be
+repaired after the fact by rescaling. We test that directly, fitting the
+two-parameter Platt sigmoid~\citep{platt1999} to each model's probabilities on the
+calibration split and scoring the mapped probabilities on the test split. We
+report the fraction of the Brier gap it recovers.
+
+\textbf{Money.} We simulate trading from the book at the forecast moment: if the
+model's probability is above the best ask we buy Yes, if below the best bid we
+buy No, otherwise no trade. Each venue's real taker fee is charged. Rows with a
+one-sided or crossed book, or a spread wider than 0.50, are never traded. Returns
+are per dollar staked.
+
+\textbf{Direction.} A model \emph{leans with the crowd} on a row when its
+probability sits further toward the side the market already favours than the
+market price does, and \emph{against} the crowd when it sits on the far side of
+the price from that side. A model exactly at the price, or any model on a row the
+market prices at exactly 0.5, leans neither way, which is why the two shares do
+not sum to one. A model that says 0.60 when the market says 0.70 counts as leaning against
+the crowd, even though both favour Yes; the model is less confident, not
+contradicting.
+
+\textbf{News value.} The value of news is the Brier score without it minus the
+Brier score with it, so positive means the news helped. A forecast moved
+\emph{toward} the market when the with-news answer is closer to the price;
+movements smaller than 0.02 count as neither toward nor away.
+
+\textbf{Correlated errors.} Raw error correlation overstates shared judgment when
+forecasts move little relative to outcomes, so the primary measure correlates
+\emph{departures from the market price}, $p-q$; because two forecasters that
+shrink toward the same base rate agree on departures regardless, we fit each
+model's own shrinkage and correlate the residuals. The null is simulated
+forecasters carrying each model's fitted shrinkage but independent noise.
+\emph{Wrong together} is the share of model pairs on the same incorrect side of
+even money, compared with the independent rate. Equations and construction
+are in Appendix~\ref{app:correlmethod}.
+
+\textbf{Exploratory status.} The analyses in this paper, including the scripts
+of Appendix~\ref{app:exploratory}, are exploratory.
+
+\textbf{Depth.} We measure whether losses grow as the book thins by the
+thin-minus-deep return gap and the slope of return on the natural log of depth.
+
+\textbf{Uncertainty.} All intervals are 95 per cent bootstrap ranges resampling
+\emph{events} rather than rows, because markets within one event move together
+and resampling rows would give intervals that are too narrow. The main tables use
+2{,}000 resamples; exploratory scripts use 1{,}000.
+
+\textbf{Which rows a number uses.} Every result is computed on the test split
+or a named subset of it. The exceptions are Table~\ref{tab:benchmark}, which
+describes the benchmark, counts over whole runs (failures, probe flag rates), and
+the cross-fitted variants below. The calibration split is used to fit the recalibration
+control and the combination rules, which are then scored on the test split; the
+cross-fitted variants score every row because no held-out set
+remains (Figure~\ref{fig:recalibration}). Unless a number is explicitly about
+news it is the all-rows arm.
+
+\textbf{Gates and quarantine.} A calibration gate on model-window-bucket cells
+(Appendix~\ref{app:gate}) and the memory-probe quarantine
+(Appendix~\ref{app:memory}) apply only to the convergence test of
+Appendix~\ref{app:convergence}. Every other number, Table~\ref{tab:crowd}
+included, uses all rows, flagged ones too.

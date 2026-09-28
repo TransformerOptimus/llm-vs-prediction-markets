@@ -1,0 +1,46 @@
+# output of analysis/exploratory/correlated-errors-outcome-inflates-r.py (run with --test-split)
+# run: 2026-09-22T06:28:08Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: common rows per window, forecasts view, mode normal, status in ('ok', 'ok_after_retry'), primary set; mean over pairs of the Pearson correlation; intervals = 1000 event resamples, seed 20260902
+=== window A: 1237 common rows, 625 events, 4 models, 6 pairs
+  mean pair r(error): +0.966 [+0.960, +0.971]
+  mean pair r(p):    +0.828 [+0.799, +0.855]
+  mean pair r(dev):  +0.801 [+0.761, +0.840]
+  r(error) - r(p-q): +0.165 [+0.130, +0.205]
+   band=0.05-0.25 n=342 r(p-q) +0.725 [+0.641, +0.800]  r(error) +0.958 [+0.942, +0.970]
+   band=0.25-0.50 n=559 r(p-q) +0.757 [+0.693, +0.811]  r(error) +0.972 [+0.966, +0.978]
+   band=0.50-0.75 n=256 r(p-q) +0.731 [+0.643, +0.805]  r(error) +0.964 [+0.953, +0.975]
+   band=0.75-0.95 n=80 r(p-q) +0.811 [+0.706, +0.884]  r(error) +0.940 [+0.899, +0.964]
+   sports=0 n=224 r(p-q) +0.868 [+0.817, +0.905]  r(error) +0.952 [+0.937, +0.965]
+   sports=1 n=1013 r(p-q) +0.726 [+0.671, +0.783]  r(error) +0.969 [+0.963, +0.975]
+  sports minus non-sports, r(p-q): -0.142 [-0.207, -0.070]
+  sports minus non-sports, r(error): +0.017 [+0.003, +0.034]
+=== window B: 1471 common rows, 1190 events, 8 models, 28 pairs
+  mean pair r(error): +0.963 [+0.958, +0.967]
+  mean pair r(p):    +0.824 [+0.803, +0.844]
+  mean pair r(dev):  +0.795 [+0.767, +0.819]
+  r(error) - r(p-q): +0.168 [+0.145, +0.194]
+   band=0.05-0.25 n=499 r(p-q) +0.730 [+0.664, +0.784]  r(error) +0.951 [+0.938, +0.963]
+   band=0.25-0.50 n=588 r(p-q) +0.624 [+0.554, +0.680]  r(error) +0.970 [+0.965, +0.975]
+   band=0.50-0.75 n=270 r(p-q) +0.799 [+0.752, +0.841]  r(error) +0.970 [+0.963, +0.976]
+   band=0.75-0.95 n=114 r(p-q) +0.811 [+0.752, +0.864]  r(error) +0.893 [+0.850, +0.925]
+   sports=0 n=385 r(p-q) +0.844 [+0.816, +0.868]  r(error) +0.931 [+0.921, +0.942]
+   sports=1 n=1086 r(p-q) +0.703 [+0.645, +0.754]  r(error) +0.975 [+0.970, +0.979]
+  sports minus non-sports, r(p-q): -0.141 [-0.203, -0.082]
+  sports minus non-sports, r(error): +0.044 [+0.032, +0.054]
+=== window C: 2125 common rows, 1813 events, 8 models, 28 pairs
+  mean pair r(error): +0.960 [+0.956, +0.963]
+  mean pair r(p):    +0.822 [+0.806, +0.836]
+  mean pair r(dev):  +0.775 [+0.755, +0.794]
+  r(error) - r(p-q): +0.185 [+0.168, +0.204]
+   band=0.05-0.25 n=615 r(p-q) +0.697 [+0.652, +0.738]  r(error) +0.939 [+0.923, +0.950]
+   band=0.25-0.50 n=757 r(p-q) +0.703 [+0.661, +0.742]  r(error) +0.971 [+0.967, +0.975]
+   band=0.50-0.75 n=536 r(p-q) +0.674 [+0.633, +0.720]  r(error) +0.965 [+0.960, +0.970]
+   band=0.75-0.95 n=217 r(p-q) +0.765 [+0.709, +0.815]  r(error) +0.926 [+0.900, +0.946]
+   sports=0 n=408 r(p-q) +0.744 [+0.704, +0.780]  r(error) +0.897 [+0.882, +0.911]
+   sports=1 n=1717 r(p-q) +0.811 [+0.793, +0.828]  r(error) +0.977 [+0.975, +0.979]
+  sports minus non-sports, r(p-q): +0.068 [+0.028, +0.111]
+  sports minus non-sports, r(error): +0.080 [+0.066, +0.095]
+# --- exit 0, 9s

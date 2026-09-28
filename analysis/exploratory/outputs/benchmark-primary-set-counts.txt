@@ -1,0 +1,10 @@
+# output of analysis/exploratory/benchmark-primary-set-counts.py
+# run: 2026-09-26T07:01:23Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: every market-moment in the benchmark; primary set, news flag and sports flag as in analysis/scoring.py; both splits
+window A: drawn 2997 | primary 1550 | primary with news 1434 | primary sports 1276 (82%)
+window B: drawn 3619 | primary 1865 | primary with news 563 | primary sports 1356 (73%)
+window C: drawn 3920 | primary 2669 | primary with news 752 | primary sports 2153 (81%)
+# --- exit 0, 1s

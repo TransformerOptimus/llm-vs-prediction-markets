@@ -1,0 +1,149 @@
+# output of analysis/exploratory/correlated-errors-shrinkage-null.py
+# run: 2026-09-22T08:45:34Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: common rows per window, forecasts view, mode normal, status in ('ok', 'ok_after_retry'), primary set; intervals on real values = 1000 event resamples, seed 20260902, refit inside each resample; null range = 2.5-97.5 percentile over 400 simulated draws
+=== window A, test split: 1237 common rows, 625 events, 4 models, 6 pairs, Yes base rate 0.3654
+  shrinkage, p = a + b q on the probability scale (b < 1 is shrinkage toward a/(1-b)):
+    gpt-5.2          a +0.0947  b 0.6399  fixed point 0.2631  resid sd 0.1480 | log-odds b 0.6917
+    gpt-oss-120b     a +0.1274  b 0.5065  fixed point 0.2582  resid sd 0.1775 | log-odds b 0.5488
+    kimi-k2.5        a +0.1032  b 0.6080  fixed point 0.2632  resid sd 0.1653 | log-odds b 0.6711
+    deepseek-v3.2    a +0.1425  b 0.5847  fixed point 0.3431  resid sd 0.1654 | log-odds b 0.6069
+    roster mean b 0.5848 (probability scale), 0.6296 (log-odds)
+  real mean pair r(p-q):      +0.801 [+0.761, +0.840]
+  real mean pair r(residual): +0.750 [+0.708, +0.789]
+  real both-wrong ratio:      +2.558 [+2.381, +2.747]
+  real both-wrong ratio, market-right rows: +4.282 [+3.730, +4.952]
+  null (gauss):
+    mean pair r(p-q)       mean +0.233 range [+0.205, +0.260]   real +0.801 -> ABOVE the shrinkage-only range by +0.541
+    mean pair r(residual)  mean +0.001 range [-0.024, +0.027]   real +0.750 -> ABOVE the shrinkage-only range by +0.724
+    both-wrong ratio       mean +1.892 range [+1.827, +1.957]   real +2.558 -> ABOVE the shrinkage-only range by +0.600
+    both-wrong ratio, market-right rows mean +2.192 range [+2.033, +2.378]   real +4.282 -> ABOVE the shrinkage-only range by +1.904
+  null (permute):
+    mean pair r(p-q)       mean +0.242 range [+0.223, +0.264]   real +0.801 -> ABOVE the shrinkage-only range by +0.537
+    mean pair r(residual)  mean +0.031 range [+0.007, +0.058]   real +0.750 -> ABOVE the shrinkage-only range by +0.692
+    both-wrong ratio       mean +1.939 range [+1.897, +1.982]   real +2.558 -> ABOVE the shrinkage-only range by +0.576
+    both-wrong ratio, market-right rows mean +2.004 range [+1.829, +2.187]   real +4.282 -> ABOVE the shrinkage-only range by +2.095
+=== window A, both splits: 1533 common rows, 711 events, 4 models, 6 pairs, Yes base rate 0.3764
+  shrinkage, p = a + b q on the probability scale (b < 1 is shrinkage toward a/(1-b)):
+    gpt-5.2          a +0.0901  b 0.6621  fixed point 0.2667  resid sd 0.1493 | log-odds b 0.7158
+    gpt-oss-120b     a +0.1236  b 0.5323  fixed point 0.2642  resid sd 0.1777 | log-odds b 0.5746
+    kimi-k2.5        a +0.0949  b 0.6461  fixed point 0.2682  resid sd 0.1654 | log-odds b 0.7151
+    deepseek-v3.2    a +0.1367  b 0.6085  fixed point 0.3493  resid sd 0.1648 | log-odds b 0.6404
+    roster mean b 0.6123 (probability scale), 0.6615 (log-odds)
+  real mean pair r(p-q):      +0.787 [+0.752, +0.818]
+  real mean pair r(residual): +0.739 [+0.701, +0.775]
+  real both-wrong ratio:      +2.524 [+2.341, +2.726]
+  real both-wrong ratio, market-right rows: +4.142 [+3.634, +4.777]
+  null (gauss):
+    mean pair r(p-q)       mean +0.214 range [+0.185, +0.238]   real +0.787 -> ABOVE the shrinkage-only range by +0.549
+    mean pair r(residual)  mean +0.001 range [-0.021, +0.024]   real +0.739 -> ABOVE the shrinkage-only range by +0.715
+    both-wrong ratio       mean +1.840 range [+1.785, +1.895]   real +2.524 -> ABOVE the shrinkage-only range by +0.629
+    both-wrong ratio, market-right rows mean +2.086 range [+1.947, +2.238]   real +4.142 -> ABOVE the shrinkage-only range by +1.905
+  null (permute):
+    mean pair r(p-q)       mean +0.222 range [+0.205, +0.243]   real +0.787 -> ABOVE the shrinkage-only range by +0.543
+    mean pair r(residual)  mean +0.028 range [+0.006, +0.051]   real +0.739 -> ABOVE the shrinkage-only range by +0.687
+    both-wrong ratio       mean +1.929 range [+1.895, +1.968]   real +2.524 -> ABOVE the shrinkage-only range by +0.556
+    both-wrong ratio, market-right rows mean +1.951 range [+1.782, +2.109]   real +4.142 -> ABOVE the shrinkage-only range by +2.033
+=== window B, test split: 1471 common rows, 1190 events, 8 models, 28 pairs, Yes base rate 0.3780
+  shrinkage, p = a + b q on the probability scale (b < 1 is shrinkage toward a/(1-b)):
+    gpt-5.2          a +0.1322  b 0.5924  fixed point 0.3243  resid sd 0.1632 | log-odds b 0.6285
+    gpt-oss-120b     a +0.1728  b 0.4547  fixed point 0.3169  resid sd 0.1850 | log-odds b 0.4678
+    kimi-k2.5        a +0.1458  b 0.5559  fixed point 0.3283  resid sd 0.1644 | log-odds b 0.5756
+    deepseek-v3.2    a +0.1761  b 0.5406  fixed point 0.3834  resid sd 0.1588 | log-odds b 0.5487
+    gpt-5.5          a +0.1254  b 0.6199  fixed point 0.3299  resid sd 0.1569 | log-odds b 0.6600
+    glm-5.1          a +0.1407  b 0.5831  fixed point 0.3374  resid sd 0.1726 | log-odds b 0.6176
+    kimi-k2.6        a +0.1364  b 0.5823  fixed point 0.3265  resid sd 0.1631 | log-odds b 0.6150
+    deepseek-v4-pro  a +0.1240  b 0.6501  fixed point 0.3544  resid sd 0.1936 | log-odds b 0.7253
+    roster mean b 0.5724 (probability scale), 0.6048 (log-odds)
+  real mean pair r(p-q):      +0.795 [+0.767, +0.819]
+  real mean pair r(residual): +0.734 [+0.701, +0.763]
+  real both-wrong ratio:      +2.465 [+2.335, +2.605]
+  real both-wrong ratio, market-right rows: +4.036 [+3.647, +4.429]
+  null (gauss):
+    mean pair r(p-q)       mean +0.277 range [+0.261, +0.295]   real +0.795 -> ABOVE the shrinkage-only range by +0.500
+    mean pair r(residual)  mean +0.000 range [-0.011, +0.012]   real +0.734 -> ABOVE the shrinkage-only range by +0.722
+    both-wrong ratio       mean +1.840 range [+1.806, +1.886]   real +2.465 -> ABOVE the shrinkage-only range by +0.579
+    both-wrong ratio, market-right rows mean +1.929 range [+1.829, +2.037]   real +4.036 -> ABOVE the shrinkage-only range by +1.999
+  null (permute):
+    mean pair r(p-q)       mean +0.258 range [+0.250, +0.268]   real +0.795 -> ABOVE the shrinkage-only range by +0.527
+    mean pair r(residual)  mean +0.010 range [-0.001, +0.021]   real +0.734 -> ABOVE the shrinkage-only range by +0.712
+    both-wrong ratio       mean +1.868 range [+1.841, +1.893]   real +2.465 -> ABOVE the shrinkage-only range by +0.572
+    both-wrong ratio, market-right rows mean +1.765 range [+1.686, +1.859]   real +4.036 -> ABOVE the shrinkage-only range by +2.177
+=== window B, both splits: 1855 common rows, 1414 events, 8 models, 28 pairs, Yes base rate 0.3730
+  shrinkage, p = a + b q on the probability scale (b < 1 is shrinkage toward a/(1-b)):
+    gpt-5.2          a +0.1291  b 0.5820  fixed point 0.3089  resid sd 0.1620 | log-odds b 0.6135
+    gpt-oss-120b     a +0.1765  b 0.4427  fixed point 0.3167  resid sd 0.1840 | log-odds b 0.4559
+    kimi-k2.5        a +0.1420  b 0.5531  fixed point 0.3178  resid sd 0.1635 | log-odds b 0.5719
+    deepseek-v3.2    a +0.1737  b 0.5383  fixed point 0.3762  resid sd 0.1602 | log-odds b 0.5494
+    gpt-5.5          a +0.1219  b 0.6143  fixed point 0.3159  resid sd 0.1540 | log-odds b 0.6524
+    glm-5.1          a +0.1413  b 0.5715  fixed point 0.3298  resid sd 0.1731 | log-odds b 0.5986
+    kimi-k2.6        a +0.1331  b 0.5756  fixed point 0.3136  resid sd 0.1616 | log-odds b 0.6046
+    deepseek-v4-pro  a +0.1230  b 0.6378  fixed point 0.3396  resid sd 0.1946 | log-odds b 0.7112
+    roster mean b 0.5644 (probability scale), 0.5947 (log-odds)
+  real mean pair r(p-q):      +0.795 [+0.769, +0.817]
+  real mean pair r(residual): +0.731 [+0.701, +0.757]
+  real both-wrong ratio:      +2.490 [+2.365, +2.630]
+  real both-wrong ratio, market-right rows: +4.077 [+3.755, +4.495]
+  null (gauss):
+    mean pair r(p-q)       mean +0.282 range [+0.268, +0.295]   real +0.795 -> ABOVE the shrinkage-only range by +0.499
+    mean pair r(residual)  mean +0.000 range [-0.009, +0.010]   real +0.731 -> ABOVE the shrinkage-only range by +0.721
+    both-wrong ratio       mean +1.873 range [+1.837, +1.908]   real +2.490 -> ABOVE the shrinkage-only range by +0.582
+    both-wrong ratio, market-right rows mean +1.999 range [+1.905, +2.094]   real +4.077 -> ABOVE the shrinkage-only range by +1.983
+  null (permute):
+    mean pair r(p-q)       mean +0.265 range [+0.258, +0.273]   real +0.795 -> ABOVE the shrinkage-only range by +0.522
+    mean pair r(residual)  mean +0.012 range [+0.003, +0.021]   real +0.731 -> ABOVE the shrinkage-only range by +0.709
+    both-wrong ratio       mean +1.901 range [+1.878, +1.923]   real +2.490 -> ABOVE the shrinkage-only range by +0.567
+    both-wrong ratio, market-right rows mean +1.810 range [+1.730, +1.881]   real +4.077 -> ABOVE the shrinkage-only range by +2.197
+=== window C, test split: 2125 common rows, 1813 events, 8 models, 28 pairs, Yes base rate 0.4009
+  shrinkage, p = a + b q on the probability scale (b < 1 is shrinkage toward a/(1-b)):
+    gpt-5.2          a +0.1479  b 0.6370  fixed point 0.4075  resid sd 0.1691 | log-odds b 0.7048
+    gpt-oss-120b     a +0.1945  b 0.4988  fixed point 0.3880  resid sd 0.1786 | log-odds b 0.5256
+    kimi-k2.5        a +0.1645  b 0.5873  fixed point 0.3985  resid sd 0.1677 | log-odds b 0.6334
+    deepseek-v3.2    a +0.1996  b 0.5298  fixed point 0.4246  resid sd 0.1666 | log-odds b 0.5729
+    gpt-5.5          a +0.1321  b 0.6550  fixed point 0.3829  resid sd 0.1547 | log-odds b 0.7018
+    glm-5.1          a +0.1682  b 0.5901  fixed point 0.4105  resid sd 0.1739 | log-odds b 0.6390
+    kimi-k2.6        a +0.1672  b 0.5786  fixed point 0.3968  resid sd 0.1701 | log-odds b 0.6300
+    deepseek-v4-pro  a +0.1436  b 0.6748  fixed point 0.4417  resid sd 0.1947 | log-odds b 0.8025
+    roster mean b 0.5939 (probability scale), 0.6513 (log-odds)
+  real mean pair r(p-q):      +0.775 [+0.755, +0.794]
+  real mean pair r(residual): +0.708 [+0.686, +0.732]
+  real both-wrong ratio:      +2.028 [+1.950, +2.110]
+  real both-wrong ratio, market-right rows: +2.675 [+2.529, +2.838]
+  null (gauss):
+    mean pair r(p-q)       mean +0.276 range [+0.264, +0.288]   real +0.775 -> ABOVE the shrinkage-only range by +0.487
+    mean pair r(residual)  mean +0.000 range [-0.008, +0.009]   real +0.708 -> ABOVE the shrinkage-only range by +0.700
+    both-wrong ratio       mean +1.552 range [+1.526, +1.580]   real +2.028 -> ABOVE the shrinkage-only range by +0.447
+    both-wrong ratio, market-right rows mean +1.503 range [+1.446, +1.558]   real +2.675 -> ABOVE the shrinkage-only range by +1.117
+  null (permute):
+    mean pair r(p-q)       mean +0.268 range [+0.262, +0.274]   real +0.775 -> ABOVE the shrinkage-only range by +0.501
+    mean pair r(residual)  mean +0.034 range [+0.027, +0.042]   real +0.708 -> ABOVE the shrinkage-only range by +0.666
+    both-wrong ratio       mean +1.510 range [+1.494, +1.528]   real +2.028 -> ABOVE the shrinkage-only range by +0.499
+    both-wrong ratio, market-right rows mean +1.445 range [+1.399, +1.497]   real +2.675 -> ABOVE the shrinkage-only range by +1.178
+=== window C, both splits: 2654 common rows, 2197 events, 8 models, 28 pairs, Yes base rate 0.4017
+  shrinkage, p = a + b q on the probability scale (b < 1 is shrinkage toward a/(1-b)):
+    gpt-5.2          a +0.1510  b 0.6352  fixed point 0.4140  resid sd 0.1702 | log-odds b 0.7017
+    gpt-oss-120b     a +0.1966  b 0.4969  fixed point 0.3908  resid sd 0.1796 | log-odds b 0.5225
+    kimi-k2.5        a +0.1681  b 0.5837  fixed point 0.4039  resid sd 0.1704 | log-odds b 0.6285
+    deepseek-v3.2    a +0.1999  b 0.5329  fixed point 0.4280  resid sd 0.1663 | log-odds b 0.5728
+    gpt-5.5          a +0.1332  b 0.6573  fixed point 0.3887  resid sd 0.1545 | log-odds b 0.7042
+    glm-5.1          a +0.1681  b 0.5944  fixed point 0.4146  resid sd 0.1733 | log-odds b 0.6457
+    kimi-k2.6        a +0.1717  b 0.5706  fixed point 0.4000  resid sd 0.1712 | log-odds b 0.6219
+    deepseek-v4-pro  a +0.1444  b 0.6786  fixed point 0.4494  resid sd 0.1966 | log-odds b 0.8054
+    roster mean b 0.5937 (probability scale), 0.6503 (log-odds)
+  real mean pair r(p-q):      +0.776 [+0.755, +0.792]
+  real mean pair r(residual): +0.711 [+0.688, +0.731]
+  real both-wrong ratio:      +2.043 [+1.967, +2.127]
+  real both-wrong ratio, market-right rows: +2.684 [+2.525, +2.841]
+  null (gauss):
+    mean pair r(p-q)       mean +0.274 range [+0.263, +0.286]   real +0.776 -> ABOVE the shrinkage-only range by +0.490
+    mean pair r(residual)  mean +0.000 range [-0.007, +0.008]   real +0.711 -> ABOVE the shrinkage-only range by +0.703
+    both-wrong ratio       mean +1.540 range [+1.517, +1.562]   real +2.043 -> ABOVE the shrinkage-only range by +0.481
+    both-wrong ratio, market-right rows mean +1.483 range [+1.440, +1.526]   real +2.684 -> ABOVE the shrinkage-only range by +1.157
+  null (permute):
+    mean pair r(p-q)       mean +0.266 range [+0.259, +0.271]   real +0.776 -> ABOVE the shrinkage-only range by +0.505
+    mean pair r(residual)  mean +0.030 range [+0.022, +0.037]   real +0.711 -> ABOVE the shrinkage-only range by +0.674
+    both-wrong ratio       mean +1.501 range [+1.485, +1.517]   real +2.043 -> ABOVE the shrinkage-only range by +0.527
+    both-wrong ratio, market-right rows mean +1.422 range [+1.381, +1.465]   real +2.684 -> ABOVE the shrinkage-only range by +1.218
+# --- exit 0, 10s

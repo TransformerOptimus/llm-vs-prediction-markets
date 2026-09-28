@@ -1,0 +1,24 @@
+\begin{abstract}
+We compare eight language models with prediction-market prices on \polymarket and
+\kalshi. The benchmark has 10{,}536 market moments, and the headline results use
+the 4{,}865 held-out primary rows. The models never see a price or order book,
+and most rows carry no news, so they work with less information than the market.
+The market beats every model. The gap is in sorting, not calibration: the models
+separate likely from unlikely outcomes less well than the crowd does. Resolution
+accounts for 79 to 99 per cent of each model's shortfall, and no monotone
+rescaling recovers more than about a fifth of it, or two fifths on the non-sports
+rows, where the gap is widest. News improves sorting for nearly every model,
+significantly only on the window whose news carries a leakage caveat, and never
+to the market's level. The models are also wrong together. On rows the market got
+right, two models land on the same wrong side 2.7 to 4.3 times as often as
+independent forecasters would. Simulated forecasters that share only each
+model's fitted line to the price reach 1.4 to 2.2. Adding each row's features or
+its event still leaves them below the real rate. News reduces this agreement only
+slightly, and we cannot tell missing information apart from shared training or
+the shared prompt. No combination of the models, equal-weighted or learned,
+matches the market. Returns are no worse in thin markets, though the accuracy
+gap narrows in deeper order books, clearly on one window and less robustly on
+another. These results are exploratory.
+We release the benchmark, model outputs and code, except one window's market
+data, which cannot be redistributed.
+\end{abstract}

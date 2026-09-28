@@ -1,0 +1,32 @@
+# output of analysis/exploratory/topic-and-sports-brier-gap.py
+# run: 2026-09-17T06:56:10Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+Window A sports n=5087 edge=-0.0057 [-0.0127,0.0011] | nonsports n=1096 edge=-0.0658 [-0.1190,-0.0174] | diff(S-N)=0.0602 [0.0086,0.1096]
+Window B sports n=10841 edge=-0.0128 [-0.0184,-0.0072] | nonsports n=4069 edge=-0.0752 [-0.0997,-0.0498] | diff(S-N)=0.0624 [0.0377,0.0885]
+Window C sports n=17212 edge=-0.0270 [-0.0323,-0.0215] | nonsports n=4125 edge=-0.0797 [-0.1005,-0.0590] | diff(S-N)=0.0527 [0.0321,0.0740]
+
+Per model, same measure (the pooled lines above stack every model's rows).
+A ratio of 3 means the model falls three times further behind the market on non-sports than on sports.
+  window A gpt-5.2          sports n=1276 edge=-0.0048 [-0.0111,0.0026] | nonsports n=274 edge=-0.0553 [-0.1050,-0.0091] | diff=0.0505 [0.0030,0.0978] | ratio 11.5
+  window A gpt-oss-120b     sports n=1276 edge=-0.0167 [-0.0272,-0.0071] | nonsports n=274 edge=-0.0784 [-0.1360,-0.0276] | diff=0.0617 [0.0062,0.1165] | ratio 4.7
+  window A kimi-k2.5        sports n=1259 edge=0.0011 [-0.0066,0.0083] | nonsports n=274 edge=-0.0642 [-0.1159,-0.0132] | diff=0.0653 [0.0140,0.1217] | ratio nan
+  window A deepseek-v3.2    sports n=1276 edge=-0.0021 [-0.0095,0.0052] | nonsports n=274 edge=-0.0654 [-0.1160,-0.0171] | diff=0.0632 [0.0108,0.1133] | ratio 30.9
+  window B gpt-5.2          sports n=1356 edge=-0.0093 [-0.0154,-0.0035] | nonsports n=509 edge=-0.0701 [-0.0951,-0.0432] | diff=0.0607 [0.0343,0.0889] | ratio 7.5
+  window B gpt-oss-120b     sports n=1356 edge=-0.0251 [-0.0342,-0.0156] | nonsports n=509 edge=-0.0924 [-0.1192,-0.0659] | diff=0.0673 [0.0397,0.0948] | ratio 3.7
+  window B kimi-k2.5        sports n=1353 edge=-0.0106 [-0.0173,-0.0045] | nonsports n=509 edge=-0.0782 [-0.1056,-0.0505] | diff=0.0676 [0.0416,0.0956] | ratio 7.4
+  window B deepseek-v3.2    sports n=1356 edge=-0.0126 [-0.0190,-0.0066] | nonsports n=509 edge=-0.0693 [-0.0948,-0.0424] | diff=0.0567 [0.0314,0.0844] | ratio 5.5
+  window B gpt-5.5          sports n=1356 edge=-0.0091 [-0.0150,-0.0034] | nonsports n=509 edge=-0.0542 [-0.0792,-0.0304] | diff=0.0452 [0.0207,0.0714] | ratio 6.0
+  window B glm-5.1          sports n=1356 edge=-0.0125 [-0.0193,-0.0059] | nonsports n=509 edge=-0.0769 [-0.1056,-0.0486] | diff=0.0643 [0.0376,0.0934] | ratio 6.1
+  window B kimi-k2.6        sports n=1355 edge=-0.0104 [-0.0162,-0.0045] | nonsports n=509 edge=-0.0731 [-0.0993,-0.0478] | diff=0.0627 [0.0378,0.0902] | ratio 7.0
+  window B deepseek-v4-pro  sports n=1353 edge=-0.0128 [-0.0195,-0.0067] | nonsports n=506 edge=-0.0878 [-0.1171,-0.0595] | diff=0.0750 [0.0471,0.1055] | ratio 6.9
+  window C gpt-5.2          sports n=2153 edge=-0.0260 [-0.0321,-0.0204] | nonsports n=516 edge=-0.0799 [-0.1052,-0.0563] | diff=0.0538 [0.0272,0.0807] | ratio 3.1
+  window C gpt-oss-120b     sports n=2153 edge=-0.0341 [-0.0411,-0.0269] | nonsports n=516 edge=-0.0759 [-0.0992,-0.0517] | diff=0.0418 [0.0164,0.0674] | ratio 2.2
+  window C kimi-k2.5        sports n=2150 edge=-0.0250 [-0.0311,-0.0191] | nonsports n=515 edge=-0.0794 [-0.1032,-0.0548] | diff=0.0544 [0.0310,0.0802] | ratio 3.2
+  window C deepseek-v3.2    sports n=2153 edge=-0.0289 [-0.0351,-0.0229] | nonsports n=516 edge=-0.0783 [-0.1021,-0.0538] | diff=0.0494 [0.0252,0.0737] | ratio 2.7
+  window C gpt-5.5          sports n=2151 edge=-0.0223 [-0.0273,-0.0165] | nonsports n=516 edge=-0.0421 [-0.0616,-0.0203] | diff=0.0199 [-0.0016,0.0412] | ratio 1.9
+  window C glm-5.1          sports n=2153 edge=-0.0262 [-0.0321,-0.0201] | nonsports n=516 edge=-0.0947 [-0.1186,-0.0687] | diff=0.0685 [0.0453,0.0959] | ratio 3.6
+  window C kimi-k2.6        sports n=2152 edge=-0.0270 [-0.0331,-0.0209] | nonsports n=516 edge=-0.0876 [-0.1112,-0.0626] | diff=0.0606 [0.0355,0.0887] | ratio 3.2
+  window C deepseek-v4-pro  sports n=2147 edge=-0.0263 [-0.0324,-0.0200] | nonsports n=514 edge=-0.0999 [-0.1267,-0.0723] | diff=0.0736 [0.0464,0.1023] | ratio 3.8
+# --- exit 0, 19s

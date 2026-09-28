@@ -1,0 +1,16 @@
+# output of analysis/exploratory/thinking-and-length-budget-cap-harmless.py
+# run: 2026-09-17T06:55:56Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+
+Window B: capped n=862 free n=997
+  ans_tok diff=+404 [+372,+435]
+  Brier diff=+0.0046 [-0.0171,+0.0256]
+  Brier edge diff=-0.0093 [-0.0272,+0.0093]
+
+Window C: capped n=1324 free n=1337
+  ans_tok diff=+400 [+374,+425]
+  Brier diff=-0.0128 [-0.0302,+0.0053]
+  Brier edge diff=+0.0024 [-0.0128,+0.0177]
+# --- exit 0, 5s

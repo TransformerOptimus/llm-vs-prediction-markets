@@ -1,0 +1,44 @@
+# output of analysis/exploratory/correlated-errors-news-covariance-or-variance.py
+# run: 2026-09-22T20:41:56Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: common rows per window with an ok forecast from every roster model in BOTH passes, primary set, news_available = 1; each pass refitted p = a + b q on its own; intervals = 1000 event resamples, seed 20260902, passes resampled together
+reading: 'r, covariance only' is the with-news correlation if only the shared part had changed; 'r, variance only' is the with-news correlation if only the models' own spreads had changed. Compare each with the without-news r.
+=== window A, test split: 1141 paired news rows, 557 events, 4 models
+  mean pair residual covariance (x1000)  with news +21.2096 [+17.7261, +24.6266] | without +18.9041 [+15.6562, +22.2887] | change +2.3056 [-0.4479, +5.2507]
+  mean residual sd                       with news +0.1677 [+0.1552, +0.1783] | without +0.1536 [+0.1415, +0.1652] | change +0.0141 [+0.0056, +0.0235]
+  mean pair r(residual)                  with news +0.7561 [+0.7147, +0.7949] | without +0.8032 [+0.7702, +0.8334] | change -0.0471 [-0.0852, -0.0077]
+  r, covariance only swapped in          +0.9000 [+0.7936, +1.0323] | change from without-news r +0.0968 [-0.0198, +0.2308]
+  r, variance only swapped in            +0.6788 [+0.5954, +0.7740] | change from without-news r -0.1244 [-0.1984, -0.0480]
+=== window A, both splits: 1417 paired news rows, 630 events, 4 models
+  mean pair residual covariance (x1000)  with news +20.9839 [+17.3287, +24.5986] | without +18.4411 [+15.2044, +21.8777] | change +2.5427 [-0.0526, +5.2119]
+  mean residual sd                       with news +0.1680 [+0.1553, +0.1797] | without +0.1527 [+0.1404, +0.1642] | change +0.0153 [+0.0068, +0.0241]
+  mean pair r(residual)                  with news +0.7450 [+0.7048, +0.7838] | without +0.7925 [+0.7525, +0.8267] | change -0.0475 [-0.0844, -0.0116]
+  r, covariance only swapped in          +0.9004 [+0.7898, +1.0262] | change from without-news r +0.1079 [-0.0030, +0.2373]
+  r, variance only swapped in            +0.6594 [+0.5771, +0.7426] | change from without-news r -0.1331 [-0.1997, -0.0593]
+=== window B, test split: 431 paired news rows, 336 events, 8 models
+  mean pair residual covariance (x1000)  with news +24.3840 [+18.7102, +29.5004] | without +26.9511 [+21.4709, +32.3766] | change -2.5670 [-6.8445, +1.4529]
+  mean residual sd                       with news +0.1859 [+0.1674, +0.1994] | without +0.1882 [+0.1702, +0.2039] | change -0.0023 [-0.0131, +0.0084]
+  mean pair r(residual)                  with news +0.7075 [+0.6377, +0.7658] | without +0.7628 [+0.7220, +0.8020] | change -0.0553 [-0.1059, -0.0111]
+  r, covariance only swapped in          +0.6892 [+0.5789, +0.8131] | change from without-news r -0.0735 [-0.1852, +0.0427]
+  r, variance only swapped in            +0.7839 [+0.6845, +0.9002] | change from without-news r +0.0211 [-0.0641, +0.1214]
+=== window B, both splits: 554 paired news rows, 411 events, 8 models
+  mean pair residual covariance (x1000)  with news +23.8480 [+19.4681, +28.2115] | without +26.9032 [+22.3947, +31.5066] | change -3.0551 [-6.7295, +0.8678]
+  mean residual sd                       with news +0.1844 [+0.1691, +0.1979] | without +0.1876 [+0.1721, +0.2012] | change -0.0032 [-0.0127, +0.0073]
+  mean pair r(residual)                  with news +0.7034 [+0.6499, +0.7517] | without +0.7667 [+0.7333, +0.7981] | change -0.0633 [-0.1041, -0.0217]
+  r, covariance only swapped in          +0.6792 [+0.5859, +0.7895] | change from without-news r -0.0875 [-0.1820, +0.0263]
+  r, variance only swapped in            +0.7951 [+0.7014, +0.8981] | change from without-news r +0.0285 [-0.0524, +0.1176]
+=== window C, test split: 593 paired news rows, 465 events, 8 models
+  mean pair residual covariance (x1000)  with news +25.5354 [+20.7367, +30.4562] | without +27.5422 [+22.2469, +33.1375] | change -2.0068 [-5.6553, +1.6875]
+  mean residual sd                       with news +0.1895 [+0.1746, +0.2028] | without +0.1919 [+0.1760, +0.2066] | change -0.0024 [-0.0120, +0.0073]
+  mean pair r(residual)                  with news +0.7110 [+0.6639, +0.7523] | without +0.7474 [+0.7028, +0.7857] | change -0.0365 [-0.0747, +0.0031]
+  r, covariance only swapped in          +0.6915 [+0.6067, +0.7759] | change from without-news r -0.0559 [-0.1465, +0.0470]
+  r, variance only swapped in            +0.7722 [+0.6746, +0.8778] | change from without-news r +0.0248 [-0.0463, +0.1101]
+=== window C, both splits: 737 paired news rows, 555 events, 8 models
+  mean pair residual covariance (x1000)  with news +25.3252 [+21.3583, +29.4738] | without +28.3125 [+23.8083, +33.1221] | change -2.9873 [-6.1695, +0.1886]
+  mean residual sd                       with news +0.1891 [+0.1756, +0.2015] | without +0.1939 [+0.1802, +0.2072] | change -0.0048 [-0.0124, +0.0036]
+  mean pair r(residual)                  with news +0.7087 [+0.6699, +0.7474] | without +0.7530 [+0.7173, +0.7837] | change -0.0443 [-0.0820, -0.0068]
+  r, covariance only swapped in          +0.6724 [+0.6039, +0.7519] | change from without-news r -0.0806 [-0.1576, +0.0040]
+  r, variance only swapped in            +0.7976 [+0.7130, +0.8883] | change from without-news r +0.0446 [-0.0201, +0.1169]
+# --- exit 0, 5s

@@ -1,0 +1,37 @@
+# output of analysis/exploratory/direction-and-money-against-means-buying-the-longshot.py
+# run: 2026-09-17T06:54:40Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+total primary scored rows: 42430
+[A] fade_fav n=1201 edge=-0.076 [-0.124,-0.031]  back_long n=2087 edge=-0.010 [-0.021,0.001]  band0.75-0.95_against n=362 edge=-0.193 [-0.281,-0.088]
+[B] fade_fav n=2894 edge=-0.088 [-0.120,-0.060]  back_long n=5970 edge=-0.028 [-0.038,-0.018]  band0.75-0.95_against n=986 edge=-0.138 [-0.198,-0.081]
+[C] fade_fav n=5494 edge=-0.061 [-0.077,-0.044]  back_long n=8644 edge=-0.045 [-0.055,-0.035]  band0.75-0.95_against n=1708 edge=-0.129 [-0.163,-0.092]
+
+=== confound: is fading-a-favorite loss just the known compression-to-plateau? ===
+[A] band 0.75-0.95: n_against=362 mean_p=0.506 mean_q=0.848  n_with=47 mean_p_with=0.897
+[B] band 0.75-0.95: n_against=986 mean_p=0.505 mean_q=0.844  n_with=171 mean_p_with=0.909
+[C] band 0.75-0.95: n_against=1708 mean_p=0.540 mean_q=0.844  n_with=419 mean_p_with=0.921
+
+=== The money half: what the trading rule actually buys ===
+Contract price is what one contract of the side bought costs: the best ask when the model buys Yes,
+one minus the best bid when it buys No. Win share is how often that side won. Traded rows only;
+one-sided and crossed order books are never traded, so they are left out here and counted below.
+[A] against the crowd  traded n=2556 of 3288 (buys Yes on 1601, No on 955): contract price 0.295 [0.285,0.304], win share 0.270 [0.233,0.308]
+[A] with the crowd     traded n=1700 of 2751 (buys Yes on 282, No on 1418): contract price 0.706 [0.692,0.722], win share 0.703 [0.663,0.743]
+     against-the-crowd rows the rule did not trade: 732 (degenerate_book, inside_spread, one_sided_book)
+[B] against the crowd  traded n=7634 of 8864 (buys Yes on 4930, No on 2704): contract price 0.281 [0.274,0.288], win share 0.279 [0.253,0.306]
+[B] with the crowd     traded n=4531 of 5752 (buys Yes on 797, No on 3734): contract price 0.692 [0.683,0.702], win share 0.715 [0.682,0.746]
+     against-the-crowd rows the rule did not trade: 1230 (inside_spread)
+[C] against the crowd  traded n=12109 of 14138 (buys Yes on 7146, No on 4963): contract price 0.305 [0.299,0.312], win share 0.284 [0.264,0.306]
+[C] with the crowd     traded n=4957 of 6682 (buys Yes on 1573, No on 3384): contract price 0.709 [0.699,0.719], win share 0.697 [0.663,0.725]
+     against-the-crowd rows the rule did not trade: 2029 (inside_spread)
+
+=== The same split by side, because buying Yes against the crowd is the longshot buy ===
+[A] buys Yes against the crowd: n=1601 contract price 0.271 [0.259,0.282], win share 0.257 [0.225,0.291], return per dollar -0.150 [-0.270,-0.025]
+[A] buys No  against the crowd: n=955 contract price 0.335 [0.315,0.355], win share 0.293 [0.231,0.362], return per dollar -0.198 [-0.375,+0.009]
+[B] buys Yes against the crowd: n=4930 contract price 0.257 [0.248,0.265], win share 0.253 [0.224,0.281], return per dollar -0.080 [-0.220,+0.072]
+[B] buys No  against the crowd: n=2704 contract price 0.325 [0.314,0.339], win share 0.328 [0.285,0.376], return per dollar -0.066 [-0.206,+0.096]
+[C] buys Yes against the crowd: n=7146 contract price 0.287 [0.278,0.295], win share 0.253 [0.228,0.278], return per dollar -0.172 [-0.266,-0.068]
+[C] buys No  against the crowd: n=4963 contract price 0.332 [0.323,0.342], win share 0.329 [0.298,0.365], return per dollar -0.094 [-0.195,+0.021]
+# --- exit 0, 10s

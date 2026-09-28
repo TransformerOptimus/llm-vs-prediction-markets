@@ -1,0 +1,39 @@
+# output of analysis/exploratory/thinking-and-length-latency-buys-nothing.py
+# run: 2026-09-17T06:56:01Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+Model, window, n, median latency, median reasoning tokens, mean Brier[95%CI]
+
+--- Window A ---
+  openai/gpt-5.2                                n= 1550 lat=   7.1s rt=    196 Brier=0.198 [0.187,0.209]
+  openrouter/deepseek/deepseek-v3.2             n= 1550 lat=  54.3s rt=   1000 Brier=0.197 [0.187,0.209]
+  openrouter/moonshotai/kimi-k2.5               n= 1533 lat=  43.8s rt=   1000 Brier=0.195 [0.184,0.207]
+  openrouter/openai/gpt-oss-120b                n= 1550 lat=   8.6s rt=    265 Brier=0.212 [0.200,0.224]
+  market                                                     Brier=0.184
+  latency ratio slowest/fastest = 7.6
+
+--- Window B ---
+  openai/gpt-5.2                                n= 1865 lat=   6.1s rt=    176 Brier=0.211 [0.201,0.221]
+  openai/gpt-5.5                                n= 1865 lat=   9.2s rt=    512 Brier=0.206 [0.197,0.216]
+  openrouter/deepseek/deepseek-v3.2             n= 1865 lat=  50.1s rt=   1000 Brier=0.213 [0.204,0.222]
+  openrouter/deepseek/deepseek-v4-pro           n= 1859 lat=  17.1s rt=    959 Brier=0.218 [0.207,0.229]
+  openrouter/moonshotai/kimi-k2.5               n= 1862 lat=  43.1s rt=   1000 Brier=0.214 [0.204,0.224]
+  openrouter/moonshotai/kimi-k2.6               n= 1864 lat=  43.6s rt=   1000 Brier=0.212 [0.202,0.222]
+  openrouter/openai/gpt-oss-120b                n= 1865 lat=   7.0s rt=    215 Brier=0.228 [0.218,0.239]
+  openrouter/z-ai/glm-5.1                       n= 1865 lat=  19.0s rt=    422 Brier=0.215 [0.205,0.225]
+  market                                                     Brier=0.185
+  latency ratio slowest/fastest = 8.2
+
+--- Window C ---
+  openai/gpt-5.2                                n= 2669 lat=   6.3s rt=    198 Brier=0.220 [0.212,0.228]
+  openai/gpt-5.5                                n= 2667 lat=  10.1s rt=    512 Brier=0.210 [0.202,0.217]
+  openrouter/deepseek/deepseek-v3.2             n= 2669 lat=  53.1s rt=   1000 Brier=0.222 [0.215,0.229]
+  openrouter/deepseek/deepseek-v4-pro           n= 2661 lat=  16.5s rt=    999 Brier=0.225 [0.216,0.234]
+  openrouter/moonshotai/kimi-k2.5               n= 2665 lat=  42.9s rt=   1000 Brier=0.219 [0.211,0.227]
+  openrouter/moonshotai/kimi-k2.6               n= 2668 lat=  44.5s rt=   1000 Brier=0.223 [0.215,0.231]
+  openrouter/openai/gpt-oss-120b                n= 2669 lat=   7.2s rt=    201 Brier=0.226 [0.218,0.235]
+  openrouter/z-ai/glm-5.1                       n= 2669 lat=  17.6s rt=    397 Brier=0.223 [0.215,0.231]
+  market                                                     Brier=0.184
+  latency ratio slowest/fastest = 8.4
+# --- exit 0, 16s

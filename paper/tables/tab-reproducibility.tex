@@ -1,0 +1,43 @@
+\begingroup\footnotesize\setlength{\tabcolsep}{4pt}%
+\begin{tabular}{@{}p{0.34\linewidth}p{0.62\linewidth}@{}}
+\toprule
+Result & Produced by \\
+\midrule
+Table~\ref{tab:benchmark} & \code{benchmark-primary-set-counts}, \code{depth\_cuts.json}, \code{reporting\_line.csv}, \code{expB\_main.csv} \\
+Table~\ref{tab:crowd} & \code{direction-and-money-against-crowd-carries-the-loss}, \code{direction-and-money-against-means-buying-the-longshot} \\
+Table~\ref{tab:absolute} & \code{baselines-absolute-and-horizon}, \code{calibration-shape-resolution-gap}, \code{baselines-whole-window-edge} \\
+Table~\ref{tab:roster} & \code{models.json}, \code{reporting\_line.csv} \\
+Figure~\ref{fig:forecast-vs-price} and the Yes-side cost (Section~\ref{sec:results-crowd}) & \code{news-effect-high-price-gap}, \code{calibration-shape-yes-no-asymmetry} (test-split output) \\
+Figure~\ref{fig:brier-gap} & \code{expA\_buckets.csv} \\
+Figure~\ref{fig:sorting} & \code{calibration-shape-resolution-gap} \\
+Figure~\ref{fig:recalibration} & \code{recalibration-crossfit-and-isotonic} \\
+Figure~\ref{fig:shrinkage-null} & \code{correlated-errors-shrinkage-null} \\
+Figure~\ref{fig:correlated} & \code{correlated-errors-pair-ranking}, \code{expC\_overall.csv} \\
+Shared inputs control (Section~\ref{sec:results-correlated}) & \code{correlated-errors-covariate-adjusted} \\
+Agreement with and without news (Appendix~\ref{app:newsagree}) & \code{correlated-errors-with-and-without-news}, \code{correlated-errors-news-covariance-or-variance} \\
+Depth in accuracy terms (Section~\ref{sec:results-depth}) & \code{expA\_gap\_trend.csv}, \code{expA\_pooled\_verdicts.csv} \\
+Learned combination (Section~\ref{sec:results-correlated}) & \code{ensembles-learned-stacking}, \code{ensembles-and-extremizing} \\
+Bin-free decomposition (Section~\ref{sec:results-sorting}) & \code{decomposition-binning-bias} \\
+Failure imputation and re-ask rate (Section~\ref{sec:models}) & \code{failures-imputation-sensitivity}, \code{probe-news-value-and-reask-rate} \\
+Forecast horizon (Appendix~\ref{app:horizon}) & \code{baselines-absolute-and-horizon} \\
+Fee and stake sensitivity (Appendix~\ref{app:feesensitivity}) & \code{fees-stake-sensitivity} \\
+News placebo (Section~\ref{sec:results-crowd}) & \code{news-toward-away-placebo} \\
+Memory probe and value of news (Appendix~\ref{app:memory}, Section~\ref{sec:results-crowd}) & \code{quarantine\_<run>\_summary.json}, \code{window\_c\_quarantine\_counts.csv}, \code{first\_runs\_report.py}, \code{probe-news-value-and-reask-rate} \\
+Skill scores and shrunk market (Section~\ref{sec:results-market}) & \code{baselines-absolute-and-horizon} \\
+Non-ladder in-play rows and ladders (Section~\ref{sec:results-market}) & \code{secondary\_full\_set.csv}, \code{secondary\_ladders.csv} \\
+Wrong together (Appendix~\ref{app:wrongtogether}) & \code{correlated-errors-shrinkage-null}, \code{correlated-errors-shrinkage-null-news-rows}, \code{correlated-errors-covariate-adjusted}, \code{expC\_overall.csv} \\
+Newest model (Appendix~\ref{app:newest}) & \code{pair\_gpt-5.2\_vs\_gpt-5.5\_paired.csv}, \code{calibration-shape-model-spread}, \code{decomposition-binning-bias} \\
+Same side or opposite (Appendix~\ref{app:againstdetail}) & \code{direction-same-side-share}, \code{direction-and-money-against-means-buying-the-longshot} \\
+Events and clusters (Appendix~\ref{app:events}) & \code{event-definition-and-cluster-counts} \\
+Split leakage (Appendix~\ref{app:splitcheck}) & \code{split-leakage-event-grouped} \\
+Small reliability term (Appendix~\ref{app:relsmall}) & \code{decomposition-why-reliability-is-small} \\
+Pairwise correlations (Appendix~\ref{app:pairdetail}) & \code{correlated-errors-pair-ranking} \\
+Non-sports gap (Appendix~\ref{app:nonsports}) & \code{topic-and-sports-brier-gap} (test-split output), \code{topic-and-sports-divergence}, \code{calibration-shape-sports-split} \\
+Thinking length (Appendix~\ref{app:thinking}) & \code{thinking-and-length-more-thinking-more-disagreement}, \code{thinking-and-length-budget-cap-harmless} \\
+Calibration gate (Appendix~\ref{app:gate}) & \code{calibration\_gate.json}, \code{gate\_used.json}, \code{expB\_main.csv} \\
+Convergence (Appendix~\ref{app:convergence}) & \code{expB\_main.csv}, \code{convergence-toward-outcome}, \code{convergence-settled-in-window}, \code{convergence-baseline-choice}, \code{convergence-open-market-move} \\
+Exploratory scripts (Appendix~\ref{app:exploratory}) & every script in \code{analysis/exploratory/}, each with its saved output in \code{analysis/exploratory/outputs/} \\
+Prompt (Appendix~\ref{app:prompt}) & \code{prompt.py} \\
+\bottomrule
+\end{tabular}
+\endgroup

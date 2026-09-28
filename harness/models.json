@@ -1,0 +1,243 @@
+{
+  "_note": "Roster entries keyed by LiteLLM model id (openai/... direct; openrouter/<vendor/model> through OpenRouter). set: bridge (the models run on windows A, B and C), 2026 (the models run on windows B and C), validation (memory-probe mode only, window A, 500 fixed rows, never scored), fixture (the fake test model). release_date: public release date of the pinned checkpoint; a row is ineligible when its outcome-date bound (market_end_date, else forecast_ts) is before it. host: 'direct' for openai/ ids, else the OpenRouter provider slug sent as provider.order with fallbacks off; host_name is the display name OpenRouter returns in the response's provider field. served_model: the exact model string the pinned host must report on every call; a mismatch is a permanent error that stops the run (for direct ids it is the id without the openai/ prefix). backup_host: recorded only; no run uses it unless --host-override names its slug (recorded in the manifest). reasoning_tokens: the thinking cap N as an OpenRouter reasoning budget; reasoning_effort: the OpenAI effort level standing in for N on direct ids. Prices are in prices.json.",
+  "fake:0.5": {
+    "set": "fixture",
+    "windows": [
+      "A",
+      "B",
+      "C"
+    ],
+    "release_date": "2000-01-01",
+    "release_source": "not a real model",
+    "host": "fake",
+    "host_name": "fake",
+    "precision": null,
+    "served_model": "fake:0.5",
+    "backup_host": null,
+    "reasoning_tokens": null,
+    "reasoning_effort": null
+  },
+  "openai/gpt-5.2": {
+    "set": "bridge",
+    "windows": [
+      "A",
+      "B",
+      "C"
+    ],
+    "release_date": "2025-12-10",
+    "release_source": "vendor announcement",
+    "host": "direct",
+    "host_name": "OpenAI",
+    "precision": null,
+    "served_model": "gpt-5.2-2025-12-11",
+    "backup_host": null,
+    "reasoning_tokens": null,
+    "reasoning_effort": "medium",
+    "notes": "Direct OpenAI, the plain gpt-5.2 (not the codex or chat variant). Reasoning effort medium. Thinking cap is the effort level, not a token budget.",
+    "served_model_note": "OpenAI reports the dated snapshot 'gpt-5.2-2025-12-11' (the snapshot date is one day after the 2025-12-10 release date recorded above)."
+  },
+  "openrouter/openai/gpt-oss-120b": {
+    "set": "bridge",
+    "windows": [
+      "A",
+      "B",
+      "C"
+    ],
+    "release_date": "2025-08-05",
+    "release_source": "vendor announcement",
+    "host": "akashml",
+    "host_name": "AkashML",
+    "precision": "bf16",
+    "served_model": "openai/gpt-oss-120b",
+    "backup_host": {
+      "host": "coreweave",
+      "host_name": "CoreWeave",
+      "precision": "fp4",
+      "price": {
+        "input": 0.03,
+        "output": 0.17,
+        "cache_read": 0.03
+      }
+    },
+    "reasoning_tokens": null,
+    "reasoning_effort": "medium",
+    "notes": "Pinned to AkashML (bf16, the model's native precision): it reports the reasoning count in usage and stays within the 1,000-token cap; setting is reasoning effort medium (gpt-oss takes an effort level, not a budget), sent as OpenRouter's reasoning.effort; median 365 thinking tokens, max 744, on a 20-row test. Backup CoreWeave (fp4), which behaved the same."
+  },
+  "openrouter/moonshotai/kimi-k2.5": {
+    "set": "bridge",
+    "windows": [
+      "A",
+      "B",
+      "C"
+    ],
+    "release_date": "2026-01-27",
+    "release_source": "vendor announcement",
+    "host": "siliconflow",
+    "host_name": "SiliconFlow",
+    "precision": "int4",
+    "served_model": "moonshotai/kimi-k2.5",
+    "backup_host": null,
+    "reasoning_tokens": 1000,
+    "reasoning_effort": null,
+    "notes": "Known limitation: no bf16 or fp8 host exists for this model; int4 is the best available.",
+    "endpoint_checkpoint": "moonshotai/kimi-k2.5-0127",
+    "served_model_note": "OpenRouter's response reports its own model id ('moonshotai/kimi-k2.5'), not the host's checkpoint name. The checkpoint identity rests on the host pin plus endpoint_checkpoint, read from OpenRouter's endpoints JSON."
+  },
+  "openrouter/deepseek/deepseek-v3.2": {
+    "set": "bridge",
+    "windows": [
+      "A",
+      "B",
+      "C"
+    ],
+    "release_date": "2025-12-01",
+    "release_source": "vendor announcement",
+    "host": "siliconflow",
+    "host_name": "SiliconFlow",
+    "precision": "fp8",
+    "served_model": "deepseek/deepseek-v3.2",
+    "backup_host": {
+      "host": "novita",
+      "host_name": "Novita",
+      "precision": "fp8",
+      "price": {
+        "input": 0.269,
+        "output": 0.4,
+        "cache_read": 0.1345
+      }
+    },
+    "reasoning_tokens": 1000,
+    "reasoning_effort": null,
+    "endpoint_checkpoint": "deepseek/deepseek-v3.2-20251201",
+    "served_model_note": "OpenRouter's response reports its own model id ('deepseek/deepseek-v3.2'), not the host's checkpoint name. The checkpoint identity rests on the host pin plus endpoint_checkpoint, read from OpenRouter's endpoints JSON.",
+    "notes": "Pinned to SiliconFlow because it honours the 1,000-token thinking cap (Novita ignored both limits). Checkpoint deepseek/deepseek-v3.2-20251201 as OpenRouter's endpoints JSON lists it."
+  },
+  "openai/gpt-5.5": {
+    "set": "2026",
+    "windows": [
+      "B",
+      "C"
+    ],
+    "release_date": "2026-04-24",
+    "release_source": "vendor announcement",
+    "host": "direct",
+    "host_name": "OpenAI",
+    "precision": null,
+    "served_model": "gpt-5.5-2026-04-23",
+    "backup_host": null,
+    "reasoning_tokens": null,
+    "reasoning_effort": "medium",
+    "notes": "Direct OpenAI. Reasoning effort medium. OpenAI's price applies to prompts under 272K tokens; every harness prompt is far below that.",
+    "served_model_note": "OpenAI reports the dated snapshot 'gpt-5.5-2026-04-23' (the snapshot date is one day before the 2026-04-24 release date recorded above)."
+  },
+  "openrouter/z-ai/glm-5.1": {
+    "set": "2026",
+    "windows": [
+      "B",
+      "C"
+    ],
+    "release_date": "2026-04-07",
+    "release_source": "vendor announcement",
+    "host": "siliconflow",
+    "host_name": "SiliconFlow",
+    "precision": "fp8",
+    "served_model": "z-ai/glm-5.1",
+    "backup_host": {
+      "host": "atlas-cloud",
+      "host_name": "AtlasCloud",
+      "precision": "fp8",
+      "price": {
+        "input": 1.26,
+        "output": 3.96,
+        "cache_read": 0.234
+      }
+    },
+    "reasoning_tokens": 1000,
+    "reasoning_effort": null,
+    "endpoint_checkpoint": "z-ai/glm-5.1-20260406",
+    "served_model_note": "OpenRouter's response reports its own model id ('z-ai/glm-5.1'), not the host's checkpoint name. The checkpoint identity rests on the host pin plus endpoint_checkpoint, read from OpenRouter's endpoints JSON.",
+    "notes": "Pinned to SiliconFlow because it honours the 1,000-token thinking cap (AtlasCloud did not). Checkpoint z-ai/glm-5.1-20260406 as OpenRouter's endpoints JSON lists it."
+  },
+  "openrouter/moonshotai/kimi-k2.6": {
+    "set": "2026",
+    "windows": [
+      "B",
+      "C"
+    ],
+    "release_date": "2026-04-20",
+    "release_source": "vendor announcement",
+    "host": "siliconflow",
+    "host_name": "SiliconFlow",
+    "precision": "fp8",
+    "served_model": "moonshotai/kimi-k2.6",
+    "backup_host": {
+      "host": "crusoe",
+      "host_name": "Crusoe",
+      "precision": "bf16",
+      "price": {
+        "input": 0.7,
+        "output": 3.5,
+        "cache_read": 0.35
+      }
+    },
+    "reasoning_tokens": 1000,
+    "reasoning_effort": null,
+    "endpoint_checkpoint": "moonshotai/kimi-k2.6-20260420",
+    "served_model_note": "OpenRouter's response reports its own model id ('moonshotai/kimi-k2.6'), not the host's checkpoint name. The checkpoint identity rests on the host pin plus endpoint_checkpoint, read from OpenRouter's endpoints JSON."
+  },
+  "openrouter/deepseek/deepseek-v4-pro": {
+    "set": "2026",
+    "windows": [
+      "B",
+      "C"
+    ],
+    "release_date": "2026-04-24",
+    "release_source": "vendor announcement",
+    "host": "alibaba",
+    "host_name": "Alibaba",
+    "precision": "fp8",
+    "served_model": "deepseek/deepseek-v4-pro",
+    "backup_host": {
+      "host": "novita",
+      "host_name": "Novita",
+      "precision": "fp8",
+      "price": {
+        "input": 1.6,
+        "output": 3.2,
+        "cache_read": 0.135
+      }
+    },
+    "reasoning_tokens": 1000,
+    "reasoning_effort": null,
+    "notes": "The April preview checkpoint. The 0731, 0813 and V4.1 checkpoints are too recent for this benchmark, and DeepSeek's own API routes V4 names to V4.1 Flash, so this model must never be called through DeepSeek directly. Pinned to Alibaba, the only host of six tried (Novita, SiliconFlow, Baidu, GMICloud, DeepInfra, Alibaba) that honours the 1,000-token thinking cap; checkpoint deepseek/deepseek-v4-pro-20260423 as the endpoints JSON lists it. Release date is the public release, 2026-04-24 (the checkpoint name carries 04-23).",
+    "endpoint_checkpoint": "deepseek/deepseek-v4-pro-20260423",
+    "served_model_note": "OpenRouter's response reports its own model id ('deepseek/deepseek-v4-pro'), not the host's checkpoint name. The checkpoint identity rests on the host pin plus endpoint_checkpoint, read from OpenRouter's endpoints JSON."
+  },
+  "openrouter/z-ai/glm-5.3-flash": {
+    "set": "validation",
+    "windows": [
+      "A"
+    ],
+    "release_date": "2026-08-26",
+    "release_source": "vendor announcement",
+    "host": "streamlake",
+    "host_name": "StreamLake",
+    "precision": "fp8",
+    "served_model": "z-ai/glm-5.3-flash",
+    "backup_host": {
+      "host": "baseten",
+      "host_name": "BaseTen",
+      "precision": "fp8",
+      "price": {
+        "input": 0.15,
+        "output": 0.5,
+        "cache_read": 0.03
+      }
+    },
+    "reasoning_tokens": 1000,
+    "reasoning_effort": null,
+    "notes": "Probe-validation model only: memory-probe mode, window A, the 500 fixed rows in analysis/out/validation_moment_keys.txt, run with --ignore-eligibility; never scored.",
+    "endpoint_checkpoint": "z-ai/glm-5.3-flash-20260826",
+    "served_model_note": "OpenRouter's response reports its own model id ('z-ai/glm-5.3-flash'), not the host's checkpoint name. The checkpoint identity rests on the host pin plus endpoint_checkpoint, read from OpenRouter's endpoints JSON."
+  }
+}

@@ -1,0 +1,232 @@
+# output of analysis/exploratory/correlated-errors-covariate-adjusted.py
+# run: 2026-09-22T14:00:47Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: common rows per window (every roster model forecast the row), forecasts view, mode normal, status in ('ok', 'ok_after_retry'), primary set. Covariates come from benchmark.db (topic_tags, news_available, resolved_at minus forecast_ts, price band); event grouping uses source_event_id. Intervals on real values = 1000 event resamples, seed 20260902, every fit redone inside each resample; null range = 2.5-97.5 percentile over 400 simulated draws, same seed.
+=== window A, test split: 1237 common rows, 625 events, 4 models, 6 pairs; 942 rows sit in multi-row events (330 events), which is where the event-grouping fit is run
+  covariates (19 columns besides intercept and price): sports, has news, log horizon days, horizon 3-7d, horizon <1d, horizon >7d, band 0.25-0.50, band 0.50-0.75, band 0.75-0.95, tag sports, tag culture, tag world, tag elections, tag earnings, tag finance, tag mentions, tag politics, tag tech, tag economy
+  real mean pair r(departure p - q), for reference: +0.801 [+0.761, +0.840]
+  real mean pair r(residual), price only:                          +0.750 [+0.708, +0.789]
+  real mean pair r(residual), price + covariates:                  +0.711 [+0.667, +0.749]
+  real mean pair r(residual), price + covariates + event grouping: +0.747 [+0.702, +0.790]   (multi-row-event rows only)
+  FALL from price-only to price + covariates: -0.039 (-5.2% of the price-only value)
+  FALL from price-only to + event grouping:   -0.003 (-0.4% of the price-only value)
+  real both-wrong ratio:                    +2.558 [+2.381, +2.747]
+  real both-wrong ratio, market-right rows:  +4.282 [+3.730, +4.952]
+  -- null under price only (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.000 range [-0.026, +0.026]   real +0.750 -> ABOVE by +0.724
+     gauss     both-wrong ratio                 null mean +1.892 range [+1.834, +1.954]   real +2.558 -> ABOVE by +0.604
+     gauss     both-wrong ratio, market-right   null mean +2.194 range [+2.013, +2.374]   real +4.282 -> ABOVE by +1.908
+     permute   mean pair r(residual)            null mean +0.030 range [+0.007, +0.054]   real +0.750 -> ABOVE by +0.696
+     permute   both-wrong ratio                 null mean +1.944 range [+1.903, +1.993]   real +2.558 -> ABOVE by +0.565
+     permute   both-wrong ratio, market-right   null mean +2.017 range [+1.842, +2.219]   real +4.282 -> ABOVE by +2.063
+  -- null under price + covariates (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.002 range [-0.023, +0.026]   real +0.711 -> ABOVE by +0.685
+     gauss     both-wrong ratio                 null mean +1.942 range [+1.884, +2.012]   real +2.558 -> ABOVE by +0.546
+     gauss     both-wrong ratio, market-right   null mean +2.336 range [+2.143, +2.551]   real +4.282 -> ABOVE by +1.731
+     permute   mean pair r(residual)            null mean +0.001 range [-0.022, +0.025]   real +0.711 -> ABOVE by +0.686
+     permute   both-wrong ratio                 null mean +1.990 range [+1.938, +2.040]   real +2.558 -> ABOVE by +0.517
+     permute   both-wrong ratio, market-right   null mean +2.346 range [+2.151, +2.559]   real +4.282 -> ABOVE by +1.722
+  -- null under price + covariates + event grouping (simulated forecasters sharing this whole fit, independent noise) on the multi-row-event rows only, so its 'real' values differ from the headline
+     gauss     mean pair r(residual)            null mean +0.007 range [-0.028, +0.047]   real +0.747 -> ABOVE by +0.701
+     gauss     both-wrong ratio                 null mean +2.417 range [+2.338, +2.503]   real +2.915 -> ABOVE by +0.412
+     gauss     both-wrong ratio, market-right   null mean +3.571 range [+3.233, +3.953]   real +5.897 -> ABOVE by +1.945
+     permute   mean pair r(residual)            null mean +0.004 range [-0.035, +0.038]   real +0.747 -> ABOVE by +0.709
+     permute   both-wrong ratio                 null mean +2.425 range [+2.347, +2.491]   real +2.915 -> ABOVE by +0.423
+     permute   both-wrong ratio, market-right   null mean +3.538 range [+3.245, +3.933]   real +5.897 -> ABOVE by +1.965
+=== window A, both splits: 1533 common rows, 711 events, 4 models, 6 pairs; 1193 rows sit in multi-row events (371 events), which is where the event-grouping fit is run
+  covariates (19 columns besides intercept and price): sports, has news, log horizon days, horizon 3-7d, horizon <1d, horizon >7d, band 0.25-0.50, band 0.50-0.75, band 0.75-0.95, tag sports, tag culture, tag world, tag elections, tag earnings, tag finance, tag mentions, tag politics, tag tech, tag economy
+  real mean pair r(departure p - q), for reference: +0.787 [+0.752, +0.818]
+  real mean pair r(residual), price only:                          +0.739 [+0.701, +0.775]
+  real mean pair r(residual), price + covariates:                  +0.704 [+0.664, +0.743]
+  real mean pair r(residual), price + covariates + event grouping: +0.730 [+0.677, +0.781]   (multi-row-event rows only)
+  FALL from price-only to price + covariates: -0.035 (-4.8% of the price-only value)
+  FALL from price-only to + event grouping:   -0.008 (-1.1% of the price-only value)
+  real both-wrong ratio:                    +2.524 [+2.341, +2.726]
+  real both-wrong ratio, market-right rows:  +4.142 [+3.634, +4.777]
+  -- null under price only (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.001 range [-0.020, +0.025]   real +0.739 -> ABOVE by +0.714
+     gauss     both-wrong ratio                 null mean +1.842 range [+1.787, +1.902]   real +2.524 -> ABOVE by +0.622
+     gauss     both-wrong ratio, market-right   null mean +2.089 range [+1.944, +2.262]   real +4.142 -> ABOVE by +1.881
+     permute   mean pair r(residual)            null mean +0.028 range [+0.007, +0.050]   real +0.739 -> ABOVE by +0.688
+     permute   both-wrong ratio                 null mean +1.926 range [+1.890, +1.965]   real +2.524 -> ABOVE by +0.559
+     permute   both-wrong ratio, market-right   null mean +1.935 range [+1.775, +2.094]   real +4.142 -> ABOVE by +2.049
+  -- null under price + covariates (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.003 range [-0.018, +0.026]   real +0.704 -> ABOVE by +0.677
+     gauss     both-wrong ratio                 null mean +1.883 range [+1.831, +1.940]   real +2.524 -> ABOVE by +0.584
+     gauss     both-wrong ratio, market-right   null mean +2.180 range [+2.031, +2.353]   real +4.142 -> ABOVE by +1.789
+     permute   mean pair r(residual)            null mean +0.001 range [-0.021, +0.024]   real +0.704 -> ABOVE by +0.680
+     permute   both-wrong ratio                 null mean +1.955 range [+1.911, +1.996]   real +2.524 -> ABOVE by +0.527
+     permute   both-wrong ratio, market-right   null mean +2.215 range [+2.071, +2.375]   real +4.142 -> ABOVE by +1.768
+  -- null under price + covariates + event grouping (simulated forecasters sharing this whole fit, independent noise) on the multi-row-event rows only, so its 'real' values differ from the headline
+     gauss     mean pair r(residual)            null mean +0.006 range [-0.024, +0.035]   real +0.730 -> ABOVE by +0.695
+     gauss     both-wrong ratio                 null mean +2.363 range [+2.286, +2.440]   real +2.924 -> ABOVE by +0.484
+     gauss     both-wrong ratio, market-right   null mean +3.232 range [+2.938, +3.584]   real +5.774 -> ABOVE by +2.190
+     permute   mean pair r(residual)            null mean +0.004 range [-0.024, +0.034]   real +0.730 -> ABOVE by +0.696
+     permute   both-wrong ratio                 null mean +2.390 range [+2.330, +2.449]   real +2.924 -> ABOVE by +0.474
+     permute   both-wrong ratio, market-right   null mean +3.217 range [+2.934, +3.504]   real +5.774 -> ABOVE by +2.270
+=== window B, test split: 1471 common rows, 1190 events, 8 models, 28 pairs; 475 rows sit in multi-row events (194 events), which is where the event-grouping fit is run
+  covariates (19 columns besides intercept and price): sports, has news, log horizon days, horizon 3-7d, horizon <1d, horizon >7d, band 0.25-0.50, band 0.50-0.75, band 0.75-0.95, tag sports, tag games, tag soccer, tag politics, tag culture, tag mentions, tag europa conference league, tag trump, tag mlb, tag baseball
+  real mean pair r(departure p - q), for reference: +0.795 [+0.767, +0.819]
+  real mean pair r(residual), price only:                          +0.734 [+0.701, +0.763]
+  real mean pair r(residual), price + covariates:                  +0.726 [+0.694, +0.754]
+  real mean pair r(residual), price + covariates + event grouping: +0.662 [+0.576, +0.725]   (multi-row-event rows only)
+  FALL from price-only to price + covariates: -0.008 (-1.1% of the price-only value)
+  FALL from price-only to + event grouping:   -0.071 (-9.7% of the price-only value)
+  real both-wrong ratio:                    +2.465 [+2.335, +2.605]
+  real both-wrong ratio, market-right rows:  +4.036 [+3.647, +4.429]
+  -- null under price only (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.001 range [-0.010, +0.010]   real +0.734 -> ABOVE by +0.723
+     gauss     both-wrong ratio                 null mean +1.841 range [+1.803, +1.884]   real +2.465 -> ABOVE by +0.581
+     gauss     both-wrong ratio, market-right   null mean +1.933 range [+1.838, +2.031]   real +4.036 -> ABOVE by +2.005
+     permute   mean pair r(residual)            null mean +0.010 range [-0.001, +0.021]   real +0.734 -> ABOVE by +0.713
+     permute   both-wrong ratio                 null mean +1.868 range [+1.842, +1.892]   real +2.465 -> ABOVE by +0.573
+     permute   both-wrong ratio, market-right   null mean +1.769 range [+1.690, +1.850]   real +4.036 -> ABOVE by +2.186
+  -- null under price + covariates (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.001 range [-0.009, +0.012]   real +0.726 -> ABOVE by +0.714
+     gauss     both-wrong ratio                 null mean +1.810 range [+1.774, +1.849]   real +2.465 -> ABOVE by +0.616
+     gauss     both-wrong ratio, market-right   null mean +1.956 range [+1.873, +2.050]   real +4.036 -> ABOVE by +1.985
+     permute   mean pair r(residual)            null mean +0.001 range [-0.010, +0.013]   real +0.726 -> ABOVE by +0.713
+     permute   both-wrong ratio                 null mean +1.870 range [+1.843, +1.895]   real +2.465 -> ABOVE by +0.570
+     permute   both-wrong ratio, market-right   null mean +1.901 range [+1.824, +1.994]   real +4.036 -> ABOVE by +2.042
+  -- null under price + covariates + event grouping (simulated forecasters sharing this whole fit, independent noise) on the multi-row-event rows only, so its 'real' values differ from the headline
+     gauss     mean pair r(residual)            null mean +0.003 range [-0.020, +0.027]   real +0.662 -> ABOVE by +0.635
+     gauss     both-wrong ratio                 null mean +2.199 range [+2.122, +2.273]   real +2.614 -> ABOVE by +0.340
+     gauss     both-wrong ratio, market-right   null mean +2.867 range [+2.649, +3.105]   real +4.287 -> ABOVE by +1.181
+     permute   mean pair r(residual)            null mean +0.004 range [-0.021, +0.027]   real +0.662 -> ABOVE by +0.635
+     permute   both-wrong ratio                 null mean +2.220 range [+2.158, +2.286]   real +2.614 -> ABOVE by +0.328
+     permute   both-wrong ratio, market-right   null mean +2.895 range [+2.683, +3.155]   real +4.287 -> ABOVE by +1.131
+=== window B, both splits: 1855 common rows, 1414 events, 8 models, 28 pairs; 732 rows sit in multi-row events (291 events), which is where the event-grouping fit is run
+  covariates (19 columns besides intercept and price): sports, has news, log horizon days, horizon 3-7d, horizon <1d, horizon >7d, band 0.25-0.50, band 0.50-0.75, band 0.75-0.95, tag sports, tag games, tag soccer, tag politics, tag culture, tag mentions, tag europa conference league, tag trump, tag mlb, tag baseball
+  real mean pair r(departure p - q), for reference: +0.795 [+0.769, +0.817]
+  real mean pair r(residual), price only:                          +0.731 [+0.701, +0.757]
+  real mean pair r(residual), price + covariates:                  +0.723 [+0.694, +0.750]
+  real mean pair r(residual), price + covariates + event grouping: +0.666 [+0.607, +0.717]   (multi-row-event rows only)
+  FALL from price-only to price + covariates: -0.008 (-1.1% of the price-only value)
+  FALL from price-only to + event grouping:   -0.064 (-8.8% of the price-only value)
+  real both-wrong ratio:                    +2.490 [+2.365, +2.630]
+  real both-wrong ratio, market-right rows:  +4.077 [+3.755, +4.495]
+  -- null under price only (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.001 range [-0.010, +0.010]   real +0.731 -> ABOVE by +0.721
+     gauss     both-wrong ratio                 null mean +1.872 range [+1.839, +1.907]   real +2.490 -> ABOVE by +0.583
+     gauss     both-wrong ratio, market-right   null mean +1.998 range [+1.915, +2.092]   real +4.077 -> ABOVE by +1.985
+     permute   mean pair r(residual)            null mean +0.012 range [+0.003, +0.022]   real +0.731 -> ABOVE by +0.709
+     permute   both-wrong ratio                 null mean +1.902 range [+1.882, +1.922]   real +2.490 -> ABOVE by +0.568
+     permute   both-wrong ratio, market-right   null mean +1.814 range [+1.738, +1.897]   real +4.077 -> ABOVE by +2.180
+  -- null under price + covariates (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.001 range [-0.009, +0.011]   real +0.723 -> ABOVE by +0.712
+     gauss     both-wrong ratio                 null mean +1.839 range [+1.808, +1.872]   real +2.490 -> ABOVE by +0.618
+     gauss     both-wrong ratio, market-right   null mean +1.983 range [+1.904, +2.070]   real +4.077 -> ABOVE by +2.007
+     permute   mean pair r(residual)            null mean +0.001 range [-0.009, +0.010]   real +0.723 -> ABOVE by +0.712
+     permute   both-wrong ratio                 null mean +1.898 range [+1.875, +1.920]   real +2.490 -> ABOVE by +0.570
+     permute   both-wrong ratio, market-right   null mean +1.914 range [+1.836, +2.004]   real +4.077 -> ABOVE by +2.073
+  -- null under price + covariates + event grouping (simulated forecasters sharing this whole fit, independent noise) on the multi-row-event rows only, so its 'real' values differ from the headline
+     gauss     mean pair r(residual)            null mean +0.005 range [-0.014, +0.025]   real +0.666 -> ABOVE by +0.641
+     gauss     both-wrong ratio                 null mean +2.273 range [+2.214, +2.335]   real +2.665 -> ABOVE by +0.330
+     gauss     both-wrong ratio, market-right   null mean +3.127 range [+2.892, +3.374]   real +4.740 -> ABOVE by +1.366
+     permute   mean pair r(residual)            null mean +0.004 range [-0.015, +0.024]   real +0.666 -> ABOVE by +0.642
+     permute   both-wrong ratio                 null mean +2.284 range [+2.230, +2.337]   real +2.665 -> ABOVE by +0.328
+     permute   both-wrong ratio, market-right   null mean +3.126 range [+2.919, +3.366]   real +4.740 -> ABOVE by +1.374
+=== window C, test split: 2125 common rows, 1813 events, 8 models, 28 pairs; 511 rows sit in multi-row events (199 events), which is where the event-grouping fit is run
+  covariates (19 columns besides intercept and price): sports, has news, log horizon days, horizon 3-7d, horizon <1d, horizon >7d, band 0.25-0.50, band 0.50-0.75, band 0.75-0.95, tag sports, tag mentions, tag entertainment, tag elections, tag politics, tag science and technology, tag crypto, tag companies, tag economics, tag climate and weather
+  real mean pair r(departure p - q), for reference: +0.775 [+0.755, +0.794]
+  real mean pair r(residual), price only:                          +0.708 [+0.686, +0.732]
+  real mean pair r(residual), price + covariates:                  +0.695 [+0.672, +0.717]
+  real mean pair r(residual), price + covariates + event grouping: +0.694 [+0.643, +0.742]   (multi-row-event rows only)
+  FALL from price-only to price + covariates: -0.014 (-1.9% of the price-only value)
+  FALL from price-only to + event grouping:   -0.015 (-2.1% of the price-only value)
+  real both-wrong ratio:                    +2.028 [+1.950, +2.110]
+  real both-wrong ratio, market-right rows:  +2.675 [+2.529, +2.838]
+  -- null under price only (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.000 range [-0.008, +0.009]   real +0.708 -> ABOVE by +0.699
+     gauss     both-wrong ratio                 null mean +1.552 range [+1.526, +1.580]   real +2.028 -> ABOVE by +0.448
+     gauss     both-wrong ratio, market-right   null mean +1.502 range [+1.452, +1.552]   real +2.675 -> ABOVE by +1.123
+     permute   mean pair r(residual)            null mean +0.034 range [+0.027, +0.041]   real +0.708 -> ABOVE by +0.667
+     permute   both-wrong ratio                 null mean +1.511 range [+1.494, +1.529]   real +2.028 -> ABOVE by +0.499
+     permute   both-wrong ratio, market-right   null mean +1.444 range [+1.399, +1.496]   real +2.675 -> ABOVE by +1.179
+  -- null under price + covariates (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.001 range [-0.008, +0.009]   real +0.695 -> ABOVE by +0.685
+     gauss     both-wrong ratio                 null mean +1.506 range [+1.483, +1.528]   real +2.028 -> ABOVE by +0.500
+     gauss     both-wrong ratio, market-right   null mean +1.549 range [+1.508, +1.590]   real +2.675 -> ABOVE by +1.085
+     permute   mean pair r(residual)            null mean +0.001 range [-0.006, +0.009]   real +0.695 -> ABOVE by +0.686
+     permute   both-wrong ratio                 null mean +1.550 range [+1.531, +1.569]   real +2.028 -> ABOVE by +0.459
+     permute   both-wrong ratio, market-right   null mean +1.547 range [+1.504, +1.602]   real +2.675 -> ABOVE by +1.073
+  -- null under price + covariates + event grouping (simulated forecasters sharing this whole fit, independent noise) on the multi-row-event rows only, so its 'real' values differ from the headline
+     gauss     mean pair r(residual)            null mean +0.004 range [-0.017, +0.030]   real +0.694 -> ABOVE by +0.664
+     gauss     both-wrong ratio                 null mean +1.903 range [+1.852, +1.957]   real +2.418 -> ABOVE by +0.460
+     gauss     both-wrong ratio, market-right   null mean +2.228 range [+2.123, +2.346]   real +3.216 -> ABOVE by +0.870
+     permute   mean pair r(residual)            null mean +0.005 range [-0.019, +0.032]   real +0.694 -> ABOVE by +0.662
+     permute   both-wrong ratio                 null mean +1.923 range [+1.873, +1.978]   real +2.418 -> ABOVE by +0.440
+     permute   both-wrong ratio, market-right   null mean +2.250 range [+2.141, +2.371]   real +3.216 -> ABOVE by +0.845
+=== window C, both splits: 2654 common rows, 2197 events, 8 models, 28 pairs; 727 rows sit in multi-row events (270 events), which is where the event-grouping fit is run
+  covariates (19 columns besides intercept and price): sports, has news, log horizon days, horizon 3-7d, horizon <1d, horizon >7d, band 0.25-0.50, band 0.50-0.75, band 0.75-0.95, tag sports, tag mentions, tag entertainment, tag elections, tag politics, tag science and technology, tag crypto, tag companies, tag economics, tag climate and weather
+  real mean pair r(departure p - q), for reference: +0.776 [+0.755, +0.792]
+  real mean pair r(residual), price only:                          +0.711 [+0.688, +0.731]
+  real mean pair r(residual), price + covariates:                  +0.697 [+0.674, +0.716]
+  real mean pair r(residual), price + covariates + event grouping: +0.676 [+0.630, +0.717]   (multi-row-event rows only)
+  FALL from price-only to price + covariates: -0.014 (-2.0% of the price-only value)
+  FALL from price-only to + event grouping:   -0.035 (-4.9% of the price-only value)
+  real both-wrong ratio:                    +2.043 [+1.967, +2.127]
+  real both-wrong ratio, market-right rows:  +2.684 [+2.525, +2.841]
+  -- null under price only (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.000 range [-0.008, +0.008]   real +0.711 -> ABOVE by +0.703
+     gauss     both-wrong ratio                 null mean +1.539 range [+1.515, +1.565]   real +2.043 -> ABOVE by +0.479
+     gauss     both-wrong ratio, market-right   null mean +1.482 range [+1.435, +1.527]   real +2.684 -> ABOVE by +1.157
+     permute   mean pair r(residual)            null mean +0.030 range [+0.023, +0.038]   real +0.711 -> ABOVE by +0.673
+     permute   both-wrong ratio                 null mean +1.501 range [+1.486, +1.517]   real +2.043 -> ABOVE by +0.526
+     permute   both-wrong ratio, market-right   null mean +1.422 range [+1.383, +1.465]   real +2.684 -> ABOVE by +1.218
+  -- null under price + covariates (simulated forecasters sharing this whole fit, independent noise)
+     gauss     mean pair r(residual)            null mean +0.001 range [-0.007, +0.008]   real +0.697 -> ABOVE by +0.689
+     gauss     both-wrong ratio                 null mean +1.502 range [+1.482, +1.523]   real +2.043 -> ABOVE by +0.521
+     gauss     both-wrong ratio, market-right   null mean +1.543 range [+1.508, +1.587]   real +2.684 -> ABOVE by +1.097
+     permute   mean pair r(residual)            null mean +0.000 range [-0.007, +0.009]   real +0.697 -> ABOVE by +0.688
+     permute   both-wrong ratio                 null mean +1.543 range [+1.526, +1.560]   real +2.043 -> ABOVE by +0.484
+     permute   both-wrong ratio, market-right   null mean +1.531 range [+1.490, +1.575]   real +2.684 -> ABOVE by +1.109
+  -- null under price + covariates + event grouping (simulated forecasters sharing this whole fit, independent noise) on the multi-row-event rows only, so its 'real' values differ from the headline
+     gauss     mean pair r(residual)            null mean +0.005 range [-0.013, +0.024]   real +0.676 -> ABOVE by +0.652
+     gauss     both-wrong ratio                 null mean +1.849 range [+1.798, +1.896]   real +2.419 -> ABOVE by +0.524
+     gauss     both-wrong ratio, market-right   null mean +2.167 range [+2.062, +2.274]   real +3.361 -> ABOVE by +1.086
+     permute   mean pair r(residual)            null mean +0.003 range [-0.016, +0.022]   real +0.676 -> ABOVE by +0.654
+     permute   both-wrong ratio                 null mean +1.871 range [+1.832, +1.917]   real +2.419 -> ABOVE by +0.503
+     permute   both-wrong ratio, market-right   null mean +2.181 range [+2.093, +2.293]   real +3.361 -> ABOVE by +1.067
+
+=== SAME-ROWS COMPARATOR: all three fits on the multi-row-event rows only
+    (the rows the event-grouping fit uses, so the three numbers differ only by the fit)
+  window A, test split: 942 rows in 330 multi-row events, 4 models, 6 pairs
+    real mean pair r(residual), price only:                          +0.785 [+0.737, +0.824]
+    real mean pair r(residual), price + covariates:                  +0.742 [+0.691, +0.782]
+    real mean pair r(residual), price + covariates + event grouping: +0.747 [+0.701, +0.793]
+    FALL on these same rows, price only -> event grouping: -0.038 (-4.8% of the price-only value on these rows)
+    FALL on these same rows, price + covariates -> event grouping: +0.006
+  window A, both splits: 1193 rows in 371 multi-row events, 4 models, 6 pairs
+    real mean pair r(residual), price only:                          +0.768 [+0.726, +0.808]
+    real mean pair r(residual), price + covariates:                  +0.727 [+0.675, +0.770]
+    real mean pair r(residual), price + covariates + event grouping: +0.730 [+0.674, +0.780]
+    FALL on these same rows, price only -> event grouping: -0.038 (-4.9% of the price-only value on these rows)
+    FALL on these same rows, price + covariates -> event grouping: +0.003
+  window B, test split: 475 rows in 194 multi-row events, 8 models, 28 pairs
+    real mean pair r(residual), price only:                          +0.701 [+0.647, +0.754]
+    real mean pair r(residual), price + covariates:                  +0.687 [+0.629, +0.740]
+    real mean pair r(residual), price + covariates + event grouping: +0.662 [+0.585, +0.724]
+    FALL on these same rows, price only -> event grouping: -0.038 (-5.5% of the price-only value on these rows)
+    FALL on these same rows, price + covariates -> event grouping: -0.024
+  window B, both splits: 732 rows in 291 multi-row events, 8 models, 28 pairs
+    real mean pair r(residual), price only:                          +0.700 [+0.655, +0.741]
+    real mean pair r(residual), price + covariates:                  +0.693 [+0.647, +0.733]
+    real mean pair r(residual), price + covariates + event grouping: +0.666 [+0.605, +0.716]
+    FALL on these same rows, price only -> event grouping: -0.033 (-4.8% of the price-only value on these rows)
+    FALL on these same rows, price + covariates -> event grouping: -0.027
+  window C, test split: 511 rows in 199 multi-row events, 8 models, 28 pairs
+    real mean pair r(residual), price only:                          +0.714 [+0.668, +0.756]
+    real mean pair r(residual), price + covariates:                  +0.692 [+0.642, +0.735]
+    real mean pair r(residual), price + covariates + event grouping: +0.694 [+0.645, +0.744]
+    FALL on these same rows, price only -> event grouping: -0.020 (-2.8% of the price-only value on these rows)
+    FALL on these same rows, price + covariates -> event grouping: +0.002
+  window C, both splits: 727 rows in 270 multi-row events, 8 models, 28 pairs
+    real mean pair r(residual), price only:                          +0.709 [+0.667, +0.747]
+    real mean pair r(residual), price + covariates:                  +0.690 [+0.643, +0.732]
+    real mean pair r(residual), price + covariates + event grouping: +0.676 [+0.631, +0.720]
+    FALL on these same rows, price only -> event grouping: -0.033 (-4.6% of the price-only value on these rows)
+    FALL on these same rows, price + covariates -> event grouping: -0.013
+# --- exit 0, 95s

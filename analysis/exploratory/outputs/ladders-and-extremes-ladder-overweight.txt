@@ -1,0 +1,27 @@
+# output of analysis/exploratory/ladders-and-extremes-ladder-overweight.py
+# lines marked [withheld: Kalshi data] carry Window C detail the release cannot include
+# run: 2026-09-17T06:55:30Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+=== Reproduce: mean p for q<0.05, ladder vs stand-alone, by window ===
+A: ladder mean=0.277 n=1734 events=86 markets=435 | stand-alone mean=0.093 n=1866 events=111 markets=467 | diff=0.184 [0.146,0.217]
+B: ladder mean=0.170 n=4830 events=509 markets=604 | stand-alone mean=0.116 n=4084 events=305 markets=511 | diff=0.054 [0.034,0.074]
+C: ladder mean=0.223 n=288 events=35 markets=36 | stand-alone mean=0.081 n=3751 events=265 markets=470 | diff=0.141 [0.077,0.215]
+
+=== Confound check 1: does the effect survive dropping the single largest event cluster (ladder side)? ===
+A: biggest ladder event=194167 (n=88 of 1734); mean p excluding it=0.280 vs stand-alone 0.093 (orig ladder mean 0.277)
+B: biggest ladder event=708835 (n=32 of 4830); mean p excluding it=0.171 vs stand-alone 0.116 (orig ladder mean 0.170)
+C: biggest ladder event=[withheld: 2 Kalshi markets] (n=16 of 288); mean p excluding it=0.216 vs stand-alone 0.081 (orig ladder mean 0.223)
+
+=== Confound check 2: sports share in ladder vs stand-alone (q<0.05) ===
+A: ladder sports share=0.02 (n=435) | stand-alone sports share=0.48 (n=467)
+B: ladder sports share=0.12 (n=604) | stand-alone sports share=0.42 (n=511)
+C: ladder sports share=0.33 (n=36) | stand-alone sports share=0.67 (n=470)
+
+=== Confound check 3: is this just the 0.90-1.1 sum-of-rungs figure driven by huge outlier models? Per-model mean p ladder vs stand-alone, window A ===
+openai/gpt-5.2: ladder mean=0.239 (n=435) stand-alone mean=0.077 (n=467)
+openrouter/deepseek/deepseek-v3.2: ladder mean=0.323 (n=435) stand-alone mean=0.106 (n=467)
+openrouter/moonshotai/kimi-k2.5: ladder mean=0.276 (n=429) stand-alone mean=0.075 (n=465)
+openrouter/openai/gpt-oss-120b: ladder mean=0.269 (n=435) stand-alone mean=0.115 (n=467)
+# --- exit 0, 17s

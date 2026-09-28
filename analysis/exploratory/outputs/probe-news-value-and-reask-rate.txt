@@ -1,0 +1,73 @@
+# output of analysis/exploratory/probe-news-value-and-reask-rate.py
+# run: 2026-09-26T07:29:36Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+1. value of news = mean Brier without news minus mean Brier with news, on news-bearing primary rows where both forecasts parsed; positive = the news helped
+=== test split
+  window A gpt-5.2          n=1152  value of news +0.0108
+  window A deepseek-v3.2    n=1152  value of news +0.0087
+  window A kimi-k2.5        n=1141  value of news +0.0140
+  window A gpt-oss-120b     n=1152  value of news +0.0086
+  window B gpt-5.2          n=440   value of news +0.0088
+  window B gpt-5.5          n=440   value of news +0.0120
+  window B deepseek-v3.2    n=440   value of news +0.0091
+  window B deepseek-v4-pro  n=435   value of news +0.0121
+  window B kimi-k2.5        n=437   value of news +0.0077
+  window B kimi-k2.6        n=439   value of news +0.0140
+  window B gpt-oss-120b     n=440   value of news +0.0098
+  window B glm-5.1          n=440   value of news -0.0008
+  window C gpt-5.2          n=604   value of news +0.0139
+  window C gpt-5.5          n=604   value of news +0.0169
+  window C deepseek-v3.2    n=604   value of news -0.0007
+  window C deepseek-v4-pro  n=596   value of news +0.0134
+  window C kimi-k2.5        n=601   value of news +0.0153
+  window C kimi-k2.6        n=603   value of news +0.0135
+  window C gpt-oss-120b     n=604   value of news +0.0067
+  window C glm-5.1          n=604   value of news +0.0120
+  RANGE over 20 model-window cells: -0.0008 to +0.0169
+=== both splits
+  window A gpt-5.2          n=1434  value of news +0.0129
+  window A deepseek-v3.2    n=1434  value of news +0.0111
+  window A kimi-k2.5        n=1417  value of news +0.0178
+  window A gpt-oss-120b     n=1434  value of news +0.0119
+  window B gpt-5.2          n=563   value of news +0.0074
+  window B gpt-5.5          n=563   value of news +0.0084
+  window B deepseek-v3.2    n=563   value of news +0.0039
+  window B deepseek-v4-pro  n=558   value of news +0.0077
+  window B kimi-k2.5        n=560   value of news +0.0083
+  window B kimi-k2.6        n=562   value of news +0.0110
+  window B gpt-oss-120b     n=563   value of news +0.0055
+  window B glm-5.1          n=563   value of news -0.0022
+  window C gpt-5.2          n=752   value of news +0.0140
+  window C gpt-5.5          n=751   value of news +0.0150
+  window C deepseek-v3.2    n=752   value of news +0.0058
+  window C deepseek-v4-pro  n=742   value of news +0.0112
+  window C kimi-k2.5        n=748   value of news +0.0128
+  window C kimi-k2.6        n=751   value of news +0.0105
+  window C gpt-oss-120b     n=752   value of news +0.0097
+  window C glm-5.1          n=752   value of news +0.0130
+  RANGE over 20 model-window cells: -0.0022 to +0.0178
+
+2. stricter re-ask: share of asked rows (final records, skipped rows left out) that needed it, per scored run
+  window A gpt-5.2          asked 2838  re-asked 0    share 0.0%
+  window B gpt-5.2          asked 3619  re-asked 0    share 0.0%
+  window C gpt-5.2          asked 3920  re-asked 4    share 0.1%
+  window B gpt-5.5          asked 3619  re-asked 6    share 0.2%
+  window C gpt-5.5          asked 3920  re-asked 45   share 1.1%
+  window A deepseek-v3.2    asked 2838  re-asked 42   share 1.5%
+  window B deepseek-v3.2    asked 3619  re-asked 9    share 0.2%
+  window C deepseek-v3.2    asked 3920  re-asked 16   share 0.4%
+  window B deepseek-v4-pro  asked 3619  re-asked 162  share 4.5%
+  window C deepseek-v4-pro  asked 3920  re-asked 209  share 5.3%
+  window A kimi-k2.5        asked 2838  re-asked 395  share 13.9%
+  window B kimi-k2.5        asked 3619  re-asked 143  share 4.0%
+  window C kimi-k2.5        asked 3920  re-asked 193  share 4.9%
+  window B kimi-k2.6        asked 3619  re-asked 63   share 1.7%
+  window C kimi-k2.6        asked 3920  re-asked 119  share 3.0%
+  window A gpt-oss-120b     asked 2838  re-asked 3    share 0.1%
+  window B gpt-oss-120b     asked 3619  re-asked 0    share 0.0%
+  window C gpt-oss-120b     asked 3920  re-asked 1    share 0.0%
+  window B glm-5.1          asked 3619  re-asked 8    share 0.2%
+  window C glm-5.1          asked 3920  re-asked 18   share 0.5%
+# --- exit 0, 3s

@@ -1,0 +1,32 @@
+# output of analysis/exploratory/calibration-shape-resolution-gap.py (run with --test-split)
+# run: 2026-09-21T13:21:13Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+=== Murphy decomposition (10 bins). RES = resolution (higher is better), REL = reliability (lower is better)
+window model n | model REL RES | market REL RES | market-minus-model RES [95% CI] | model-minus-market REL [95% CI] | brier gap
+A gpt-5.2           1248 | 0.0051 0.0352 | 0.0015 0.0486 | +0.013 [+0.003, +0.024] | +0.004 [-0.000, +0.009] | 0.0153  (RES share of gap 88%)
+A gpt-oss-120b      1248 | 0.0074 0.0214 | 0.0015 0.0486 | +0.027 [+0.015, +0.040] | +0.006 [+0.001, +0.012] | 0.0305  (RES share of gap 89%)
+A kimi-k2.5         1237 | 0.0033 0.0352 | 0.0015 0.0482 | +0.013 [+0.002, +0.024] | +0.002 [-0.001, +0.006] | 0.0129  (RES share of gap 100%)
+A deepseek-v3.2     1248 | 0.0023 0.0338 | 0.0015 0.0486 | +0.015 [+0.003, +0.028] | +0.001 [-0.002, +0.005] | 0.0143  (RES share of gap 104%)
+B gpt-5.2           1480 | 0.0044 0.0268 | 0.0017 0.0495 | +0.023 [+0.015, +0.030] | +0.003 [-0.001, +0.007] | 0.0255  (RES share of gap 89%)
+B gpt-oss-120b      1480 | 0.0102 0.0167 | 0.0017 0.0495 | +0.033 [+0.024, +0.041] | +0.009 [+0.004, +0.014] | 0.0416  (RES share of gap 79%)
+B kimi-k2.5         1477 | 0.0045 0.0229 | 0.0017 0.0495 | +0.027 [+0.018, +0.035] | +0.003 [-0.001, +0.007] | 0.0294  (RES share of gap 91%)
+B deepseek-v3.2     1480 | 0.0032 0.0249 | 0.0017 0.0495 | +0.025 [+0.017, +0.032] | +0.002 [-0.002, +0.006] | 0.0272  (RES share of gap 91%)
+B gpt-5.5           1480 | 0.0036 0.0306 | 0.0017 0.0495 | +0.019 [+0.011, +0.027] | +0.002 [-0.002, +0.006] | 0.0214  (RES share of gap 88%)
+B glm-5.1           1480 | 0.0052 0.0253 | 0.0017 0.0495 | +0.024 [+0.016, +0.033] | +0.004 [-0.001, +0.008] | 0.0284  (RES share of gap 85%)
+B kimi-k2.6         1479 | 0.0042 0.0262 | 0.0016 0.0496 | +0.023 [+0.016, +0.031] | +0.003 [-0.001, +0.007] | 0.0264  (RES share of gap 89%)
+B deepseek-v4-pro   1475 | 0.0071 0.0259 | 0.0017 0.0500 | +0.024 [+0.016, +0.032] | +0.005 [+0.002, +0.010] | 0.0298  (RES share of gap 81%)
+C gpt-5.2           2137 | 0.0063 0.0237 | 0.0006 0.0557 | +0.032 [+0.025, +0.038] | +0.006 [+0.003, +0.009] | 0.0372  (RES share of gap 86%)
+C gpt-oss-120b      2137 | 0.0073 0.0194 | 0.0006 0.0557 | +0.036 [+0.029, +0.043] | +0.007 [+0.003, +0.011] | 0.0431  (RES share of gap 84%)
+C kimi-k2.5         2134 | 0.0046 0.0244 | 0.0006 0.0559 | +0.031 [+0.024, +0.039] | +0.004 [+0.002, +0.007] | 0.0361  (RES share of gap 87%)
+C deepseek-v3.2     2137 | 0.0055 0.0206 | 0.0006 0.0557 | +0.035 [+0.028, +0.041] | +0.005 [+0.002, +0.008] | 0.0402  (RES share of gap 88%)
+C gpt-5.5           2136 | 0.0023 0.0302 | 0.0006 0.0559 | +0.026 [+0.019, +0.032] | +0.002 [-0.000, +0.004] | 0.0272  (RES share of gap 94%)
+C glm-5.1           2137 | 0.0066 0.0222 | 0.0006 0.0557 | +0.034 [+0.027, +0.039] | +0.006 [+0.003, +0.010] | 0.0409  (RES share of gap 82%)
+C kimi-k2.6         2136 | 0.0058 0.0216 | 0.0006 0.0557 | +0.034 [+0.027, +0.041] | +0.005 [+0.003, +0.009] | 0.0397  (RES share of gap 86%)
+C deepseek-v4-pro   2130 | 0.0106 0.0244 | 0.0006 0.0558 | +0.031 [+0.024, +0.038] | +0.010 [+0.006, +0.015] | 0.0418  (RES share of gap 75%)
+total forecast rows 33896
+
+=== Platt recalibration fitted on the calibration split, scored on the test split
+window model | a b | test Brier raw recal market | raw-minus-recal [95% CI] | share of gap to market closed
+# --- exit 0, 66s

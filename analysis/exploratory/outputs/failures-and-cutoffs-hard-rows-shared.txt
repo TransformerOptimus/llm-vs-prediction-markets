@@ -1,0 +1,36 @@
+# output of analysis/exploratory/failures-and-cutoffs-hard-rows-shared.py
+# run: 2026-09-17T06:54:54Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+window B: n rows with any model = 3619
+  Kimi2.5->V4Pro: fail-cond=11.1% (n=144)  ok-cond=4.2% (n=3475)  diff=+6.9pts
+  V4Pro->Kimi2.5: fail-cond=9.9% (n=162)  ok-cond=3.7% (n=3457)  diff=+6.2pts
+  V4Pro->Kimi2.6: fail-cond=6.8% (n=162)  ok-cond=1.5% (n=3457)  diff=+5.3pts
+  Kimi2.5->Kimi2.6: fail-cond=2.8% (n=144)  ok-cond=1.7% (n=3475)  diff=+1.1pts
+window C: n rows with any model = 3920
+  Kimi2.5->V4Pro: fail-cond=19.6% (n=194)  ok-cond=4.6% (n=3726)  diff=+15.0pts
+  V4Pro->Kimi2.5: fail-cond=18.2% (n=209)  ok-cond=4.2% (n=3711)  diff=+14.0pts
+  V4Pro->Kimi2.6: fail-cond=7.7% (n=209)  ok-cond=2.8% (n=3711)  diff=+4.9pts
+  Kimi2.5->Kimi2.6: fail-cond=12.9% (n=194)  ok-cond=2.5% (n=3726)  diff=+10.4pts
+
+--- bootstrap over rows (row is the natural cluster here; no event clustering available for this table without join) ---
+  B Kimi2.5->V4Pro: diff=+6.9pts  CI=[+2.1,+12.0]
+  B V4Pro->Kimi2.5: diff=+6.2pts  CI=[+1.9,+10.8]
+  B V4Pro->Kimi2.6: diff=+5.3pts  CI=[+1.7,+9.2]
+  B Kimi2.5->Kimi2.6: diff=+1.1pts  CI=[-1.2,+4.2]
+  C Kimi2.5->V4Pro: diff=+15.0pts  CI=[+9.6,+21.0]
+  C V4Pro->Kimi2.5: diff=+14.0pts  CI=[+8.9,+19.2]
+  C V4Pro->Kimi2.6: diff=+4.9pts  CI=[+1.4,+8.4]
+  C Kimi2.5->Kimi2.6: diff=+10.4pts  CI=[+6.1,+14.7]
+
+--- confound: news length/count for multi-failed rows ---
+window B: multi-fail n=29  none-fail n=3280
+  news_article_count: multi=1.69 (n=29)  none=0.61 (n=3280)
+  news_text char length: multi mean=3312 (n=29)  none mean=1324 (n=3280)
+  question char length: multi mean=62  none mean=55
+window C: multi-fail n=51  none-fail n=3463
+  news_article_count: multi=1.59 (n=51)  none=0.56 (n=3463)
+  news_text char length: multi mean=3431 (n=51)  none mean=1336 (n=3463)
+  question char length: multi mean=60  none mean=57
+# --- exit 0, 13s

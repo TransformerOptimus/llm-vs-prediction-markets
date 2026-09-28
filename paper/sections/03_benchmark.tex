@@ -1,0 +1,72 @@
+\section{Benchmark}
+\label{sec:benchmark}
+
+\textbf{A row is a market-moment.} One row is one market at one instant. The
+model-visible part is the question, event title, resolution rules, scheduled close
+and a frozen news snapshot. The analysis-only part (order book, price, outcome,
+price path, fee schedule) is never shown to any model; the separation is enforced
+in the harness.
+
+\textbf{Three windows, never pooled.} \winA is \polybench's February 2026 week on
+\polymarket~\citep{cheng2026polybench}, with every model asked under our protocol. \winC is
+\kalshi over four weeks in May--June 2026, and \winB is \polymarket over 26
+days in July--August 2026 (Table~\ref{tab:benchmark}). The letters are labels, not calendar order.
+
+\textbf{Sampling.} Each market enters at most once, on the first day its 18:00
+UTC order book is live: quotes on both sides, spread ten cents or less. Each day contributes 120
+non-ladder rows (24 from each of five per-day depth groups, not the analysis
+buckets of Table~\ref{tab:benchmark}) plus 20 ladder rows; one \winB day had
+only 99 eligible non-ladder markets.
+Ladders (\emph{Bitcoin above \$70k, \$72k, \$74k}) stay out of the primary set and are scored on their own in
+Section~\ref{sec:results-market}.
+\winA was drawn without the live-book rule; we use its rows as \polybench
+published them.
+
+\textbf{The market's probability.} We take the crowd's probability to be the
+midpoint of the best bid and best ask at the forecast moment. \winB and \winC
+store that midpoint directly. On \winA the stored price is a stale sweep, so we
+recompute the midpoint from the book for consistency across windows.
+
+\textbf{News.} For \winB and \winC we built a frozen snapshot from the Common
+Crawl news archive, captured strictly before the forecast moment; rows whose
+news carries a late dateline are dropped. \winA keeps the articles \polybench
+supplied, stamped as fetched at the forecast moment; 159 of its rows carry a
+dateline at least two days after that stamp, so those articles were fetched
+later, and the rows are dropped. About seven in ten \winB and \winC rows have no
+news at all, so results distinguish two arms: rows with news and all rows. The attachment rules are in
+Appendix~\ref{app:newsattach}.
+
+\textbf{The primary analysis set.} Headline numbers use a filtered subset.
+Ladder rows go because their prices are formulas. Rows whose end date appears to
+have moved go because the model may have answered a different question from the
+one that settled; detection relies on internal inconsistency (slug date versus
+game start, or scheduled close versus a date in the question text), so a clean
+edit that left no trace would pass (Section~\ref{sec:limitations}). This fires
+on 253 \winB rows and none elsewhere. Late-dateline rows go for the leakage
+reason above (159 of 2{,}997 on \winA). Rows priced outside 0.05 to 0.95 go
+because near the boundaries one surprise swamps the comparison. What remains is
+1{,}550, 1{,}865 and 2{,}669 rows.
+
+\textbf{Split.} Each window's primary set is divided 20 per cent calibration and
+80 per cent test, drawn within each window-by-depth-bucket-by-sports cell so the
+two halves match in composition, under a fixed seed. The recalibration control of Section~\ref{sec:evaluation} is fitted on the
+calibration split, so it never sees the rows it is judged on.
+
+\textbf{Depth.} Depth is the dollars resting on the five best prices on each side
+of the Yes book at the forecast moment. Each window's primary set is cut into
+five equal-count buckets (Table~\ref{tab:benchmark}), formed within a window, so
+bucket~1 always means thin relative to that window.
+
+\textbf{Fees.} Trading results charge each venue's real taker-fee schedule per
+row; both schedules peak at even money, which is where most disputed trades sit.
+The exact formulas are in Appendix~\ref{app:feeformula}.
+
+\begin{table*}[!tbp]
+\centering
+\caption{The benchmark. \emph{Drawn} is every row sampled; \emph{in play} drops the 159
+\winA late-dateline rows. The primary set drops ladders, 253 moved-end-date \winB rows, and
+prices outside 0.05--0.95; headline numbers use its test split. Depth cuts are the four
+boundaries between five equal-count buckets within each window.}
+\label{tab:benchmark}
+\input{tables/tab-benchmark}
+\end{table*}

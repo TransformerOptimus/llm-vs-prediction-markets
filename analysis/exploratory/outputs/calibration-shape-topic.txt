@@ -1,0 +1,37 @@
+# output of analysis/exploratory/calibration-shape-topic.py
+# run: 2026-09-17T06:53:50Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+window A: sports n=470 mean q=0.689 mean horizon_days=3.7 mean depth=38989
+window A: non-sports n=452 mean q=0.807 mean horizon_days=3.5 mean depth=2312
+window B: sports n=983 mean q=0.714 mean horizon_days=2.8 mean depth=13179
+window B: non-sports n=1448 mean q=0.778 mean horizon_days=9.4 mean depth=1620
+
+=== Confound test: control for horizon band -- within similar horizon, does sports/non-sports gap persist? ===
+-- window A --
+  horizon 1-3d: sports n=188 shortfall=+0.165  non-sports n=212 shortfall=+0.307  diff=+0.142
+  horizon 3-7d: sports n=224 shortfall=+0.054  non-sports n=184 shortfall=+0.268  diff=+0.214
+  horizon 7-30d: sports n=35 shortfall=+0.059  non-sports n=36 shortfall=+0.297  diff=+0.237
+  horizon <=1d: sports n=23 shortfall=+0.130  non-sports n=20 shortfall=+0.330  diff=+0.200
+-- window B --
+  horizon 1-3d: sports n=368 shortfall=+0.091  non-sports n=208 shortfall=+0.277  diff=+0.187
+  horizon 3-7d: sports n=239 shortfall=+0.081  non-sports n=432 shortfall=+0.275  diff=+0.194
+  horizon 7-30d: sports n=32 shortfall=+0.046  non-sports n=544 shortfall=+0.266  diff=+0.220
+  horizon <=1d: sports n=328 shortfall=+0.140  non-sports n=176 shortfall=+0.250  diff=+0.110
+  horizon >30d: sports n=16 shortfall=+0.541  non-sports n=88 shortfall=+0.321  diff=-0.220
+
+=== Confound test: control for depth quintile ===
+-- window A --
+  depth bucket 1: sports n=0 non-sports n=32 (too small, skip)
+  depth bucket 2: sports n=68 shortfall=+0.098  non-sports n=124 shortfall=+0.251  diff=+0.154
+  depth bucket 3: sports n=116 shortfall=+0.094  non-sports n=196 shortfall=+0.308  diff=+0.213
+  depth bucket 4: sports n=103 shortfall=+0.144  non-sports n=88 shortfall=+0.320  diff=+0.176
+  depth bucket 5: sports n=183 non-sports n=12 (too small, skip)
+-- window B --
+  depth bucket 1: sports n=56 shortfall=+0.207  non-sports n=248 shortfall=+0.232  diff=+0.025
+  depth bucket 2: sports n=144 shortfall=+0.164  non-sports n=416 shortfall=+0.214  diff=+0.049
+  depth bucket 3: sports n=119 shortfall=+0.149  non-sports n=352 shortfall=+0.357  diff=+0.208
+  depth bucket 4: sports n=240 shortfall=+0.106  non-sports n=344 shortfall=+0.264  diff=+0.158
+  depth bucket 5: sports n=424 shortfall=+0.072  non-sports n=88 shortfall=+0.344  diff=+0.272
+# --- exit 0, 4s

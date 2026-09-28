@@ -1,0 +1,48 @@
+# output of analysis/exploratory/calibration-shape-model-spread.py (run with --test-split)
+# run: 2026-09-21T13:21:10Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+=== Window A Yes band 0.75-0.95; paired against gpt-5.2
+  gpt-oss-120b     n=81  extra shortfall vs ref +0.066 [+0.012, +0.116]  extra Brier cost vs ref +0.072 [+0.039, +0.110]  extra wrong-side share +0.111 [+0.015, +0.207]
+  kimi-k2.5        n=80  extra shortfall vs ref +0.052 [+0.012, +0.100]  extra Brier cost vs ref +0.055 [+0.017, +0.105]  extra wrong-side share +0.062 [-0.017, +0.153]
+  deepseek-v3.2    n=81  extra shortfall vs ref +0.037 [-0.004, +0.077]  extra Brier cost vs ref +0.032 [-0.000, +0.067]  extra wrong-side share +0.086 [+0.016, +0.167]
+  whole window gpt-5.2          Brier model-minus-market 0.0153 (n 1248)
+  whole window gpt-oss-120b     Brier model-minus-market 0.0305 (n 1248)
+  whole window kimi-k2.5        Brier model-minus-market 0.0129 (n 1237)
+  whole window deepseek-v3.2    Brier model-minus-market 0.0143 (n 1248)
+=== Window B Yes band 0.75-0.95; paired against gpt-5.2
+  gpt-oss-120b     n=114  extra shortfall vs ref +0.089 [+0.052, +0.123]  extra Brier cost vs ref +0.054 [+0.019, +0.088]  extra wrong-side share +0.184 [+0.094, +0.276]
+  kimi-k2.5        n=114  extra shortfall vs ref +0.016 [-0.013, +0.046]  extra Brier cost vs ref +0.024 [-0.006, +0.055]  extra wrong-side share +0.053 [-0.017, +0.119]
+  deepseek-v3.2    n=114  extra shortfall vs ref +0.003 [-0.023, +0.029]  extra Brier cost vs ref -0.005 [-0.026, +0.017]  extra wrong-side share +0.026 [-0.037, +0.088]
+  gpt-5.5          n=114  extra shortfall vs ref -0.028 [-0.049, -0.005]  extra Brier cost vs ref -0.017 [-0.042, +0.010]  extra wrong-side share -0.044 [-0.109, +0.028]
+  glm-5.1          n=114  extra shortfall vs ref -0.029 [-0.060, +0.000]  extra Brier cost vs ref -0.014 [-0.039, +0.010]  extra wrong-side share -0.018 [-0.071, +0.034]
+  kimi-k2.6        n=114  extra shortfall vs ref -0.003 [-0.030, +0.024]  extra Brier cost vs ref -0.014 [-0.036, +0.010]  extra wrong-side share +0.000 [-0.073, +0.074]
+  deepseek-v4-pro  n=114  extra shortfall vs ref -0.058 [-0.093, -0.015]  extra Brier cost vs ref -0.027 [-0.057, +0.009]  extra wrong-side share -0.070 [-0.140, -0.008]
+  gpt-oss-120b vs deepseek-v4-pro head to head n=114: gpt-oss lower p by +0.147 [+0.097, +0.188], higher Brier by +0.081 [+0.034, +0.127]
+  whole window gpt-5.2          Brier model-minus-market 0.0255 (n 1480)
+  whole window gpt-oss-120b     Brier model-minus-market 0.0416 (n 1480)
+  whole window kimi-k2.5        Brier model-minus-market 0.0294 (n 1477)
+  whole window deepseek-v3.2    Brier model-minus-market 0.0272 (n 1480)
+  whole window gpt-5.5          Brier model-minus-market 0.0214 (n 1480)
+  whole window glm-5.1          Brier model-minus-market 0.0284 (n 1480)
+  whole window kimi-k2.6        Brier model-minus-market 0.0264 (n 1479)
+  whole window deepseek-v4-pro  Brier model-minus-market 0.0298 (n 1475)
+=== Window C Yes band 0.75-0.95; paired against gpt-5.2
+  gpt-oss-120b     n=217  extra shortfall vs ref +0.094 [+0.067, +0.122]  extra Brier cost vs ref +0.051 [+0.022, +0.075]  extra wrong-side share +0.078 [+0.009, +0.147]
+  kimi-k2.5        n=217  extra shortfall vs ref +0.039 [+0.019, +0.063]  extra Brier cost vs ref +0.015 [-0.005, +0.035]  extra wrong-side share +0.000 [-0.055, +0.061]
+  deepseek-v3.2    n=217  extra shortfall vs ref +0.053 [+0.031, +0.076]  extra Brier cost vs ref +0.018 [-0.002, +0.038]  extra wrong-side share +0.065 [+0.014, +0.120]
+  gpt-5.5          n=217  extra shortfall vs ref -0.002 [-0.022, +0.018]  extra Brier cost vs ref -0.014 [-0.030, +0.003]  extra wrong-side share +0.009 [-0.043, +0.060]
+  glm-5.1          n=217  extra shortfall vs ref +0.016 [-0.006, +0.040]  extra Brier cost vs ref +0.008 [-0.011, +0.028]  extra wrong-side share +0.018 [-0.037, +0.076]
+  kimi-k2.6        n=217  extra shortfall vs ref +0.042 [+0.021, +0.065]  extra Brier cost vs ref +0.023 [+0.004, +0.041]  extra wrong-side share +0.018 [-0.033, +0.077]
+  deepseek-v4-pro  n=217  extra shortfall vs ref -0.030 [-0.053, -0.007]  extra Brier cost vs ref +0.005 [-0.014, +0.026]  extra wrong-side share -0.088 [-0.140, -0.035]
+  gpt-oss-120b vs deepseek-v4-pro head to head n=217: gpt-oss lower p by +0.124 [+0.096, +0.152], higher Brier by +0.046 [+0.019, +0.070]
+  whole window gpt-5.2          Brier model-minus-market 0.0372 (n 2137)
+  whole window gpt-oss-120b     Brier model-minus-market 0.0431 (n 2137)
+  whole window kimi-k2.5        Brier model-minus-market 0.0361 (n 2134)
+  whole window deepseek-v3.2    Brier model-minus-market 0.0402 (n 2137)
+  whole window gpt-5.5          Brier model-minus-market 0.0272 (n 2136)
+  whole window glm-5.1          Brier model-minus-market 0.0409 (n 2137)
+  whole window kimi-k2.6        Brier model-minus-market 0.0397 (n 2136)
+  whole window deepseek-v4-pro  Brier model-minus-market 0.0418 (n 2130)
+# --- exit 0, 3s

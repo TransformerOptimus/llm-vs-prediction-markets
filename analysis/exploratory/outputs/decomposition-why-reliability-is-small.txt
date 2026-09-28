@@ -1,0 +1,382 @@
+# output of analysis/exploratory/decomposition-why-reliability-is-small.py
+# lines marked [withheld: Kalshi data] carry Window C detail the release cannot include
+# run: 2026-09-22T14:00:39Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: primary set, forecasts view, mode normal, TEST SPLIT (selected inside this script). Ten equal-width probability bins, the same binning calibration_shape_common.murphy uses. Reliability and resolution are in squared-probability units; a gap of 0.05 in probability contributes 0.0025.
+
+=== window A: 4981 test rows, 4 models
+  -- (1) where the forecasts sit
+     forecaster            n  in 0.2-0.7     p05    p50    p95
+     gpt-5.2            1248       74.2%   0.030  0.300  0.680
+     gpt-oss-120b       1248       66.0%   0.040  0.280  0.710
+     kimi-k2.5          1237       70.6%   0.020  0.300  0.710
+     deepseek-v3.2      1248       76.2%   0.050  0.350  0.700
+     market price       1248       75.2%   0.095  0.350  0.800  (the market, same rows)
+     all models         4981       71.8%   0.030  0.300  0.700  (every model's forecasts together)
+  -- (2) the ten bins, pooled over models
+     bin               n mean fcst  Yes freq      gap  contributes
+     0.0-0.1        535     0.039     0.131   -0.092      0.00091
+     0.1-0.2        627     0.149     0.188   -0.039      0.00019
+     0.2-0.3       1178     0.252     0.264   -0.012      0.00003
+     0.3-0.4        875     0.335     0.362   -0.027      0.00013
+     0.4-0.5        611     0.442     0.460   -0.018      0.00004
+     0.5-0.6        540     0.549     0.609   -0.061      0.00040
+     0.6-0.7        344     0.635     0.576   +0.060      0.00025
+     0.7-0.8        155     0.738     0.697   +0.041      0.00005
+     0.8-0.9         62     0.841     0.645   +0.196      0.00048
+     0.9-1.0         54     0.963     0.833   +0.130      0.00018
+     pooled totals: reliability 0.00267, resolution 0.02965, uncertainty 0.23172
+  -- (2) the ten bins, per model
+     gpt-5.2 (n=1248)
+       0.0-0.1      110  mean fcst 0.035  Yes freq 0.109  gap -0.074  contributes 0.00049
+       0.1-0.2      156  mean fcst 0.151  Yes freq 0.154  gap -0.003  contributes 0.00000
+       0.2-0.3      324  mean fcst 0.253  Yes freq 0.269  gap -0.015  contributes 0.00006
+       0.3-0.4      220  mean fcst 0.332  Yes freq 0.345  gap -0.014  contributes 0.00003
+       0.4-0.5      174  mean fcst 0.440  Yes freq 0.471  gap -0.031  contributes 0.00014
+       0.5-0.6      135  mean fcst 0.550  Yes freq 0.696  gap -0.146  contributes 0.00231
+       0.6-0.7       69  mean fcst 0.629  Yes freq 0.536  gap +0.093  contributes 0.00048
+       0.7-0.8       27  mean fcst 0.741  Yes freq 0.778  gap -0.037  contributes 0.00003
+       0.8-0.9       14  mean fcst 0.836  Yes freq 0.571  gap +0.265  contributes 0.00079
+       0.9-1.0       19  mean fcst 0.962  Yes freq 0.737  gap +0.225  contributes 0.00077
+     gpt-oss-120b (n=1248)
+       0.0-0.1      157  mean fcst 0.047  Yes freq 0.159  gap -0.112  contributes 0.00158
+       0.1-0.2      201  mean fcst 0.150  Yes freq 0.189  gap -0.039  contributes 0.00024
+       0.2-0.3      286  mean fcst 0.245  Yes freq 0.336  gap -0.091  contributes 0.00189
+       0.3-0.4      250  mean fcst 0.339  Yes freq 0.412  gap -0.073  contributes 0.00107
+       0.4-0.5       96  mean fcst 0.446  Yes freq 0.469  gap -0.023  contributes 0.00004
+       0.5-0.6      105  mean fcst 0.566  Yes freq 0.514  gap +0.052  contributes 0.00022
+       0.6-0.7       84  mean fcst 0.644  Yes freq 0.631  gap +0.013  contributes 0.00001
+       0.7-0.8       43  mean fcst 0.749  Yes freq 0.581  gap +0.167  contributes 0.00096
+       0.8-0.9       20  mean fcst 0.840  Yes freq 0.600  gap +0.240  contributes 0.00093
+       0.9-1.0        6  mean fcst 0.962  Yes freq 0.667  gap +0.295  contributes 0.00042
+     kimi-k2.5 (n=1237)
+       0.0-0.1      163  mean fcst 0.034  Yes freq 0.129  gap -0.095  contributes 0.00118
+       0.1-0.2      139  mean fcst 0.147  Yes freq 0.223  gap -0.076  contributes 0.00064
+       0.2-0.3      293  mean fcst 0.254  Yes freq 0.232  gap +0.022  contributes 0.00012
+       0.3-0.4      189  mean fcst 0.336  Yes freq 0.370  gap -0.034  contributes 0.00018
+       0.4-0.5      163  mean fcst 0.445  Yes freq 0.466  gap -0.021  contributes 0.00006
+       0.5-0.6      149  mean fcst 0.544  Yes freq 0.617  gap -0.074  contributes 0.00065
+       0.6-0.7       73  mean fcst 0.631  Yes freq 0.548  gap +0.083  contributes 0.00041
+       0.7-0.8       47  mean fcst 0.733  Yes freq 0.745  gap -0.011  contributes 0.00001
+       0.8-0.9        7  mean fcst 0.843  Yes freq 0.857  gap -0.014  contributes 0.00000
+       0.9-1.0       14  mean fcst 0.970  Yes freq 0.929  gap +0.041  contributes 0.00002
+     deepseek-v3.2 (n=1248)
+       0.0-0.1      105  mean fcst 0.037  Yes freq 0.114  gap -0.077  contributes 0.00050
+       0.1-0.2      131  mean fcst 0.147  Yes freq 0.191  gap -0.044  contributes 0.00020
+       0.2-0.3      275  mean fcst 0.256  Yes freq 0.218  gap +0.038  contributes 0.00032
+       0.3-0.4      216  mean fcst 0.332  Yes freq 0.315  gap +0.017  contributes 0.00005
+       0.4-0.5      178  mean fcst 0.438  Yes freq 0.438  gap -0.000  contributes 0.00000
+       0.5-0.6      151  mean fcst 0.540  Yes freq 0.589  gap -0.049  contributes 0.00029
+       0.6-0.7      118  mean fcst 0.636  Yes freq 0.576  gap +0.059  contributes 0.00033
+       0.7-0.8       38  mean fcst 0.730  Yes freq 0.711  gap +0.019  contributes 0.00001
+       0.8-0.9       21  mean fcst 0.845  Yes freq 0.667  gap +0.179  contributes 0.00054
+       0.9-1.0       15  mean fcst 0.960  Yes freq 0.933  gap +0.027  contributes 0.00001
+  -- (3) magnitudes side by side
+     forecaster        reliability   resolution    rel/res          Brier
+     gpt-5.2               0.00509      0.03517      0.145        0.20070
+     gpt-oss-120b          0.00737      0.02135      0.345        0.21585
+     kimi-k2.5             0.00326      0.03525      0.092        0.19895
+     deepseek-v3.2         0.00226      0.03378      0.067        0.19968
+     market                0.00151      0.04861      0.031        0.18538  (the market, same rows)
+     for scale: the largest per-model reliability here is a mean gap of about 0.086 in probability units (square root of reliability)
+  -- (4) does anything offset inside a bin? each bin cut by the market price
+     'high half' = rows the market prices above the bin's mean forecast; 'low half' = below.
+     bin           n hi mean q hi   Yes hi |   n lo mean q lo   Yes lo |   whole bin      halves
+     0.0-0.1       535    0.267    0.131 |      0      nan      nan |     0.00091     0.00091
+     0.1-0.2       435    0.334    0.232 |    192    0.103    0.089 |     0.00019     0.00068
+     0.2-0.3       739    0.358    0.325 |    439    0.199    0.162 |     0.00003     0.00125
+     0.3-0.4       432    0.489    0.523 |    443    0.255    0.205 |     0.00013     0.00417
+     0.4-0.5       334    0.541    0.578 |    277    0.338    0.318 |     0.00004     0.00195
+     0.5-0.6       207    0.657    0.725 |    333    0.452    0.538 |     0.00040     0.00119
+     0.6-0.7       128    0.754    0.734 |    216    0.492    0.481 |     0.00025     0.00124
+     0.7-0.8        52    0.841    0.827 |    103    0.569    0.631 |     0.00005     0.00031
+     0.8-0.9        22    0.892    0.909 |     40    0.551    0.500 |     0.00048     0.00093
+     0.9-1.0         0      nan      nan |     54    0.583    0.833 |     0.00018     0.00018
+     totals: reliability with whole bins 0.00267, with each bin cut in two by the market price 0.01282; the same cut made at random with the same half sizes gives 0.00304 on average over 200 draws (seed 20260902), which is the part that is only finer binning
+
+=== window B: 11831 test rows, 8 models
+  -- (1) where the forecasts sit
+     forecaster            n  in 0.2-0.7     p05    p50    p95
+     gpt-5.2            1480       70.6%   0.050  0.330  0.750
+     gpt-oss-120b       1480       65.7%   0.070  0.320  0.730
+     kimi-k2.5          1477       70.2%   0.050  0.320  0.750
+     deepseek-v3.2      1480       77.1%   0.080  0.350  0.750
+     gpt-5.5            1480       71.1%   0.060  0.330  0.780
+     glm-5.1            1480       70.7%   0.050  0.320  0.800
+     kimi-k2.6          1479       70.7%   0.050  0.330  0.750
+     deepseek-v4-pro    1475       66.6%   0.030  0.320  0.880
+     market price       1480       65.0%   0.069  0.350  0.810  (the market, same rows)
+     all models        11831       70.4%   0.050  0.330  0.780  (every model's forecasts together)
+  -- (2) the ten bins, pooled over models
+     bin               n mean fcst  Yes freq      gap  contributes
+     0.0-0.1       1253     0.053     0.180   -0.127      0.00171
+     0.1-0.2       1362     0.146     0.230   -0.084      0.00081
+     0.2-0.3       2464     0.250     0.269   -0.019      0.00008
+     0.3-0.4       2196     0.339     0.353   -0.014      0.00004
+     0.4-0.5       1677     0.438     0.453   -0.016      0.00003
+     0.5-0.6       1197     0.544     0.529   +0.015      0.00002
+     0.6-0.7        713     0.636     0.606   +0.030      0.00006
+     0.7-0.8        453     0.736     0.684   +0.051      0.00010
+     0.8-0.9        286     0.843     0.685   +0.158      0.00060
+     0.9-1.0        230     0.947     0.735   +0.212      0.00088
+     pooled totals: reliability 0.00433, resolution 0.02388, uncertainty 0.23520
+  -- (2) the ten bins, per model
+     gpt-5.2 (n=1480)
+       0.0-0.1      158  mean fcst 0.051  Yes freq 0.171  gap -0.120  contributes 0.00154
+       0.1-0.2      180  mean fcst 0.146  Yes freq 0.233  gap -0.087  contributes 0.00092
+       0.2-0.3      313  mean fcst 0.247  Yes freq 0.233  gap +0.014  contributes 0.00004
+       0.3-0.4      227  mean fcst 0.341  Yes freq 0.396  gap -0.056  contributes 0.00048
+       0.4-0.5      269  mean fcst 0.436  Yes freq 0.446  gap -0.010  contributes 0.00002
+       0.5-0.6      125  mean fcst 0.548  Yes freq 0.576  gap -0.028  contributes 0.00007
+       0.6-0.7       97  mean fcst 0.628  Yes freq 0.608  gap +0.020  contributes 0.00003
+       0.7-0.8       52  mean fcst 0.733  Yes freq 0.673  gap +0.060  contributes 0.00013
+       0.8-0.9       34  mean fcst 0.837  Yes freq 0.676  gap +0.161  contributes 0.00059
+       0.9-1.0       25  mean fcst 0.941  Yes freq 0.760  gap +0.181  contributes 0.00055
+     gpt-oss-120b (n=1480)
+       0.0-0.1      177  mean fcst 0.064  Yes freq 0.215  gap -0.150  contributes 0.00271
+       0.1-0.2      236  mean fcst 0.146  Yes freq 0.250  gap -0.104  contributes 0.00172
+       0.2-0.3      279  mean fcst 0.246  Yes freq 0.326  gap -0.081  contributes 0.00123
+       0.3-0.4      279  mean fcst 0.342  Yes freq 0.348  gap -0.006  contributes 0.00001
+       0.4-0.5      154  mean fcst 0.445  Yes freq 0.487  gap -0.042  contributes 0.00018
+       0.5-0.6      138  mean fcst 0.556  Yes freq 0.522  gap +0.034  contributes 0.00011
+       0.6-0.7      112  mean fcst 0.650  Yes freq 0.589  gap +0.061  contributes 0.00028
+       0.7-0.8       72  mean fcst 0.739  Yes freq 0.611  gap +0.127  contributes 0.00079
+       0.8-0.9       20  mean fcst 0.852  Yes freq 0.650  gap +0.202  contributes 0.00055
+       0.9-1.0       13  mean fcst 0.937  Yes freq 0.385  gap +0.552  contributes 0.00268
+     kimi-k2.5 (n=1477)
+       0.0-0.1      148  mean fcst 0.054  Yes freq 0.169  gap -0.115  contributes 0.00133
+       0.1-0.2      180  mean fcst 0.148  Yes freq 0.261  gap -0.113  contributes 0.00155
+       0.2-0.3      317  mean fcst 0.250  Yes freq 0.262  gap -0.011  contributes 0.00003
+       0.3-0.4      290  mean fcst 0.343  Yes freq 0.359  gap -0.016  contributes 0.00005
+       0.4-0.5      195  mean fcst 0.441  Yes freq 0.482  gap -0.041  contributes 0.00022
+       0.5-0.6      161  mean fcst 0.542  Yes freq 0.509  gap +0.033  contributes 0.00012
+       0.6-0.7       70  mean fcst 0.632  Yes freq 0.586  gap +0.046  contributes 0.00010
+       0.7-0.8       60  mean fcst 0.740  Yes freq 0.700  gap +0.040  contributes 0.00006
+       0.8-0.9       34  mean fcst 0.841  Yes freq 0.706  gap +0.136  contributes 0.00042
+       0.9-1.0       22  mean fcst 0.940  Yes freq 0.727  gap +0.213  contributes 0.00067
+     deepseek-v3.2 (n=1480)
+       0.0-0.1      109  mean fcst 0.053  Yes freq 0.147  gap -0.094  contributes 0.00065
+       0.1-0.2      142  mean fcst 0.142  Yes freq 0.204  gap -0.063  contributes 0.00038
+       0.2-0.3      268  mean fcst 0.253  Yes freq 0.280  gap -0.026  contributes 0.00013
+       0.3-0.4      301  mean fcst 0.333  Yes freq 0.316  gap +0.017  contributes 0.00006
+       0.4-0.5      274  mean fcst 0.435  Yes freq 0.405  gap +0.030  contributes 0.00017
+       0.5-0.6      158  mean fcst 0.539  Yes freq 0.544  gap -0.005  contributes 0.00000
+       0.6-0.7      114  mean fcst 0.636  Yes freq 0.579  gap +0.057  contributes 0.00025
+       0.7-0.8       60  mean fcst 0.727  Yes freq 0.767  gap -0.040  contributes 0.00006
+       0.8-0.9       41  mean fcst 0.845  Yes freq 0.634  gap +0.211  contributes 0.00123
+       0.9-1.0       13  mean fcst 0.959  Yes freq 0.769  gap +0.190  contributes 0.00032
+     gpt-5.5 (n=1480)
+       0.0-0.1      154  mean fcst 0.054  Yes freq 0.182  gap -0.128  contributes 0.00171
+       0.1-0.2      166  mean fcst 0.149  Yes freq 0.157  gap -0.007  contributes 0.00001
+       0.2-0.3      315  mean fcst 0.248  Yes freq 0.270  gap -0.022  contributes 0.00010
+       0.3-0.4      269  mean fcst 0.343  Yes freq 0.353  gap -0.010  contributes 0.00002
+       0.4-0.5      241  mean fcst 0.436  Yes freq 0.465  gap -0.029  contributes 0.00014
+       0.5-0.6      148  mean fcst 0.553  Yes freq 0.547  gap +0.006  contributes 0.00000
+       0.6-0.7       75  mean fcst 0.639  Yes freq 0.733  gap -0.094  contributes 0.00045
+       0.7-0.8       52  mean fcst 0.740  Yes freq 0.635  gap +0.105  contributes 0.00039
+       0.8-0.9       34  mean fcst 0.846  Yes freq 0.706  gap +0.140  contributes 0.00045
+       0.9-1.0       26  mean fcst 0.948  Yes freq 0.808  gap +0.141  contributes 0.00035
+     glm-5.1 (n=1480)
+       0.0-0.1      158  mean fcst 0.049  Yes freq 0.171  gap -0.122  contributes 0.00158
+       0.1-0.2      152  mean fcst 0.148  Yes freq 0.270  gap -0.121  contributes 0.00151
+       0.2-0.3      335  mean fcst 0.255  Yes freq 0.248  gap +0.007  contributes 0.00001
+       0.3-0.4      297  mean fcst 0.335  Yes freq 0.380  gap -0.046  contributes 0.00042
+       0.4-0.5      172  mean fcst 0.435  Yes freq 0.424  gap +0.011  contributes 0.00001
+       0.5-0.6      160  mean fcst 0.542  Yes freq 0.525  gap +0.017  contributes 0.00003
+       0.6-0.7       82  mean fcst 0.640  Yes freq 0.585  gap +0.054  contributes 0.00016
+       0.7-0.8       47  mean fcst 0.743  Yes freq 0.745  gap -0.002  contributes 0.00000
+       0.8-0.9       40  mean fcst 0.849  Yes freq 0.700  gap +0.149  contributes 0.00060
+       0.9-1.0       37  mean fcst 0.943  Yes freq 0.757  gap +0.186  contributes 0.00087
+     kimi-k2.6 (n=1479)
+       0.0-0.1      160  mean fcst 0.055  Yes freq 0.175  gap -0.120  contributes 0.00157
+       0.1-0.2      158  mean fcst 0.145  Yes freq 0.253  gap -0.109  contributes 0.00126
+       0.2-0.3      319  mean fcst 0.249  Yes freq 0.257  gap -0.008  contributes 0.00001
+       0.3-0.4      296  mean fcst 0.340  Yes freq 0.338  gap +0.002  contributes 0.00000
+       0.4-0.5      194  mean fcst 0.442  Yes freq 0.479  gap -0.037  contributes 0.00018
+       0.5-0.6      164  mean fcst 0.540  Yes freq 0.524  gap +0.016  contributes 0.00003
+       0.6-0.7       69  mean fcst 0.633  Yes freq 0.623  gap +0.010  contributes 0.00000
+       0.7-0.8       58  mean fcst 0.731  Yes freq 0.724  gap +0.007  contributes 0.00000
+       0.8-0.9       34  mean fcst 0.838  Yes freq 0.765  gap +0.073  contributes 0.00012
+       0.9-1.0       27  mean fcst 0.943  Yes freq 0.704  gap +0.239  contributes 0.00104
+     deepseek-v4-pro (n=1475)
+       0.0-0.1      189  mean fcst 0.043  Yes freq 0.190  gap -0.148  contributes 0.00280
+       0.1-0.2      148  mean fcst 0.139  Yes freq 0.196  gap -0.057  contributes 0.00032
+       0.2-0.3      318  mean fcst 0.248  Yes freq 0.283  gap -0.035  contributes 0.00026
+       0.3-0.4      237  mean fcst 0.336  Yes freq 0.346  gap -0.010  contributes 0.00002
+       0.4-0.5      178  mean fcst 0.433  Yes freq 0.461  gap -0.027  contributes 0.00009
+       0.5-0.6      143  mean fcst 0.534  Yes freq 0.490  gap +0.045  contributes 0.00020
+       0.6-0.7       94  mean fcst 0.629  Yes freq 0.574  gap +0.055  contributes 0.00019
+       0.7-0.8       52  mean fcst 0.735  Yes freq 0.635  gap +0.100  contributes 0.00036
+       0.8-0.9       49  mean fcst 0.841  Yes freq 0.653  gap +0.188  contributes 0.00117
+       0.9-1.0       67  mean fcst 0.955  Yes freq 0.761  gap +0.194  contributes 0.00171
+  -- (3) magnitudes side by side
+     forecaster        reliability   resolution    rel/res          Brier
+     gpt-5.2               0.00436      0.02681      0.162        0.21202
+     gpt-oss-120b          0.01025      0.01667      0.615        0.22813
+     kimi-k2.5             0.00455      0.02287      0.199        0.21576
+     deepseek-v3.2         0.00325      0.02486      0.131        0.21376
+     gpt-5.5               0.00361      0.03062      0.118        0.20795
+     glm-5.1               0.00521      0.02525      0.206        0.21492
+     kimi-k2.6             0.00422      0.02620      0.161        0.21263
+     deepseek-v4-pro       0.00711      0.02594      0.274        0.21605
+     market                0.00168      0.04950      0.034        0.18653  (the market, same rows)
+     for scale: the largest per-model reliability here is a mean gap of about 0.101 in probability units (square root of reliability)
+  -- (4) does anything offset inside a bin? each bin cut by the market price
+     'high half' = rows the market prices above the bin's mean forecast; 'low half' = below.
+     bin           n hi mean q hi   Yes hi |   n lo mean q lo   Yes lo |   whole bin      halves
+     0.0-0.1      1187    0.222    0.189 |     66    0.050    0.015 |     0.00171     0.00184
+     0.1-0.2       786    0.333    0.302 |    576    0.097    0.132 |     0.00081     0.00154
+     0.2-0.3      1325    0.359    0.359 |   1139    0.174    0.163 |     0.00008     0.00179
+     0.3-0.4      1200    0.469    0.433 |    996    0.239    0.257 |     0.00004     0.00128
+     0.4-0.5       856    0.534    0.542 |    821    0.333    0.361 |     0.00003     0.00105
+     0.5-0.6       514    0.659    0.603 |    683    0.427    0.473 |     0.00002     0.00039
+     0.6-0.7       316    0.757    0.810 |    397    0.436    0.443 |     0.00006     0.00204
+     0.7-0.8       150    0.830    0.887 |    303    0.516    0.584 |     0.00010     0.00087
+     0.8-0.9        64    0.899    1.000 |    222    0.556    0.595 |     0.00060     0.00126
+     0.9-1.0         7    0.950    1.000 |    223    0.643    0.726 |     0.00088     0.00092
+     totals: reliability with whole bins 0.00433, with each bin cut in two by the market price 0.01300; the same cut made at random with the same half sizes gives 0.00451 on average over 200 draws (seed 20260902), which is the part that is only finer binning
+
+=== window C: 17084 test rows, 8 models
+  -- (1) where the forecasts sit
+     forecaster            n  in 0.2-0.7     p05    p50    p95
+     gpt-5.2            2137       70.6%   0.050  0.420  0.820
+     gpt-oss-120b       2137       70.6%   0.070  0.450  0.750
+     kimi-k2.5          2134       69.1%   0.050  0.450  0.780
+     deepseek-v3.2      2137       75.8%   0.060  0.450  0.780
+     gpt-5.5            2136       71.4%   0.060  0.400  0.780
+     glm-5.1            2137       71.0%   0.050  0.420  0.870
+     kimi-k2.6          2136       69.7%   0.050  0.450  0.800
+     deepseek-v4-pro    2130       64.8%   0.030  0.480  0.920
+     market price       2137       62.8%   0.065  0.410  0.850  (the market, same rows)
+     all models        17084       70.4%   0.050  0.450  0.810  (every model's forecasts together)
+  -- (2) the ten bins, pooled over models
+     bin               n mean fcst  Yes freq      gap  contributes
+     0.0-0.1       1794     0.052     0.162   -0.109      0.00126
+     0.1-0.2       1703     0.145     0.198   -0.053      0.00028
+     0.2-0.3       2027     0.247     0.286   -0.039      0.00018
+     0.3-0.4       1982     0.343     0.370   -0.027      0.00009
+     0.4-0.5       2527     0.446     0.424   +0.022      0.00007
+     0.5-0.6       4007     0.524     0.489   +0.035      0.00029
+     0.6-0.7       1368     0.637     0.552   +0.085      0.00058
+     0.7-0.8        757     0.740     0.654   +0.086      0.00033
+     0.8-0.9        496     0.845     0.690   +0.156      0.00070
+     0.9-1.0        423     0.948     0.683   +0.265      0.00174
+     pooled totals: reliability 0.00553, resolution 0.02273, uncertainty 0.24020
+  -- (2) the ten bins, per model
+     gpt-5.2 (n=2137)
+       0.0-0.1      240  mean fcst 0.052  Yes freq 0.163  gap -0.111  contributes 0.00138
+       0.1-0.2      186  mean fcst 0.151  Yes freq 0.172  gap -0.021  contributes 0.00004
+       0.2-0.3      294  mean fcst 0.249  Yes freq 0.313  gap -0.064  contributes 0.00056
+       0.3-0.4      244  mean fcst 0.344  Yes freq 0.381  gap -0.037  contributes 0.00016
+       0.4-0.5      363  mean fcst 0.443  Yes freq 0.402  gap +0.041  contributes 0.00028
+       0.5-0.6      407  mean fcst 0.542  Yes freq 0.501  gap +0.041  contributes 0.00032
+       0.6-0.7      180  mean fcst 0.633  Yes freq 0.578  gap +0.056  contributes 0.00026
+       0.7-0.8       96  mean fcst 0.744  Yes freq 0.625  gap +0.119  contributes 0.00063
+       0.8-0.9       71  mean fcst 0.842  Yes freq 0.704  gap +0.138  contributes 0.00063
+       0.9-1.0       56  mean fcst 0.941  Yes freq 0.661  gap +0.280  contributes 0.00206
+     gpt-oss-120b (n=2137)
+       0.0-0.1      234  mean fcst 0.059  Yes freq 0.201  gap -0.142  contributes 0.00221
+       0.1-0.2      265  mean fcst 0.145  Yes freq 0.204  gap -0.059  contributes 0.00043
+       0.2-0.3      211  mean fcst 0.247  Yes freq 0.284  gap -0.037  contributes 0.00014
+       0.3-0.4      286  mean fcst 0.344  Yes freq 0.434  gap -0.089  contributes 0.00106
+       0.4-0.5      268  mean fcst 0.453  Yes freq 0.448  gap +0.005  contributes 0.00000
+       0.5-0.6      485  mean fcst 0.536  Yes freq 0.462  gap +0.074  contributes 0.00123
+       0.6-0.7      248  mean fcst 0.642  Yes freq 0.528  gap +0.114  contributes 0.00150
+       0.7-0.8       83  mean fcst 0.746  Yes freq 0.663  gap +0.083  contributes 0.00027
+       0.8-0.9       47  mean fcst 0.845  Yes freq 0.723  gap +0.121  contributes 0.00032
+       0.9-1.0       10  mean fcst 0.956  Yes freq 0.800  gap +0.156  contributes 0.00011
+     kimi-k2.5 (n=2134)
+       0.0-0.1      218  mean fcst 0.053  Yes freq 0.156  gap -0.103  contributes 0.00108
+       0.1-0.2      234  mean fcst 0.146  Yes freq 0.226  gap -0.081  contributes 0.00071
+       0.2-0.3      255  mean fcst 0.246  Yes freq 0.271  gap -0.025  contributes 0.00007
+       0.3-0.4      203  mean fcst 0.345  Yes freq 0.340  gap +0.005  contributes 0.00000
+       0.4-0.5      297  mean fcst 0.454  Yes freq 0.394  gap +0.060  contributes 0.00050
+       0.5-0.6      586  mean fcst 0.515  Yes freq 0.502  gap +0.013  contributes 0.00005
+       0.6-0.7      124  mean fcst 0.638  Yes freq 0.581  gap +0.057  contributes 0.00019
+       0.7-0.8      119  mean fcst 0.734  Yes freq 0.647  gap +0.086  contributes 0.00042
+       0.8-0.9       53  mean fcst 0.847  Yes freq 0.717  gap +0.130  contributes 0.00042
+       0.9-1.0       45  mean fcst 0.941  Yes freq 0.711  gap +0.230  contributes 0.00112
+     deepseek-v3.2 (n=2137)
+       0.0-0.1      176  mean fcst 0.052  Yes freq 0.159  gap -0.107  contributes 0.00094
+       0.1-0.2      187  mean fcst 0.145  Yes freq 0.187  gap -0.043  contributes 0.00016
+       0.2-0.3      243  mean fcst 0.245  Yes freq 0.255  gap -0.010  contributes 0.00001
+       0.3-0.4      226  mean fcst 0.334  Yes freq 0.354  gap -0.020  contributes 0.00004
+       0.4-0.5      387  mean fcst 0.444  Yes freq 0.424  gap +0.020  contributes 0.00007
+       0.5-0.6      548  mean fcst 0.514  Yes freq 0.484  gap +0.030  contributes 0.00024
+       0.6-0.7      194  mean fcst 0.636  Yes freq 0.572  gap +0.064  contributes 0.00037
+       0.7-0.8       74  mean fcst 0.735  Yes freq 0.649  gap +0.087  contributes 0.00026
+       0.8-0.9       59  mean fcst 0.843  Yes freq 0.610  gap +0.233  contributes 0.00149
+       0.9-1.0       43  mean fcst 0.959  Yes freq 0.651  gap +0.307  contributes 0.00190
+     gpt-5.5 (n=2136)
+       0.0-0.1      229  mean fcst 0.054  Yes freq 0.131  gap -0.077  contributes 0.00063
+       0.1-0.2      187  mean fcst 0.148  Yes freq 0.176  gap -0.029  contributes 0.00007
+       0.2-0.3      299  mean fcst 0.247  Yes freq 0.281  gap -0.034  contributes 0.00016
+       0.3-0.4      323  mean fcst 0.347  Yes freq 0.378  gap -0.031  contributes 0.00015
+       0.4-0.5      385  mean fcst 0.445  Yes freq 0.426  gap +0.019  contributes 0.00006
+       0.5-0.6      306  mean fcst 0.550  Yes freq 0.523  gap +0.027  contributes 0.00010
+       0.6-0.7      198  mean fcst 0.639  Yes freq 0.551  gap +0.088  contributes 0.00072
+       0.7-0.8      117  mean fcst 0.745  Yes freq 0.675  gap +0.070  contributes 0.00027
+       0.8-0.9       61  mean fcst 0.842  Yes freq 0.787  gap +0.055  contributes 0.00009
+       0.9-1.0       31  mean fcst 0.939  Yes freq 0.871  gap +0.068  contributes 0.00007
+     glm-5.1 (n=2137)
+       0.0-0.1      203  mean fcst 0.054  Yes freq 0.143  gap -0.089  contributes 0.00075
+       0.1-0.2      212  mean fcst 0.141  Yes freq 0.212  gap -0.071  contributes 0.00050
+       0.2-0.3      256  mean fcst 0.248  Yes freq 0.289  gap -0.041  contributes 0.00020
+       0.3-0.4      306  mean fcst 0.345  Yes freq 0.350  gap -0.005  contributes 0.00000
+       0.4-0.5      324  mean fcst 0.443  Yes freq 0.438  gap +0.005  contributes 0.00000
+       0.5-0.6      461  mean fcst 0.530  Yes freq 0.499  gap +0.031  contributes 0.00021
+       0.6-0.7      164  mean fcst 0.632  Yes freq 0.573  gap +0.059  contributes 0.00027
+       0.7-0.8       77  mean fcst 0.746  Yes freq 0.649  gap +0.097  contributes 0.00034
+       0.8-0.9       71  mean fcst 0.856  Yes freq 0.662  gap +0.195  contributes 0.00126
+       0.9-1.0       63  mean fcst 0.944  Yes freq 0.619  gap +0.325  contributes 0.00311
+     kimi-k2.6 (n=2136)
+       0.0-0.1      218  mean fcst 0.052  Yes freq 0.179  gap -0.127  contributes 0.00164
+       0.1-0.2      231  mean fcst 0.143  Yes freq 0.182  gap -0.039  contributes 0.00016
+       0.2-0.3      244  mean fcst 0.246  Yes freq 0.303  gap -0.057  contributes 0.00037
+       0.3-0.4      227  mean fcst 0.342  Yes freq 0.379  gap -0.037  contributes 0.00015
+       0.4-0.5      282  mean fcst 0.449  Yes freq 0.418  gap +0.030  contributes 0.00012
+       0.5-0.6      602  mean fcst 0.515  Yes freq 0.485  gap +0.030  contributes 0.00025
+       0.6-0.7      119  mean fcst 0.638  Yes freq 0.529  gap +0.109  contributes 0.00066
+       0.7-0.8      105  mean fcst 0.733  Yes freq 0.667  gap +0.066  contributes 0.00022
+       0.8-0.9       58  mean fcst 0.843  Yes freq 0.655  gap +0.188  contributes 0.00096
+       0.9-1.0       50  mean fcst 0.937  Yes freq 0.700  gap +0.237  contributes 0.00131
+     deepseek-v4-pro (n=2130)
+       0.0-0.1      276  mean fcst 0.043  Yes freq 0.159  gap -0.116  contributes 0.00175
+       0.1-0.2      201  mean fcst 0.139  Yes freq 0.214  gap -0.075  contributes 0.00053
+       0.2-0.3      225  mean fcst 0.245  Yes freq 0.289  gap -0.044  contributes 0.00021
+       0.3-0.4      167  mean fcst 0.339  Yes freq 0.317  gap +0.022  contributes 0.00004
+       0.4-0.5      221  mean fcst 0.440  Yes freq 0.452  gap -0.012  contributes 0.00002
+       0.5-0.6      612  mean fcst 0.512  Yes freq 0.472  gap +0.040  contributes 0.00045
+       0.6-0.7      141  mean fcst 0.635  Yes freq 0.504  gap +0.131  contributes 0.00114
+       0.7-0.8       86  mean fcst 0.742  Yes freq 0.651  gap +0.091  contributes 0.00033
+       0.8-0.9       76  mean fcst 0.843  Yes freq 0.671  gap +0.172  contributes 0.00106
+       0.9-1.0      125  mean fcst 0.958  Yes freq 0.664  gap +0.294  contributes 0.00509
+  -- (3) magnitudes side by side
+     forecaster        reliability   resolution    rel/res          Brier
+     gpt-5.2               0.00632      0.02369      0.267        0.22181
+     gpt-oss-120b          0.00728      0.01938      0.376        0.22778
+     kimi-k2.5             0.00456      0.02441      0.187        0.22051
+     deepseek-v3.2         0.00549      0.02057      0.267        0.22482
+     gpt-5.5               0.00231      0.03022      0.077        0.21166
+     glm-5.1               0.00664      0.02218      0.299        0.22551
+     kimi-k2.6             0.00583      0.02164      0.269        0.22445
+     deepseek-v4-pro       0.01061      0.02436      0.436        0.22645
+     market                0.00060      0.05573      0.011        0.18464  (the market, same rows)
+     for scale: the largest per-model reliability here is a mean gap of about 0.103 in probability units (square root of reliability)
+  -- (4) does anything offset inside a bin? each bin cut by the market price
+     'high half' = rows the market prices above the bin's mean forecast; 'low half' = below.
+     bin           n hi mean q hi   Yes hi |   n lo mean q lo   Yes lo |   whole bin      halves
+     0.0-0.1      1670    0.173    0.173 |    124    0.050    0.008 |     0.00126     0.00141
+     0.1-0.2       960    0.315    0.272 |    743    0.089    0.102 |     0.00028     0.00089
+     0.2-0.3      1074    0.385    0.398 |    953    0.161    0.161 |     0.00018     0.00168
+     0.3-0.4      1131    0.500    0.506 |    851    0.228    0.190 |     0.00009     0.00274
+     0.4-0.5      1293    0.580    0.541 |   1234    0.329    0.301 |     0.00007     0.00206
+     0.5-0.6      1833    0.661    0.635 |   2174    0.379    0.365 |     0.00029     0.00436
+     0.6-0.7       488    0.746    0.740 |    880    0.461    0.448 |     0.00058     0.00208
+     0.7-0.8       253    0.823    0.842 |    504    0.530    0.560 |     0.00033     0.00110
+     0.8-0.9       134    0.892    0.866 |    362    0.589    0.624 |     0.00070     0.00102
+     0.9-1.0        11    [withheld: Kalshi data] (2 markets) | 412    [withheld: Kalshi data]
+     totals: reliability with whole bins 0.00553, with each bin cut in two by the market price 0.01913; the same cut made at random with the same half sizes gives 0.00566 on average over 200 draws (seed 20260902), which is the part that is only finer binning
+# --- exit 0, 6s

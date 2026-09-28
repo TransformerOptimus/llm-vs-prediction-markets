@@ -1,0 +1,28 @@
+# output of analysis/exploratory/correlated-errors-both-wrong-beyond-market.py
+# run: 2026-09-22T06:27:19Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: common rows per window, forecasts view, mode normal, status in ('ok', 'ok_after_retry'), primary set; wrong = wrong side of 0.5; intervals = 1000 event resamples, seed 20260902
+=== window A: 1533 common rows, 711 events, 4 models, 6 pairs; market wrong on 433 rows (28.2%)
+  all rows:            both_wrong 0.237  expected 0.094
+  market-wrong rows:   both_wrong 0.627  expected 0.521  (n=433)
+  market-right rows:   both_wrong +0.083 [+0.063, +0.107]  expected +0.020 [+0.014, +0.029]  (n=1100)
+  excess over independence on market-right rows: +0.063 [+0.049, +0.080] ; ratio +4.142 [+3.634, +4.777]
+  share of both-wrong pair-events on market-wrong rows: +0.747 [+0.689, +0.802]
+  every model wrong while market right: +0.054 [+0.036, +0.077] (n market-right = 1100)
+=== window B: 1855 common rows, 1414 events, 8 models, 28 pairs; market wrong on 523 rows (28.2%)
+  all rows:            both_wrong 0.263  expected 0.105
+  market-wrong rows:   both_wrong 0.668  expected 0.556  (n=523)
+  market-right rows:   both_wrong +0.103 [+0.089, +0.119]  expected +0.025 [+0.020, +0.031]  (n=1332)
+  excess over independence on market-right rows: +0.078 [+0.068, +0.087] ; ratio +4.077 [+3.755, +4.495]
+  share of both-wrong pair-events on market-wrong rows: +0.717 [+0.681, +0.755]
+  every model wrong while market right: +0.052 [+0.041, +0.064] (n market-right = 1332)
+=== window C: 2654 common rows, 2197 events, 8 models, 28 pairs; market wrong on 753 rows (28.4%)
+  all rows:            both_wrong 0.268  expected 0.131
+  market-wrong rows:   both_wrong 0.546  expected 0.440  (n=753)
+  market-right rows:   both_wrong +0.157 [+0.142, +0.171]  expected +0.059 [+0.051, +0.067]  (n=1901)
+  excess over independence on market-right rows: +0.099 [+0.091, +0.105] ; ratio +2.684 [+2.525, +2.841]
+  share of both-wrong pair-events on market-wrong rows: +0.579 [+0.545, +0.615]
+  every model wrong while market right: +0.062 [+0.051, +0.073] (n market-right = 1901)
+# --- exit 0, 3s

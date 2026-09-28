@@ -1,0 +1,117 @@
+# output of analysis/exploratory/split-leakage-event-grouped.py
+# run: 2026-09-22T14:00:29Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: primary set, forecasts view, mode normal; one row = one model on one market-moment. Events are source_event_id (a moment with no event id is its own event). The stored split is analysis/make_split.py's per-market draw (20% per cell of window x depth bucket x sports, seed 20260902); the event-grouped split redraws the same cells with whole events, seed 20260902. Recovery = share of the model's Brier gap to the market that the fitted Platt map removes.
+
+=== (a) exposure: how much of the test split shares an event with the calibration split
+  window A, primary set:                   1550 moments in 712 events; 1248 test moments in 626 events, of which 167 events straddle the split (26.7% of test events)
+      test moments inside a straddling event: 391 of 1248 (31.3%)
+      test ROWS (model x moment) inside a straddling event: 1559 of 4981 (31.3%)
+  window A, every moment the split covers: 2838 moments in 871 events; 2269 test moments in 782 events, of which 289 events straddle the split (37.0% of test events)
+      test moments inside a straddling event: 1286 of 2269 (56.7%)
+  window B, primary set:                   1865 moments in 1420 events; 1480 test moments in 1196 events, of which 133 events straddle the split (11.1% of test events)
+      test moments inside a straddling event: 232 of 1480 (15.7%)
+      test ROWS (model x moment) inside a straddling event: 1855 of 11831 (15.7%)
+  window B, every moment the split covers: 3619 moments in 2633 events; 2895 test moments in 2229 events, of which 253 events straddle the split (11.4% of test events)
+      test moments inside a straddling event: 491 of 2895 (17.0%)
+  window C, primary set:                   2669 moments in 2209 events; 2137 test moments in 1823 events, of which 106 events straddle the split (5.8% of test events)
+      test moments inside a straddling event: 219 of 2137 (10.2%)
+      test ROWS (model x moment) inside a straddling event: 1751 of 17084 (10.2%)
+  window C, every moment the split covers: 3920 moments in 3090 events; 3136 test moments in 2566 events, of which 187 events straddle the split (7.3% of test events)
+      test moments inside a straddling event: 424 of 3136 (13.5%)
+
+=== (b) the event-grouped split: sizes, and that it breaks no event
+  window A: 2838 moments; stored split calibration 569 (20.0%), event-grouped calibration 575 (20.3%); events broken by the event-grouped split: 0
+  window B: 3619 moments; stored split calibration 724 (20.0%), event-grouped calibration 722 (20.0%); events broken by the event-grouped split: 0
+  window C: 3920 moments; stored split calibration 784 (20.0%), event-grouped calibration 784 (20.0%); events broken by the event-grouped split: 0
+
+=== (b) single-split Platt recovery, stored split vs event-grouped split
+    'clean rows only' = the SAME map fitted on the stored calibration split, scored only on
+    test rows whose event has no calibration market, so the fit is unchanged and only the
+    leaky rows are dropped.
+  === window A
+    gpt-5.2          n=1550  stored split cal 302 / test 1248; event-grouped cal 341 / test 1209; test rows in a straddling event 391
+      stored split                     n=1248  Brier 0.2007 -> 0.2005 (market 0.1854)  recovery    1.6%  slope 1.056 intercept +0.233
+      stored split, clean rows only    n=857   Brier 0.2065 -> 0.2055 (market 0.1977)  recovery   12.1%  slope 1.056 intercept +0.233
+      event-grouped split              n=1209  Brier 0.1915 -> 0.1981 (market 0.1860)  recovery -119.8%  slope 0.604 intercept +0.087
+    gpt-oss-120b     n=1550  stored split cal 302 / test 1248; event-grouped cal 341 / test 1209; test rows in a straddling event 391
+      stored split                     n=1248  Brier 0.2159 -> 0.2162 (market 0.1854)  recovery   -1.1%  slope 1.070 intercept +0.301
+      stored split, clean rows only    n=857   Brier 0.2224 -> 0.2215 (market 0.1977)  recovery    3.5%  slope 1.070 intercept +0.301
+      event-grouped split              n=1209  Brier 0.2067 -> 0.2062 (market 0.1860)  recovery    2.1%  slope 0.603 intercept +0.138
+    kimi-k2.5        n=1533  stored split cal 296 / test 1237; event-grouped cal 338 / test 1195; test rows in a straddling event 379
+      stored split                     n=1237  Brier 0.1990 -> 0.1992 (market 0.1860)  recovery   -2.2%  slope 1.059 intercept +0.210
+      stored split, clean rows only    n=858   Brier 0.2038 -> 0.2034 (market 0.1978)  recovery    6.5%  slope 1.059 intercept +0.210
+      event-grouped split              n=1195  Brier 0.1903 -> 0.1971 (market 0.1869)  recovery -203.4%  slope 0.618 intercept +0.159
+    deepseek-v3.2    n=1550  stored split cal 302 / test 1248; event-grouped cal 341 / test 1209; test rows in a straddling event 391
+      stored split                     n=1248  Brier 0.1997 -> 0.2009 (market 0.1854)  recovery   -8.7%  slope 1.123 intercept +0.137
+      stored split, clean rows only    n=857   Brier 0.2049 -> 0.2059 (market 0.1977)  recovery  -13.5%  slope 1.123 intercept +0.137
+      event-grouped split              n=1209  Brier 0.1924 -> 0.1976 (market 0.1860)  recovery  -81.4%  slope 0.720 intercept +0.101
+  === window B
+    gpt-5.2          n=1865  stored split cal 385 / test 1480; event-grouped cal 356 / test 1509; test rows in a straddling event 232
+      stored split                     n=1480  Brier 0.2120 -> 0.2102 (market 0.1865)  recovery    7.0%  slope 0.653 intercept -0.031
+      stored split, clean rows only    n=1248  Brier 0.2153 -> 0.2140 (market 0.1887)  recovery    5.0%  slope 0.653 intercept -0.031
+      event-grouped split              n=1509  Brier 0.2115 -> 0.2104 (market 0.1837)  recovery    4.0%  slope 0.749 intercept +0.110
+    gpt-oss-120b     n=1865  stored split cal 385 / test 1480; event-grouped cal 356 / test 1509; test rows in a straddling event 232
+      stored split                     n=1480  Brier 0.2281 -> 0.2214 (market 0.1865)  recovery   16.1%  slope 0.408 intercept -0.277
+      stored split, clean rows only    n=1248  Brier 0.2328 -> 0.2262 (market 0.1887)  recovery   15.0%  slope 0.408 intercept -0.277
+      event-grouped split              n=1509  Brier 0.2288 -> 0.2211 (market 0.1837)  recovery   17.1%  slope 0.541 intercept -0.018
+    kimi-k2.5        n=1862  stored split cal 385 / test 1477; event-grouped cal 355 / test 1507; test rows in a straddling event 232
+      stored split                     n=1477  Brier 0.2158 -> 0.2136 (market 0.1864)  recovery    7.5%  slope 0.557 intercept -0.139
+      stored split, clean rows only    n=1245  Brier 0.2192 -> 0.2178 (market 0.1885)  recovery    4.4%  slope 0.557 intercept -0.139
+      event-grouped split              n=1507  Brier 0.2154 -> 0.2138 (market 0.1836)  recovery    5.2%  slope 0.758 intercept +0.073
+    deepseek-v3.2    n=1865  stored split cal 385 / test 1480; event-grouped cal 356 / test 1509; test rows in a straddling event 232
+      stored split                     n=1480  Brier 0.2138 -> 0.2130 (market 0.1865)  recovery    2.6%  slope 0.585 intercept -0.228
+      stored split, clean rows only    n=1248  Brier 0.2172 -> 0.2174 (market 0.1887)  recovery   -0.8%  slope 0.585 intercept -0.228
+      event-grouped split              n=1509  Brier 0.2133 -> 0.2124 (market 0.1837)  recovery    3.2%  slope 0.706 intercept -0.007
+    gpt-5.5          n=1865  stored split cal 385 / test 1480; event-grouped cal 356 / test 1509; test rows in a straddling event 232
+      stored split                     n=1480  Brier 0.2080 -> 0.2069 (market 0.1865)  recovery    4.8%  slope 0.729 intercept -0.022
+      stored split, clean rows only    n=1248  Brier 0.2114 -> 0.2106 (market 0.1887)  recovery    3.6%  slope 0.729 intercept -0.022
+      event-grouped split              n=1509  Brier 0.2064 -> 0.2065 (market 0.1837)  recovery   -0.5%  slope 0.729 intercept +0.093
+    glm-5.1          n=1865  stored split cal 385 / test 1480; event-grouped cal 356 / test 1509; test rows in a straddling event 232
+      stored split                     n=1480  Brier 0.2149 -> 0.2134 (market 0.1865)  recovery    5.3%  slope 0.456 intercept -0.243
+      stored split, clean rows only    n=1248  Brier 0.2186 -> 0.2184 (market 0.1887)  recovery    0.4%  slope 0.456 intercept -0.243
+      event-grouped split              n=1509  Brier 0.2150 -> 0.2128 (market 0.1837)  recovery    6.9%  slope 0.608 intercept -0.010
+    kimi-k2.6        n=1864  stored split cal 385 / test 1479; event-grouped cal 355 / test 1509; test rows in a straddling event 232
+      stored split                     n=1479  Brier 0.2126 -> 0.2113 (market 0.1862)  recovery    5.1%  slope 0.558 intercept -0.126
+      stored split, clean rows only    n=1247  Brier 0.2170 -> 0.2162 (market 0.1883)  recovery    3.0%  slope 0.558 intercept -0.126
+      event-grouped split              n=1509  Brier 0.2133 -> 0.2118 (market 0.1837)  recovery    5.0%  slope 0.761 intercept +0.086
+    deepseek-v4-pro  n=1859  stored split cal 384 / test 1475; event-grouped cal 354 / test 1505; test rows in a straddling event 231
+      stored split                     n=1475  Brier 0.2160 -> 0.2155 (market 0.1862)  recovery    1.7%  slope 0.275 intercept -0.360
+      stored split, clean rows only    n=1244  Brier 0.2176 -> 0.2206 (market 0.1884)  recovery  -10.1%  slope 0.275 intercept -0.360
+      event-grouped split              n=1505  Brier 0.2182 -> 0.2128 (market 0.1835)  recovery   15.7%  slope 0.451 intercept -0.126
+  === window C
+    gpt-5.2          n=2669  stored split cal 532 / test 2137; event-grouped cal 527 / test 2142; test rows in a straddling event 219
+      stored split                     n=2137  Brier 0.2218 -> 0.2172 (market 0.1846)  recovery   12.5%  slope 0.609 intercept -0.177
+      stored split, clean rows only    n=1918  Brier 0.2241 -> 0.2199 (market 0.1878)  recovery   11.4%  slope 0.609 intercept -0.177
+      event-grouped split              n=2142  Brier 0.2192 -> 0.2156 (market 0.1827)  recovery    9.9%  slope 0.513 intercept -0.114
+    gpt-oss-120b     n=2669  stored split cal 532 / test 2137; event-grouped cal 527 / test 2142; test rows in a straddling event 219
+      stored split                     n=2137  Brier 0.2278 -> 0.2221 (market 0.1846)  recovery   13.1%  slope 0.617 intercept -0.111
+      stored split, clean rows only    n=1918  Brier 0.2308 -> 0.2250 (market 0.1878)  recovery   13.6%  slope 0.617 intercept -0.111
+      event-grouped split              n=2142  Brier 0.2239 -> 0.2203 (market 0.1827)  recovery    8.9%  slope 0.484 intercept -0.071
+    kimi-k2.5        n=2665  stored split cal 531 / test 2134; event-grouped cal 525 / test 2140; test rows in a straddling event 219
+      stored split                     n=2134  Brier 0.2205 -> 0.2171 (market 0.1844)  recovery    9.3%  slope 0.612 intercept -0.152
+      stored split, clean rows only    n=1915  Brier 0.2226 -> 0.2194 (market 0.1876)  recovery    9.0%  slope 0.612 intercept -0.152
+      event-grouped split              n=2140  Brier 0.2172 -> 0.2155 (market 0.1824)  recovery    5.0%  slope 0.500 intercept -0.126
+    deepseek-v3.2    n=2669  stored split cal 532 / test 2137; event-grouped cal 527 / test 2142; test rows in a straddling event 219
+      stored split                     n=2137  Brier 0.2248 -> 0.2215 (market 0.1846)  recovery    8.2%  slope 0.680 intercept -0.167
+      stored split, clean rows only    n=1918  Brier 0.2275 -> 0.2242 (market 0.1878)  recovery    8.2%  slope 0.680 intercept -0.167
+      event-grouped split              n=2142  Brier 0.2199 -> 0.2197 (market 0.1827)  recovery    0.6%  slope 0.426 intercept -0.173
+    gpt-5.5          n=2667  stored split cal 531 / test 2136; event-grouped cal 527 / test 2140; test rows in a straddling event 219
+      stored split                     n=2136  Brier 0.2117 -> 0.2101 (market 0.1844)  recovery    5.7%  slope 0.844 intercept -0.074
+      stored split, clean rows only    n=1917  Brier 0.2150 -> 0.2134 (market 0.1876)  recovery    5.8%  slope 0.844 intercept -0.074
+      event-grouped split              n=2140  Brier 0.2077 -> 0.2070 (market 0.1824)  recovery    2.6%  slope 0.643 intercept -0.077
+    glm-5.1          n=2669  stored split cal 532 / test 2137; event-grouped cal 527 / test 2142; test rows in a straddling event 219
+      stored split                     n=2137  Brier 0.2255 -> 0.2203 (market 0.1846)  recovery   12.7%  slope 0.625 intercept -0.162
+      stored split, clean rows only    n=1918  Brier 0.2275 -> 0.2226 (market 0.1878)  recovery   12.2%  slope 0.625 intercept -0.162
+      event-grouped split              n=2142  Brier 0.2211 -> 0.2179 (market 0.1827)  recovery    8.3%  slope 0.431 intercept -0.143
+    kimi-k2.6        n=2668  stored split cal 532 / test 2136; event-grouped cal 527 / test 2141; test rows in a straddling event 219
+      stored split                     n=2136  Brier 0.2245 -> 0.2198 (market 0.1847)  recovery   11.7%  slope 0.603 intercept -0.140
+      stored split, clean rows only    n=1917  Brier 0.2265 -> 0.2223 (market 0.1879)  recovery   11.0%  slope 0.603 intercept -0.140
+      event-grouped split              n=2141  Brier 0.2206 -> 0.2183 (market 0.1827)  recovery    6.2%  slope 0.437 intercept -0.144
+    deepseek-v4-pro  n=2661  stored split cal 531 / test 2130; event-grouped cal 526 / test 2135; test rows in a straddling event 218
+      stored split                     n=2130  Brier 0.2264 -> 0.2190 (market 0.1847)  recovery   17.9%  slope 0.411 intercept -0.263
+      stored split, clean rows only    n=1912  Brier 0.2282 -> 0.2221 (market 0.1879)  recovery   15.3%  slope 0.411 intercept -0.263
+      event-grouped split              n=2135  Brier 0.2213 -> 0.2181 (market 0.1827)  recovery    8.2%  slope 0.297 intercept -0.223
+# --- exit 0, 3s

@@ -1,0 +1,76 @@
+\section{Limitations}
+\label{sec:limitations}
+
+These are ordered by how much they could move a conclusion.
+
+\textbf{1. The memorisation check could not be validated.} Protection against a
+model recalling an outcome rests on the release-date rule and the memory probe.
+A model released long after \winA settled (\mbox{GLM-5.3 Flash}, 26 August
+2026) was flagged at 1.4 per cent on 500 \winA rows, less than the 1.6 to 3.4
+per cent for the eligible models on the same rows. The probe is therefore a
+filter of unknown power, and the leakage argument rests on release dates alone
+(Appendix~\ref{app:memory}).
+
+\textbf{2. Short, sports-heavy windows.} Sports make up 82, 73 and 81 per cent
+of primary rows, and our findings may not transfer to slower political or
+macroeconomic questions. The gap is larger on non-sports rows
+(Appendix~\ref{app:nonsports}), so the sports concentration is not what produces
+it; but the non-sports evidence is thin.
+
+\textbf{3. One prompt, one sample, and what that means.} Every model answered one
+prompt once, at temperature 0 where the host accepted it. We did not vary the prompt
+wording, so the measured agreement may overstate what would
+remain under varied prompts: we can say the models move together given a common
+question but cannot separate shared judgment from shared phrasing. The
+same-developer comparison does not settle it either way, for the reasons
+Section~\ref{sec:results-correlated} gives. Nor can we say how much of each
+model's noise is specific to the one wording and draw it got; we did not average over
+prompt variants or repeated samples.
+
+\textbf{4. Thinking budgets are not comparable.} At the 1{,}000-token cap sit
+99 per cent of \mKimiKTwoFive's and \mKimiKTwoSix's rows, 86 to 92 per cent of
+\mDeepSeekVThreeTwo's and 46 to 50 per cent of \mDeepSeekVFourPro's (its median
+over the whole run, primary and non-primary rows together, sits at the cap in
+Table~\ref{tab:roster}), so we cannot say
+what they would do uncapped. The model-versus-market comparison does not depend
+on cross-model comparability, but a capped model might do better uncapped.
+
+\textbf{5. Hosts and numeric precision differ.} Open-weight models are served at
+whatever precision the host offers, including int4 for \mKimiKTwoFive, and one
+host truncated \mDeepSeekVFourPro's output at 3{,}000 tokens. A differently
+served copy might score differently.
+
+\textbf{6. Question text on \winB and \winC was captured after settlement.}
+Exchanges can edit text after listing, so equality with what a trader saw is
+assumed, not verified. \winA's text is verified, being captured live. Had an
+exchange clarified a rule mid-life, our models would have seen the clarified
+version and the crowd would not, which favours the models.
+
+\textbf{7. The news arm rests on few rows.} Only 1{,}434, 563 and 752 primary
+rows carry news, and the analyses run on the test-split share of those.
+
+\textbf{8. The price is not a certified probability, and the midpoint is not
+executable.} The accuracy comparison is against the midpoint of the best bid and
+ask, a standard summary but not a price anyone can trade at; the trading
+simulation fills at the quoted bid and ask with fees charged, and the two should
+not be read as the same exercise. The price bounds the mean belief only
+within an interval, wide except near even money~\citep{manski2006}, though in
+practice prices are usually close to mean beliefs~\citep{wolfers2006}. Our
+claims are about the price as a forecast; a reader who wants ``collective human
+belief beats the models'' needs the extra assumption.
+
+\textbf{9. The prompt is price-blind.} Our results say nothing about how a model
+would trade with the price in view.
+
+\textbf{10. Trading is simulated from a snapshot.} There is no queue position,
+price impact, partial fill or later opportunity to trade, so returns are an
+optimistic bound. This matters most for the against-the-crowd rows where the
+losses are largest.
+
+\textbf{11. \winC cannot be fully reproduced from the release.} \kalshi's terms do
+not permit redistributing market data, so \winC ships as identifiers and model
+outputs only.
+
+\textbf{12. No non-LLM sports baseline.} We have not run a simple non-LLM
+baseline on the sports rows, which would bound how much of the market's advantage
+needs no language model.

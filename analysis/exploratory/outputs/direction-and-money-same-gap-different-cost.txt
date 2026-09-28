@@ -1,0 +1,29 @@
+# output of analysis/exploratory/direction-and-money-same-gap-different-cost.py
+# run: 2026-09-17T06:54:50Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+=== pooled ratio cost/gap^2 by direction, gap 0.05-0.5, per window ===
+A against n= 1965 mean_cost=0.0332 mean_gap2=0.0368 ratio=0.903
+A with n= 1598 mean_cost=-0.0088 mean_gap2=0.0337 ratio=-0.261
+B against n= 5472 mean_cost=0.0325 mean_gap2=0.0384 ratio=0.847
+B with n= 3117 mean_cost=0.0060 mean_gap2=0.0255 ratio=0.237
+C against n= 9805 mean_cost=0.0460 mean_gap2=0.0466 ratio=0.987
+C with n= 3595 mean_cost=0.0183 mean_gap2=0.0244 ratio=0.749
+
+=== within gap bin 0.10-0.20, with vs against, per window (Brier cost, bootstrap) ===
+A with n= 546 mean_cost=0.0022 CI=[-0.0114,0.0173] mean_gap2=0.0211
+A against n= 691 mean_cost=0.0329 CI=[0.0187,0.0463] mean_gap2=0.0216
+A with-minus-against diff=-0.0307 CI=[-0.0502,-0.0101]
+B with n= 1184 mean_cost=0.0004 CI=[-0.0116,0.0146] mean_gap2=0.0204
+B against n= 1881 mean_cost=0.0217 CI=[0.0109,0.0320] mean_gap2=0.0209
+B with-minus-against diff=-0.0213 CI=[-0.0382,-0.0051]
+C with n= 1332 mean_cost=0.0169 CI=[0.0035,0.0290] mean_gap2=0.0203
+C against n= 3229 mean_cost=0.0226 CI=[0.0133,0.0311] mean_gap2=0.0212
+C with-minus-against diff=-0.0057 CI=[-0.0201,0.0105]
+
+=== gap bin 0.20-0.30, with-minus-against, per window ===
+A n_with= 292 n_against= 311 diff=-0.0653 CI=[-0.1089,-0.0205]
+B n_with= 378 n_against= 848 diff=-0.0358 CI=[-0.0779,0.0113]
+C n_with= 460 n_against= 1781 diff=-0.0397 CI=[-0.0772,-0.0003]
+# --- exit 0, 4s

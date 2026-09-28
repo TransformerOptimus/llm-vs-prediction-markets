@@ -1,0 +1,27 @@
+# output of analysis/exploratory/ladders-and-extremes-exclusion-hides-gap.py
+# run: 2026-09-17T06:55:29Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+window A: n_all=11324 n_primary=6183 n_excl=5141
+  primary edge = -0.0163
+  all edge = -0.0526
+  excluded edge = -0.0962
+  excluded-primary = -0.0799
+  excluded rows %% = 45.4
+  excluded share of summed (negative edge magnitude): 83.1%
+window B: n_all=26719 n_primary=14910 n_excl=11809
+  primary edge = -0.0298
+  all edge = -0.0430
+  excluded edge = -0.0597
+  excluded-primary = -0.0298
+  excluded rows %% = 44.2
+  excluded share of summed (negative edge magnitude): 61.3%
+window C: n_all=31326 n_primary=21337 n_excl=9989
+  primary edge = -0.0372
+  all edge = -0.0356
+  excluded edge = -0.0324
+  excluded-primary = 0.0048
+  excluded rows %% = 31.9
+  excluded share of summed (negative edge magnitude): 29.0%
+# --- exit 0, 2s

@@ -1,0 +1,88 @@
+# output of analysis/exploratory/correlated-errors-pair-ranking.py (run with --test-split)
+# run: 2026-09-22T06:28:06Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: common rows per window (every roster model forecast the row), forecasts view, mode normal, status in ('ok', 'ok_after_retry'), primary set; intervals = 1000 event resamples, seed 20260902
+=== window A: 1237 common rows, 625 events, 6 pairs
+  kimi-k2.5        deepseek-v3.2    r(p-q)=0.878  r(p)=0.900  r(error)=0.979
+  gpt-5.2          kimi-k2.5        r(p-q)=0.834  r(p)=0.872  r(error)=0.974
+  gpt-5.2          deepseek-v3.2    r(p-q)=0.823  r(p)=0.860  r(error)=0.972
+  gpt-oss-120b     deepseek-v3.2    r(p-q)=0.782  r(p)=0.798  r(error)=0.960
+  gpt-oss-120b     kimi-k2.5        r(p-q)=0.767  r(p)=0.789  r(error)=0.958
+  gpt-5.2          gpt-oss-120b     r(p-q)=0.722  r(p)=0.750  r(error)=0.952
+  loosest pair: gpt-5.2 / gpt-oss-120b r(p-q)=0.722; tightest: kimi-k2.5 / deepseek-v3.2 r(p-q)=0.878
+  gpt-oss pairs minus reference pairs, r(p-q): -0.088 [-0.119, -0.059]  (n pairs 3 vs 3)
+=== window B: 1471 common rows, 1190 events, 28 pairs
+  kimi-k2.5        kimi-k2.6        r(p-q)=0.910  r(p)=0.924  r(error)=0.985
+  gpt-5.2          gpt-5.5          r(p-q)=0.872  r(p)=0.902  r(error)=0.980
+  gpt-5.2          kimi-k2.5        r(p-q)=0.864  r(p)=0.887  r(error)=0.977
+  gpt-5.2          kimi-k2.6        r(p-q)=0.854  r(p)=0.883  r(error)=0.976
+  kimi-k2.5        deepseek-v3.2    r(p-q)=0.841  r(p)=0.860  r(error)=0.973
+  deepseek-v3.2    kimi-k2.6        r(p-q)=0.839  r(p)=0.863  r(error)=0.973
+  kimi-k2.5        glm-5.1          r(p-q)=0.835  r(p)=0.861  r(error)=0.971
+  gpt-5.2          deepseek-v3.2    r(p-q)=0.833  r(p)=0.860  r(error)=0.972
+  gpt-5.2          glm-5.1          r(p-q)=0.828  r(p)=0.861  r(error)=0.970
+  glm-5.1          kimi-k2.6        r(p-q)=0.826  r(p)=0.857  r(error)=0.970
+  gpt-5.5          kimi-k2.6        r(p-q)=0.821  r(p)=0.861  r(error)=0.971
+  kimi-k2.5        gpt-5.5          r(p-q)=0.808  r(p)=0.845  r(error)=0.969
+  kimi-k2.6        deepseek-v4-pro  r(p-q)=0.806  r(p)=0.856  r(error)=0.964
+  kimi-k2.5        deepseek-v4-pro  r(p-q)=0.805  r(p)=0.853  r(error)=0.963
+  glm-5.1          deepseek-v4-pro  r(p-q)=0.799  r(p)=0.847  r(error)=0.961
+  gpt-5.2          deepseek-v4-pro  r(p-q)=0.795  r(p)=0.848  r(error)=0.962
+  deepseek-v3.2    glm-5.1          r(p-q)=0.791  r(p)=0.823  r(error)=0.964
+  gpt-5.5          glm-5.1          r(p-q)=0.789  r(p)=0.834  r(error)=0.964
+  deepseek-v3.2    gpt-5.5          r(p-q)=0.776  r(p)=0.818  r(error)=0.964
+  gpt-5.5          deepseek-v4-pro  r(p-q)=0.774  r(p)=0.835  r(error)=0.958
+  gpt-oss-120b     kimi-k2.6        r(p-q)=0.758  r(p)=0.758  r(error)=0.952
+  deepseek-v3.2    deepseek-v4-pro  r(p-q)=0.757  r(p)=0.816  r(error)=0.955
+  gpt-oss-120b     kimi-k2.5        r(p-q)=0.754  r(p)=0.750  r(error)=0.951
+  gpt-oss-120b     deepseek-v3.2    r(p-q)=0.747  r(p)=0.737  r(error)=0.950
+  gpt-5.2          gpt-oss-120b     r(p-q)=0.746  r(p)=0.749  r(error)=0.950
+  gpt-oss-120b     glm-5.1          r(p-q)=0.706  r(p)=0.713  r(error)=0.941
+  gpt-oss-120b     gpt-5.5          r(p-q)=0.668  r(p)=0.682  r(error)=0.936
+  gpt-oss-120b     deepseek-v4-pro  r(p-q)=0.657  r(p)=0.697  r(error)=0.928
+  loosest pair: gpt-oss-120b / deepseek-v4-pro r(p-q)=0.657; tightest: kimi-k2.5 / kimi-k2.6 r(p-q)=0.910
+  gpt-oss pairs minus reference pairs, r(p-q): -0.099 [-0.125, -0.074]  (n pairs 7 vs 19)
+  kimi-k2.5/kimi-k2.6 minus reference pairs, r(p-q): +0.091 [+0.073, +0.113]
+  deepseek-v3.2/v4-pro minus reference pairs, r(p-q): -0.061 [-0.090, -0.036]
+  kimi pair minus deepseek pair: +0.153 [+0.117, +0.192]
+  same contrasts on r(p): kimi pair 0.924, deepseek pair 0.816, reference mean 0.856, gpt-oss pairs mean 0.727
+  same contrasts on r(error): kimi pair 0.985, deepseek pair 0.955, reference mean 0.969, gpt-oss pairs mean 0.944
+=== window C: 2125 common rows, 1813 events, 28 pairs
+  kimi-k2.5        kimi-k2.6        r(p-q)=0.891  r(p)=0.912  r(error)=0.981
+  deepseek-v3.2    kimi-k2.6        r(p-q)=0.846  r(p)=0.868  r(error)=0.973
+  kimi-k2.5        deepseek-v3.2    r(p-q)=0.840  r(p)=0.863  r(error)=0.972
+  kimi-k2.5        glm-5.1          r(p-q)=0.828  r(p)=0.863  r(error)=0.970
+  gpt-5.2          glm-5.1          r(p-q)=0.823  r(p)=0.867  r(error)=0.970
+  glm-5.1          kimi-k2.6        r(p-q)=0.816  r(p)=0.852  r(error)=0.968
+  glm-5.1          deepseek-v4-pro  r(p-q)=0.812  r(p)=0.867  r(error)=0.965
+  gpt-5.2          kimi-k2.5        r(p-q)=0.805  r(p)=0.855  r(error)=0.968
+  kimi-k2.5        deepseek-v4-pro  r(p-q)=0.805  r(p)=0.864  r(error)=0.964
+  deepseek-v3.2    glm-5.1          r(p-q)=0.801  r(p)=0.831  r(error)=0.965
+  gpt-5.2          kimi-k2.6        r(p-q)=0.800  r(p)=0.849  r(error)=0.966
+  gpt-5.2          gpt-5.5          r(p-q)=0.798  r(p)=0.863  r(error)=0.969
+  kimi-k2.6        deepseek-v4-pro  r(p-q)=0.797  r(p)=0.856  r(error)=0.962
+  gpt-5.2          deepseek-v3.2    r(p-q)=0.791  r(p)=0.834  r(error)=0.964
+  gpt-5.2          deepseek-v4-pro  r(p-q)=0.789  r(p)=0.855  r(error)=0.962
+  deepseek-v3.2    deepseek-v4-pro  r(p-q)=0.768  r(p)=0.832  r(error)=0.957
+  kimi-k2.5        gpt-5.5          r(p-q)=0.763  r(p)=0.828  r(error)=0.962
+  gpt-5.5          kimi-k2.6        r(p-q)=0.760  r(p)=0.822  r(error)=0.961
+  deepseek-v3.2    gpt-5.5          r(p-q)=0.757  r(p)=0.807  r(error)=0.960
+  gpt-oss-120b     deepseek-v3.2    r(p-q)=0.754  r(p)=0.762  r(error)=0.953
+  gpt-oss-120b     kimi-k2.5        r(p-q)=0.748  r(p)=0.771  r(error)=0.952
+  gpt-oss-120b     kimi-k2.6        r(p-q)=0.747  r(p)=0.769  r(error)=0.952
+  gpt-5.5          glm-5.1          r(p-q)=0.746  r(p)=0.813  r(error)=0.959
+  gpt-5.5          deepseek-v4-pro  r(p-q)=0.727  r(p)=0.818  r(error)=0.952
+  gpt-oss-120b     glm-5.1          r(p-q)=0.711  r(p)=0.740  r(error)=0.945
+  gpt-5.2          gpt-oss-120b     r(p-q)=0.688  r(p)=0.733  r(error)=0.942
+  gpt-oss-120b     deepseek-v4-pro  r(p-q)=0.659  r(p)=0.729  r(error)=0.932
+  gpt-oss-120b     gpt-5.5          r(p-q)=0.626  r(p)=0.684  r(error)=0.933
+  loosest pair: gpt-oss-120b / gpt-5.5 r(p-q)=0.626; tightest: kimi-k2.5 / kimi-k2.6 r(p-q)=0.891
+  gpt-oss pairs minus reference pairs, r(p-q): -0.090 [-0.116, -0.067]  (n pairs 7 vs 19)
+  kimi-k2.5/kimi-k2.6 minus reference pairs, r(p-q): +0.096 [+0.076, +0.116]
+  deepseek-v3.2/v4-pro minus reference pairs, r(p-q): -0.026 [-0.049, -0.003]
+  kimi pair minus deepseek pair: +0.122 [+0.088, +0.156]
+  same contrasts on r(p): kimi pair 0.912, deepseek pair 0.832, reference mean 0.846, gpt-oss pairs mean 0.741
+  same contrasts on r(error): kimi pair 0.981, deepseek pair 0.957, reference mean 0.965, gpt-oss pairs mean 0.944
+# --- exit 0, 2s

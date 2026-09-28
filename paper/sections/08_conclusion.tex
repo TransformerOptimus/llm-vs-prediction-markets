@@ -1,0 +1,27 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+On two venues, over three short windows of mostly sports markets, with live
+books required on two of them, models that never saw a price, and a roster
+restricted to versions published before the outcomes they forecast, the market was more accurate than every model we
+scored. The gap is sorting rather than calibration: resolution accounts for 79 to 99
+per cent of it (bin-free), and refitting each model's probability scale on held-out data
+leaves most of it standing, even on the non-sports rows where calibration
+matters most. Part of the gap is information, but news never closes it and the
+effect is individually significant on only one window. The models err together beyond what their fitted lines to the price or a row's observable features explain; supplying news lowers that agreement only slightly. In
+accuracy, though not in returns, the models' deficit shrinks as books deepen,
+clearly on one window and less robustly on another.
+
+Because it is a resolution gap, better calibration will help little outside non-sports
+rows; the models would have to discriminate better, not report better. And
+because the errors are shared, no combination of the models reached the market: equal-weight averaging ties or trails
+the best single model, the extremizing factor fitted on held-out data is below
+one on both eight-model windows, and cross-fitted learned weights gain at most about 0.002 in Brier over the best single model, still clearly short of the price. At these thinking budgets \mGptFiveFive sorts best, yet clearly trails the market and errs with the rest.
+
+We are cautious about markets that admit AI traders: our models never saw a
+price, so we cannot say how they would behave inside one. The correlated-error
+result establishes a precondition for that concern, not the concern itself: under
+this protocol the signals these models produce are common to them, whether from
+shared ignorance or shared judgment, so a market drawing on many of them may be
+drawing on fewer independent opinions than the count
+suggests~\citep{kleinberg2021}.

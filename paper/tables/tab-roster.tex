@@ -1,0 +1,17 @@
+\begingroup\footnotesize\setlength{\tabcolsep}{3pt}%
+\begin{tabular}{@{}llllllll@{}}
+\toprule
+Model & Windows & Released & Host & Precision & Thinking & Median thinking A / B / C & Failed rows (all in play) A / B / C \\
+\midrule
+\mGptFiveTwo & A, B, C & 2025-12-10 & OpenAI & -- & effort medium & 233 / 198 / 223 & 0 / 0 / 0 \\
+\mGptOss & A, B, C & 2025-08-05 & AkashML & bf16 & effort medium & 264 / 218 / 219 & 0 / 0 / 0 \\
+\mKimiKTwoFive & A, B, C & 2026-01-27 & SiliconFlow & int4 & cap 1{,}000 tokens & 1{,}000 / 1{,}000 / 1{,}000 & 28 / 7 / 6 \\
+\mDeepSeekVThreeTwo & A, B, C & 2025-12-01 & SiliconFlow & fp8 & cap 1{,}000 tokens & 1{,}000 / 1{,}000 / 1{,}000 & 0 / 0 / 0 \\
+\midrule
+\mGptFiveFive & B, C & 2026-04-24 & OpenAI & -- & effort medium & -- / 512 / 512 & -- / 0 / 7 \\
+\mGlmFiveOne & B, C & 2026-04-07 & SiliconFlow & fp8 & cap 1{,}000 tokens & -- / 449 / 411 & -- / 0 / 0 \\
+\mKimiKTwoSix & B, C & 2026-04-20 & SiliconFlow & fp8 & cap 1{,}000 tokens & -- / 1{,}000 / 1{,}000 & -- / 1 / 4 \\
+\mDeepSeekVFourPro & B, C & 2026-04-24 & Alibaba & fp8 & cap 1{,}000 tokens & -- / 1{,}000 / 1{,}000 & -- / 9 / 17 \\
+\bottomrule
+\end{tabular}
+\endgroup

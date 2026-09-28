@@ -1,0 +1,104 @@
+# output of analysis/exploratory/failures-imputation-sensitivity.py
+# lines marked [withheld: Kalshi data] carry Window C detail the release cannot include
+# run: 2026-09-22T12:53:29Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: primary set, forecasts view, mode normal, status in ('ok', 'ok_after_retry') or 'failed', probe-validation model excluded. 'failed' = the reply produced no parseable probability after the stricter re-ask. Brier edge = market Brier minus model Brier on the same rows; positive means the model beat the price. Intervals = 1000 event resamples, seed 20260902.
+failed rows across all scored normal-mode runs: 79. The rest of this script is about the primary analysis set only, which is where the headlines are scored; the others sit on rows no headline uses (ladder rows, out-of-price-range rows and the other primary-set exclusions).
+failed rows in the primary set: 42 in total, from 8 model-window cells: gpt-5.5 C 2; deepseek-v4-pro B 6; deepseek-v4-pro C 8; kimi-k2.5 A 17; kimi-k2.5 B 3; kimi-k2.5 C 4; kimi-k2.6 B 1; kimi-k2.6 C 1
+== window A, test split
+  gpt-5.2          scored 1248  failed 0   | edge -0.0153 [-0.0262, -0.0049]  (no failed rows: nothing to impute)
+  gpt-oss-120b     scored 1248  failed 0   | edge -0.0305 [-0.0450, -0.0166]  (no failed rows: nothing to impute)
+  kimi-k2.5        scored 1237  failed 11  (0.88% of the cell)
+      drop (current)   edge -0.0129 [-0.0256, -0.0013]
+      filled with 0.5  edge -0.0140 [-0.0266, -0.0027]   shift -0.00108
+      worst case       edge -0.0206 [-0.0342, -0.0082]   shift -0.00769
+  deepseek-v3.2    scored 1248  failed 0   | edge -0.0143 [-0.0263, -0.0032]  (no failed rows: nothing to impute)
+== window A, both splits
+  gpt-5.2          scored 1550  failed 0   | edge -0.0137 [-0.0247, -0.0037]  (no failed rows: nothing to impute)
+  gpt-oss-120b     scored 1550  failed 0   | edge -0.0276 [-0.0425, -0.0154]  (no failed rows: nothing to impute)
+  kimi-k2.5        scored 1533  failed 17  (1.10% of the cell)
+      drop (current)   edge -0.0106 [-0.0225, +0.0009]
+      filled with 0.5  edge -0.0121 [-0.0238, -0.0009]   shift -0.00151
+      worst case       edge -0.0203 [-0.0329, -0.0080]   shift -0.00973
+  deepseek-v3.2    scored 1550  failed 0   | edge -0.0133 [-0.0257, -0.0021]  (no failed rows: nothing to impute)
+== window B, test split
+  gpt-5.2          scored 1480  failed 0   | edge -0.0255 [-0.0341, -0.0168]  (no failed rows: nothing to impute)
+  gpt-oss-120b     scored 1480  failed 0   | edge -0.0416 [-0.0515, -0.0312]  (no failed rows: nothing to impute)
+  kimi-k2.5        scored 1477  failed 3   (0.20% of the cell)
+      drop (current)   edge -0.0294 [-0.0388, -0.0207]
+      filled with 0.5  edge -0.0293 [-0.0387, -0.0207]   shift +0.00009
+      worst case       edge -0.0308 [-0.0401, -0.0221]   shift -0.00143
+  deepseek-v3.2    scored 1480  failed 0   | edge -0.0272 [-0.0361, -0.0185]  (no failed rows: nothing to impute)
+  gpt-5.5          scored 1480  failed 0   | edge -0.0214 [-0.0298, -0.0130]  (no failed rows: nothing to impute)
+  glm-5.1          scored 1480  failed 0   | edge -0.0284 [-0.0381, -0.0194]  (no failed rows: nothing to impute)
+  kimi-k2.6        scored 1479  failed 1   (0.07% of the cell)
+      drop (current)   edge -0.0264 [-0.0353, -0.0184]
+      filled with 0.5  edge -0.0261 [-0.0350, -0.0181]   shift +0.00027
+      worst case       edge -0.0266 [-0.0355, -0.0186]   shift -0.00024
+  deepseek-v4-pro  scored 1475  failed 5   (0.34% of the cell)
+      drop (current)   edge -0.0298 [-0.0399, -0.0203]
+      filled with 0.5  edge -0.0296 [-0.0397, -0.0199]   shift +0.00018
+      worst case       edge -0.0322 [-0.0428, -0.0224]   shift -0.00236
+== window B, both splits
+  gpt-5.2          scored 1865  failed 0   | edge -0.0259 [-0.0341, -0.0179]  (no failed rows: nothing to impute)
+  gpt-oss-120b     scored 1865  failed 0   | edge -0.0434 [-0.0525, -0.0344]  (no failed rows: nothing to impute)
+  kimi-k2.5        scored 1862  failed 3   (0.16% of the cell)
+      drop (current)   edge -0.0291 [-0.0373, -0.0204]
+      filled with 0.5  edge -0.0290 [-0.0373, -0.0204]   shift +0.00007
+      worst case       edge -0.0302 [-0.0384, -0.0217]   shift -0.00114
+  deepseek-v3.2    scored 1865  failed 0   | edge -0.0281 [-0.0356, -0.0198]  (no failed rows: nothing to impute)
+  gpt-5.5          scored 1865  failed 0   | edge -0.0214 [-0.0291, -0.0138]  (no failed rows: nothing to impute)
+  glm-5.1          scored 1865  failed 0   | edge -0.0301 [-0.0385, -0.0214]  (no failed rows: nothing to impute)
+  kimi-k2.6        scored 1864  failed 1   (0.05% of the cell)
+      drop (current)   edge -0.0275 [-0.0356, -0.0195]
+      filled with 0.5  edge -0.0273 [-0.0354, -0.0193]   shift +0.00022
+      worst case       edge -0.0277 [-0.0358, -0.0198]   shift -0.00019
+  deepseek-v4-pro  scored 1859  failed 6   (0.32% of the cell)
+      drop (current)   edge -0.0332 [-0.0425, -0.0239]
+      filled with 0.5  edge -0.0331 [-0.0424, -0.0240]   shift +0.00010
+      worst case       edge -0.0355 [-0.0454, -0.0262]   shift -0.00232
+== window C, test split
+  gpt-5.2          scored 2137  failed 0   | edge -0.0372 [-0.0446, -0.0295]  (no failed rows: nothing to impute)
+  gpt-oss-120b     scored 2137  failed 0   | edge -0.0431 [-0.0516, -0.0347]  (no failed rows: nothing to impute)
+  kimi-k2.5        scored 2134  failed 3   (0.14% of the cell)
+      drop (current)   edge -0.0361 [-0.0432, -0.0283]
+      filled with 0.5   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+      worst case   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+  deepseek-v3.2    scored 2137  failed 0   | edge -0.0402 [-0.0480, -0.0325]  (no failed rows: nothing to impute)
+  gpt-5.5          scored 2136  failed 1   (0.05% of the cell)
+      drop (current)   edge -0.0272 [-0.0337, -0.0201]
+      filled with 0.5   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+      worst case   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+  glm-5.1          scored 2137  failed 0   | edge -0.0409 [-0.0486, -0.0332]  (no failed rows: nothing to impute)
+  kimi-k2.6        scored 2136  failed 1   (0.05% of the cell)
+      drop (current)   edge -0.0397 [-0.0472, -0.0321]
+      filled with 0.5   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+      worst case   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+  deepseek-v4-pro  scored 2130  failed 7   (0.33% of the cell)
+      drop (current)   edge -0.0418 [-0.0505, -0.0333]
+      filled with 0.5   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+      worst case   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+== window C, both splits
+  gpt-5.2          scored 2669  failed 0   | edge -0.0364 [-0.0432, -0.0291]  (no failed rows: nothing to impute)
+  gpt-oss-120b     scored 2669  failed 0   | edge -0.0422 [-0.0493, -0.0337]  (no failed rows: nothing to impute)
+  kimi-k2.5        scored 2665  failed 4   (0.15% of the cell)
+      drop (current)   edge -0.0355 [-0.0425, -0.0282]
+      filled with 0.5   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+      worst case   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+  deepseek-v3.2    scored 2669  failed 0   | edge -0.0385 [-0.0452, -0.0311]  (no failed rows: nothing to impute)
+  gpt-5.5          scored 2667  failed 2   (0.07% of the cell)
+      drop (current)   edge -0.0261 [-0.0319, -0.0198]
+      filled with 0.5   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+      worst case   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+  glm-5.1          scored 2669  failed 0   | edge -0.0394 [-0.0462, -0.0314]  (no failed rows: nothing to impute)
+  kimi-k2.6        scored 2668  failed 1   (0.04% of the cell)
+      drop (current)   edge -0.0387 [-0.0458, -0.0314]
+      filled with 0.5   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+      worst case   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+  deepseek-v4-pro  scored 2661  failed 8   (0.30% of the cell)
+      drop (current)   edge -0.0405 [-0.0481, -0.0318]
+      filled with 0.5   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+      worst case   [withheld: Kalshi data] (rests on 1 to 8 failed markets)
+# --- exit 0, 40s

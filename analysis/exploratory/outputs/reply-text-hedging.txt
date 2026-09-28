@@ -1,0 +1,35 @@
+# output of analysis/exploratory/reply-text-hedging.py
+# run: 2026-09-17T06:55:51Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+total primary scored rows: 42430
+models: ['openai/gpt-5.2', 'openai/gpt-5.5', 'openrouter/deepseek/deepseek-v3.2', 'openrouter/deepseek/deepseek-v4-pro', 'openrouter/moonshotai/kimi-k2.5', 'openrouter/moonshotai/kimi-k2.6', 'openrouter/openai/gpt-oss-120b', 'openrouter/z-ai/glm-5.1']
+[A] n=6183 hedged=946 share=0.153
+   models_qualifying(30+ both sides)=4  dist_diff=0.0274 conf_diff=-0.0403 p_diff=0.0655 crowd_share_diff=-0.0861 be_diff=-0.0277
+[B] n=14910 hedged=2183 share=0.146
+   models_qualifying(30+ both sides)=8  dist_diff=0.0216 conf_diff=-0.0460 p_diff=0.0767 crowd_share_diff=-0.0764 be_diff=-0.0050
+[C] n=21337 hedged=3288 share=0.154
+   models_qualifying(30+ both sides)=8  dist_diff=0.0100 conf_diff=-0.0463 p_diff=0.0446 crowd_share_diff=-0.1156 be_diff=0.0017
+
+=== confound: hedging share per model (is it driven by one/two models?) ===
+openai/gpt-5.2                                n=  6084 hedged=  558 share=0.092
+openai/gpt-5.5                                n=  4532 hedged=  471 share=0.104
+openrouter/deepseek/deepseek-v3.2             n=  6084 hedged= 1495 share=0.246
+openrouter/deepseek/deepseek-v4-pro           n=  4520 hedged=  811 share=0.179
+openrouter/moonshotai/kimi-k2.5               n=  6060 hedged=  997 share=0.165
+openrouter/moonshotai/kimi-k2.6               n=  4532 hedged=  813 share=0.179
+openrouter/openai/gpt-oss-120b                n=  6084 hedged=  341 share=0.056
+openrouter/z-ai/glm-5.1                       n=  4534 hedged=  931 share=0.205
+
+=== confound: does hedging correlate with q band (mechanical: q<0.5 rows more numerous)? ===
+band 0.05-0.25: n=12983 hedge_share=0.122
+band 0.25-0.5: n=16613 hedge_share=0.148
+band 0.5-0.75: n=9761 hedge_share=0.178
+band 0.75-0.95: n=3815 hedge_share=0.191
+
+=== confound: bare/short replies (forced strict-retry) overlap with hedge flag? ===
+[A] bare_n=513 bare_hedged=0 bare_hedge_share=0.000
+[B] bare_n=797 bare_hedged=0 bare_hedge_share=0.000
+[C] bare_n=1493 bare_hedged=0 bare_hedge_share=0.000
+# --- exit 0, 5s

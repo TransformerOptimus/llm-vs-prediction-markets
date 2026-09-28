@@ -1,0 +1,75 @@
+# output of analysis/exploratory/ladders-and-extremes-longshot-floor.py
+# lines marked [withheld: Kalshi data] carry Window C detail the release cannot include
+# run: 2026-09-17T06:55:31Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+Window A: n=1866 markets~111 mean p=0.093 mean q=0.012 share p>q=0.82 share p>=0.05=0.52
+Window B: n=4084 markets~305 mean p=0.116 mean q=0.018 share p>q=0.79 share p>=0.05=0.57
+Window C: n=3751 markets~265 mean p=0.081 mean q=0.024 share p>q=0.64 share p>=0.05=0.43
+
+=== Per-model breakdown (share p>q) on these rows ===
+-- window A --
+  openai/gpt-5.2: n=467 share p>q=0.75 mean p=0.077 mean q=0.012
+  openrouter/deepseek/deepseek-v3.2: n=467 share p>q=0.84 mean p=0.106 mean q=0.012
+  openrouter/moonshotai/kimi-k2.5: n=465 share p>q=0.80 mean p=0.075 mean q=0.012
+  openrouter/openai/gpt-oss-120b: n=467 share p>q=0.91 mean p=0.115 mean q=0.012
+-- window B --
+  openai/gpt-5.2: n=511 share p>q=0.75 mean p=0.097 mean q=0.018
+  openai/gpt-5.5: n=511 share p>q=0.75 mean p=0.109 mean q=0.018
+  openrouter/deepseek/deepseek-v3.2: n=511 share p>q=0.85 mean p=0.152 mean q=0.018
+  openrouter/deepseek/deepseek-v4-pro: n=510 share p>q=0.66 mean p=0.098 mean q=0.018
+  openrouter/moonshotai/kimi-k2.5: n=508 share p>q=0.80 mean p=0.111 mean q=0.018
+  openrouter/moonshotai/kimi-k2.6: n=511 share p>q=0.80 mean p=0.106 mean q=0.018
+  openrouter/openai/gpt-oss-120b: n=511 share p>q=0.89 mean p=0.144 mean q=0.018
+  openrouter/z-ai/glm-5.1: n=511 share p>q=0.82 mean p=0.112 mean q=0.018
+-- window C --
+  openai/gpt-5.2: n=470 share p>q=0.59 mean p=0.067 mean q=0.024
+  openai/gpt-5.5: n=465 share p>q=0.56 mean p=0.073 mean q=0.024
+  openrouter/deepseek/deepseek-v3.2: n=470 share p>q=0.67 mean p=0.099 mean q=0.024
+  openrouter/deepseek/deepseek-v4-pro: n=469 share p>q=0.45 mean p=0.060 mean q=0.024
+  openrouter/moonshotai/kimi-k2.5: n=469 share p>q=0.64 mean p=0.084 mean q=0.024
+  openrouter/moonshotai/kimi-k2.6: n=468 share p>q=0.65 mean p=0.085 mean q=0.025
+  openrouter/openai/gpt-oss-120b: n=470 share p>q=0.82 mean p=0.103 mean q=0.024
+  openrouter/z-ai/glm-5.1: n=470 share p>q=0.73 mean p=0.081 mean q=0.024
+
+=== CONFOUND CHECK: is there a general 'floor' regardless of q? ===
+Look at ALL primary-set rows (q in full range), bucket q into deciles, report mean p - q per decile.
+-- window A n=6183 --
+  q in [0.05,0.15): n=625 mean p=0.151 mean(p-q)=+0.053
+  q in [0.15,0.25): n=994 mean p=0.241 mean(p-q)=+0.037
+  q in [0.25,0.35): n=1375 mean p=0.280 mean(p-q)=-0.009
+  q in [0.35,0.45): n=914 mean p=0.337 mean(p-q)=-0.067
+  q in [0.45,0.55): n=1038 mean p=0.461 mean(p-q)=-0.035
+  q in [0.55,0.65): n=518 mean p=0.509 mean(p-q)=-0.083
+  q in [0.65,0.75): n=296 mean p=0.558 mean(p-q)=-0.137
+  q in [0.75,0.85): n=220 mean p=0.556 mean(p-q)=-0.242
+  q in [0.85,0.95): n=203 mean p=0.551 mean(p-q)=-0.342
+-- window B n=14910 --
+  q in [0.05,0.15): n=2487 mean p=0.170 mean(p-q)=+0.079
+  q in [0.15,0.25): n=2430 mean p=0.259 mean(p-q)=+0.060
+  q in [0.25,0.35): n=2551 mean p=0.312 mean(p-q)=+0.019
+  q in [0.35,0.45): n=2478 mean p=0.370 mean(p-q)=-0.027
+  q in [0.45,0.55): n=1781 mean p=0.461 mean(p-q)=-0.035
+  q in [0.55,0.65): n=1184 mean p=0.503 mean(p-q)=-0.086
+  q in [0.65,0.75): n=839 mean p=0.527 mean(p-q)=-0.167
+  q in [0.75,0.85): n=656 mean p=0.561 mean(p-q)=-0.239
+  q in [0.85,0.95): n=480 mean p=0.574 mean(p-q)=-0.324
+  q in [0.95,1.01): n=24 mean p=0.534 mean(p-q)=-0.416
+-- window C n=21337 --
+  q in [0.05,0.15): n=3780 mean p=0.173 mean(p-q)=+0.085
+  q in [0.15,0.25): n=2356 mean p=0.287 mean(p-q)=+0.092
+  q in [0.25,0.35): n=2687 mean p=0.378 mean(p-q)=+0.085
+  q in [0.35,0.45): n=2952 mean p=0.431 mean(p-q)=+0.033
+  q in [0.45,0.55): n=3364 mean p=0.484 mean(p-q)=-0.011
+  q in [0.55,0.65): n=2566 mean p=0.524 mean(p-q)=-0.068
+  q in [0.65,0.75): n=1400 mean p=0.578 mean(p-q)=-0.118
+  q in [0.75,0.85): n=1152 mean p=0.606 mean(p-q)=-0.185
+  q in [0.85,0.95): n=1064 mean p=0.618 mean(p-q)=-0.272
+  q in [0.95,1.01): n=16 [withheld: Kalshi data] (2 markets)
+
+=== Does the low-p floor hold generally? min p seen per window on ALL rows ===
+window A: n=11324 min=0.0000 p1=0.0002 p5=0.0100 p10=0.0220
+window B: n=28935 min=0.0000 p1=0.0020 p5=0.0100 p10=0.0250
+window C: n=31326 min=0.0000 p1=0.0020 p5=0.0200 p10=0.0400
+# --- exit 0, 3s

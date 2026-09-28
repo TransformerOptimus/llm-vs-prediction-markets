@@ -1,0 +1,9 @@
+# output of analysis/exploratory/news-effect-coin-flip.py
+# run: 2026-09-17T06:55:38Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+window A n=5719 markets=1434 | helped 44.0% hurt 42.5% unchanged 13.5% | median d_brier 0.0000 mean +0.0134 [+0.0067, +0.0199] | mean gain when helped 0.0959, mean loss when hurt -0.0676 | rows moved >0.25: 404 (7.1%) carry 83% of the total gain, their d_brier +0.1566 [+0.0856, +0.2188] | rows moved <0.10: n=4185 d_brier +0.0002 [-0.0013, +0.0016]
+window B n=4495 markets=563 | helped 45.5% hurt 43.0% unchanged 11.5% | median d_brier 0.0000 mean +0.0062 [-0.0032, +0.0165] | mean gain when helped 0.1018, mean loss when hurt -0.0930 | rows moved >0.25: 399 (8.9%) carry 49% of the total gain, their d_brier +0.0348 [-0.0463, +0.1197] | rows moved <0.10: n=3099 d_brier +0.0005 [-0.0016, +0.0028]
+window C n=6000 markets=752 | helped 44.5% hurt 44.6% unchanged 10.8% | median d_brier 0.0000 mean +0.0115 [+0.0020, +0.0228] | mean gain when helped 0.1220, mean loss when hurt -0.0960 | rows moved >0.25: 639 (10.7%) carry 70% of the total gain, their d_brier +0.0754 [-0.0034, +0.1507] | rows moved <0.10: n=3919 d_brier +0.0012 [-0.0008, +0.0033]
+# --- exit 0, 3s

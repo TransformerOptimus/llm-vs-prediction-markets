@@ -1,0 +1,25 @@
+{
+  "_note": "An example plan for run_plan.py. It uses the free fake model, so it costs nothing and calls nothing. Copy it, list your own runs, and pass it with --plan. Keys starting with _ are notes and are ignored. Top level: max_per_lane is how many runs may go at once on one lane (a lane is the model's pinned host from models.json, so runs on the same host queue up); max_per_lane_by_lane overrides that for named lanes. entries run in file order within a lane, and every lane runs at once. Each entry: id (run ids become <id>_<window>); model (a key in models.json); model_spec (only for the fake model; real models are called as litellm:<model>); mode (normal, or memory_probe, which runs only rows with news); windows (one run per window); workers (parallel calls); budget_usd (spending cap per run; omit for none). Optional: row_list (a file of row ids or moment keys, relative to the repository root), ignore_eligibility, host_override (the model's backup host), lane, extra_flags (more run.py options, for example a row limit).",
+  "max_per_lane": 1,
+  "max_per_lane_by_lane": {},
+  "entries": [
+    {
+      "id": "fake-0.5_normal",
+      "model": "fake:0.5",
+      "model_spec": "fake:0.5",
+      "mode": "normal",
+      "windows": ["A"],
+      "workers": 4,
+      "extra_flags": ["--limit", "10"]
+    },
+    {
+      "id": "fake-0.5_probe",
+      "model": "fake:0.5",
+      "model_spec": "fake:0.5",
+      "mode": "memory_probe",
+      "windows": ["A"],
+      "workers": 4,
+      "extra_flags": ["--limit", "10"]
+    }
+  ]
+}

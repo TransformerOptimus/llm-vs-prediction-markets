@@ -1,0 +1,85 @@
+# output of analysis/exploratory/ensembles-learned-stacking.py
+# run: 2026-09-22T12:49:47Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: common rows per window (every roster model forecast the row), forecasts view, mode normal, status in ('ok', 'ok_after_retry'), primary set. Learned weights are cross-fitted by event: 5 folds split on source_event_id, seed 20260902, so no row is scored by weights fitted on its own event. Edge = market Brier minus the combination's Brier on the same rows; negative means the market is still ahead. Intervals = 1000 event resamples, seed 20260902.
+=== window A, test split: 1237 rows, 625 events, 4 models | fold sizes [269, 232, 233, 238, 265] | best single on the calibration split = kimi-k2.5
+  diversity subset chosen on the training folds (commonest of the 5 folds): gpt-5.2, kimi-k2.5, deepseek-v3.2
+  NNLS weights refitted on all these rows, for description only (not scored): gpt-5.2 0.31, gpt-oss-120b 0.00, kimi-k2.5 0.44, deepseek-v3.2 0.28
+  market on the same rows: Brier 0.1860
+  mean (equal weight)                Brier 0.1986  edge -0.0126 [-0.0250, -0.0016]  does not reach the market
+  median                             Brier 0.1973  edge -0.0113 [-0.0236, -0.0004]  does not reach the market
+  log-odds mean                      Brier 0.1986  edge -0.0126 [-0.0250, -0.0015]  does not reach the market
+  NNLS stack                         Brier 0.1969  edge -0.0109 [-0.0226, -0.0004]  does not reach the market
+  NNLS stack + intercept             Brier 0.1972  edge -0.0111 [-0.0227, -0.0007]  does not reach the market
+  logistic stack                     Brier 0.1988  edge -0.0128 [-0.0244, -0.0026]  does not reach the market
+  diversity subset (mean)            Brier 0.1966  edge -0.0106 [-0.0223, -0.0001]  does not reach the market
+  best single, picked on cal (kimi-k2.5) Brier 0.1990  edge -0.0129 [-0.0259, -0.0019]  does not reach the market
+  best single, picked on test (kimi-k2.5) Brier 0.1990  edge -0.0129 [-0.0259, -0.0019]  does not reach the market
+=== window A, both splits: 1533 rows, 711 events, 4 models | fold sizes [354, 321, 317, 257, 284] | best single on the calibration split = kimi-k2.5
+  diversity subset chosen on the training folds (commonest of the 5 folds): gpt-5.2, kimi-k2.5, deepseek-v3.2
+  NNLS weights refitted on all these rows, for description only (not scored): gpt-5.2 0.32, gpt-oss-120b 0.00, kimi-k2.5 0.54, deepseek-v3.2 0.20
+  market on the same rows: Brier 0.1849
+  mean (equal weight)                Brier 0.1953  edge -0.0104 [-0.0220, +0.0005]  REACHES the market
+  median                             Brier 0.1946  edge -0.0098 [-0.0214, +0.0007]  REACHES the market
+  log-odds mean                      Brier 0.1954  edge -0.0105 [-0.0221, +0.0008]  REACHES the market
+  NNLS stack                         Brier 0.1941  edge -0.0092 [-0.0206, +0.0009]  REACHES the market
+  NNLS stack + intercept             Brier 0.1942  edge -0.0093 [-0.0205, +0.0006]  REACHES the market
+  logistic stack                     Brier 0.1954  edge -0.0105 [-0.0211, -0.0005]  does not reach the market
+  diversity subset (mean)            Brier 0.1937  edge -0.0088 [-0.0202, +0.0013]  REACHES the market
+  best single, picked on cal (kimi-k2.5) Brier 0.1955  edge -0.0106 [-0.0229, +0.0007]  REACHES the market
+  best single, picked on test (kimi-k2.5) Brier 0.1955  edge -0.0106 [-0.0229, +0.0007]  REACHES the market
+=== window B, test split: 1471 rows, 1190 events, 8 models | fold sizes [289, 296, 292, 286, 308] | best single on the calibration split = gpt-5.5
+  diversity subset chosen on the training folds (commonest of the 5 folds): deepseek-v3.2, gpt-5.5, glm-5.1, kimi-k2.6
+  NNLS weights refitted on all these rows, for description only (not scored): gpt-5.2 0.00, gpt-oss-120b 0.00, kimi-k2.5 0.00, deepseek-v3.2 0.18, gpt-5.5 0.55, glm-5.1 0.09, kimi-k2.6 0.04, deepseek-v4-pro 0.14
+  market on the same rows: Brier 0.1858
+  mean (equal weight)                Brier 0.2077  edge -0.0219 [-0.0296, -0.0141]  does not reach the market
+  median                             Brier 0.2094  edge -0.0236 [-0.0318, -0.0158]  does not reach the market
+  log-odds mean                      Brier 0.2087  edge -0.0229 [-0.0310, -0.0148]  does not reach the market
+  NNLS stack                         Brier 0.2074  edge -0.0216 [-0.0298, -0.0141]  does not reach the market
+  NNLS stack + intercept             Brier 0.2066  edge -0.0208 [-0.0282, -0.0136]  does not reach the market
+  logistic stack                     Brier 0.2083  edge -0.0225 [-0.0302, -0.0150]  does not reach the market
+  diversity subset (mean)            Brier 0.2096  edge -0.0238 [-0.0323, -0.0161]  does not reach the market
+  best single, picked on cal (gpt-5.5) Brier 0.2076  edge -0.0218 [-0.0308, -0.0128]  does not reach the market
+  best single, picked on test (gpt-5.5) Brier 0.2076  edge -0.0218 [-0.0308, -0.0128]  does not reach the market
+=== window B, both splits: 1855 rows, 1414 events, 8 models | fold sizes [364, 367, 374, 388, 362] | best single on the calibration split = gpt-5.5
+  diversity subset chosen on the training folds (commonest of the 5 folds): deepseek-v3.2, gpt-5.5
+  NNLS weights refitted on all these rows, for description only (not scored): gpt-5.2 0.02, gpt-oss-120b 0.00, kimi-k2.5 0.00, deepseek-v3.2 0.20, gpt-5.5 0.63, glm-5.1 0.06, kimi-k2.6 0.06, deepseek-v4-pro 0.04
+  market on the same rows: Brier 0.1844
+  mean (equal weight)                Brier 0.2072  edge -0.0228 [-0.0302, -0.0148]  does not reach the market
+  median                             Brier 0.2089  edge -0.0245 [-0.0325, -0.0164]  does not reach the market
+  log-odds mean                      Brier 0.2086  edge -0.0242 [-0.0321, -0.0159]  does not reach the market
+  NNLS stack                         Brier 0.2066  edge -0.0222 [-0.0297, -0.0141]  does not reach the market
+  NNLS stack + intercept             Brier 0.2058  edge -0.0213 [-0.0284, -0.0140]  does not reach the market
+  logistic stack                     Brier 0.2080  edge -0.0236 [-0.0303, -0.0161]  does not reach the market
+  diversity subset (mean)            Brier 0.2076  edge -0.0231 [-0.0307, -0.0153]  does not reach the market
+  best single, picked on cal (gpt-5.5) Brier 0.2061  edge -0.0217 [-0.0297, -0.0134]  does not reach the market
+  best single, picked on test (gpt-5.5) Brier 0.2061  edge -0.0217 [-0.0297, -0.0134]  does not reach the market
+=== window C, test split: 2125 rows, 1813 events, 8 models | fold sizes [450, 408, 432, 417, 418] | best single on the calibration split = gpt-5.5
+  diversity subset chosen on the training folds (commonest of the 5 folds): gpt-5.5
+  NNLS weights refitted on all these rows, for description only (not scored): gpt-5.2 0.00, gpt-oss-120b 0.17, kimi-k2.5 0.05, deepseek-v3.2 0.00, gpt-5.5 0.68, glm-5.1 0.00, kimi-k2.6 0.00, deepseek-v4-pro 0.06
+  market on the same rows: Brier 0.1843
+  mean (equal weight)                Brier 0.2148  edge -0.0305 [-0.0378, -0.0239]  does not reach the market
+  median                             Brier 0.2163  edge -0.0319 [-0.0396, -0.0251]  does not reach the market
+  log-odds mean                      Brier 0.2163  edge -0.0320 [-0.0398, -0.0251]  does not reach the market
+  NNLS stack                         Brier 0.2108  edge -0.0265 [-0.0331, -0.0204]  does not reach the market
+  NNLS stack + intercept             Brier 0.2104  edge -0.0261 [-0.0324, -0.0202]  does not reach the market
+  logistic stack                     Brier 0.2107  edge -0.0263 [-0.0327, -0.0202]  does not reach the market
+  diversity subset (mean)            Brier 0.2145  edge -0.0302 [-0.0370, -0.0237]  does not reach the market
+  best single, picked on cal (gpt-5.5) Brier 0.2117  edge -0.0273 [-0.0343, -0.0209]  does not reach the market
+  best single, picked on test (gpt-5.5) Brier 0.2117  edge -0.0273 [-0.0343, -0.0209]  does not reach the market
+=== window C, both splits: 2654 rows, 2197 events, 8 models | fold sizes [548, 527, 522, 533, 524] | best single on the calibration split = gpt-5.5
+  diversity subset chosen on the training folds (commonest of the 5 folds): gpt-5.5
+  NNLS weights refitted on all these rows, for description only (not scored): gpt-5.2 0.00, gpt-oss-120b 0.16, kimi-k2.5 0.04, deepseek-v3.2 0.00, gpt-5.5 0.69, glm-5.1 0.00, kimi-k2.6 0.00, deepseek-v4-pro 0.08
+  market on the same rows: Brier 0.1838
+  mean (equal weight)                Brier 0.2131  edge -0.0294 [-0.0351, -0.0232]  does not reach the market
+  median                             Brier 0.2146  edge -0.0308 [-0.0369, -0.0242]  does not reach the market
+  log-odds mean                      Brier 0.2145  edge -0.0307 [-0.0368, -0.0243]  does not reach the market
+  NNLS stack                         Brier 0.2086  edge -0.0249 [-0.0306, -0.0193]  does not reach the market
+  NNLS stack + intercept             Brier 0.2081  edge -0.0244 [-0.0298, -0.0190]  does not reach the market
+  logistic stack                     Brier 0.2087  edge -0.0250 [-0.0308, -0.0193]  does not reach the market
+  diversity subset (mean)            Brier 0.2111  edge -0.0273 [-0.0335, -0.0214]  does not reach the market
+  best single, picked on cal (gpt-5.5) Brier 0.2099  edge -0.0261 [-0.0322, -0.0205]  does not reach the market
+  best single, picked on test (gpt-5.5) Brier 0.2099  edge -0.0261 [-0.0322, -0.0205]  does not reach the market
+# --- exit 0, 13s

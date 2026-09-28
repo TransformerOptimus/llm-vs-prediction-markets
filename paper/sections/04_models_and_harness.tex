@@ -1,0 +1,45 @@
+\section{Models and Evaluation Harness}
+\label{sec:models}
+
+\textbf{Roster and eligibility.} Eight models are scored. A model may forecast a
+row only if its exact published version was released before the row's outcome
+could be known; in practice every model was released before its first window
+opened. The four models published between August 2025 and January 2026
+run on all three windows. The four published between 7 and 24 April 2026 are ineligible for \winA (February 2026) and eligible for \winC (May to June) and \winB (July to August). The rule is a
+property of dates rather than of a leakage test that might fail silently. The
+full roster is in Appendix~\ref{app:roster}.
+
+\textbf{Hosts and settings.} \mGptFiveTwo and \mGptFiveFive are served by their
+developer; OpenAI returned dated snapshots on every call, confirming the
+checkpoint did not change. Every open-weight model is pinned to a single host
+with fallback routing off, and the served model string is checked on every reply.
+Settings are fixed: temperature 0 where the host accepts it, one sample per row, 4{,}000-token reply limit.
+Thinking is a reasoning-effort level of \emph{medium} on the OpenAI models and
+\mGptOss, and a 1{,}000-token budget on the others; the asymmetry cannot be
+removed (Section~\ref{sec:limitations}).
+
+\textbf{Prompt.} Every model receives the same template
+(Appendix~\ref{app:prompt}), requiring a final \code{PROBABILITY:} line. It
+contains no price, bid, ask, depth or book. All scored calls use this one template.
+
+\textbf{Forced answers.} An unparseable reply is re-asked once with a stricter
+instruction; a second failure is recorded as failed. Across all scored runs 79
+rows failed, all from four models, 42 inside the primary set. On the test split, filling every failure with 0.5 moves no Brier edge by more
+than 0.0011; filling each with the worst possible answer moves none by more than
+0.0077, always in the direction
+that makes the models look worse. The re-ask was needed on 4 to 14 per cent of rows for \mKimiKTwoFive, about
+5 per cent for \mDeepSeekVFourPro and at most 3 per cent for every other model.
+
+\textbf{Leak checks at call time.} Two checks run before every call. The first
+rejects a row whose news capture time is not strictly before its forecast moment.
+The second scans for a dateline two or more days after the forecast moment,
+besides the benchmark's own flag, which is anchored on the capture time
+(Appendix~\ref{app:newsattach}). A row that would leak is never sent.
+
+\textbf{Memory probe.} Every news-bearing row is asked again with the news
+removed. The pair measures what the news was worth and flags rows a model may
+have memorised; flag rates over whole probe runs are 0.8 to 2.3 per cent. Appendix~\ref{app:memory}
+gives the rule and a validation exercise whose result is genuinely inconclusive
+(Section~\ref{sec:limitations}).
+
+\textbf{Scale and cost.} The study is 97{,}465 model calls, costing about \$620.

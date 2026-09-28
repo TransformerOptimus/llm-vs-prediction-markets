@@ -1,0 +1,42 @@
+\colorlet{cMarket}{black}
+\colorlet{cGptFiveTwo}{blue!75!black}
+\colorlet{cGptFiveFive}{blue!55}
+\colorlet{cGptOss}{teal!75!black}
+\colorlet{cKimiKTwoFive}{violet!75!black}
+\colorlet{cKimiKTwoSix}{violet!50}
+\colorlet{cDsVThreeTwo}{brown!80!black}
+\colorlet{cDsVFourPro}{brown!60}
+\colorlet{cGlmFiveOne}{olive!85!black}
+\colorlet{cHighlight}{red!80!black}
+\colorlet{cMuted}{gray!55}
+
+\pgfplotsset{
+  mdl/filled/.style={solid, mark options={solid, fill=.}},
+  mdl/open/.style={solid, mark options={solid, fill=white}},
+  mdl/market/.style={color=cMarket, mark=star, dashed,
+                     mark options={solid}},
+  mdl/gpt-5.2/.style={mdl/filled, color=cGptFiveTwo, mark=*},
+  mdl/gpt-5.5/.style={mdl/open, color=cGptFiveFive, mark=o},
+  mdl/gpt-oss-120b/.style={mdl/filled, color=cGptOss, mark=square*},
+  mdl/kimi-k2.5/.style={mdl/filled, color=cKimiKTwoFive, mark=diamond*},
+  mdl/kimi-k2.6/.style={mdl/open, color=cKimiKTwoSix, mark=diamond},
+  mdl/deepseek-v3.2/.style={mdl/filled, color=cDsVThreeTwo, mark=pentagon*},
+  mdl/deepseek-v4-pro/.style={mdl/open, color=cDsVFourPro, mark=pentagon},
+  mdl/glm-5.1/.style={mdl/open, color=cGlmFiveOne, mark=triangle},
+  highlight/.style={color=cHighlight, line width=1.1pt, mark size=3.2pt},
+  muted/.style={color=cMuted},
+  paperaxis/.style={
+    width=\linewidth,
+    height=0.62\linewidth,
+    tick label style={font=\footnotesize},
+    label style={font=\footnotesize},
+    title style={font=\small},
+    legend style={font=\footnotesize, draw=gray!50, fill=white,
+                  fill opacity=0.9, text opacity=1, rounded corners=1pt},
+    every axis plot/.append style={line width=0.7pt},
+    grid style={gray!25, line width=0.3pt},
+    axis line style={gray!60},
+    tick style={gray!60},
+  },
+  papermark/.style={mark size=2.4pt},
+}

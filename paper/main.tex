@@ -1,0 +1,120 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+\usepackage{natbib}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{microtype}
+\usepackage[hypcap=true]{caption}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle={Sorting, Not Calibration: A Price-Blind Comparison of Language Models and Prediction Markets},
+  pdfauthor={Ishaan Bhola, Adithyan Krishnan, Ritu Rajesh Kanchi, Mukunda NS},
+  pdfkeywords={language models, forecasting, prediction markets, calibration, Brier score, correlated errors},
+}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
+\input{figures/fig-style}
+
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{balance}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}{\thesection}{0.8em}{}
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}{\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\itshape}{\thesubsubsection}{0.8em}{}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{0pt}
+
+\newcommand{\mGptFiveTwo}{GPT-5.2\xspace}          %
+\newcommand{\mGptOss}{gpt-oss-120b\xspace}          %
+\newcommand{\mKimiKTwoFive}{Kimi K2.5\xspace}       %
+\newcommand{\mDeepSeekVThreeTwo}{DeepSeek V3.2\xspace} %
+\newcommand{\mGptFiveFive}{GPT-5.5\xspace}          %
+\newcommand{\mGlmFiveOne}{GLM-5.1\xspace}           %
+\newcommand{\mKimiKTwoSix}{Kimi K2.6\xspace}        %
+\newcommand{\mDeepSeekVFourPro}{DeepSeek V4 Pro\xspace} %
+\newcommand{\mGlmFiveThreeFlash}{GLM-5.3 Flash\xspace} %
+
+\newcommand{\market}{the market\xspace}
+\newcommand{\polymarket}{Polymarket\xspace}
+\newcommand{\kalshi}{Kalshi\xspace}
+\newcommand{\polybench}{PolyBench\xspace}
+\newcommand{\winA}{Window~A\xspace}   %
+\newcommand{\winB}{Window~B\xspace}   %
+\newcommand{\winC}{Window~C\xspace}   %
+
+\newcommand{\code}[1]{\texttt{\hyphenchar\font=`\-\relax #1}}
+\newcommand{\metric}[1]{\textsc{#1}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+\title{Sorting, Not Calibration: A Price-Blind Comparison of Language Models and Prediction Markets}
+\author{%
+\IEEEauthorblockN{Ishaan Bhola}
+\IEEEauthorblockA{SuperAGI Research}
+\and
+\IEEEauthorblockN{Adithyan Krishnan\textsuperscript{*}}
+\IEEEauthorblockA{SuperAGI Research}
+\and
+\IEEEauthorblockN{Ritu Rajesh Kanchi\textsuperscript{*}}
+\IEEEauthorblockA{SuperAGI Research}
+\and
+\IEEEauthorblockN{Mukunda NS}
+\IEEEauthorblockA{SuperAGI Research}}
+
+\begin{document}
+
+\bstctlcite{BSTcontrol}
+
+\maketitle
+{\renewcommand\thefootnote{*}\footnotetext{Equal contribution.}}
+
+\input{sections/00_abstract}
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_benchmark}
+\input{sections/04_models_and_harness}
+\input{sections/05_evaluation}
+\input{sections/06_results}
+\input{sections/07_limitations}
+\input{sections/08_conclusion}
+
+\balance
+\clearpage
+\bibliographystyle{IEEEtranN}
+\bibliography{references}
+
+\clearpage
+\nobalance
+\raggedbottom
+\small
+\captionsetup{font=footnotesize}
+\appendices
+\input{sections/99_appendix}
+
+\end{document}

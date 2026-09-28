@@ -1,0 +1,51 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+  paperaxis,
+  group style={group size=3 by 1, horizontal sep=34pt},
+  width=0.36\linewidth, height=0.25\linewidth,
+  grid=major,
+  scaled ticks=false,
+]
+\nextgroupplot[title={Every model shrinks},
+  xmin=0, xmax=1, ymin=0, ymax=1,
+  xtick={0,0.25,0.5,0.75,1}, ytick={0,0.25,0.5,0.75,1},
+  xlabel={Market price $q$}, ylabel={Fitted forecast $a + bq$},
+  xticklabel style={/pgf/number format/fixed, /pgf/number format/precision=2},
+  yticklabel style={/pgf/number format/fixed, /pgf/number format/precision=2},
+  legend to name=legFe, legend columns=3,
+]
+\addplot[gray!70, dashed, line width=0.5pt, forget plot] coordinates {(0,0) (1,1)};
+\addplot[mdl/gpt-5.2, forget plot, line width=0.7pt, mark=none] coordinates {(0,0.1322) (1,0.7246)};
+\addplot[mdl/gpt-oss-120b, forget plot, line width=0.7pt, mark=none] coordinates {(0,0.1728) (1,0.6275)};
+\addplot[mdl/kimi-k2.5, forget plot, line width=0.7pt, mark=none] coordinates {(0,0.1458) (1,0.7017)};
+\addplot[mdl/deepseek-v3.2, forget plot, line width=0.7pt, mark=none] coordinates {(0,0.1761) (1,0.7167)};
+\addplot[mdl/gpt-5.5, forget plot, line width=0.7pt, mark=none] coordinates {(0,0.1254) (1,0.7453)};
+\addplot[mdl/glm-5.1, forget plot, line width=0.7pt, mark=none] coordinates {(0,0.1407) (1,0.7238)};
+\addplot[mdl/kimi-k2.6, forget plot, line width=0.7pt, mark=none] coordinates {(0,0.1364) (1,0.7187)};
+\addplot[mdl/deepseek-v4-pro, forget plot, line width=0.7pt, mark=none] coordinates {(0,0.1240) (1,0.7741)};
+\addlegendimage{papermark, mark=*, color=black}\addlegendentry{Real models}
+\addlegendimage{papermark, mark=square, color=black!65}\addlegendentry{Null: same shrinkage, independent noise}
+\addlegendimage{papermark, mark=triangle, color=black!65}\addlegendentry{Null: same shrinkage, permuted residuals}
+\nextgroupplot[title={Agreement},
+  xmin=0.5, xmax=2.5, xtick={1,2}, xticklabels={{$r(p-q)$},{$r$(residual)}},
+  ymin=-0.1, ymax=1.0, ytick={0,0.2,0.4,0.6,0.8,1.0},
+  ylabel={Correlation between a pair of forecasters},
+  yticklabel style={/pgf/number format/fixed, /pgf/number format/precision=1},
+]
+\addplot[gray!60, line width=0.4pt, forget plot] coordinates {(0.5,0) (2.5,0)};
+\addplot+[papermark, mark=*, color=black, forget plot, only marks, error bars/.cd, y dir=both, y explicit, error bar style={line width=0.6pt}, error mark options={mark size=1.2pt}] coordinates {(0.80,0.7950) +- (0,0) -= (0,0.0280) += (0,0.0240) (1.80,0.7340) +- (0,0) -= (0,0.0330) += (0,0.0290)};
+\addplot+[papermark, mark=square, color=black!65, forget plot, only marks, error bars/.cd, y dir=both, y explicit, error bar style={line width=0.6pt}, error mark options={mark size=1.2pt}] coordinates {(1.00,0.2770) +- (0,0) -= (0,0.0160) += (0,0.0180) (2.00,0.0000) +- (0,0) -= (0,0.0110) += (0,0.0120)};
+\addplot+[papermark, mark=triangle, color=black!65, forget plot, only marks, error bars/.cd, y dir=both, y explicit, error bar style={line width=0.6pt}, error mark options={mark size=1.2pt}] coordinates {(1.20,0.2580) +- (0,0) -= (0,0.0080) += (0,0.0100) (2.20,0.0100) +- (0,0) -= (0,0.0110) += (0,0.0110)};
+\nextgroupplot[title={Wrong together},
+  xmin=0.5, xmax=2.5, xtick={1,2}, xticklabels={{All rows},{Market right}},
+  ymin=0.8, ymax=5.0, ytick={1,2,3,4,5},
+  ylabel={Times the independent rate},
+]
+\addplot[gray!60, line width=0.4pt, forget plot] coordinates {(0.5,1) (2.5,1)};
+\addplot+[papermark, mark=*, color=black, forget plot, only marks, error bars/.cd, y dir=both, y explicit, error bar style={line width=0.6pt}, error mark options={mark size=1.2pt}] coordinates {(0.80,2.4650) +- (0,0) -= (0,0.1300) += (0,0.1400) (1.80,4.0360) +- (0,0) -= (0,0.3890) += (0,0.3930)};
+\addplot+[papermark, mark=square, color=black!65, forget plot, only marks, error bars/.cd, y dir=both, y explicit, error bar style={line width=0.6pt}, error mark options={mark size=1.2pt}] coordinates {(1.00,1.8400) +- (0,0) -= (0,0.0340) += (0,0.0460) (2.00,1.9290) +- (0,0) -= (0,0.1000) += (0,0.1080)};
+\addplot+[papermark, mark=triangle, color=black!65, forget plot, only marks, error bars/.cd, y dir=both, y explicit, error bar style={line width=0.6pt}, error mark options={mark size=1.2pt}] coordinates {(1.20,1.8680) +- (0,0) -= (0,0.0270) += (0,0.0250) (2.20,1.7650) +- (0,0) -= (0,0.0790) += (0,0.0940)};
+\end{groupplot}
+\end{tikzpicture}
+
+\pgfplotslegendfromname{legFe}

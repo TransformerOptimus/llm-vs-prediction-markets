@@ -1,0 +1,56 @@
+# output of analysis/exploratory/calibration-shape-sports-split.py
+# run: 2026-09-22T20:42:01Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: primary set, test split, forecasts view, mode normal; sports = benchmark sports flag. 'res share' = share of the model's Brier shortfall attributed to resolution (bin-free, with a 1,000-resample event interval; ten-bin in brackets after it). 'rescale' = share of the shortfall removed by a cross-fitted isotonic / Platt map, folds by event, k=5, seed 20260902.
+=== window A
+  gpt-5.2          sports     n=1024  Brier gap 0.0052 | model REL 0.0024 RES 0.0344 | market REL 0.0025 RES 0.0385 | res share 102.3% [100.2%, 120.8%] (ten-bin  50.8%) | rescale isotonic   6.8% Platt -28.6%
+  gpt-5.2          non-sports n=224   Brier gap 0.0614 | model REL 0.0169 RES 0.0667 | market REL 0.0122 RES 0.1188 | res share  91.8% [ 61.0%, 131.6%] (ten-bin  72.3%) | rescale isotonic   6.1% Platt   4.0%
+  gpt-oss-120b     sports     n=1024  Brier gap 0.0179 | model REL 0.0055 RES 0.0240 | market REL 0.0025 RES 0.0385 | res share  83.0% [ 64.3%, 114.7%] (ten-bin  79.8%) | rescale isotonic  16.4% Platt  22.1%
+  gpt-oss-120b     non-sports n=224   Brier gap 0.0879 | model REL 0.0224 RES 0.0449 | market REL 0.0122 RES 0.1188 | res share  87.9% [ 60.6%, 126.5%] (ten-bin  82.4%) | rescale isotonic   8.4% Platt  17.5%
+  kimi-k2.5        sports     n=1013  Brier gap -0.0010 | model REL 0.0020 RES 0.0390 | market REL 0.0025 RES 0.0379 | res share   nan% [ 95.6%, 124.5%] (ten-bin  92.8%) | rescale isotonic   nan% Platt   nan%
+  kimi-k2.5        non-sports n=224   Brier gap 0.0762 | model REL 0.0227 RES 0.0569 | market REL 0.0122 RES 0.1188 | res share  85.5% [ 61.2%, 117.3%] (ten-bin  67.8%) | rescale isotonic  15.9% Platt  20.2%
+  deepseek-v3.2    sports     n=1024  Brier gap 0.0021 | model REL 0.0030 RES 0.0379 | market REL 0.0025 RES 0.0385 | res share  60.0% [108.0%, 149.8%] (ten-bin  82.5%) | rescale isotonic -116.8% Platt  14.3%
+  deepseek-v3.2    non-sports n=224   Brier gap 0.0702 | model REL 0.0144 RES 0.0553 | market REL 0.0122 RES 0.1188 | res share  96.7% [ 80.7%, 115.1%] (ten-bin  83.6%) | rescale isotonic  -1.4% Platt   6.4%
+  RANGE sports     over 4 models: Brier gap -0.0010 to 0.0179 | res share 60.0 to 102.3% (ten-bin 50.8 to 92.8%) | isotonic -116.8 to 16.4% | Platt -28.6 to 22.1%
+  RANGE non-sports over 4 models: Brier gap 0.0614 to 0.0879 | res share 85.5 to 96.7% (ten-bin 67.8 to 83.6%) | isotonic -1.4 to 15.9% | Platt 4.0 to 20.2%
+=== window B
+  gpt-5.2          sports     n=1092  Brier gap 0.0103 | model REL 0.0023 RES 0.0272 | market REL 0.0022 RES 0.0366 | res share  99.1% [ 88.9%, 137.5%] (ten-bin 104.1%) | rescale isotonic -14.8% Platt  -5.3%
+  gpt-5.2          non-sports n=388   Brier gap 0.0683 | model REL 0.0146 RES 0.0458 | market REL 0.0032 RES 0.0983 | res share  82.1% [ 70.6%,  96.2%] (ten-bin  68.4%) | rescale isotonic  10.5% Platt  11.9%
+  gpt-oss-120b     sports     n=1092  Brier gap 0.0246 | model REL 0.0057 RES 0.0174 | market REL 0.0022 RES 0.0366 | res share  84.6% [ 73.2%, 102.4%] (ten-bin  77.6%) | rescale isotonic  13.6% Platt  18.4%
+  gpt-oss-120b     non-sports n=388   Brier gap 0.0893 | model REL 0.0220 RES 0.0345 | market REL 0.0032 RES 0.0983 | res share  77.2% [ 66.6%,  90.4%] (ten-bin  67.0%) | rescale isotonic  20.8% Platt  16.0%
+  kimi-k2.5        sports     n=1089  Brier gap 0.0125 | model REL 0.0015 RES 0.0248 | market REL 0.0022 RES 0.0366 | res share 106.1% [ 89.6%, 140.0%] (ten-bin  95.4%) | rescale isotonic -30.3% Platt  -1.1%
+  kimi-k2.5        non-sports n=388   Brier gap 0.0767 | model REL 0.0144 RES 0.0362 | market REL 0.0032 RES 0.0983 | res share  84.7% [ 72.3%,  96.6%] (ten-bin  79.4%) | rescale isotonic   6.2% Platt  13.9%
+  deepseek-v3.2    sports     n=1092  Brier gap 0.0131 | model REL 0.0014 RES 0.0232 | market REL 0.0022 RES 0.0366 | res share 106.2% [ 89.5%, 133.3%] (ten-bin 104.6%) | rescale isotonic -27.2% Platt  -4.5%
+  deepseek-v3.2    non-sports n=388   Brier gap 0.0668 | model REL 0.0094 RES 0.0416 | market REL 0.0032 RES 0.0983 | res share  90.1% [ 80.3%, 102.2%] (ten-bin  84.2%) | rescale isotonic   0.6% Platt   4.5%
+  gpt-5.5          sports     n=1092  Brier gap 0.0093 | model REL 0.0020 RES 0.0285 | market REL 0.0022 RES 0.0366 | res share 102.4% [ 92.1%, 144.2%] (ten-bin 102.2%) | rescale isotonic -13.3% Platt  -5.5%
+  gpt-5.5          non-sports n=388   Brier gap 0.0556 | model REL 0.0096 RES 0.0548 | market REL 0.0032 RES 0.0983 | res share  87.1% [ 72.8%, 101.4%] (ten-bin  74.4%) | rescale isotonic   7.0% Platt   2.2%
+  glm-5.1          sports     n=1092  Brier gap 0.0118 | model REL 0.0017 RES 0.0253 | market REL 0.0022 RES 0.0366 | res share 104.3% [ 99.9%, 144.8%] (ten-bin  94.6%) | rescale isotonic  -4.0% Platt  -5.1%
+  glm-5.1          non-sports n=388   Brier gap 0.0751 | model REL 0.0141 RES 0.0376 | market REL 0.0032 RES 0.0983 | res share  84.7% [ 71.9%,  95.8%] (ten-bin  77.0%) | rescale isotonic  10.2% Platt  14.0%
+  kimi-k2.6        sports     n=1091  Brier gap 0.0112 | model REL 0.0012 RES 0.0252 | market REL 0.0022 RES 0.0370 | res share 109.4% [ 89.7%, 136.1%] (ten-bin 103.8%) | rescale isotonic -16.0% Platt  -2.8%
+  kimi-k2.6        non-sports n=388   Brier gap 0.0691 | model REL 0.0179 RES 0.0489 | market REL 0.0032 RES 0.0983 | res share  77.0% [ 66.2%,  94.0%] (ten-bin  70.0%) | rescale isotonic  -2.5% Platt  11.0%
+  deepseek-v4-pro  sports     n=1090  Brier gap 0.0120 | model REL 0.0022 RES 0.0258 | market REL 0.0021 RES 0.0369 | res share  98.7% [ 81.6%, 135.3%] (ten-bin  92.7%) | rescale isotonic -18.4% Platt   2.5%
+  deepseek-v4-pro  non-sports n=385   Brier gap 0.0803 | model REL 0.0239 RES 0.0434 | market REL 0.0034 RES 0.0994 | res share  73.2% [ 61.2%,  87.4%] (ten-bin  71.6%) | rescale isotonic  29.6% Platt  25.3%
+  RANGE sports     over 8 models: Brier gap 0.0093 to 0.0246 | res share 84.6 to 109.4% (ten-bin 77.6 to 104.6%) | isotonic -30.3 to 13.6% | Platt -5.5 to 18.4%
+  RANGE non-sports over 8 models: Brier gap 0.0556 to 0.0893 | res share 73.2 to 90.1% (ten-bin 67.0 to 84.2%) | isotonic -2.5 to 29.6% | Platt 2.2 to 25.3%
+=== window C
+  gpt-5.2          sports     n=1727  Brier gap 0.0258 | model REL 0.0028 RES 0.0276 | market REL 0.0010 RES 0.0505 | res share  92.8% [ 85.8%, 102.4%] (ten-bin  92.2%) | rescale isotonic   0.2% Platt   5.6%
+  gpt-5.2          non-sports n=410   Brier gap 0.0849 | model REL 0.0261 RES 0.0402 | market REL 0.0053 RES 0.1000 | res share  74.2% [ 61.6%,  89.1%] (ten-bin  66.7%) | rescale isotonic  28.6% Platt  28.6%
+  gpt-oss-120b     sports     n=1727  Brier gap 0.0342 | model REL 0.0055 RES 0.0217 | market REL 0.0010 RES 0.0505 | res share  86.6% [ 81.1%,  96.4%] (ten-bin  83.7%) | rescale isotonic   5.6% Platt  10.8%
+  gpt-oss-120b     non-sports n=410   Brier gap 0.0808 | model REL 0.0144 RES 0.0303 | market REL 0.0053 RES 0.1000 | res share  88.5% [ 76.5%, 100.8%] (ten-bin  84.8%) | rescale isotonic   6.1% Platt  14.3%
+  kimi-k2.5        sports     n=1725  Brier gap 0.0248 | model REL 0.0020 RES 0.0274 | market REL 0.0010 RES 0.0508 | res share  95.9% [ 88.1%, 103.1%] (ten-bin  95.1%) | rescale isotonic  -4.7% Platt   2.3%
+  kimi-k2.5        non-sports n=409   Brier gap 0.0839 | model REL 0.0197 RES 0.0331 | market REL 0.0053 RES 0.0999 | res share  82.3% [ 71.4%,  94.4%] (ten-bin  76.6%) | rescale isotonic  17.9% Platt  19.8%
+  deepseek-v3.2    sports     n=1727  Brier gap 0.0290 | model REL 0.0022 RES 0.0236 | market REL 0.0010 RES 0.0505 | res share  95.8% [ 90.9%, 103.4%] (ten-bin  94.0%) | rescale isotonic  -4.9% Platt   1.5%
+  deepseek-v3.2    non-sports n=410   Brier gap 0.0874 | model REL 0.0190 RES 0.0309 | market REL 0.0053 RES 0.1000 | res share  83.5% [ 73.2%,  96.0%] (ten-bin  72.5%) | rescale isotonic  19.5% Platt  20.0%
+  gpt-5.5          sports     n=1726  Brier gap 0.0210 | model REL 0.0020 RES 0.0310 | market REL 0.0010 RES 0.0508 | res share  95.2% [ 87.1%, 105.0%] (ten-bin  95.1%) | rescale isotonic  -5.5% Platt   2.8%
+  gpt-5.5          non-sports n=410   Brier gap 0.0533 | model REL 0.0107 RES 0.0551 | market REL 0.0053 RES 0.1000 | res share  89.3% [ 74.0%, 104.9%] (ten-bin  88.2%) | rescale isotonic  11.6% Platt  15.5%
+  glm-5.1          sports     n=1727  Brier gap 0.0256 | model REL 0.0019 RES 0.0260 | market REL 0.0010 RES 0.0505 | res share  96.4% [ 89.7%, 104.0%] (ten-bin  95.0%) | rescale isotonic  -8.8% Platt   3.7%
+  glm-5.1          non-sports n=410   Brier gap 0.1052 | model REL 0.0353 RES 0.0317 | market REL 0.0053 RES 0.1000 | res share  69.5% [ 57.2%,  82.2%] (ten-bin  61.3%) | rescale isotonic  34.0% Platt  34.2%
+  kimi-k2.6        sports     n=1726  Brier gap 0.0273 | model REL 0.0020 RES 0.0244 | market REL 0.0010 RES 0.0505 | res share  96.4% [ 90.1%, 103.7%] (ten-bin  94.4%) | rescale isotonic  -3.7% Platt   4.0%
+  kimi-k2.6        non-sports n=410   Brier gap 0.0919 | model REL 0.0242 RES 0.0308 | market REL 0.0053 RES 0.1000 | res share  78.6% [ 68.8%,  91.4%] (ten-bin  71.6%) | rescale isotonic  20.2% Platt  25.4%
+  deepseek-v4-pro  sports     n=1721  Brier gap 0.0253 | model REL 0.0025 RES 0.0273 | market REL 0.0010 RES 0.0506 | res share  94.1% [ 85.4%, 102.6%] (ten-bin  91.0%) | rescale isotonic  -3.4% Platt   4.2%
+  deepseek-v4-pro  non-sports n=409   Brier gap 0.1109 | model REL 0.0493 RES 0.0360 | market REL 0.0053 RES 0.0999 | res share  59.2% [ 47.3%,  70.6%] (ten-bin  55.0%) | rescale isotonic  35.7% Platt  41.9%
+  RANGE sports     over 8 models: Brier gap 0.0210 to 0.0342 | res share 86.6 to 96.4% (ten-bin 83.7 to 95.1%) | isotonic -8.8 to 5.6% | Platt 1.5 to 10.8%
+  RANGE non-sports over 8 models: Brier gap 0.0533 to 0.1109 | res share 59.2 to 89.3% (ten-bin 55.0 to 88.2%) | isotonic 6.1 to 35.7% | Platt 14.3 to 41.9%
+# --- exit 0, 98s

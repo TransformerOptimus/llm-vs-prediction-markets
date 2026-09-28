@@ -1,0 +1,191 @@
+# output of analysis/exploratory/thinking-and-length-more-thinking-more-disagreement.py
+# run: 2026-09-17T06:56:07Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+=== Share of rows at or above the 1000-token thinking budget (a capped model cannot think longer) ===
+  gpt-5.2          window A: n=1550 median thinking tokens 196, share at or above the budget 0.5%
+  gpt-5.2          window B: n=1865 median thinking tokens 176, share at or above the budget 0.9%
+  gpt-5.2          window C: n=2669 median thinking tokens 198, share at or above the budget 0.7%
+  gpt-oss-120b     window A: n=1550 median thinking tokens 265, share at or above the budget 0.2%
+  gpt-oss-120b     window B: n=1865 median thinking tokens 215, share at or above the budget 0.3%
+  gpt-oss-120b     window C: n=2669 median thinking tokens 201, share at or above the budget 0.4%
+  kimi-k2.5        window A: n=1533 median thinking tokens 1000, share at or above the budget 99.5%
+  kimi-k2.5        window B: n=1862 median thinking tokens 1000, share at or above the budget 99.4%
+  kimi-k2.5        window C: n=2665 median thinking tokens 1000, share at or above the budget 99.2%
+  deepseek-v3.2    window A: n=1550 median thinking tokens 1000, share at or above the budget 92.4%
+  deepseek-v3.2    window B: n=1865 median thinking tokens 1000, share at or above the budget 85.7%
+  deepseek-v3.2    window C: n=2669 median thinking tokens 1000, share at or above the budget 88.0%
+  gpt-5.5          window B: n=1865 median thinking tokens 512, share at or above the budget 18.0%
+  gpt-5.5          window C: n=2667 median thinking tokens 512, share at or above the budget 32.6%
+  glm-5.1          window B: n=1865 median thinking tokens 422, share at or above the budget 2.4%
+  glm-5.1          window C: n=2669 median thinking tokens 397, share at or above the budget 1.5%
+  kimi-k2.6        window B: n=1864 median thinking tokens 1000, share at or above the budget 98.8%
+  kimi-k2.6        window C: n=2668 median thinking tokens 1000, share at or above the budget 99.0%
+  deepseek-v4-pro  window B: n=1859 median thinking tokens 959, share at or above the budget 46.4%
+  deepseek-v4-pro  window C: n=2661 median thinking tokens 999, share at or above the budget 49.8%
+
+=== Base result: top against bottom thinking quartile, departure from the market and Brier edge ===
+  gpt-5.2          window A: n=1550 bottom(n=394) |p-q|=0.071 edge=-0.0018 | top(n=390) |p-q|=0.159 edge=-0.0230 | diff |p-q|=+0.088 edge=-0.0212
+  gpt-5.2          window B: n=1865 bottom(n=472) |p-q|=0.096 edge=-0.0169 | top(n=469) |p-q|=0.143 edge=-0.0252 | diff |p-q|=+0.048 edge=-0.0084
+  gpt-5.2          window C: n=2669 bottom(n=676) |p-q|=0.123 edge=-0.0330 | top(n=671) |p-q|=0.145 edge=-0.0336 | diff |p-q|=+0.023 edge=-0.0006
+  gpt-oss-120b     window A: n=1550 bottom(n=388) |p-q|=0.135 edge=-0.0287 | top(n=388) |p-q|=0.161 edge=-0.0281 | diff |p-q|=+0.026 edge=+0.0005
+  gpt-oss-120b     window B: n=1865 bottom(n=470) |p-q|=0.141 edge=-0.0273 | top(n=468) |p-q|=0.179 edge=-0.0599 | diff |p-q|=+0.038 edge=-0.0326
+  gpt-oss-120b     window C: n=2669 bottom(n=680) |p-q|=0.156 edge=-0.0398 | top(n=670) |p-q|=0.158 edge=-0.0408 | diff |p-q|=+0.002 edge=-0.0011
+  kimi-k2.5        window A: n=1533 bottom(n=1533) |p-q|=0.116 edge=-0.0106 | top(n=1526) |p-q|=0.116 edge=-0.0106 | diff |p-q|=+0.000 edge=+0.0000
+  kimi-k2.5        window B: n=1862 bottom(n=1862) |p-q|=0.123 edge=-0.0291 | top(n=1850) |p-q|=0.123 edge=-0.0292 | diff |p-q|=+0.001 edge=-0.0001
+  kimi-k2.5        window C: n=2665 bottom(n=2665) |p-q|=0.134 edge=-0.0355 | top(n=2645) |p-q|=0.134 edge=-0.0356 | diff |p-q|=+0.001 edge=-0.0001
+  deepseek-v3.2    window A: n=1550 bottom(n=1550) |p-q|=0.119 edge=-0.0133 | top(n=1432) |p-q|=0.122 edge=-0.0156 | diff |p-q|=+0.002 edge=-0.0023
+  deepseek-v3.2    window B: n=1865 bottom(n=1865) |p-q|=0.126 edge=-0.0281 | top(n=1599) |p-q|=0.128 edge=-0.0275 | diff |p-q|=+0.002 edge=+0.0006
+  deepseek-v3.2    window C: n=2669 bottom(n=2669) |p-q|=0.139 edge=-0.0385 | top(n=2348) |p-q|=0.139 edge=-0.0394 | diff |p-q|=-0.000 edge=-0.0009
+  gpt-5.5          window B: n=1865 bottom(n=468) |p-q|=0.066 edge=-0.0049 | top(n=467) |p-q|=0.150 edge=-0.0372 | diff |p-q|=+0.085 edge=-0.0323
+  gpt-5.5          window C: n=2667 bottom(n=1486) |p-q|=0.107 edge=-0.0201 | top(n=818) |p-q|=0.147 edge=-0.0462 | diff |p-q|=+0.041 edge=-0.0262
+  glm-5.1          window B: n=1865 bottom(n=472) |p-q|=0.099 edge=-0.0197 | top(n=467) |p-q|=0.147 edge=-0.0465 | diff |p-q|=+0.048 edge=-0.0267
+  glm-5.1          window C: n=2669 bottom(n=669) |p-q|=0.116 edge=-0.0269 | top(n=671) |p-q|=0.140 edge=-0.0415 | diff |p-q|=+0.024 edge=-0.0145
+  kimi-k2.6        window B: n=1864 bottom(n=1826) |p-q|=0.121 edge=-0.0276 | top(n=1842) |p-q|=0.121 edge=-0.0278 | diff |p-q|=+0.000 edge=-0.0002
+  kimi-k2.6        window C: n=2668 bottom(n=2612) |p-q|=0.137 edge=-0.0394 | top(n=2642) |p-q|=0.138 edge=-0.0388 | diff |p-q|=+0.000 edge=+0.0006
+  deepseek-v4-pro  window B: n=1859 bottom(n=466) |p-q|=0.128 edge=-0.0314 | top(n=862) |p-q|=0.138 edge=-0.0382 | diff |p-q|=+0.010 edge=-0.0068
+  deepseek-v4-pro  window C: n=2661 bottom(n=666) |p-q|=0.143 edge=-0.0407 | top(n=1324) |p-q|=0.145 edge=-0.0393 | diff |p-q|=+0.002 edge=+0.0014
+
+=== Confound: does thinking length track the horizon (days to settlement)? ===
+  gpt-5.2          window A: corr(thinking tokens, horizon)=-0.115
+  gpt-5.2          window B: corr(thinking tokens, horizon)=0.040
+  gpt-5.2          window C: corr(thinking tokens, horizon)=0.127
+  gpt-oss-120b     window A: corr(thinking tokens, horizon)=0.019
+  gpt-oss-120b     window B: corr(thinking tokens, horizon)=0.060
+  gpt-oss-120b     window C: corr(thinking tokens, horizon)=0.156
+  kimi-k2.5        window A: corr(thinking tokens, horizon)=0.013
+  kimi-k2.5        window B: corr(thinking tokens, horizon)=0.014
+  kimi-k2.5        window C: corr(thinking tokens, horizon)=0.019
+  deepseek-v3.2    window A: corr(thinking tokens, horizon)=0.041
+  deepseek-v3.2    window B: corr(thinking tokens, horizon)=0.001
+  deepseek-v3.2    window C: corr(thinking tokens, horizon)=0.018
+  gpt-5.5          window B: corr(thinking tokens, horizon)=0.120
+  gpt-5.5          window C: corr(thinking tokens, horizon)=0.163
+  glm-5.1          window B: corr(thinking tokens, horizon)=-0.030
+  glm-5.1          window C: corr(thinking tokens, horizon)=0.129
+  kimi-k2.6        window B: corr(thinking tokens, horizon)=-0.044
+  kimi-k2.6        window C: corr(thinking tokens, horizon)=-0.014
+  deepseek-v4-pro  window B: corr(thinking tokens, horizon)=0.100
+  deepseek-v4-pro  window C: corr(thinking tokens, horizon)=0.081
+
+=== Confound: does the same split hold inside one horizon band? ===
+  gpt-5.2          window A horizon 1-3d   n=540 bottom |p-q|=0.062 edge=-0.0195 top |p-q|=0.170 edge=-0.0480 diff |p-q|=+0.108 edge=-0.0286
+  gpt-5.2          window A horizon 3-7d   n=747 bottom |p-q|=0.072 edge=+0.0064 top |p-q|=0.143 edge=-0.0115 diff |p-q|=+0.070 edge=-0.0178
+  gpt-5.2          window A horizon 7-30d  n=145 bottom |p-q|=0.079 edge=+0.0111 top |p-q|=0.130 edge=+0.0110 diff |p-q|=+0.051 edge=-0.0001
+  gpt-5.2          window A horizon <=1d   n=118 bottom |p-q|=0.156 edge=+0.0090 top |p-q|=0.214 edge=-0.0441 diff |p-q|=+0.057 edge=-0.0531
+  gpt-5.2          window B horizon 1-3d   n=527 bottom |p-q|=0.082 edge=-0.0111 top |p-q|=0.123 edge=-0.0547 diff |p-q|=+0.040 edge=-0.0436
+  gpt-5.2          window B horizon 3-7d   n=451 bottom |p-q|=0.086 edge=-0.0067 top |p-q|=0.189 edge=-0.0103 diff |p-q|=+0.103 edge=-0.0036
+  gpt-5.2          window B horizon 7-30d  n=262 bottom |p-q|=0.166 edge=-0.0549 top |p-q|=0.191 edge=-0.0749 diff |p-q|=+0.025 edge=-0.0201
+  gpt-5.2          window B horizon <=1d   n=574 bottom |p-q|=0.082 edge=-0.0061 top |p-q|=0.100 edge=-0.0272 diff |p-q|=+0.018 edge=-0.0211
+  gpt-5.2          window B horizon >30d   n=51 bottom |p-q|=0.214 edge=-0.0207 top |p-q|=0.211 edge=-0.0283 diff |p-q|=-0.003 edge=-0.0076
+  gpt-5.2          window C horizon 1-3d   n=884 bottom |p-q|=0.108 edge=-0.0394 top |p-q|=0.134 edge=-0.0139 diff |p-q|=+0.026 edge=+0.0254
+  gpt-5.2          window C horizon 3-7d   n=448 bottom |p-q|=0.081 edge=+0.0048 top |p-q|=0.157 edge=-0.0603 diff |p-q|=+0.076 edge=-0.0651
+  gpt-5.2          window C horizon 7-30d  n=177 bottom |p-q|=0.146 edge=-0.0182 top |p-q|=0.177 edge=-0.0139 diff |p-q|=+0.030 edge=+0.0044
+  gpt-5.2          window C horizon <=1d   n=992 bottom |p-q|=0.147 edge=-0.0391 top |p-q|=0.139 edge=-0.0366 diff |p-q|=-0.008 edge=+0.0025
+  gpt-5.2          window C horizon >30d   n=168 bottom |p-q|=0.103 edge=-0.0202 top |p-q|=0.143 edge=-0.0345 diff |p-q|=+0.040 edge=-0.0143
+  gpt-oss-120b     window A horizon 1-3d   n=540 bottom |p-q|=0.142 edge=-0.0677 top |p-q|=0.184 edge=-0.0707 diff |p-q|=+0.043 edge=-0.0030
+  gpt-oss-120b     window A horizon 3-7d   n=747 bottom |p-q|=0.126 edge=-0.0092 top |p-q|=0.139 edge=-0.0112 diff |p-q|=+0.013 edge=-0.0020
+  gpt-oss-120b     window A horizon 7-30d  n=145 bottom |p-q|=0.107 edge=+0.0331 top |p-q|=0.132 edge=-0.0430 diff |p-q|=+0.025 edge=-0.0762
+  gpt-oss-120b     window A horizon <=1d   n=118 bottom |p-q|=0.205 edge=+0.0061 top |p-q|=0.250 edge=+0.0104 diff |p-q|=+0.045 edge=+0.0043
+  gpt-oss-120b     window B horizon 1-3d   n=527 bottom |p-q|=0.125 edge=-0.0318 top |p-q|=0.163 edge=-0.0667 diff |p-q|=+0.038 edge=-0.0348
+  gpt-oss-120b     window B horizon 3-7d   n=451 bottom |p-q|=0.143 edge=-0.0137 top |p-q|=0.201 edge=-0.0326 diff |p-q|=+0.058 edge=-0.0188
+  gpt-oss-120b     window B horizon 7-30d  n=262 bottom |p-q|=0.210 edge=-0.0954 top |p-q|=0.229 edge=-0.0952 diff |p-q|=+0.018 edge=+0.0002
+  gpt-oss-120b     window B horizon <=1d   n=574 bottom |p-q|=0.135 edge=-0.0201 top |p-q|=0.137 edge=-0.0446 diff |p-q|=+0.002 edge=-0.0245
+  gpt-oss-120b     window B horizon >30d   n=51 bottom |p-q|=0.210 edge=-0.0574 top |p-q|=0.220 edge=-0.1047 diff |p-q|=+0.010 edge=-0.0473
+  gpt-oss-120b     window C horizon 1-3d   n=884 bottom |p-q|=0.145 edge=-0.0264 top |p-q|=0.164 edge=-0.0250 diff |p-q|=+0.020 edge=+0.0014
+  gpt-oss-120b     window C horizon 3-7d   n=448 bottom |p-q|=0.113 edge=-0.0479 top |p-q|=0.178 edge=-0.0643 diff |p-q|=+0.065 edge=-0.0164
+  gpt-oss-120b     window C horizon 7-30d  n=177 bottom |p-q|=0.178 edge=-0.0312 top |p-q|=0.175 edge=-0.0385 diff |p-q|=-0.003 edge=-0.0073
+  gpt-oss-120b     window C horizon <=1d   n=992 bottom |p-q|=0.184 edge=-0.0596 top |p-q|=0.135 edge=-0.0364 diff |p-q|=-0.049 edge=+0.0232
+  gpt-oss-120b     window C horizon >30d   n=168 bottom |p-q|=0.154 edge=-0.0013 top |p-q|=0.170 edge=-0.0039 diff |p-q|=+0.017 edge=-0.0026
+  kimi-k2.5        window A horizon 1-3d   n=530 bottom |p-q|=0.118 edge=-0.0277 top |p-q|=0.118 edge=-0.0277 diff |p-q|=+0.000 edge=-0.0001
+  kimi-k2.5        window A horizon 3-7d   n=745 bottom |p-q|=0.104 edge=-0.0085 top |p-q|=0.104 edge=-0.0083 diff |p-q|=+0.000 edge=+0.0001
+  kimi-k2.5        window A horizon 7-30d  n=144 bottom |p-q|=0.112 edge=-0.0053 top |p-q|=0.112 edge=-0.0053 diff |p-q|=+0.000 edge=+0.0000
+  kimi-k2.5        window A horizon <=1d   n=114 bottom |p-q|=0.194 edge=+0.0483 top |p-q|=0.193 edge=+0.0481 diff |p-q|=-0.001 edge=-0.0002
+  kimi-k2.5        window B horizon 1-3d   n=526 bottom |p-q|=0.098 edge=-0.0258 top |p-q|=0.098 edge=-0.0260 diff |p-q|=+0.001 edge=-0.0001
+  kimi-k2.5        window B horizon 3-7d   n=451 bottom |p-q|=0.130 edge=-0.0201 top |p-q|=0.131 edge=-0.0201 diff |p-q|=+0.001 edge=+0.0000
+  kimi-k2.5        window B horizon 7-30d  n=262 bottom |p-q|=0.179 edge=-0.0592 top |p-q|=0.179 edge=-0.0594 diff |p-q|=+0.001 edge=-0.0002
+  kimi-k2.5        window B horizon <=1d   n=572 bottom |p-q|=0.105 edge=-0.0224 top |p-q|=0.105 edge=-0.0225 diff |p-q|=+0.000 edge=-0.0001
+  kimi-k2.5        window B horizon >30d   n=51 bottom |p-q|=0.224 edge=-0.0616 top |p-q|=0.224 edge=-0.0616 diff |p-q|=+0.000 edge=+0.0000
+  kimi-k2.5        window C horizon 1-3d   n=884 bottom |p-q|=0.115 edge=-0.0177 top |p-q|=0.115 edge=-0.0175 diff |p-q|=+0.001 edge=+0.0002
+  kimi-k2.5        window C horizon 3-7d   n=447 bottom |p-q|=0.120 edge=-0.0355 top |p-q|=0.121 edge=-0.0357 diff |p-q|=+0.001 edge=-0.0002
+  kimi-k2.5        window C horizon 7-30d  n=177 bottom |p-q|=0.151 edge=-0.0417 top |p-q|=0.151 edge=-0.0417 diff |p-q|=+0.000 edge=+0.0000
+  kimi-k2.5        window C horizon <=1d   n=990 bottom |p-q|=0.149 edge=-0.0509 top |p-q|=0.150 edge=-0.0512 diff |p-q|=+0.000 edge=-0.0003
+  kimi-k2.5        window C horizon >30d   n=167 bottom |p-q|=0.158 edge=-0.0316 top |p-q|=0.159 edge=-0.0318 diff |p-q|=+0.001 edge=-0.0002
+  deepseek-v3.2    window A horizon 1-3d   n=540 bottom |p-q|=0.123 edge=-0.0321 top |p-q|=0.128 edge=-0.0360 diff |p-q|=+0.005 edge=-0.0038
+  deepseek-v3.2    window A horizon 3-7d   n=747 bottom |p-q|=0.102 edge=-0.0094 top |p-q|=0.104 edge=-0.0110 diff |p-q|=+0.001 edge=-0.0016
+  deepseek-v3.2    window A horizon 7-30d  n=145 bottom |p-q|=0.118 edge=+0.0035 top |p-q|=0.122 edge=+0.0050 diff |p-q|=+0.003 edge=+0.0015
+  deepseek-v3.2    window A horizon <=1d   n=118 bottom |p-q|=0.210 edge=+0.0276 top |p-q|=0.207 edge=+0.0242 diff |p-q|=-0.003 edge=-0.0034
+  deepseek-v3.2    window B horizon 1-3d   n=527 bottom |p-q|=0.109 edge=-0.0259 top |p-q|=0.113 edge=-0.0234 diff |p-q|=+0.004 edge=+0.0025
+  deepseek-v3.2    window B horizon 3-7d   n=451 bottom |p-q|=0.131 edge=-0.0176 top |p-q|=0.138 edge=-0.0171 diff |p-q|=+0.007 edge=+0.0005
+  deepseek-v3.2    window B horizon 7-30d  n=262 bottom |p-q|=0.170 edge=-0.0536 top |p-q|=0.160 edge=-0.0463 diff |p-q|=-0.009 edge=+0.0073
+  deepseek-v3.2    window B horizon <=1d   n=574 bottom |p-q|=0.107 edge=-0.0226 top |p-q|=0.110 edge=-0.0249 diff |p-q|=+0.003 edge=-0.0023
+  deepseek-v3.2    window B horizon >30d   n=51 bottom |p-q|=0.240 edge=-0.0742 top |p-q|=0.244 edge=-0.0904 diff |p-q|=+0.005 edge=-0.0161
+  deepseek-v3.2    window C horizon 1-3d   n=884 bottom |p-q|=0.124 edge=-0.0209 top |p-q|=0.125 edge=-0.0226 diff |p-q|=+0.001 edge=-0.0017
+  deepseek-v3.2    window C horizon 3-7d   n=448 bottom |p-q|=0.131 edge=-0.0392 top |p-q|=0.134 edge=-0.0452 diff |p-q|=+0.003 edge=-0.0061
+  deepseek-v3.2    window C horizon 7-30d  n=177 bottom |p-q|=0.167 edge=-0.0423 top |p-q|=0.157 edge=-0.0281 diff |p-q|=-0.010 edge=+0.0142
+  deepseek-v3.2    window C horizon <=1d   n=992 bottom |p-q|=0.151 edge=-0.0540 top |p-q|=0.149 edge=-0.0536 diff |p-q|=-0.001 edge=+0.0005
+  deepseek-v3.2    window C horizon >30d   n=168 bottom |p-q|=0.147 edge=-0.0331 top |p-q|=0.149 edge=-0.0361 diff |p-q|=+0.002 edge=-0.0030
+  gpt-5.5          window B horizon 1-3d   n=527 bottom |p-q|=0.065 edge=-0.0169 top |p-q|=0.120 edge=-0.0426 diff |p-q|=+0.055 edge=-0.0257
+  gpt-5.5          window B horizon 3-7d   n=451 bottom |p-q|=0.065 edge=-0.0084 top |p-q|=0.150 edge=-0.0308 diff |p-q|=+0.084 edge=-0.0224
+  gpt-5.5          window B horizon 7-30d  n=262 bottom |p-q|=0.151 edge=-0.0248 top |p-q|=0.217 edge=-0.0548 diff |p-q|=+0.065 edge=-0.0300
+  gpt-5.5          window B horizon <=1d   n=574 bottom |p-q|=0.059 edge=-0.0042 top |p-q|=0.106 edge=-0.0244 diff |p-q|=+0.047 edge=-0.0202
+  gpt-5.5          window B horizon >30d   n=51 bottom |p-q|=0.201 edge=-0.0762 top |p-q|=0.212 edge=+0.0080 diff |p-q|=+0.011 edge=+0.0842
+  gpt-5.5          window C horizon 1-3d   n=884 bottom |p-q|=0.083 edge=-0.0161 top |p-q|=0.120 edge=-0.0128 diff |p-q|=+0.037 edge=+0.0033
+  gpt-5.5          window C horizon 3-7d   n=448 bottom |p-q|=0.082 edge=-0.0109 top |p-q|=0.155 edge=-0.0609 diff |p-q|=+0.073 edge=-0.0500
+  gpt-5.5          window C horizon 7-30d  n=176 bottom |p-q|=0.120 edge=-0.0068 top |p-q|=0.200 edge=-0.0057 diff |p-q|=+0.080 edge=+0.0011
+  gpt-5.5          window C horizon <=1d   n=991 bottom |p-q|=0.128 edge=-0.0324 top |p-q|=0.143 edge=-0.0621 diff |p-q|=+0.015 edge=-0.0296
+  gpt-5.5          window C horizon >30d   n=168 bottom |p-q|=0.130 edge=+0.0290 top |p-q|=0.212 edge=-0.1100 diff |p-q|=+0.082 edge=-0.1390
+  glm-5.1          window B horizon 1-3d   n=527 bottom |p-q|=0.085 edge=-0.0297 top |p-q|=0.128 edge=-0.0569 diff |p-q|=+0.043 edge=-0.0272
+  glm-5.1          window B horizon 3-7d   n=451 bottom |p-q|=0.099 edge=-0.0151 top |p-q|=0.147 edge=-0.0277 diff |p-q|=+0.048 edge=-0.0126
+  glm-5.1          window B horizon 7-30d  n=262 bottom |p-q|=0.135 edge=-0.0361 top |p-q|=0.200 edge=-0.0908 diff |p-q|=+0.065 edge=-0.0546
+  glm-5.1          window B horizon <=1d   n=574 bottom |p-q|=0.085 edge=-0.0012 top |p-q|=0.134 edge=-0.0078 diff |p-q|=+0.048 edge=-0.0066
+  glm-5.1          window B horizon >30d   n=51 bottom |p-q|=0.189 edge=-0.0589 top |p-q|=0.190 edge=-0.1262 diff |p-q|=+0.001 edge=-0.0673
+  glm-5.1          window C horizon 1-3d   n=884 bottom |p-q|=0.103 edge=-0.0033 top |p-q|=0.124 edge=-0.0234 diff |p-q|=+0.020 edge=-0.0201
+  glm-5.1          window C horizon 3-7d   n=448 bottom |p-q|=0.100 edge=-0.0385 top |p-q|=0.144 edge=-0.0313 diff |p-q|=+0.043 edge=+0.0072
+  glm-5.1          window C horizon 7-30d  n=177 bottom |p-q|=0.141 edge=-0.0600 top |p-q|=0.132 edge=-0.0718 diff |p-q|=-0.009 edge=-0.0117
+  glm-5.1          window C horizon <=1d   n=992 bottom |p-q|=0.123 edge=-0.0374 top |p-q|=0.149 edge=-0.0552 diff |p-q|=+0.026 edge=-0.0178
+  glm-5.1          window C horizon >30d   n=168 bottom |p-q|=0.125 edge=-0.0395 top |p-q|=0.170 edge=-0.0534 diff |p-q|=+0.045 edge=-0.0139
+  kimi-k2.6        window B horizon 1-3d   n=527 bottom |p-q|=0.100 edge=-0.0215 top |p-q|=0.100 edge=-0.0220 diff |p-q|=-0.001 edge=-0.0005
+  kimi-k2.6        window B horizon 3-7d   n=450 bottom |p-q|=0.129 edge=-0.0171 top |p-q|=0.130 edge=-0.0178 diff |p-q|=+0.002 edge=-0.0007
+  kimi-k2.6        window B horizon 7-30d  n=262 bottom |p-q|=0.179 edge=-0.0611 top |p-q|=0.180 edge=-0.0606 diff |p-q|=+0.001 edge=+0.0006
+  kimi-k2.6        window B horizon <=1d   n=574 bottom |p-q|=0.099 edge=-0.0221 top |p-q|=0.099 edge=-0.0224 diff |p-q|=-0.000 edge=-0.0003
+  kimi-k2.6        window B horizon >30d   n=51 bottom |p-q|=0.216 edge=-0.0675 top |p-q|=0.216 edge=-0.0675 diff |p-q|=+0.000 edge=+0.0000
+  kimi-k2.6        window C horizon 1-3d   n=884 bottom |p-q|=0.115 edge=-0.0230 top |p-q|=0.116 edge=-0.0226 diff |p-q|=+0.001 edge=+0.0003
+  kimi-k2.6        window C horizon 3-7d   n=448 bottom |p-q|=0.126 edge=-0.0377 top |p-q|=0.125 edge=-0.0370 diff |p-q|=-0.001 edge=+0.0007
+  kimi-k2.6        window C horizon 7-30d  n=176 bottom |p-q|=0.166 edge=-0.0609 top |p-q|=0.164 edge=-0.0562 diff |p-q|=-0.002 edge=+0.0047
+  kimi-k2.6        window C horizon <=1d   n=992 bottom |p-q|=0.152 edge=-0.0509 top |p-q|=0.153 edge=-0.0503 diff |p-q|=+0.000 edge=+0.0006
+  kimi-k2.6        window C horizon >30d   n=168 bottom |p-q|=0.166 edge=-0.0396 top |p-q|=0.165 edge=-0.0423 diff |p-q|=-0.001 edge=-0.0027
+  deepseek-v4-pro  window B horizon 1-3d   n=527 bottom |p-q|=0.107 edge=-0.0371 top |p-q|=0.112 edge=-0.0404 diff |p-q|=+0.005 edge=-0.0033
+  deepseek-v4-pro  window B horizon 3-7d   n=449 bottom |p-q|=0.116 edge=-0.0016 top |p-q|=0.148 edge=-0.0335 diff |p-q|=+0.032 edge=-0.0319
+  deepseek-v4-pro  window B horizon 7-30d  n=260 bottom |p-q|=0.226 edge=-0.1084 top |p-q|=0.185 edge=-0.0575 diff |p-q|=-0.041 edge=+0.0509
+  deepseek-v4-pro  window B horizon <=1d   n=572 bottom |p-q|=0.109 edge=-0.0066 top |p-q|=0.115 edge=-0.0257 diff |p-q|=+0.006 edge=-0.0191
+  deepseek-v4-pro  window B horizon >30d   n=51 bottom |p-q|=0.208 edge=+0.0228 top |p-q|=0.249 edge=-0.0824 diff |p-q|=+0.041 edge=-0.1052
+  deepseek-v4-pro  window C horizon 1-3d   n=882 bottom |p-q|=0.132 edge=-0.0360 top |p-q|=0.129 edge=-0.0174 diff |p-q|=-0.002 edge=+0.0186
+  deepseek-v4-pro  window C horizon 3-7d   n=446 bottom |p-q|=0.127 edge=-0.0251 top |p-q|=0.155 edge=-0.0572 diff |p-q|=+0.028 edge=-0.0322
+  deepseek-v4-pro  window C horizon 7-30d  n=176 bottom |p-q|=0.158 edge=-0.0191 top |p-q|=0.170 edge=-0.0501 diff |p-q|=+0.012 edge=-0.0311
+  deepseek-v4-pro  window C horizon <=1d   n=991 bottom |p-q|=0.164 edge=-0.0461 top |p-q|=0.145 edge=-0.0441 diff |p-q|=-0.019 edge=+0.0019
+  deepseek-v4-pro  window C horizon >30d   n=166 bottom |p-q|=0.141 edge=-0.0407 top |p-q|=0.155 edge=-0.0383 diff |p-q|=+0.014 edge=+0.0024
+
+=== Confound: does thinking length track how far the price sits from a coin flip? ===
+  gpt-5.2          window A: corr(thinking tokens, |q - 0.5|)=0.104
+  gpt-5.2          window B: corr(thinking tokens, |q - 0.5|)=-0.018
+  gpt-5.2          window C: corr(thinking tokens, |q - 0.5|)=0.027
+  gpt-oss-120b     window A: corr(thinking tokens, |q - 0.5|)=0.032
+  gpt-oss-120b     window B: corr(thinking tokens, |q - 0.5|)=-0.059
+  gpt-oss-120b     window C: corr(thinking tokens, |q - 0.5|)=0.066
+  kimi-k2.5        window A: corr(thinking tokens, |q - 0.5|)=-0.030
+  kimi-k2.5        window B: corr(thinking tokens, |q - 0.5|)=-0.023
+  kimi-k2.5        window C: corr(thinking tokens, |q - 0.5|)=-0.011
+  deepseek-v3.2    window A: corr(thinking tokens, |q - 0.5|)=0.009
+  deepseek-v3.2    window B: corr(thinking tokens, |q - 0.5|)=0.008
+  deepseek-v3.2    window C: corr(thinking tokens, |q - 0.5|)=0.006
+  gpt-5.5          window B: corr(thinking tokens, |q - 0.5|)=0.076
+  gpt-5.5          window C: corr(thinking tokens, |q - 0.5|)=0.137
+  glm-5.1          window B: corr(thinking tokens, |q - 0.5|)=-0.102
+  glm-5.1          window C: corr(thinking tokens, |q - 0.5|)=0.036
+  kimi-k2.6        window B: corr(thinking tokens, |q - 0.5|)=-0.020
+  kimi-k2.6        window C: corr(thinking tokens, |q - 0.5|)=-0.015
+  deepseek-v4-pro  window B: corr(thinking tokens, |q - 0.5|)=-0.046
+  deepseek-v4-pro  window C: corr(thinking tokens, |q - 0.5|)=0.011
+# --- exit 0, 3s

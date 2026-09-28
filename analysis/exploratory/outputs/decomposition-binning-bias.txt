@@ -1,0 +1,114 @@
+# output of analysis/exploratory/decomposition-binning-bias.py
+# run: 2026-09-22T12:54:09Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: primary set, forecasts view, mode normal. BINNED = Murphy with 10 equal-width bins (what the paper uses); UNBINNED = same decomposition with pool adjacent violators instead of bins. RES higher is better, REL lower is better. 'res share' = the share of the model's Brier shortfall attributed to resolution. 'top10' = share of the forecaster's answers falling on its ten commonest values. intervals = 1,000 event resamples, seed 20260902
+== window A, test split | market answers: top10 0.177
+  gpt-5.2          n=1248  top10 0.312 | BINNED   model REL 0.0051 RES 0.0352  market REL 0.0015 RES 0.0486  res share  79.0%  unexplained model -0.00088 market +0.00081
+                                     | UNBINNED model REL 0.0031 RES 0.0374  market REL 0.0022 RES 0.0513  res share  93.9% [80.5%, 115.4%]
+  gpt-oss-120b     n=1248  top10 0.490 | BINNED   model REL 0.0074 RES 0.0214  market REL 0.0015 RES 0.0486  res share  82.3%  unexplained model -0.00183 market +0.00081
+                                     | UNBINNED model REL 0.0062 RES 0.0256  market REL 0.0022 RES 0.0513  res share  86.6% [75.9%, 103.0%]
+  kimi-k2.5        n=1237  top10 0.463 | BINNED   model REL 0.0033 RES 0.0352  market REL 0.0015 RES 0.0482  res share  87.8%  unexplained model -0.00094 market +0.00085
+                                     | UNBINNED model REL 0.0031 RES 0.0398  market REL 0.0021 RES 0.0508  res share  91.9% [93.1%, 114.8%]
+  deepseek-v3.2    n=1248  top10 0.627 | BINNED   model REL 0.0023 RES 0.0338  market REL 0.0015 RES 0.0486  res share  95.2%  unexplained model -0.00046 market +0.00081
+                                     | UNBINNED model REL 0.0024 RES 0.0378  market REL 0.0022 RES 0.0513  res share  98.7% [88.4%, 115.6%]
+== window A, both splits | market answers: top10 0.174
+  gpt-5.2          n=1550  top10 0.310 | BINNED   model REL 0.0047 RES 0.0403  market REL 0.0016 RES 0.0524  res share  79.5%  unexplained model -0.00106 market +0.00041
+                                     | UNBINNED model REL 0.0033 RES 0.0428  market REL 0.0022 RES 0.0550  res share  91.5% [74.7%, 110.0%]
+  gpt-oss-120b     n=1550  top10 0.481 | BINNED   model REL 0.0055 RES 0.0263  market REL 0.0016 RES 0.0524  res share  87.1%  unexplained model -0.00187 market +0.00041
+                                     | UNBINNED model REL 0.0051 RES 0.0308  market REL 0.0022 RES 0.0550  res share  89.2% [79.2%, 105.9%]
+  kimi-k2.5        n=1533  top10 0.454 | BINNED   model REL 0.0028 RES 0.0412  market REL 0.0015 RES 0.0519  res share  89.7%  unexplained model -0.00077 market +0.00048
+                                     | UNBINNED model REL 0.0029 RES 0.0453  market REL 0.0021 RES 0.0544  res share  91.9% [89.6%, 109.5%]
+  deepseek-v3.2    n=1550  top10 0.619 | BINNED   model REL 0.0015 RES 0.0377  market REL 0.0016 RES 0.0524  res share 100.5%  unexplained model -0.00090 market +0.00041
+                                     | UNBINNED model REL 0.0019 RES 0.0417  market REL 0.0022 RES 0.0550  res share 102.0% [103.9%, 118.7%]
+== window B, test split | market answers: top10 0.123
+  gpt-5.2          n=1480  top10 0.285 | BINNED   model REL 0.0044 RES 0.0268  market REL 0.0017 RES 0.0495  res share  89.5%  unexplained model -0.00073 market -0.00086
+                                     | UNBINNED model REL 0.0041 RES 0.0304  market REL 0.0016 RES 0.0528  res share  90.2% [83.1%, 101.5%]
+  gpt-oss-120b     n=1480  top10 0.428 | BINNED   model REL 0.0102 RES 0.0167  market REL 0.0017 RES 0.0495  res share  79.3%  unexplained model -0.00066 market -0.00086
+                                     | UNBINNED model REL 0.0079 RES 0.0191  market REL 0.0016 RES 0.0528  res share  84.4% [77.3%, 93.3%]
+  kimi-k2.5        n=1477  top10 0.386 | BINNED   model REL 0.0045 RES 0.0229  market REL 0.0017 RES 0.0495  res share  90.4%  unexplained model -0.00098 market -0.00092
+                                     | UNBINNED model REL 0.0038 RES 0.0276  market REL 0.0016 RES 0.0528  res share  92.1% [84.7%, 102.7%]
+  deepseek-v3.2    n=1480  top10 0.565 | BINNED   model REL 0.0032 RES 0.0249  market REL 0.0017 RES 0.0495  res share  94.0%  unexplained model +0.00016 market -0.00086
+                                     | UNBINNED model REL 0.0024 RES 0.0273  market REL 0.0016 RES 0.0528  res share  97.0% [89.1%, 106.4%]
+  gpt-5.5          n=1480  top10 0.283 | BINNED   model REL 0.0036 RES 0.0306  market REL 0.0017 RES 0.0495  res share  90.7%  unexplained model -0.00025 market -0.00086
+                                     | UNBINNED model REL 0.0027 RES 0.0336  market REL 0.0016 RES 0.0528  res share  94.8% [85.3%, 107.0%]
+  glm-5.1          n=1480  top10 0.360 | BINNED   model REL 0.0052 RES 0.0253  market REL 0.0017 RES 0.0495  res share  87.3%  unexplained model -0.00025 market -0.00086
+                                     | UNBINNED model REL 0.0040 RES 0.0281  market REL 0.0016 RES 0.0528  res share  91.2% [83.6%, 101.0%]
+  kimi-k2.6        n=1479  top10 0.384 | BINNED   model REL 0.0042 RES 0.0262  market REL 0.0016 RES 0.0496  res share  89.9%  unexplained model -0.00049 market -0.00090
+                                     | UNBINNED model REL 0.0035 RES 0.0293  market REL 0.0016 RES 0.0530  res share  92.8% [84.3%, 102.7%]
+  deepseek-v4-pro  n=1475  top10 0.345 | BINNED   model REL 0.0071 RES 0.0259  market REL 0.0017 RES 0.0500  res share  81.5%  unexplained model -0.00048 market -0.00081
+                                     | UNBINNED model REL 0.0067 RES 0.0295  market REL 0.0016 RES 0.0532  res share  82.4% [73.3%, 94.8%]
+== window B, both splits | market answers: top10 0.119
+  gpt-5.2          n=1865  top10 0.279 | BINNED   model REL 0.0046 RES 0.0274  market REL 0.0012 RES 0.0493  res share  86.6%  unexplained model -0.00030 market -0.00099
+                                     | UNBINNED model REL 0.0043 RES 0.0303  market REL 0.0014 RES 0.0524  res share  88.5% [81.7%, 99.3%]
+  gpt-oss-120b     n=1865  top10 0.433 | BINNED   model REL 0.0105 RES 0.0155  market REL 0.0012 RES 0.0493  res share  78.4%  unexplained model -0.00060 market -0.00099
+                                     | UNBINNED model REL 0.0086 RES 0.0177  market REL 0.0014 RES 0.0524  res share  82.7% [76.8%, 91.4%]
+  kimi-k2.5        n=1862  top10 0.394 | BINNED   model REL 0.0043 RES 0.0234  market REL 0.0012 RES 0.0492  res share  89.2%  unexplained model -0.00091 market -0.00104
+                                     | UNBINNED model REL 0.0036 RES 0.0270  market REL 0.0014 RES 0.0524  res share  92.1% [85.1%, 100.9%]
+  deepseek-v3.2    n=1865  top10 0.568 | BINNED   model REL 0.0034 RES 0.0243  market REL 0.0012 RES 0.0493  res share  92.0%  unexplained model -0.00005 market -0.00099
+                                     | UNBINNED model REL 0.0026 RES 0.0262  market REL 0.0014 RES 0.0524  res share  95.5% [88.6%, 103.4%]
+  gpt-5.5          n=1865  top10 0.286 | BINNED   model REL 0.0033 RES 0.0310  market REL 0.0012 RES 0.0493  res share  89.7%  unexplained model -0.00001 market -0.00099
+                                     | UNBINNED model REL 0.0028 RES 0.0333  market REL 0.0014 RES 0.0524  res share  93.0% [85.3%, 104.4%]
+  glm-5.1          n=1865  top10 0.360 | BINNED   model REL 0.0054 RES 0.0239  market REL 0.0012 RES 0.0493  res share  85.8%  unexplained model -0.00050 market -0.00099
+                                     | UNBINNED model REL 0.0045 RES 0.0265  market REL 0.0014 RES 0.0524  res share  89.3% [83.6%, 98.3%]
+  kimi-k2.6        n=1864  top10 0.386 | BINNED   model REL 0.0044 RES 0.0254  market REL 0.0012 RES 0.0493  res share  88.2%  unexplained model -0.00062 market -0.00103
+                                     | UNBINNED model REL 0.0038 RES 0.0283  market REL 0.0014 RES 0.0526  res share  91.0% [83.8%, 100.5%]
+  deepseek-v4-pro  n=1859  top10 0.347 | BINNED   model REL 0.0084 RES 0.0243  market REL 0.0012 RES 0.0496  res share  77.8%  unexplained model -0.00020 market -0.00095
+                                     | UNBINNED model REL 0.0083 RES 0.0274  market REL 0.0014 RES 0.0526  res share  78.5% [72.0%, 89.0%]
+== window C, test split | market answers: top10 0.124
+  gpt-5.2          n=2137  top10 0.253 | BINNED   model REL 0.0063 RES 0.0237  market REL 0.0006 RES 0.0557  res share  84.8%  unexplained model -0.00103 market -0.00043
+                                     | UNBINNED model REL 0.0058 RES 0.0276  market REL 0.0009 RES 0.0584  res share  86.4% [81.5%, 94.7%]
+  gpt-oss-120b     n=2137  top10 0.473 | BINNED   model REL 0.0073 RES 0.0194  market REL 0.0006 RES 0.0557  res share  84.5%  unexplained model -0.00033 market -0.00043
+                                     | UNBINNED model REL 0.0068 RES 0.0219  market REL 0.0009 RES 0.0584  res share  86.3% [81.2%, 93.9%]
+  kimi-k2.5        n=2134  top10 0.507 | BINNED   model REL 0.0046 RES 0.0244  market REL 0.0006 RES 0.0559  res share  88.8%  unexplained model +0.00023 market -0.00043
+                                     | UNBINNED model REL 0.0045 RES 0.0268  market REL 0.0009 RES 0.0585  res share  89.8% [84.4%, 96.7%]
+  deepseek-v3.2    n=2137  top10 0.609 | BINNED   model REL 0.0055 RES 0.0206  market REL 0.0006 RES 0.0557  res share  87.8%  unexplained model -0.00031 market -0.00043
+                                     | UNBINNED model REL 0.0050 RES 0.0233  market REL 0.0009 RES 0.0584  res share  89.7% [85.4%, 96.3%]
+  gpt-5.5          n=2136  top10 0.229 | BINNED   model REL 0.0023 RES 0.0302  market REL 0.0006 RES 0.0559  res share  93.8%  unexplained model -0.00059 market -0.00040
+                                     | UNBINNED model REL 0.0024 RES 0.0333  market REL 0.0010 RES 0.0586  res share  94.6% [88.7%, 102.4%]
+  glm-5.1          n=2137  top10 0.359 | BINNED   model REL 0.0066 RES 0.0222  market REL 0.0006 RES 0.0557  res share  84.7%  unexplained model +0.00085 market -0.00043
+                                     | UNBINNED model REL 0.0065 RES 0.0237  market REL 0.0009 RES 0.0584  res share  86.2% [80.7%, 93.4%]
+  kimi-k2.6        n=2136  top10 0.485 | BINNED   model REL 0.0058 RES 0.0216  market REL 0.0006 RES 0.0557  res share  86.7%  unexplained model +0.00002 market -0.00043
+                                     | UNBINNED model REL 0.0052 RES 0.0235  market REL 0.0009 RES 0.0583  res share  89.1% [83.8%, 95.7%]
+  deepseek-v4-pro  n=2130  top10 0.426 | BINNED   model REL 0.0106 RES 0.0244  market REL 0.0006 RES 0.0558  res share  75.9%  unexplained model -0.00009 market -0.00040
+                                     | UNBINNED model REL 0.0097 RES 0.0262  market REL 0.0010 RES 0.0584  res share  78.8% [72.3%, 87.5%]
+== window C, both splits | market answers: top10 0.124
+  gpt-5.2          n=2669  top10 0.251 | BINNED   model REL 0.0057 RES 0.0246  market REL 0.0003 RES 0.0562  res share  85.2%  unexplained model -0.00108 market -0.00042
+                                     | UNBINNED model REL 0.0054 RES 0.0282  market REL 0.0007 RES 0.0587  res share  86.7% [81.1%, 93.7%]
+  gpt-oss-120b     n=2669  top10 0.471 | BINNED   model REL 0.0067 RES 0.0206  market REL 0.0003 RES 0.0562  res share  84.6%  unexplained model -0.00028 market -0.00042
+                                     | UNBINNED model REL 0.0063 RES 0.0228  market REL 0.0007 RES 0.0587  res share  86.6% [81.9%, 93.7%]
+  kimi-k2.5        n=2665  top10 0.503 | BINNED   model REL 0.0042 RES 0.0248  market REL 0.0002 RES 0.0563  res share  88.9%  unexplained model -0.00039 market -0.00041
+                                     | UNBINNED model REL 0.0044 RES 0.0276  market REL 0.0007 RES 0.0588  res share  89.5% [85.3%, 96.0%]
+  deepseek-v3.2    n=2669  top10 0.605 | BINNED   model REL 0.0044 RES 0.0221  market REL 0.0003 RES 0.0562  res share  89.2%  unexplained model -0.00026 market -0.00042
+                                     | UNBINNED model REL 0.0041 RES 0.0244  market REL 0.0007 RES 0.0587  res share  90.9% [86.8%, 96.5%]
+  gpt-5.5          n=2667  top10 0.230 | BINNED   model REL 0.0021 RES 0.0318  market REL 0.0003 RES 0.0564  res share  93.0%  unexplained model -0.00076 market -0.00038
+                                     | UNBINNED model REL 0.0024 RES 0.0349  market REL 0.0007 RES 0.0589  res share  93.4% [88.5%, 100.3%]
+  glm-5.1          n=2669  top10 0.359 | BINNED   model REL 0.0057 RES 0.0233  market REL 0.0003 RES 0.0562  res share  85.9%  unexplained model +0.00064 market -0.00042
+                                     | UNBINNED model REL 0.0060 RES 0.0249  market REL 0.0007 RES 0.0587  res share  86.5% [81.2%, 93.1%]
+  kimi-k2.6        n=2668  top10 0.485 | BINNED   model REL 0.0052 RES 0.0224  market REL 0.0003 RES 0.0562  res share  87.2%  unexplained model -0.00040 market -0.00041
+                                     | UNBINNED model REL 0.0047 RES 0.0244  market REL 0.0007 RES 0.0587  res share  89.5% [85.0%, 95.3%]
+  deepseek-v4-pro  n=2661  top10 0.424 | BINNED   model REL 0.0101 RES 0.0257  market REL 0.0003 RES 0.0563  res share  75.7%  unexplained model -0.00023 market -0.00039
+                                     | UNBINNED model REL 0.0092 RES 0.0276  market REL 0.0007 RES 0.0587  res share  78.5% [72.4%, 86.3%]
+
+### PER-WINDOW SUMMARY of the bin-free (pool-adjacent-violators) resolution share
+Same numbers as the UNBINNED lines above, gathered per window: the lowest and highest share of the Brier shortfall that the bin-free decomposition attributes to resolution (sorting), and which model sits at each end. Over 100 per cent means the model's calibration error is no worse than the market's, so resolution accounts for more than the whole shortfall.
+  window A, test split  bin-free  86.6% (gpt-oss-120b) to  98.7% (deepseek-v3.2) over 4 models
+                         ten-bin   79.0% (gpt-5.2) to  95.2% (deepseek-v3.2)
+                         per model, bin-free: gpt-oss-120b 86.6%, kimi-k2.5 91.9%, gpt-5.2 93.9%, deepseek-v3.2 98.7%
+  window A, both splits bin-free  89.2% (gpt-oss-120b) to 102.0% (deepseek-v3.2) over 4 models
+                         ten-bin   79.5% (gpt-5.2) to 100.5% (deepseek-v3.2)
+                         per model, bin-free: gpt-oss-120b 89.2%, gpt-5.2 91.5%, kimi-k2.5 91.9%, deepseek-v3.2 102.0%
+  window B, test split  bin-free  82.4% (deepseek-v4-pro) to  97.0% (deepseek-v3.2) over 8 models
+                         ten-bin   79.3% (gpt-oss-120b) to  94.0% (deepseek-v3.2)
+                         per model, bin-free: deepseek-v4-pro 82.4%, gpt-oss-120b 84.4%, gpt-5.2 90.2%, glm-5.1 91.2%, kimi-k2.5 92.1%, kimi-k2.6 92.8%, gpt-5.5 94.8%, deepseek-v3.2 97.0%
+  window B, both splits bin-free  78.5% (deepseek-v4-pro) to  95.5% (deepseek-v3.2) over 8 models
+                         ten-bin   77.8% (deepseek-v4-pro) to  92.0% (deepseek-v3.2)
+                         per model, bin-free: deepseek-v4-pro 78.5%, gpt-oss-120b 82.7%, gpt-5.2 88.5%, glm-5.1 89.3%, kimi-k2.6 91.0%, kimi-k2.5 92.1%, gpt-5.5 93.0%, deepseek-v3.2 95.5%
+  window C, test split  bin-free  78.8% (deepseek-v4-pro) to  94.6% (gpt-5.5) over 8 models
+                         ten-bin   75.9% (deepseek-v4-pro) to  93.8% (gpt-5.5)
+                         per model, bin-free: deepseek-v4-pro 78.8%, glm-5.1 86.2%, gpt-oss-120b 86.3%, gpt-5.2 86.4%, kimi-k2.6 89.1%, deepseek-v3.2 89.7%, kimi-k2.5 89.8%, gpt-5.5 94.6%
+  window C, both splits bin-free  78.5% (deepseek-v4-pro) to  93.4% (gpt-5.5) over 8 models
+                         ten-bin   75.7% (deepseek-v4-pro) to  93.0% (gpt-5.5)
+                         per model, bin-free: deepseek-v4-pro 78.5%, glm-5.1 86.5%, gpt-oss-120b 86.6%, gpt-5.2 86.7%, kimi-k2.5 89.5%, kimi-k2.6 89.5%, deepseek-v3.2 90.9%, gpt-5.5 93.4%
+# --- exit 0, 235s

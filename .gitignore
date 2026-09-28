@@ -1,0 +1,22 @@
+# Never commit secrets: the harness reads API keys from .env
+.env*
+*.key
+
+# Built locally by analysis/build_db.py and the harness
+/benchmark/
+/harness/runs/
+/analysis/out/
+/analysis/exploratory/figures/
+
+# LaTeX build files
+paper/*.aux
+paper/*.log
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+paper/*.out
+
+# Python and OS
+__pycache__/
+.DS_Store

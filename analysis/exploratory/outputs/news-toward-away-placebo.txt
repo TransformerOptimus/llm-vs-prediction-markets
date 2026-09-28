@@ -1,0 +1,22 @@
+# output of analysis/exploratory/news-toward-away-placebo.py
+# run: 2026-09-22T08:47:11Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: news-bearing primary rows where both the news pass and the memory-probe pass parsed; value of news = Brier without minus Brier with, so positive means the news helped; moves under 0.02 are not counted; placebo = the same move in a random direction, 200 draws, seed 20260902
+=== window A
+  test split   n=4597   real   toward +0.0337 (n=1615)  away -0.0032 (n=1730)  difference +0.0370
+                        placebo toward +0.0263            away -0.0350            difference +0.0613 [+0.0564, +0.0665]  = 166% of the real difference
+  both splits  n=5719   real   toward +0.0394 (n=2017)  away -0.0011 (n=2138)  difference +0.0405
+                        placebo toward +0.0297            away -0.0358            difference +0.0655 [+0.0594, +0.0711]  = 162% of the real difference
+=== window B
+  test split   n=3511   real   toward +0.0553 (n=1404)  away -0.0390 (n=1183)  difference +0.0944
+                        placebo toward +0.0445            away -0.0491            difference +0.0936 [+0.0855, +0.1011]  = 99% of the real difference
+  both splits  n=4495   real   toward +0.0546 (n=1764)  away -0.0442 (n=1550)  difference +0.0988
+                        placebo toward +0.0429            away -0.0500            difference +0.0928 [+0.0867, +0.0998]  = 94% of the real difference
+=== window C
+  test split   n=4820   real   toward +0.0552 (n=1995)  away -0.0316 (n=1760)  difference +0.0869
+                        placebo toward +0.0434            away -0.0451            difference +0.0885 [+0.0813, +0.0951]  = 102% of the real difference
+  both splits  n=6000   real   toward +0.0552 (n=2548)  away -0.0335 (n=2145)  difference +0.0887
+                        placebo toward +0.0444            away -0.0465            difference +0.0909 [+0.0849, +0.0961]  = 102% of the real difference
+# --- exit 0, 7s

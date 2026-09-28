@@ -1,0 +1,45 @@
+# output of analysis/exploratory/convergence-open-market-move.py
+# run: 2026-09-17T06:53:55Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: forecasts view, mode normal, status in ('ok', 'ok_after_retry'), primary set, |p-q| >= 0.10, rated last price; open = close after forecast + 72h; intervals = 1000 event resamples, seed 20260902
+A open-at-window-end rows n=1291 events=343 of 2457 disagreements (53%); settled rows n=1166, their move to model=+0.0374 [-0.0140,+0.0921]
+   mean move toward model   +0.0293 [+0.0100,+0.0512]
+   mean move toward 0.5     +0.0223 [+0.0043,+0.0420]
+   mean move toward outcome +0.0464 [+0.0270,+0.0685]
+   model more extreme than market n=602 move to model +0.0074 [-0.0220,+0.0375]; model nearer 0.5 n=689 move to model +0.0484 [+0.0239,+0.0747]
+   gpt-5.2         n=262 move to model +0.0354 [+0.0112,+0.0606]
+   gpt-oss-120b    n=425 move to model +0.0223 [+0.0039,+0.0425]
+   kimi-k2.5       n=285 move to model +0.0304 [+0.0049,+0.0569]
+   deepseek-v3.2   n=319 move to model +0.0326 [+0.0109,+0.0550]
+   models whose interval clears zero: 4 of 4
+B open-at-window-end rows n=2807 events=501 of 5892 disagreements (48%); settled rows n=3085, their move to model=+0.0301 [-0.0005,+0.0598]
+   mean move toward model   +0.0340 [+0.0152,+0.0536]
+   mean move toward 0.5     +0.0029 [-0.0168,+0.0229]
+   mean move toward outcome +0.0422 [+0.0233,+0.0634]
+   model more extreme than market n=865 move to model +0.0502 [+0.0156,+0.0844]; model nearer 0.5 n=1942 move to model +0.0267 [+0.0048,+0.0505]
+   gpt-5.2         n=324 move to model +0.0409 [+0.0195,+0.0639]
+   gpt-oss-120b    n=455 move to model +0.0185 [+0.0024,+0.0350]
+   kimi-k2.5       n=339 move to model +0.0454 [+0.0256,+0.0678]
+   deepseek-v3.2   n=360 move to model +0.0333 [+0.0126,+0.0527]
+   gpt-5.5         n=303 move to model +0.0354 [+0.0117,+0.0612]
+   glm-5.1         n=328 move to model +0.0309 [+0.0082,+0.0528]
+   kimi-k2.6       n=350 move to model +0.0420 [+0.0215,+0.0630]
+   deepseek-v4-pro n=348 move to model +0.0308 [+0.0083,+0.0532]
+   models whose interval clears zero: 8 of 8
+C open-at-window-end rows n=2517 events=418 of 9436 disagreements (27%); settled rows n=6919, their move to model=+0.0175 [-0.0003,+0.0358]
+   mean move toward model   +0.0187 [+0.0015,+0.0375]
+   mean move toward 0.5     +0.0051 [-0.0112,+0.0238]
+   mean move toward outcome +0.0509 [+0.0313,+0.0707]
+   model more extreme than market n=687 move to model +0.0266 [-0.0033,+0.0592]; model nearer 0.5 n=1830 move to model +0.0158 [-0.0056,+0.0389]
+   gpt-5.2         n=309 move to model +0.0184 [-0.0030,+0.0396]
+   gpt-oss-120b    n=357 move to model +0.0194 [+0.0028,+0.0365]
+   kimi-k2.5       n=304 move to model +0.0223 [+0.0018,+0.0423]
+   deepseek-v3.2   n=348 move to model +0.0144 [-0.0035,+0.0327]
+   gpt-5.5         n=261 move to model +0.0219 [-0.0038,+0.0471]
+   glm-5.1         n=307 move to model +0.0199 [+0.0007,+0.0404]
+   kimi-k2.6       n=314 move to model +0.0222 [+0.0042,+0.0406]
+   deepseek-v4-pro n=317 move to model +0.0126 [-0.0062,+0.0321]
+   models whose interval clears zero: 4 of 8
+# --- exit 0, 6s

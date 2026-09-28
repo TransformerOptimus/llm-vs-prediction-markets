@@ -1,0 +1,15 @@
+# output of analysis/exploratory/failures-and-cutoffs-news-triggers-overrun.py
+# run: 2026-09-17T06:55:07Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+window A [all rows]: n=2619 normal_fail_rate=20.9% probe_fail_rate=8.4%
+window A [news_available=1]: n=2619 normal_fail_rate=20.9% probe_fail_rate=8.4%
+window A [primary & news]: n=1434 normal_fail_rate=17.0% probe_fail_rate=0.6%
+window B [all rows]: n=1010 normal_fail_rate=10.6% probe_fail_rate=1.1%
+window B [news_available=1]: n=1010 normal_fail_rate=10.6% probe_fail_rate=1.1%
+window B [primary & news]: n=563 normal_fail_rate=11.7% probe_fail_rate=0.9%
+window C [all rows]: n=1122 normal_fail_rate=11.3% probe_fail_rate=3.8%
+window C [news_available=1]: n=1122 normal_fail_rate=11.3% probe_fail_rate=3.8%
+window C [primary & news]: n=752 normal_fail_rate=11.3% probe_fail_rate=3.2%
+# --- exit 0, 1s

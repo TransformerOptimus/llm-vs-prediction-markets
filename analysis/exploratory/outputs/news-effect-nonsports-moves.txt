@@ -1,0 +1,25 @@
+# output of analysis/exploratory/news-effect-nonsports-moves.py
+# run: 2026-09-17T06:55:46Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+total paired primary+news_available rows: 16214
+
+Window A: n_nonsports=1076 n_sports=4643
+  move nonsports=0.127 [0.108,0.151]  sports=0.076 [0.070,0.082]
+  diff (nonsports-sports) = +0.051 [+0.031,+0.076]
+    Brier improvement nonsports: +0.0349 [+0.0142,+0.0631]
+    Brier improvement sports: +0.0084 [+0.0026,+0.0142]
+
+Window B: n_nonsports=1357 n_sports=3138
+  move nonsports=0.154 [0.131,0.181]  sports=0.073 [0.065,0.081]
+  diff (nonsports-sports) = +0.081 [+0.057,+0.109]
+    Brier improvement nonsports: +0.0178 [-0.0078,+0.0462]
+    Brier improvement sports: +0.0013 [-0.0066,+0.0094]
+
+Window C: n_nonsports=1747 n_sports=4253
+  move nonsports=0.158 [0.141,0.177]  sports=0.090 [0.082,0.097]
+  diff (nonsports-sports) = +0.069 [+0.049,+0.088]
+    Brier improvement nonsports: +0.0230 [-0.0020,+0.0497]
+    Brier improvement sports: +0.0068 [-0.0026,+0.0167]
+# --- exit 0, 5s

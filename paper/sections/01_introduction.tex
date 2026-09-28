@@ -1,0 +1,63 @@
+\section{Introduction}
+\label{sec:intro}
+
+A prediction market turns a question about the future into a contract that pays
+one dollar if the answer is Yes and nothing if it is No. Its trading price is a
+probability with money behind it, and decades of work have found those prices
+hard to beat~\citep{wolfers2004}. Recent studies report that large language
+models now forecast about as well as human crowds~\citep{schoenegger2024}, beat
+the median forecaster on public tournaments~\citep{lu2025}, and, in one
+recent workshop paper on prediction markets, match the price on accuracy while
+earning higher returns~\citep{henry2026beyond}. If that is right, it is a notable claim about
+machine judgment. It is also hard to test, because three things have to be true
+of the comparison.
+
+\textbf{The market has to be trading.} On both venues a fresh listing carries a
+one-cent bid against a ninety-nine-cent ask, and the midpoint is fifty cents whatever the event's real chance. Every row of the two live-book windows has a live book at the
+forecast moment: quotes on both sides, with a spread of ten cents or less. The third, \polybench's published week, was drawn without that rule, and we rest
+no claim on it alone.
+
+\textbf{The model has to form its own number.} If a model is shown the market
+price, whatever it returns is contaminated by the number it was handed. Language
+models move markedly toward a crowd estimate when shown
+one~\citep{schoenegger2024}. No model in this study sees the price, the best bid,
+the best ask, the depth or the book; it sees the question, the resolution rules,
+the scheduled close and a frozen news snapshot.
+
+\textbf{The model must not already know the answer.} Restricting retrieval by date
+does not prevent leakage: one audit found major post-cutoff information in 71
+and 81 per cent of date-filtered pages, with the answer revealed outright for 41
+and 55 per cent~\citep{ellahib2026}. A model forecasts a row only if its exact published
+version was released before that row's outcome could be known, the news was
+captured before the forecast moment, and no model performs a live web search.
+
+With those three conditions in place, the market is more accurate than every
+model in every depth bucket on the two live-book windows. The gap is resolution
+rather than calibration: no monotone rescaling recovers more than about a fifth
+overall. The losses concentrate where a model contradicts the crowd
+(Section~\ref{sec:results-crowd}). The models also err together: on rows the
+market got right, two models land on the same wrong side 2.7 to 4.3 times as
+often as independent forecasters would. Controlling for what they were jointly
+given leaves that rate well above what those inputs alone produce, and adding
+news lowers their agreement only slightly; information none of them had, shared training and a shared prompt
+remain. No combination of the models reaches the market
+(Section~\ref{sec:results-correlated}).
+
+We contribute a replay benchmark of 10{,}536 market moments on two venues, a
+price-blind evaluation harness (the code that prompts each model and records its
+answer) run over eight release-date-eligible models, the finding
+that the accuracy gap lies on the resolution axis, checked against recalibration and
+learned combination, and a correlated-error measure tested against shared
+shrinkage, the observable features of a row and the event itself.
+
+\begin{figure*}[!tbp]
+\centering
+\input{figures/fig-forecast-vs-price}
+\caption{No model sees the market price, yet the forecasts flatten against it. Black lines
+are all models pooled on news-bearing rows, with (solid) and without (dotted) the news, in
+four price bands. Grey crosses are the actual Yes share on those rows. Coloured markers are each model's
+mean forecast in the lowest and highest band, over all primary rows. Test split; pooled lines
+use news-bearing rows, per-model markers use every row. Top-band Yes share: 91 and 87 per cent
+on news-bearing rows, 86 and 84 on all.}
+\label{fig:forecast-vs-price}
+\end{figure*}

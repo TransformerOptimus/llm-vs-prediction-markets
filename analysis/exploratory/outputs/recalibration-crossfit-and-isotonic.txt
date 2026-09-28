@@ -1,0 +1,90 @@
+# output of analysis/exploratory/recalibration-crossfit-and-isotonic.py
+# run: 2026-09-21T12:58:24Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+rows: primary set, forecasts view, mode normal; recovery = share of the model's Brier gap to the market that the rescaling removes; folds split by event, k=5, seed 20260902; RES = Murphy resolution (10 bins), which a monotone rescaling cannot raise
+=== window A
+  gpt-5.2          n=1550  RES 0.0403  market RES 0.0524
+    platt (single split)   n=1248  Brier 0.2007 -> 0.2005 (market 0.1854)  recovery   1.6%  RES 0.0403 -> 0.0333  slope 1.056 intercept +0.233
+    platt (cross-fit)      n=1550  Brier 0.1977 -> 0.1983 (market 0.1840)  recovery  -4.5%  RES 0.0403 -> 0.0383
+    isotonic (cross-fit)   n=1550  Brier 0.1977 -> 0.1984 (market 0.1840)  recovery  -5.3%  RES 0.0403 -> 0.0378
+  gpt-oss-120b     n=1550  RES 0.0263  market RES 0.0524
+    platt (single split)   n=1248  Brier 0.2159 -> 0.2162 (market 0.1854)  recovery  -1.1%  RES 0.0263 -> 0.0214  slope 1.070 intercept +0.301
+    platt (cross-fit)      n=1550  Brier 0.2116 -> 0.2078 (market 0.1840)  recovery  13.8%  RES 0.0263 -> 0.0253
+    isotonic (cross-fit)   n=1550  Brier 0.2116 -> 0.2092 (market 0.1840)  recovery   8.5%  RES 0.0263 -> 0.0260
+  kimi-k2.5        n=1533  RES 0.0412  market RES 0.0519
+    platt (single split)   n=1237  Brier 0.1990 -> 0.1992 (market 0.1860)  recovery  -2.2%  RES 0.0412 -> 0.0341  slope 1.059 intercept +0.210
+    platt (cross-fit)      n=1533  Brier 0.1955 -> 0.1964 (market 0.1849)  recovery  -9.1%  RES 0.0412 -> 0.0389
+    isotonic (cross-fit)   n=1533  Brier 0.1955 -> 0.1969 (market 0.1849)  recovery -13.6%  RES 0.0412 -> 0.0378
+  deepseek-v3.2    n=1550  RES 0.0377  market RES 0.0524
+    platt (single split)   n=1248  Brier 0.1997 -> 0.2009 (market 0.1854)  recovery  -8.7%  RES 0.0377 -> 0.0336  slope 1.123 intercept +0.137
+    platt (cross-fit)      n=1550  Brier 0.1973 -> 0.1979 (market 0.1840)  recovery  -5.0%  RES 0.0377 -> 0.0375
+    isotonic (cross-fit)   n=1550  Brier 0.1973 -> 0.1988 (market 0.1840)  recovery -11.7%  RES 0.0377 -> 0.0366
+=== window B
+  gpt-5.2          n=1865  RES 0.0274  market RES 0.0493
+    platt (single split)   n=1480  Brier 0.2120 -> 0.2102 (market 0.1865)  recovery   7.0%  RES 0.0274 -> 0.0257  slope 0.653 intercept -0.031
+    platt (cross-fit)      n=1865  Brier 0.2109 -> 0.2094 (market 0.1850)  recovery   5.5%  RES 0.0274 -> 0.0239
+    isotonic (cross-fit)   n=1865  Brier 0.2109 -> 0.2079 (market 0.1850)  recovery  11.6%  RES 0.0274 -> 0.0278
+  gpt-oss-120b     n=1865  RES 0.0155  market RES 0.0493
+    platt (single split)   n=1480  Brier 0.2281 -> 0.2214 (market 0.1865)  recovery  16.1%  RES 0.0155 -> 0.0153  slope 0.408 intercept -0.277
+    platt (cross-fit)      n=1865  Brier 0.2284 -> 0.2213 (market 0.1850)  recovery  16.4%  RES 0.0155 -> 0.0150
+    isotonic (cross-fit)   n=1865  Brier 0.2284 -> 0.2219 (market 0.1850)  recovery  14.9%  RES 0.0155 -> 0.0153
+  kimi-k2.5        n=1862  RES 0.0234  market RES 0.0492
+    platt (single split)   n=1477  Brier 0.2158 -> 0.2136 (market 0.1864)  recovery   7.5%  RES 0.0234 -> 0.0232  slope 0.557 intercept -0.139
+    platt (cross-fit)      n=1862  Brier 0.2139 -> 0.2128 (market 0.1849)  recovery   3.7%  RES 0.0234 -> 0.0227
+    isotonic (cross-fit)   n=1862  Brier 0.2139 -> 0.2118 (market 0.1849)  recovery   7.5%  RES 0.0234 -> 0.0235
+  deepseek-v3.2    n=1865  RES 0.0243  market RES 0.0493
+    platt (single split)   n=1480  Brier 0.2138 -> 0.2130 (market 0.1865)  recovery   2.6%  RES 0.0243 -> 0.0222  slope 0.585 intercept -0.228
+    platt (cross-fit)      n=1865  Brier 0.2131 -> 0.2123 (market 0.1850)  recovery   2.7%  RES 0.0243 -> 0.0232
+    isotonic (cross-fit)   n=1865  Brier 0.2131 -> 0.2144 (market 0.1850)  recovery  -4.5%  RES 0.0243 -> 0.0225
+  gpt-5.5          n=1865  RES 0.0310  market RES 0.0493
+    platt (single split)   n=1480  Brier 0.2080 -> 0.2069 (market 0.1865)  recovery   4.8%  RES 0.0310 -> 0.0293  slope 0.729 intercept -0.022
+    platt (cross-fit)      n=1865  Brier 0.2064 -> 0.2063 (market 0.1850)  recovery   0.6%  RES 0.0310 -> 0.0291
+    isotonic (cross-fit)   n=1865  Brier 0.2064 -> 0.2062 (market 0.1850)  recovery   0.9%  RES 0.0310 -> 0.0291
+  glm-5.1          n=1865  RES 0.0239  market RES 0.0493
+    platt (single split)   n=1480  Brier 0.2149 -> 0.2134 (market 0.1865)  recovery   5.3%  RES 0.0239 -> 0.0242  slope 0.456 intercept -0.243
+    platt (cross-fit)      n=1865  Brier 0.2151 -> 0.2129 (market 0.1850)  recovery   7.1%  RES 0.0239 -> 0.0229
+    isotonic (cross-fit)   n=1865  Brier 0.2151 -> 0.2118 (market 0.1850)  recovery  10.8%  RES 0.0239 -> 0.0234
+  kimi-k2.6        n=1864  RES 0.0254  market RES 0.0493
+    platt (single split)   n=1479  Brier 0.2126 -> 0.2113 (market 0.1862)  recovery   5.1%  RES 0.0254 -> 0.0254  slope 0.558 intercept -0.126
+    platt (cross-fit)      n=1864  Brier 0.2123 -> 0.2110 (market 0.1847)  recovery   4.8%  RES 0.0254 -> 0.0249
+    isotonic (cross-fit)   n=1864  Brier 0.2123 -> 0.2122 (market 0.1847)  recovery   0.4%  RES 0.0254 -> 0.0232
+  deepseek-v4-pro  n=1859  RES 0.0243  market RES 0.0496
+    platt (single split)   n=1475  Brier 0.2160 -> 0.2155 (market 0.1862)  recovery   1.7%  RES 0.0243 -> 0.0236  slope 0.275 intercept -0.360
+    platt (cross-fit)      n=1859  Brier 0.2180 -> 0.2134 (market 0.1848)  recovery  13.7%  RES 0.0243 -> 0.0236
+    isotonic (cross-fit)   n=1859  Brier 0.2180 -> 0.2117 (market 0.1848)  recovery  19.0%  RES 0.0243 -> 0.0237
+=== window C
+  gpt-5.2          n=2669  RES 0.0246  market RES 0.0562
+    platt (single split)   n=2137  Brier 0.2218 -> 0.2172 (market 0.1846)  recovery  12.5%  RES 0.0246 -> 0.0231  slope 0.609 intercept -0.177
+    platt (cross-fit)      n=2669  Brier 0.2204 -> 0.2166 (market 0.1840)  recovery  10.4%  RES 0.0246 -> 0.0248
+    isotonic (cross-fit)   n=2669  Brier 0.2204 -> 0.2157 (market 0.1840)  recovery  12.8%  RES 0.0246 -> 0.0251
+  gpt-oss-120b     n=2669  RES 0.0206  market RES 0.0562
+    platt (single split)   n=2137  Brier 0.2278 -> 0.2221 (market 0.1846)  recovery  13.1%  RES 0.0206 -> 0.0189  slope 0.617 intercept -0.111
+    platt (cross-fit)      n=2669  Brier 0.2262 -> 0.2213 (market 0.1840)  recovery  11.5%  RES 0.0206 -> 0.0188
+    isotonic (cross-fit)   n=2669  Brier 0.2262 -> 0.2225 (market 0.1840)  recovery   8.8%  RES 0.0206 -> 0.0190
+  kimi-k2.5        n=2665  RES 0.0248  market RES 0.0563
+    platt (single split)   n=2134  Brier 0.2205 -> 0.2171 (market 0.1844)  recovery   9.3%  RES 0.0248 -> 0.0235  slope 0.612 intercept -0.152
+    platt (cross-fit)      n=2665  Brier 0.2193 -> 0.2166 (market 0.1838)  recovery   7.6%  RES 0.0248 -> 0.0242
+    isotonic (cross-fit)   n=2665  Brier 0.2193 -> 0.2180 (market 0.1838)  recovery   3.7%  RES 0.0248 -> 0.0242
+  deepseek-v3.2    n=2669  RES 0.0221  market RES 0.0562
+    platt (single split)   n=2137  Brier 0.2248 -> 0.2215 (market 0.1846)  recovery   8.2%  RES 0.0221 -> 0.0209  slope 0.680 intercept -0.167
+    platt (cross-fit)      n=2669  Brier 0.2224 -> 0.2202 (market 0.1840)  recovery   5.7%  RES 0.0221 -> 0.0221
+    isotonic (cross-fit)   n=2669  Brier 0.2224 -> 0.2203 (market 0.1840)  recovery   5.6%  RES 0.0221 -> 0.0198
+  gpt-5.5          n=2667  RES 0.0318  market RES 0.0564
+    platt (single split)   n=2136  Brier 0.2117 -> 0.2101 (market 0.1844)  recovery   5.7%  RES 0.0318 -> 0.0303  slope 0.844 intercept -0.074
+    platt (cross-fit)      n=2667  Brier 0.2098 -> 0.2085 (market 0.1837)  recovery   4.9%  RES 0.0318 -> 0.0319
+    isotonic (cross-fit)   n=2667  Brier 0.2098 -> 0.2089 (market 0.1837)  recovery   3.4%  RES 0.0318 -> 0.0326
+  glm-5.1          n=2669  RES 0.0233  market RES 0.0562
+    platt (single split)   n=2137  Brier 0.2255 -> 0.2203 (market 0.1846)  recovery  12.7%  RES 0.0233 -> 0.0209  slope 0.625 intercept -0.162
+    platt (cross-fit)      n=2669  Brier 0.2234 -> 0.2187 (market 0.1840)  recovery  11.8%  RES 0.0233 -> 0.0215
+    isotonic (cross-fit)   n=2669  Brier 0.2234 -> 0.2197 (market 0.1840)  recovery   9.5%  RES 0.0233 -> 0.0217
+  kimi-k2.6        n=2668  RES 0.0224  market RES 0.0562
+    platt (single split)   n=2136  Brier 0.2245 -> 0.2198 (market 0.1847)  recovery  11.7%  RES 0.0224 -> 0.0206  slope 0.603 intercept -0.140
+    platt (cross-fit)      n=2668  Brier 0.2227 -> 0.2191 (market 0.1840)  recovery   9.4%  RES 0.0224 -> 0.0215
+    isotonic (cross-fit)   n=2668  Brier 0.2227 -> 0.2201 (market 0.1840)  recovery   6.7%  RES 0.0224 -> 0.0212
+  deepseek-v4-pro  n=2661  RES 0.0257  market RES 0.0563
+    platt (single split)   n=2130  Brier 0.2264 -> 0.2190 (market 0.1847)  recovery  17.9%  RES 0.0257 -> 0.0238  slope 0.411 intercept -0.263
+    platt (cross-fit)      n=2661  Brier 0.2245 -> 0.2184 (market 0.1840)  recovery  15.2%  RES 0.0257 -> 0.0251
+    isotonic (cross-fit)   n=2661  Brier 0.2245 -> 0.2164 (market 0.1840)  recovery  20.2%  RES 0.0257 -> 0.0253
+# --- exit 0, 4s

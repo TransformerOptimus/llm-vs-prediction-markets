@@ -1,0 +1,12 @@
+# output of analysis/exploratory/horizon-news-value-final-day.py
+# run: 2026-09-17T06:55:29Z  python 3.9.6 numpy 2.0.2
+# runs.db sha256 d94b7362e7a6652416d9c0af0c5ec7cfb0d55475bb25409466fb585db2a0f808
+# benchmark.db sha256 ef961cf49b981a0f737a72f12d9b91f92571cd81184db70bee79c4ec3f3c6617
+# ---
+Window A paired rows total: 5719
+<1d n= 428 markets= 108 d_brier=-0.0723 [-0.1094,-0.0354]
+1-3d n= 1994 markets= 501 d_brier=-0.0096 [-0.0188,-0.0013]
+3-7d n= 2754 markets= 689 d_brier=-0.0056 [-0.0133,0.0019]
+>7d n= 543 markets= 136 d_brier=-0.0204 [-0.0442,0.0003]
+<1d minus 3-7d: (-0.0666542816282349, -0.10683087026703943, -0.03088183647455155)
+# --- exit 0, 1s

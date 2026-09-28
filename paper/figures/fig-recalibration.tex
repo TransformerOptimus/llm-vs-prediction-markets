@@ -1,0 +1,36 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+  paperaxis,
+  group style={group size=2 by 1, horizontal sep=6pt},
+  width=0.5\linewidth, height=0.27\linewidth,
+  xmin=0.4, xmax=8.6, xtick={1,2,3,4,5,6,7,8},
+  xticklabels={{\mGptFiveTwo},{\mGptOss},{\mKimiKTwoFive},{\mDeepSeekVThreeTwo},{\mGptFiveFive},{\mGlmFiveOne},{\mKimiKTwoSix},{\mDeepSeekVFourPro}},
+  xticklabel style={rotate=40, anchor=north east, font=\scriptsize},
+  ymin=-25, ymax=105, ytick={0,25,50,75,100},
+  yticklabel style={/pgf/number format/fixed},
+  yticklabel={\pgfmathprintnumber{\tick}\%},
+  ymajorgrids, scaled ticks=false,
+  legend columns=1,
+]
+\nextgroupplot[title={\winB (\polymarket)}, ylabel={Share of the Brier gap that rescaling removes}, legend to name=legFf,]
+\addplot[papermark, mark=*, color=black, forget plot, only marks] coordinates {(0.76,7.0) (1.76,16.1) (2.76,7.5) (3.76,2.6) (4.76,4.8) (5.76,5.3) (6.76,5.1) (7.76,1.7)};
+\addplot[papermark, mark=square, color=black!65, forget plot, only marks] coordinates {(1.00,5.5) (2.00,16.4) (3.00,3.7) (4.00,2.7) (5.00,0.6) (6.00,7.1) (7.00,4.8) (8.00,13.7)};
+\addplot[papermark, mark=triangle, color=black!65, forget plot, only marks] coordinates {(1.24,11.6) (2.24,14.9) (3.24,7.5) (4.24,-4.5) (5.24,0.9) (6.24,10.8) (7.24,0.4) (8.24,19.0)};
+\addplot[gray!60, line width=0.4pt, forget plot] coordinates {(0.4,0) (8.6,0)};
+\addplot[gray!70, dashed, line width=0.6pt, forget plot] coordinates {(0.4,100) (8.6,100)};
+\node[font=\scriptsize, anchor=north east, text=black!70] at (axis cs:8.6,98) {gap fully closed};
+\addlegendimage{papermark, mark=*, color=black}\addlegendentry{Platt, fit on the calibration split, scored on the test split}
+\addlegendimage{papermark, mark=square, color=black!65}\addlegendentry{Platt, cross-fitted over all rows}
+\addlegendimage{papermark, mark=triangle, color=black!65}\addlegendentry{Isotonic, cross-fitted over all rows}
+\nextgroupplot[title={\winC (\kalshi)}, yticklabels={},]
+\addplot[papermark, mark=*, color=black, forget plot, only marks] coordinates {(0.76,12.5) (1.76,13.1) (2.76,9.3) (3.76,8.2) (4.76,5.7) (5.76,12.7) (6.76,11.7) (7.76,17.9)};
+\addplot[papermark, mark=square, color=black!65, forget plot, only marks] coordinates {(1.00,10.4) (2.00,11.5) (3.00,7.6) (4.00,5.7) (5.00,4.9) (6.00,11.8) (7.00,9.4) (8.00,15.2)};
+\addplot[papermark, mark=triangle, color=black!65, forget plot, only marks] coordinates {(1.24,12.8) (2.24,8.8) (3.24,3.7) (4.24,5.6) (5.24,3.4) (6.24,9.5) (7.24,6.7) (8.24,20.2)};
+\addplot[gray!60, line width=0.4pt, forget plot] coordinates {(0.4,0) (8.6,0)};
+\addplot[gray!70, dashed, line width=0.6pt, forget plot] coordinates {(0.4,100) (8.6,100)};
+\node[font=\scriptsize, anchor=north east, text=black!70] at (axis cs:8.6,98) {gap fully closed};
+
+\end{groupplot}
+\end{tikzpicture}
+
+\pgfplotslegendfromname{legFf}
