@@ -2,9 +2,6 @@ cff-version: 1.2.0
 message: "If you use this code or data, please cite the paper below."
 title: "Sorting, Not Calibration: A Price-Blind Comparison of Language Models and Prediction Markets"
 authors:
-  - given-names: Ishaan
-    family-names: Bhola
-    affiliation: SuperAGI Research
   - given-names: Adithyan
     family-names: Krishnan
     affiliation: SuperAGI Research
@@ -13,6 +10,9 @@ authors:
     affiliation: SuperAGI Research
   - given-names: Mukunda
     family-names: NS
+    affiliation: SuperAGI Research
+  - given-names: Ishaan
+    family-names: Bhola
     affiliation: SuperAGI Research
 repository-code: "https://github.com/TransformerOptimus/llm-vs-prediction-markets"
 license: Apache-2.0
@@ -27,14 +27,14 @@ preferred-citation:
   type: article
   title: "Sorting, Not Calibration: A Price-Blind Comparison of Language Models and Prediction Markets"
   authors:
-    - given-names: Ishaan
-      family-names: Bhola
     - given-names: Adithyan
       family-names: Krishnan
     - given-names: Ritu Rajesh
       family-names: Kanchi
     - given-names: Mukunda
       family-names: NS
+    - given-names: Ishaan
+      family-names: Bhola
   year: 2026
   journal: "arXiv preprint <<FILL: arXiv ID>>"
   url: "<<FILL: paper link>>"

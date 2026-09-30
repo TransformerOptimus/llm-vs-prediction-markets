@@ -95,9 +95,9 @@ released file it comes from.
 ## Citation
 
 ```bibtex
-@misc{bhola2026sorting,
+@misc{krishnan2026sorting,
   title         = {Sorting, Not Calibration: A Price-Blind Comparison of Language Models and Prediction Markets},
-  author        = {Bhola, Ishaan and Krishnan, Adithyan and Kanchi, Ritu Rajesh and NS, Mukunda},
+  author        = {Krishnan, Adithyan and Kanchi, Ritu Rajesh and NS, Mukunda and Bhola, Ishaan},
   year          = {2026},
   eprint        = {<<FILL: arXiv ID>>},
   archivePrefix = {arXiv}
