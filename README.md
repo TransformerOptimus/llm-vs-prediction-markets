@@ -2,7 +2,7 @@
 
 This repository holds the code and the paper for *Sorting, Not Calibration: A
 Price-Blind Comparison of Language Models and Prediction Markets*
-(<<FILL: paper link>>).
+(arXiv link forthcoming; the PDF is in [`paper/main.pdf`](paper/main.pdf)).
 
 ## What the study does, in short
 
@@ -99,7 +99,6 @@ released file it comes from.
   title         = {Sorting, Not Calibration: A Price-Blind Comparison of Language Models and Prediction Markets},
   author        = {Krishnan, Adithyan and Kanchi, Ritu Rajesh and NS, Mukunda and Bhola, Ishaan},
   year          = {2026},
-  eprint        = {<<FILL: arXiv ID>>},
-  archivePrefix = {arXiv}
+  note          = {arXiv preprint, forthcoming}
 }
 ```
